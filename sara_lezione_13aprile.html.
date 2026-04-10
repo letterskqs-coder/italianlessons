@@ -3,44 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⛵ Sara · Lezione 13 Aprile · Comandi Nautici</title>
+<title>Italiano con Sara 🌸 — Imperativo Gentile</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* [Inserire qui lo stile CSS del file sara_esercizi_6aprile.html per mantenere il look oceanico] */
-  body { font-family: sans-serif; background: #1b4a7a; color: white; padding: 20px; }
-  .card { background: white; color: #1b3a5c; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-  .theory { background: #e8f4fd; padding: 15px; border-radius: 10px; border-left: 5px solid #c9942a; }
-  input { padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 200px; }
-  button { background: #c9942a; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+  :root { --sand: #f5efe6; --terracotta: #c4714a; --sea: #4a7f8f; --dark: #2a2018; --warm: #e8d9c4; --correct: #5a9e6b; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--dark); margin: 0; }
+  .header { background: var(--dark); color: var(--sand); padding: 2.5rem 2rem; position: relative; }
+  .header h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; }
+  .header h1 em { font-style: italic; color: var(--terracotta); }
+  .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .theory-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid var(--warm); box-shadow: 0 2px 12px rgba(42,32,24,0.05); margin-bottom: 1.5rem; }
+  .ex-card { background: white; border-radius: 16px; padding: 1.8rem; border: 1px solid var(--warm); margin-bottom: 1.2rem; }
+  input { border: 2px solid var(--warm); border-radius: 8px; padding: 0.5rem; width: 100%; max-width: 250px; outline: none; }
+  button { background: var(--terracotta); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+  .feedback { margin-top: 10px; font-weight: 500; display: none; }
 </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>⚓ Lezione 13 Aprile: Dare Istruzioni</h1>
-  <p>Oggi impariamo a dare ordini gentili ma decisi ai passeggeri.</p>
-  
-  <div class="theory">
-    <h3>📖 Teoria: L'Imperativo di Cortesia (Lei)</h3>
-    <ul>
-      <li><strong>Si sieda</strong> (Sit down)</li>
-      <li><strong>Si tenga</strong> (Hold on)</li>
-      <li><strong>Attenzione!</strong> (Watch out!)</li>
-      <li><strong>Non si muova</strong> (Don't move)</li>
+<div class="header">
+  <div style="color: var(--sea); letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 0.5rem;">LEZIONE 13 APRILE</div>
+  <h1>Istruzioni di<br><em>sicurezza</em></h1>
+</div>
+
+<div class="container">
+  <div class="theory-card">
+    <h2>⚓ L'Imperativo di Cortesia (Lei)</h2>
+    <p>Per dare ordini gentili ai clienti in barca, usiamo la forma "Lei":</p>
+    <ul style="line-height: 2;">
+      <li><strong>Si sieda</strong> (da Sedersi - -ARE diventa -A)</li>
+      <li><strong>Si tenga</strong> (da Tenersi - -ERE diventa -A)</li>
+      <li><strong>Entri</strong> (da Entrare - -ARE diventa -I)</li>
+      <li><strong>Faccia attenzione</strong> (da Fare)</li>
     </ul>
   </div>
 
-  <h3>🎯 Esercizio 1: Trasforma in comando gentile</h3>
-  <p>Esempio: "Tu ti siedi" -> "Si sieda"</p>
-  <p>1. Tu ti tieni al corrimano -> <input type="text" id="ex1_1"> (Si tenga)</p>
-  <p>2. Tu entri in cabina -> <input type="text" id="ex1_2"> (Entri)</p>
-  <p>3. Tu aspetti qui -> <input type="text" id="ex1_3"> (Aspetti)</p>
+  <div class="ex-card">
+    <p><strong>Esercizio:</strong> Come dici al passeggero di sedersi alla poppa?</p>
+    <p>"Per favore, <input type="text" id="ans1" placeholder="..."> alla poppa."</p>
+    <button onclick="check()">Controlla</button>
+    <div id="fb1" class="feedback"></div>
+  </div>
 </div>
 
-<div class="card">
-  <h3>🗣️ Speaking Challenge: La Manovra</h3>
-  <p>Scenario: C'è un'onda improvvisa. Cosa dici ai clienti?</p>
-  <p><em>"Per favore, _______ (sedersi) subito e _______ (tenersi) forte!"</em></p>
-</div>
-
+<script>
+function check() {
+  const a = document.getElementById('ans1').value.toLowerCase().trim();
+  const fb = document.getElementById('fb1');
+  fb.style.display = "block";
+  if(a === "si sieda") {
+    fb.innerHTML = "✅ Bravissima Sara! 'Si sieda' è corretto.";
+    fb.style.color = "var(--correct)";
+  } else {
+    fb.innerHTML = "❌ Riprova! Suggerimento: (Lei) si sied... ";
+    fb.style.color = "red";
+  }
+}
+</script>
 </body>
 </html>
