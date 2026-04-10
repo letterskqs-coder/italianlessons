@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⛵ Sara · Lezione 13 Aprile · Comandi Nautici</title>
+<style>
+  /* [Inserire qui lo stile CSS del file sara_esercizi_6aprile.html per mantenere il look oceanico] */
+  body { font-family: sans-serif; background: #1b4a7a; color: white; padding: 20px; }
+  .card { background: white; color: #1b3a5c; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+  .theory { background: #e8f4fd; padding: 15px; border-radius: 10px; border-left: 5px solid #c9942a; }
+  input { padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 200px; }
+  button { background: #c9942a; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>⚓ Lezione 13 Aprile: Dare Istruzioni</h1>
+  <p>Oggi impariamo a dare ordini gentili ma decisi ai passeggeri.</p>
+  
+  <div class="theory">
+    <h3>📖 Teoria: L'Imperativo di Cortesia (Lei)</h3>
+    <ul>
+      <li><strong>Si sieda</strong> (Sit down)</li>
+      <li><strong>Si tenga</strong> (Hold on)</li>
+      <li><strong>Attenzione!</strong> (Watch out!)</li>
+      <li><strong>Non si muova</strong> (Don't move)</li>
+    </ul>
+  </div>
+
+  <h3>🎯 Esercizio 1: Trasforma in comando gentile</h3>
+  <p>Esempio: "Tu ti siedi" -> "Si sieda"</p>
+  <p>1. Tu ti tieni al corrimano -> <input type="text" id="ex1_1"> (Si tenga)</p>
+  <p>2. Tu entri in cabina -> <input type="text" id="ex1_2"> (Entri)</p>
+  <p>3. Tu aspetti qui -> <input type="text" id="ex1_3"> (Aspetti)</p>
+</div>
+
+<div class="card">
+  <h3>🗣️ Speaking Challenge: La Manovra</h3>
+  <p>Scenario: C'è un'onda improvvisa. Cosa dici ai clienti?</p>
+  <p><em>"Per favore, _______ (sedersi) subito e _______ (tenersi) forte!"</em></p>
+</div>
+
+</body>
+</html>
