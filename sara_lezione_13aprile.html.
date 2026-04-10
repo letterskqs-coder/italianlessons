@@ -6,59 +6,35 @@
 <title>Italiano con Sara 🌸 — Imperativo Gentile</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --sand: #f5efe6; --terracotta: #c4714a; --sea: #4a7f8f; --dark: #2a2018; --warm: #e8d9c4; --correct: #5a9e6b; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--dark); margin: 0; }
-  .header { background: var(--dark); color: var(--sand); padding: 2.5rem 2rem; position: relative; }
-  .header h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; }
-  .header h1 em { font-style: italic; color: var(--terracotta); }
-  .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .theory-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid var(--warm); box-shadow: 0 2px 12px rgba(42,32,24,0.05); margin-bottom: 1.5rem; }
-  .ex-card { background: white; border-radius: 16px; padding: 1.8rem; border: 1px solid var(--warm); margin-bottom: 1.2rem; }
-  input { border: 2px solid var(--warm); border-radius: 8px; padding: 0.5rem; width: 100%; max-width: 250px; outline: none; }
-  button { background: var(--terracotta); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 10px; }
-  .feedback { margin-top: 10px; font-weight: 500; display: none; }
+  :root { --sand: #f5efe6; --warm: #e8d9c4; --terracotta: #c4714a; --sea: #4a7f8f; --dark: #2a2018; --correct: #5a9e6b; --wrong: #c45a4a; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--dark); line-height: 1.6; margin: 0; }
+  .header { background: var(--dark); color: var(--sand); padding: 2.5rem 2rem; text-align: left; }
+  .header h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; margin: 0; }
+  .header h1 em { color: var(--terracotta); font-style: italic; }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .theory-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 1px solid var(--warm); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .ex-card { background: white; border-radius: 16px; padding: 1.8rem; margin-bottom: 1.5rem; border: 1px solid var(--warm); }
+  .verb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .verb-box { background: var(--sand); padding: 1rem; border-radius: 12px; border-left: 4px solid var(--terracotta); }
+  .choice-btn { background: var(--sand); border: 2px solid var(--warm); border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; margin: 5px; transition: 0.2s; }
+  .choice-btn:hover { border-color: var(--terracotta); }
+  .choice-btn.correct { background: #eef6f0; border-color: var(--correct); color: #3a7a4a; }
+  .choice-btn.wrong { background: #fdf0ee; border-color: var(--wrong); color: #8a3030; }
+  .feedback { margin-top: 1rem; padding: 10px; border-radius: 8px; display: none; }
+  input { border: 2px solid var(--warm); border-radius: 8px; padding: 8px; width: 150px; }
+  .speaking-prompt { background: var(--dark); color: white; padding: 20px; border-radius: 12px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div style="color: var(--sea); letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 0.5rem;">LEZIONE 13 APRILE</div>
-  <h1>Istruzioni di<br><em>sicurezza</em></h1>
+  <div style="color: var(--sea); letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 0.5rem;">UNITÀ 11 · SICUREZZA</div>
+  <h1>Imperativo di<br><em>Cortesia</em></h1>
 </div>
 
 <div class="container">
   <div class="theory-card">
-    <h2>⚓ L'Imperativo di Cortesia (Lei)</h2>
-    <p>Per dare ordini gentili ai clienti in barca, usiamo la forma "Lei":</p>
-    <ul style="line-height: 2;">
-      <li><strong>Si sieda</strong> (da Sedersi - -ARE diventa -A)</li>
-      <li><strong>Si tenga</strong> (da Tenersi - -ERE diventa -A)</li>
-      <li><strong>Entri</strong> (da Entrare - -ARE diventa -I)</li>
-      <li><strong>Faccia attenzione</strong> (da Fare)</li>
-    </ul>
-  </div>
-
-  <div class="ex-card">
-    <p><strong>Esercizio:</strong> Come dici al passeggero di sedersi alla poppa?</p>
-    <p>"Per favore, <input type="text" id="ans1" placeholder="..."> alla poppa."</p>
-    <button onclick="check()">Controlla</button>
-    <div id="fb1" class="feedback"></div>
-  </div>
-</div>
-
-<script>
-function check() {
-  const a = document.getElementById('ans1').value.toLowerCase().trim();
-  const fb = document.getElementById('fb1');
-  fb.style.display = "block";
-  if(a === "si sieda") {
-    fb.innerHTML = "✅ Bravissima Sara! 'Si sieda' è corretto.";
-    fb.style.color = "var(--correct)";
-  } else {
-    fb.innerHTML = "❌ Riprova! Suggerimento: (Lei) si sied... ";
-    fb.style.color = "red";
-  }
-}
-</script>
-</body>
-</html>
+    <h2>📖 Teoria: Comandare con Eleganza</h2>
+    <p>Come skipper, devi dare ordini chiari. Con i clienti usiamo la forma <strong>Lei</strong>. Guarda come cambiano i verbi:</p>
+    <div class="verb-grid">
+      <div class="verb-box"><strong>Verbi in -ARE</strong><br><em>Sedere → Si sied<strong>A</strong></em><br><em>Entrare → Entr<strong>I</strong></em></div>
