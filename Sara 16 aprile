@@ -3,40 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⛵ Sara · Lezione 16 Aprile · Il Passato Descrittivo</title>
+<title>Italiano con Sara 🌸 — L'Imperfetto</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* Mantieni lo stile delle lezioni precedenti */
-  body { font-family: sans-serif; background: #0b2a45; color: white; padding: 20px; }
-  .card { background: white; color: #1b3a5c; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-  .verb-table { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f9f9f9; padding: 10px; }
+  :root { --sand: #f5efe6; --terracotta: #c4714a; --sea: #4a7f8f; --dark: #2a2018; --warm: #e8d9c4; --correct: #5a9e6b; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--dark); margin: 0; }
+  .header { background: var(--dark); color: var(--sand); padding: 2.5rem 2rem; }
+  .header h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; }
+  .header h1 em { font-style: italic; color: var(--sea); }
+  .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .theory-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid var(--warm); margin-bottom: 1.5rem; }
+  .pattern-box { background: var(--dark); color: var(--sand); border-radius: 12px; padding: 1.2rem; margin: 1rem 0; }
+  .ex-card { background: white; border-radius: 16px; padding: 1.8rem; border: 1px solid var(--warm); }
+  input { border: 2px solid var(--warm); border-radius: 8px; padding: 0.5rem; width: 60px; text-align: center; }
 </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>🌊 Lezione 16 Aprile: Descrivere il passato</h1>
-  <p>L'imperfetto si usa per descrivere il meteo o le abitudini in barca.</p>
-
-  <div class="theory">
-    <h3>📖 Teoria: L'Imperfetto</h3>
-    <div class="verb-table">
-      <div><strong>ESSERE</strong> (it was)<br>Era calmo / Erano grandi</div>
-      <div><strong>AVERE</strong> (it had)<br>Aveva il sole / Avevamo tempo</div>
-    </div>
-    <p><em>"Mentre navigavamo, il cielo era blu."</em></p>
-  </div>
-
-  <h3>🎯 Esercizio 2: Com'era il tour ieri?</h3>
-  <p>Scegli la forma corretta tra parentesi:</p>
-  <p>1. Ieri il mare (era / è stato) molto agitato tutto il giorno. <input type="text"></p>
-  <p>2. Quando siamo partiti, (faceva / ha fatto) caldo. <input type="text"></p>
-  <p>3. I clienti (erano / sono stati) molto felici durante il bagno. <input type="text"></p>
+<div class="header">
+  <div style="color: var(--terracotta); letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 0.5rem;">LEZIONE 16 APRILE</div>
+  <h1>Com'era il<br><em>mare?</em></h1>
 </div>
 
-<div class="card">
-  <h3>🗣️ Speaking: Racconta un aneddoto</h3>
-  <p>Descrivi a Kate come era il mare l'estate scorsa a Osljak.</p>
-  <p><em>"L'anno scorso il mare _______ (essere) sempre trasparente e non _______ (esserci) mai troppe barche..."</em></p>
+<div class="container">
+  <div class="theory-card">
+    <h2>📖 L'Imperfetto: Descrizioni</h2>
+    <p>Usiamo l'imperfetto per descrivere il tempo o la barca nel passato.</p>
+    <div class="pattern-box">
+      <p><strong>ESSERE:</strong> Io ero, Tu eri, Lui/Lei <em>era</em></p>
+      <p><strong>AVERE:</strong> Io avevo, Tu avevi, Lui/Lei <em>aveva</em></p>
+    </div>
+  </div>
+
+  <div class="ex-card">
+    <h3>🎯 Esercizio: Descrivi il tour di ieri</h3>
+    <p>1. Ieri il cielo <input type="text" id="q1"> (essere) blu limpido.</p>
+    <p>2. Il mare non <input type="text" id="q2"> (avere) onde alte.</p>
+    <p>3. I clienti <input type="text" id="q3" style="width:80px"> (essere) molto tranquilli.</p>
+    <p style="font-size: 0.8rem; color: gray;">Soluzioni: era / aveva / erano</p>
+  </div>
 </div>
 
 </body>
