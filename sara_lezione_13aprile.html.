@@ -38,3 +38,65 @@
     <p>Come skipper, devi dare ordini chiari. Con i clienti usiamo la forma <strong>Lei</strong>. Guarda come cambiano i verbi:</p>
     <div class="verb-grid">
       <div class="verb-box"><strong>Verbi in -ARE</strong><br><em>Sedere → Si sied<strong>A</strong></em><br><em>Entrare → Entr<strong>I</strong></em></div>
+      <div class="verb-box"><strong>Verbi in -ERE / -IRE</strong><br><em>Tenere → Si teng<strong>A</strong></em><br><em>Salire → Salg<strong>A</strong></em></div>
+    </div>
+    <p>💡 <strong>Nota:</strong> I verbi riflessivi (sedersi, tenersi) mettono il "Si" davanti.</p>
+  </div>
+
+  <div class="ex-card">
+    <h3>🎯 Esercizio 1: Situazioni d'emergenza</h3>
+    <p>C'è un'onda improvvisa. Cosa dici al cliente?</p>
+    <div id="choices-1">
+      <button class="choice-btn" onclick="checkMC(this, true)">"Si sieda subito!"</button>
+      <button class="choice-btn" onclick="checkMC(this, false)">"Siediti ora!"</button>
+      <button class="choice-btn" onclick="checkMC(this, false)">"Si siede!"</button>
+    </div>
+    <div id="fb-1" class="feedback"></div>
+  </div>
+
+  <div class="ex-card">
+    <h3>✏️ Esercizio 2: Trasforma il comando</h3>
+    <p>1. (Tenersi) forte: <input type="text" id="inp1"> al corrimano.</p>
+    <p>2. (Fare) attenzione: <input type="text" id="inp2"> al boma!</p>
+    <button class="choice-btn" style="background:var(--terracotta); color:white;" onclick="checkFill()">Controlla</button>
+    <div id="fb-2" class="feedback"></div>
+  </div>
+
+  <div class="speaking-prompt">
+    <h3>🗣️ Sfida per Sara: Il temporale</h3>
+    <p><em>"Sara! I'm scared, what should I do?"</em></p>
+    <p>Rispondi al cliente usando: <strong>Si sieda</strong>, <strong>Si tenga</strong>, <strong>Stia calmo</strong> e <strong>Non si muova</strong>.</p>
+  </div>
+</div>
+
+<script>
+function checkMC(btn, isCorrect) {
+  const fb = document.getElementById('fb-1');
+  fb.style.display = "block";
+  if(isCorrect) {
+    btn.classList.add('correct');
+    fb.innerHTML = "✅ Esatto! Usiamo 'Si sieda' per essere professionali.";
+    fb.style.color = "var(--correct)";
+  } else {
+    btn.classList.add('wrong');
+    fb.innerHTML = "❌ Troppo informale o grammaticalmente errato.";
+    fb.style.color = "var(--wrong)";
+  }
+}
+
+function checkFill() {
+  const r1 = document.getElementById('inp1').value.toLowerCase().trim();
+  const r2 = document.getElementById('inp2').value.toLowerCase().trim();
+  const fb = document.getElementById('fb-2');
+  fb.style.display = "block";
+  if(r1 === "si tenga" && r2 === "faccia") {
+    fb.innerHTML = "🎉 Bravissima Sara! 'Si tenga' e 'Faccia' sono perfetti.";
+    fb.style.color = "var(--correct)";
+  } else {
+    fb.innerHTML = "⚠️ Controlla: 'Si teng...' e 'Facci...'";
+    fb.style.color = "var(--wrong)";
+  }
+}
+</script>
+</body>
+</html>
