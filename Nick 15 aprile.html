@@ -3,182 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nick – L7: Passato Prossimo con ESSERE</title>
+<title>Nick – L7: Passato Prossimo con ESSERE (Versione Ultra)</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f8f9fa; --card: #ffffff; --text: #1e293b; --muted: #64748b;
-    --accent: #c0392b; --accent-light: #fdf2f2; --blue: #2563eb; --blue-light: #eff6ff;
-    --green: #16a34a; --green-light: #f0fdf4; --red: #dc2626; --red-light: #fef2f2;
-    --border: #e2e8f0; --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --bg: #fdfaf6; --card: #ffffff; --text: #1a1c1e; --muted: #5f6368;
+    --accent: #c0392b; --accent-light: #fcecea; --blue: #1a73e8; --blue-light: #e8f0fe;
+    --green: #188038; --green-light: #e6f4ea; --red: #d93025; --red-light: #fce8e6;
+    --border: #dadce0; --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
   
-  header { background: #1e1b4b; color: white; padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden; }
-  header::after { content: "L7"; position: absolute; top: -10px; right: 20px; font-size: 8rem; opacity: 0.1; font-family: 'DM Serif Display'; }
-  header h1 { font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .badge { background: var(--accent); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+  header { background: #1e1b4b; color: #fdfaf6; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  header::after { content: "ESSERE"; position: absolute; bottom: -20px; right: -10px; font-size: 10rem; opacity: 0.05; font-family: 'DM Serif Display'; }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 0.75rem; letter-spacing: -1px; }
+  .badge { background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-  .tabs { display: flex; justify-content: center; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .tab { padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; transition: 0.3s; }
+  .tabs { display: flex; justify-content: center; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; overflow-x: auto; }
+  .tab { padding: 1.2rem 1.5rem; border: none; background: none; cursor: pointer; font-weight: 600; color: var(--muted); border-bottom: 4px solid transparent; transition: 0.3s; white-space: nowrap; }
   .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
 
-  .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-  .section { display: none; animation: fadeIn 0.5s ease; }
-  .section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .container { max-width: 950px; margin: 3rem auto; padding: 0 1.5rem; }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.6s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); }
-  h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #1e1b4b; display: flex; align-items: center; gap: 0.5rem; }
-  
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .rule-box { padding: 1.5rem; border-radius: 0.75rem; font-size: 0.95rem; }
-  .rule-blue { background: var(--blue-light); border-left: 5px solid var(--blue); }
-  .rule-accent { background: var(--accent-light); border-left: 5px solid var(--accent); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 1.25rem; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow); }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 1.5rem; color: #1e1b4b; border-left: 6px solid var(--accent); padding-left: 1rem; }
+  h3 { margin: 2rem 0 1rem; font-family: 'DM Serif Display', serif; color: var(--blue); font-size: 1.5rem; }
 
-  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-  th { background: #f1f5f9; text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--border); }
-  td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
-  .tag-irr { background: #7c3aed; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
+  .rule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+  .box { padding: 1.8rem; border-radius: 1rem; border: 1px solid var(--border); transition: 0.3s; }
+  .box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+  .box-blue { background: var(--blue-light); border-color: #aecbfa; }
+  .box-accent { background: var(--accent-light); border-color: #fad2cf; }
 
-  .exercise-title { font-weight: 700; margin-bottom: 1rem; color: var(--blue); display: block; }
-  input[type="text"] { padding: 0.6rem 1rem; border: 2px solid var(--border); border-radius: 0.5rem; outline: none; transition: 0.2s; width: 100%; max-width: 300px; }
-  input[type="text"]:focus { border-color: var(--blue); }
-  input.correct { border-color: var(--green); background: var(--green-light); }
-  input.wrong { border-color: var(--red); background: var(--red-light); }
+  /* FLASHCARDS */
+  .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+  .flashcard { background: white; border: 2px solid var(--border); border-radius: 0.75rem; height: 120px; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; transition: 0.3s; perspective: 1000px; padding: 1rem; }
+  .flashcard:hover { border-color: var(--blue); background: var(--blue-light); }
+  .flashcard .back { display: none; font-weight: 700; color: var(--blue); font-size: 1.2rem; }
+  .flashcard.flipped .front { display: none; }
+  .flashcard.flipped .back { display: block; }
 
-  .choice-grid { display: flex; flex-direction: column; gap: 0.75rem; }
-  .choice-btn { padding: 1rem; border: 1px solid var(--border); border-radius: 0.75rem; cursor: pointer; text-align: left; transition: 0.2s; background: white; }
-  .choice-btn:hover { background: #f8fafc; border-color: var(--blue); }
-  .choice-btn.selected-correct { background: var(--green-light); border-color: var(--green); color: var(--green); font-weight: bold; }
-  .choice-btn.selected-wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
+  th { background: #f8f9fa; text-align: left; padding: 1rem; font-weight: 700; color: #1e1b4b; border-bottom: 2px solid var(--border); }
+  td { padding: 1rem; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
 
-  .feedback { margin-top: 1rem; padding: 1rem; border-radius: 0.5rem; font-size: 0.9rem; display: none; }
-  .feedback.show { display: block; }
-  .feedback.ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green); }
-  .feedback.err { background: var(--red-light); color: var(--red); border: 1px solid var(--red); }
+  /* EXERCISES */
+  .ex-item { background: #f8f9fa; border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; }
+  .q-text { font-size: 1.1rem; font-weight: 500; margin-bottom: 1rem; display: block; }
+  input[type="text"] { padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: 0.6rem; outline: none; transition: 0.3s; font-size: 1rem; font-family: inherit; width: 100%; max-width: 400px; }
+  input[type="text"]:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,115,232,0.1); }
+  input.correct { border-color: var(--green) !important; background: var(--green-light); }
+  input.wrong { border-color: var(--red) !important; background: var(--red-light); }
 
-  .btn-check { background: #1e1b4b; color: white; border: none; padding: 0.8rem 2rem; border-radius: 0.5rem; cursor: pointer; font-weight: bold; margin-top: 1rem; }
-  .btn-check:hover { opacity: 0.9; }
+  .btn-check { background: #1e1b4b; color: white; border: none; padding: 1rem 2.5rem; border-radius: 0.75rem; cursor: pointer; font-weight: 700; font-size: 1rem; transition: 0.3s; margin-top: 1rem; }
+  .btn-check:hover { background: #312e81; transform: scale(1.02); }
 
-  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+  .feedback { margin-top: 1.5rem; padding: 1.2rem; border-radius: 0.75rem; font-weight: 500; display: none; border: 1px solid transparent; }
+  .feedback.show { display: block; animation: slideIn 0.3s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+  .feedback.ok { background: var(--green-light); color: var(--green); border-color: var(--green); }
+  .feedback.err { background: var(--red-light); color: var(--red); border-color: var(--red); }
+
+  @media (max-width: 600px) { .container { margin: 1rem auto; } .card { padding: 1.5rem; } h1 { font-size: 2rem; } }
 </style>
 </head>
 <body>
 
 <header>
-  <span class="badge">Lezione 15 Aprile 2026</span>
-  <h1>Passato Prossimo con ESSERE</h1>
-  <p>Nick: Livello A2 → B1 | Viaggi e Movimento</p>
+  <span class="badge">Nicholas • 15 Aprile 2026</span>
+  <h1>Il Passato Prossimo con ESSERE</h1>
+  <p>Transizione A2 → B1 | Focus: Accordo, Movimento e Viaggi</p>
 </header>
 
 <nav class="tabs">
-  <button class="tab active" onclick="showTab(0)">📖 Teoria</button>
-  <button class="tab" onclick="showTab(1)">🎯 Movimento</button>
-  <button class="tab" onclick="showTab(2)">🔄 Accordo</button>
-  <button class="tab" onclick="showTab(3)">⚡ Irregolari</button>
-  <button class="tab" onclick="showTab(4)">🗣️ Speaking</button>
+  <button class="tab active" onclick="showTab(0)">📖 Teoria & Flashcards</button>
+  <button class="tab" onclick="showTab(1)">🎯 Esercizi 1-10</button>
+  <button class="tab" onclick="showTab(2)">🔄 Esercizi 11-20</button>
+  <button class="tab" onclick="showTab(3)">🔀 Riordino & Logica</button>
+  <button class="tab" onclick="showTab(4)">🗣️ Produzione Libera</button>
 </nav>
 
 <div class="container">
+  
   <div class="section active" id="tab0">
     <div class="card">
-      <h2>📖 La Regola di ESSERE</h2>
-      <p>A differenza della scorsa lezione (AVERE), molti verbi italiani usano l'ausiliare <strong>ESSERE</strong>. Questo succede principalmente con verbi di:</p>
-      <div class="grid-2">
-        <div class="rule-box rule-blue">
-          <strong>1. Movimento</strong><br>andare, venire, uscire, partire, tornare, arrivare, entrare.
+      <h2>📖 Quando usare ESSERE?</h2>
+      <p>Nick, dopo aver dominato AVERE, oggi affrontiamo lo scoglio più grande per gli anglofoni. Usiamo <strong>ESSERE</strong> per:</p>
+      
+      <div class="rule-grid">
+        <div class="box box-blue">
+          <strong>1. Verbi di Movimento 🚶‍♂️</strong><br>
+          <em>andare, venire, partire, tornare, uscire, entrare, arrivare, scendere, salire.</em>
         </div>
-        <div class="rule-box rule-accent">
-          <strong>2. Stato/Cambiamento</strong><br>essere, stare, rimanere, nascere, morire, diventare.
+        <div class="box box-accent">
+          <strong>2. Stato e Cambiamento 🌱</strong><br>
+          <em>stare, rimanere, nascere, morire, diventare, essere (stato).</em>
         </div>
       </div>
-      <p style="margin-top:1rem;">⚠️ <strong>Attenzione Nick:</strong> Con ESSERE, il participio passato <u>cambia</u> in base al genere e numero!</p>
-      <table>
-        <tr><th>Soggetto</th><th>Ausiliare</th><th>Participio (Andare)</th></tr>
-        <tr><td>Lui (Nick)</td><td>è</td><td>andat<strong>o</strong></td></tr>
-        <tr><td>Lei (Katerine)</td><td>è</td><td>andat<strong>a</strong></td></tr>
-        <tr><td>Noi (m/m+f)</td><td>siamo</td><td>andat<strong>i</strong></td></tr>
-        <tr><td>Loro (f+f)</td><td>sono</td><td>andat<strong>e</strong></td></tr>
-      </table>
+
+      <h3>⚡ La Regola d'Oro: L'Accordo</h3>
+      <div class="box" style="background: #fffdf0; border-color: #ffe082;">
+        Con <strong>ESSERE</strong>, la fine del verbo cambia SEMPRE come un aggettivo[cite: 292, 295]:
+        <ul>
+          <li><strong>Masc. Sing:</strong> Nick è andat<strong>o</strong></li>
+          <li><strong>Femm. Sing:</strong> Katerine è andat<strong>a</strong></li>
+          <li><strong>Masc. Plur:</strong> Nick e Marco sono andat<strong>i</strong></li>
+          <li><strong>Femm. Plur:</strong> Le sorelle sono andat<strong>e</strong></li>
+        </ul>
+      </div>
+
+      <h3>🎴 Flashcards: Participi Irregolari</h3>
+      <p>Clicca per scoprire il participio passato!</p>
+      <div class="flash-grid">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Rimanere</div><div class="back">Rimasto</div></div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Nascere</div><div class="back">Nato</div></div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Venire</div><div class="back">Venuto</div></div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Essere / Stare</div><div class="back">Stato</div></div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Morire</div><div class="back">Morto</div></div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="front">Succedere</div><div class="back">Successo</div></div>
+      </div>
     </div>
   </div>
 
   <div class="section" id="tab1">
     <div class="card">
-      <h2>🎯 Esercizio 1: Verbi di Movimento</h2>
-      <p>Scegli la forma corretta. Ricorda di guardare chi parla!</p>
-      <div id="ex1-container"></div>
-      <button class="btn-check" onclick="checkEx1()">Controlla Movimento</button>
-      <div id="ex1-feedback" class="feedback"></div>
+      <h2>🎯 Esercizi di Consolidamento (1-10)</h2>
+      <p>Completa con l'ausiliare <strong>essere</strong> e il participio corretto. Attenzione all'accordo!</p>
+      
+      <div id="ex-group-1"></div>
+      <button class="btn-check" onclick="checkGroup1()">Verifica Blocco 1</button>
+      <div id="fb-1" class="feedback"></div>
     </div>
   </div>
 
   <div class="section" id="tab2">
     <div class="card">
-      <h2>🔄 Esercizio 2: L'Accordo del Participio</h2>
-      <p>Completa le frasi scrivendo il participio passato corretto (es: andato/a/i/e).</p>
-      <div id="ex2-container"></div>
-      <button class="btn-check" onclick="checkEx2()">Controlla Accordo</button>
-      <div id="ex2-feedback" class="feedback"></div>
+      <h2>🔄 Esercizi di Trasformazione (11-20)</h2>
+      <p>Trasforma queste frasi dal presente al passato prossimo.</p>
+      
+      <div id="ex-group-2"></div>
+      <button class="btn-check" onclick="checkGroup2()">Verifica Blocco 2</button>
+      <div id="fb-2" class="feedback"></div>
     </div>
   </div>
 
   <div class="section" id="tab3">
     <div class="card">
-      <h2>⚡ Participi Irregolari con ESSERE</h2>
-      <table>
-        <thead><tr><th>Infinito</th><th>Participio</th><th>Esempio</th></tr></thead>
-        <tbody>
-          <tr><td>Essere / Stare</td><td><strong>Stato</strong></td><td>Sono stato a Roma.</td></tr>
-          <tr><td>Rimanere</td><td><strong>Rimasto</strong> <span class="tag-irr">irr</span></td><td>Lei è rimasta a casa.</td></tr>
-          <tr><td>Venire</td><td><strong>Venuto</strong></td><td>Siete venuti alla festa?</td></tr>
-          <tr><td>Nascere</td><td><strong>Nato</strong> <span class="tag-irr">irr</span></td><td>Io sono nato in Canada.</td></tr>
-          <tr><td>Morire</td><td><strong>Morto</strong> <span class="tag-irr">irr</span></td><td>I fiori sono morti.</td></tr>
-        </tbody>
-      </table>
-      <div class="exercise-title">Scrivi la forma corretta:</div>
-      <div id="ex3-container"></div>
-      <button class="btn-check" onclick="checkEx3()">Controlla Irregolari</button>
+      <h2>🔀 Riordina le frasi (Sintassi complessa)</h2>
+      <p>Metti in ordine le parole per formare frasi corrette al passato.</p>
+      <div id="ex-group-3"></div>
+      <button class="btn-check" onclick="checkGroup3()">Verifica Sintassi</button>
     </div>
   </div>
 
   <div class="section" id="tab4">
     <div class="card">
-      <h2>🗣️ Il tuo Weekend a Barcellona</h2>
-      <p>Immagina di raccontare al tuo partner il tuo ultimo viaggio. Usa i verbi con ESSERE.</p>
-      <div class="rule-box rule-blue">
-        <strong>Prompt per Nick:</strong><br>
-        1. A che ora sei partito? (Sono partito alle...)<br>
-        2. Dove sei andato?<br>
-        3. Sei rimasto in hotel o sei uscito?<br>
-        4. Quando siete tornati? (Noi siamo tornati...)
+      <h2>🗣️ Il Racconto del Viaggio</h2>
+      <div class="box box-blue">
+        <strong>Obiettivo:</strong> Scrivi o racconta a Katerine il tuo ultimo weekend con il partner. Usa almeno 6 verbi con ESSERE.<br>
+        <em>Suggerimenti: sono andato, siamo partiti, è successo, siamo rimasti, sono tornato...</em>
       </div>
-      <textarea id="speaking-text" style="width:100%; height:150px; border-radius:1rem; padding:1rem; margin-top:1rem; border:2px solid var(--border);" placeholder="Scrivi qui il tuo racconto..."></textarea>
-      <p class="hint">Esempio: "Venerdì sono partito alle nove. Sono andato a Barcellona con il mio ragazzo..."</p>
+      <textarea id="essay" style="width:100%; height:250px; margin-top:1.5rem; padding:1.5rem; border-radius:1rem; border:2px solid var(--border); font-size:1.1rem;" placeholder="Sabato scorso io e il mio ragazzo siamo andati a..."></textarea>
     </div>
   </div>
+
 </div>
 
 <script>
-  const ex1Data = [
-    { q: "Nick e il suo ragazzo ______ a Roma l'anno scorso.", options: ["sono andati", "sono andate", "hanno andato"], correct: 0 },
-    { q: "Katerine ______ a casa tardi ieri sera.", options: ["è tornato", "è tornata", "ha tornata"], correct: 1 },
-    { q: "Io (Nick) ______ in Italia due volte.", options: ["sono stato", "sono stata", "ho stato"], correct: 0 }
+  // DATI ESERCIZI 1-10 (Cloze)
+  const data1 = [
+    { q: "Io (Nick, m.) ______ (andare) al mercato.", a: "sono andato" },
+    { q: "Katerine (f.) ______ (tornare) a casa tardi.", a: "è tornata" },
+    { q: "Nick e Marco ______ (partire) per l'Italia.", a: "sono partiti" },
+    { q: "Le tue amiche ______ (uscire) insieme.", a: "sono uscite" },
+    { q: "Il gatto ______ (salire) sul tavolo.", a: "è salito" },
+    { q: "Noi (m+f) ______ (entrare) nel ristorante.", a: "siamo entrati" },
+    { q: "Ieri ______ (succedere) una cosa strana.", a: "è successa" },
+    { q: "Voi (f. plur) ______ (diventare) molto brave!", a: "siete diventate" },
+    { q: "Mia nonna ______ (nascere) a Napoli.", a: "è nata" },
+    { q: "I fiori ______ (morire) senza acqua.", a: "sono morti" }
   ];
 
-  const ex2Data = [
-    { text: "Noi (m+f) siamo _______ (partire) alle otto.", ans: "partiti" },
-    { text: "Le tue sorelle sono _______ (uscire) insieme.", ans: "uscite" },
-    { text: "Il mio amico è _______ (arrivare) adesso.", ans: "arrivato" },
-    { text: "La mia amica è _______ (diventare) brava in cucina.", ans: "diventata" }
+  // DATI ESERCIZI 11-20 (Trasformazione)
+  const data2 = [
+    { p: "Lui parte alle otto.", a: "lui è partito alle otto" },
+    { p: "Noi torniamo dal viaggio.", a: "noi siamo tornati dal viaggio" },
+    { p: "Lei resta in ufficio.", a: "lei è restata in ufficio" },
+    { p: "Io (f.) arrivo ora.", a: "io sono arrivata ora" },
+    { p: "Loro (m.) escono insieme.", a: "loro sono usciti insieme" },
+    { p: "Tu (m.) diventi bravo.", a: "tu sei diventato bravo" },
+    { p: "Sua sorella nasce ieri.", a: "sua sorella è nata ieri" },
+    { p: "Il treno arriva in ritardo.", a: "il treno è arrivato in ritardo" },
+    { p: "Voi (m. pl.) state a casa.", a: "voi siete stati a casa" },
+    { p: "Il sole sorge alle sei.", a: "il sole è sorto alle sei" }
   ];
 
-  const ex3Data = [
-    { text: "Dove siete _______ (rimanere) voi?", ans: "rimasti" },
-    { text: "Mia nonna è _______ (nascere) nel 1940.", ans: "nata" },
-    { text: "Lui è _______ (venire) con noi?", ans: "venuto" }
+  // DATI ESERCIZI 21-25 (Riordino)
+  const data3 = [
+    { s: "siamo / noi / a / andati / Barcellona", a: "noi siamo andati a barcellona" },
+    { s: "è / Marco / a / tornato / mezzanotte", a: "marco è tornato a mezzanotte" },
+    { s: "sono / le / partite / ragazze / presto", a: "le ragazze sono partite presto" }
   ];
 
   function showTab(n) {
@@ -186,72 +215,55 @@
     document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === n));
   }
 
-  function buildExercises() {
-    const ex1 = document.getElementById('ex1-container');
-    ex1Data.forEach((d, i) => {
-      let html = `<div style="margin-bottom:1.5rem;"><p>${i+1}. ${d.q}</p><div class="choice-grid">`;
-      d.options.forEach((opt, oi) => {
-        html += `<button class="choice-btn" data-ex1="${i}" data-opt="${oi}" onclick="selectEx1(${i}, ${oi}, this)">${opt}</button>`;
-      });
-      html += `</div></div>`;
-      ex1.innerHTML += html;
+  function init() {
+    const g1 = document.getElementById('ex-group-1');
+    data1.forEach((d, i) => {
+      g1.innerHTML += `<div class="ex-item"><span class="q-text">${i+1}. ${d.q}</span><input type="text" id="g1-${i}"></div>`;
     });
 
-    const ex2 = document.getElementById('ex2-container');
-    ex2Data.forEach((d, i) => {
-      ex2.innerHTML += `<p style="margin-bottom:1rem;">${i+1}. ${d.text.replace('_______', `<input type="text" id="ex2-${i}" style="width:100px">`)}</p>`;
+    const g2 = document.getElementById('ex-group-2');
+    data2.forEach((d, i) => {
+      g2.innerHTML += `<div class="ex-item"><span class="q-text">${i+11}. ${d.p}</span><input type="text" id="g2-${i}"></div>`;
     });
 
-    const ex3 = document.getElementById('ex3-container');
-    ex3Data.forEach((d, i) => {
-      ex3.innerHTML += `<p style="margin-bottom:1rem;">${i+1}. ${d.text.replace('_______', `<input type="text" id="ex3-${i}" style="width:100px">`)}</p>`;
+    const g3 = document.getElementById('ex-group-3');
+    data3.forEach((d, i) => {
+      g3.innerHTML += `<div class="ex-item"><span class="q-text">${i+21}. ${d.s}</span><input type="text" id="g3-${i}"></div>`;
     });
   }
 
-  let selectedEx1 = {};
-  function selectEx1(exIdx, optIdx, btn) {
-    const parent = btn.parentElement;
-    parent.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected-correct', 'selected-wrong'));
-    selectedEx1[exIdx] = optIdx;
-    btn.style.borderColor = "var(--blue)";
-  }
-
-  function checkEx1() {
+  function checkGroup1() {
     let score = 0;
-    ex1Data.forEach((d, i) => {
-      const btns = document.querySelectorAll(`[data-ex1="${i}"]`);
-      if (selectedEx1[i] === d.correct) {
-        btns[selectedEx1[i]].classList.add('selected-correct');
-        score++;
-      } else if (selectedEx1[i] !== undefined) {
-        btns[selectedEx1[i]].classList.add('selected-wrong');
-        btns[d.correct].classList.add('selected-correct');
-      }
+    data1.forEach((d, i) => {
+      const v = document.getElementById(`g1-${i}`).value.trim().toLowerCase();
+      if(v === d.a) { document.getElementById(`g1-${i}`).classList.add('correct'); score++; }
+      else { document.getElementById(`g1-${i}`).classList.add('wrong'); }
     });
-    const fb = document.getElementById('ex1-feedback');
-    fb.className = "feedback show " + (score === 3 ? "ok" : "err");
-    fb.textContent = `Punteggio: ${score}/3. Ricorda: Nick è maschio (-o), Katerine è femmina (-a).`;
+    const fb = document.getElementById('fb-1');
+    fb.className = "feedback show " + (score === 10 ? "ok" : "err");
+    fb.innerHTML = `Hai indovinato ${score} su 10. Controlla l'accordo finale (-o, -a, -i, -e)!`;
   }
 
-  function checkEx2() {
+  function checkGroup2() {
     let score = 0;
-    ex2Data.forEach((d, i) => {
-      const inp = document.getElementById(`ex2-${i}`);
-      if (inp.value.trim().toLowerCase() === d.ans) {
-        inp.classList.add('correct'); score++;
-      } else { inp.classList.add('wrong'); }
+    data2.forEach((d, i) => {
+      const v = document.getElementById(`g2-${i}`).value.trim().toLowerCase();
+      if(v === d.a) { document.getElementById(`g2-${i}`).classList.add('correct'); score++; }
+      else { document.getElementById(`g2-${i}`).classList.add('wrong'); }
     });
-    alert(`Hai indovinato ${score} participi su ${ex2Data.length}!`);
+    const fb = document.getElementById('fb-2');
+    fb.className = "feedback show " + (score === 10 ? "ok" : "err");
+    fb.innerHTML = `Punteggio: ${score}/10. Ricorda che verbi come 'nascere' e 'stare' sono irregolari!`;
   }
 
-  function checkEx3() {
-    ex3Data.forEach((d, i) => {
-      const inp = document.getElementById(`ex3-${i}`);
-      inp.className = (inp.value.trim().toLowerCase() === d.ans) ? "correct" : "wrong";
+  function checkGroup3() {
+    data3.forEach((d, i) => {
+      const v = document.getElementById(`g3-${i}`).value.trim().toLowerCase();
+      document.getElementById(`g3-${i}`).className = (v === d.a) ? "correct" : "wrong";
     });
   }
 
-  buildExercises();
+  init();
 </script>
 </body>
 </html>
