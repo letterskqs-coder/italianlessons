@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⛵ Sara · Lezione 16 Aprile · Il Passato Descrittivo</title>
+<style>
+  /* Mantieni lo stile delle lezioni precedenti */
+  body { font-family: sans-serif; background: #0b2a45; color: white; padding: 20px; }
+  .card { background: white; color: #1b3a5c; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+  .verb-table { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f9f9f9; padding: 10px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🌊 Lezione 16 Aprile: Descrivere il passato</h1>
+  <p>L'imperfetto si usa per descrivere il meteo o le abitudini in barca.</p>
+
+  <div class="theory">
+    <h3>📖 Teoria: L'Imperfetto</h3>
+    <div class="verb-table">
+      <div><strong>ESSERE</strong> (it was)<br>Era calmo / Erano grandi</div>
+      <div><strong>AVERE</strong> (it had)<br>Aveva il sole / Avevamo tempo</div>
+    </div>
+    <p><em>"Mentre navigavamo, il cielo era blu."</em></p>
+  </div>
+
+  <h3>🎯 Esercizio 2: Com'era il tour ieri?</h3>
+  <p>Scegli la forma corretta tra parentesi:</p>
+  <p>1. Ieri il mare (era / è stato) molto agitato tutto il giorno. <input type="text"></p>
+  <p>2. Quando siamo partiti, (faceva / ha fatto) caldo. <input type="text"></p>
+  <p>3. I clienti (erano / sono stati) molto felici durante il bagno. <input type="text"></p>
+</div>
+
+<div class="card">
+  <h3>🗣️ Speaking: Racconta un aneddoto</h3>
+  <p>Descrivi a Kate come era il mare l'estate scorsa a Osljak.</p>
+  <p><em>"L'anno scorso il mare _______ (essere) sempre trasparente e non _______ (esserci) mai troppe barche..."</em></p>
+</div>
+
+</body>
+</html>
