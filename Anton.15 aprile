@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton – L3: Film Set Grammar & Basics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d; --card: #181818; --accent: #e07a3a; --text: #e8e4dc;
+    --muted: #7a7570; --border: #2c2c2c; --green: #4aaa70; --red: #c04040;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  
+  header { background: linear-gradient(to bottom, #1a1a1a, var(--bg)); padding: 4rem 2rem; text-align: center; border-bottom: 1px solid var(--border); }
+  .badge { border: 1px solid var(--accent); color: var(--accent); padding: 0.2rem 1rem; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; text-transform: uppercase; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 1rem 0; letter-spacing: -1px; }
+
+  .tabs { display: flex; justify-content: center; background: #111; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; overflow-x: auto; }
+  .tab { padding: 1.2rem 2rem; border: none; background: none; cursor: pointer; color: var(--muted); font-weight: 600; transition: 0.3s; white-space: nowrap; }
+  .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+  .container { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; margin-bottom: 2rem; position: relative; }
+  h2 { font-family: 'Playfair Display', serif; color: var(--accent); margin-bottom: 1.5rem; font-style: italic; font-size: 2rem; }
+
+  /* MATRICE ESSERE/AVERE */
+  .verb-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+  .matrix-col { background: #1f1f1f; padding: 1.5rem; border-radius: 4px; border-left: 4px solid var(--accent); }
+  .matrix-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #2c2c2c; font-family: 'IBM Plex Mono', monospace; }
+  .matrix-row span:first-child { color: var(--muted); }
+  .matrix-row span:last-child { color: white; font-weight: 700; }
+
+  .highlight-box { background: rgba(224, 122, 58, 0.1); border: 1px dashed var(--accent); padding: 1.5rem; margin: 1.5rem 0; border-radius: 4px; }
+
+  /* EXERCISES */
+  .ex-block { margin-bottom: 2rem; padding: 1.5rem; background: #1a1a1a; border-radius: 4px; }
+  input[type="text"] { background: #0d0d0d; border: 1px solid var(--border); color: white; padding: 0.6rem; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; width: 100%; max-width: 250px; margin-top: 0.5rem; }
+  input[type="text"]:focus { border-color: var(--accent); outline: none; }
+  input.correct { border-color: var(--green) !important; color: var(--green); }
+  input.wrong { border-color: var(--red) !important; color: var(--red); }
+
+  .btn { background: var(--accent); color: white; border: none; padding: 1rem 2rem; border-radius: 4px; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .btn:hover { opacity: 0.8; }
+
+  .hint { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">Anton • Filmmaker Lesson • 15.04.2026</span>
+  <h1>Back on Set: Basics & Identity</h1>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab(0)">🎥 Review: Chi sono?</button>
+  <button class="tab" onclick="showTab(1)">⚡ Drilling: Essere/Avere</button>
+  <button class="tab" onclick="showTab(2)">🎬 Action: Presente</button>
+  <button class="tab" onclick="showTab(3)">🗣️ Speaking Challenge</button>
+</nav>
+
+<div class="container">
+  
+  <div class="section active" id="tab0">
+    <div class="card">
+      <h2>I Fondamentali del Filmmaker</h2>
+      <p>Anton, prima di girare un film, serve la luce. Questi verbi sono la tua luce.</p>
+      
+      <div class="verb-matrix">
+        <div class="matrix-col">
+          <h3 style="color:var(--accent); margin-bottom:1rem;">ESSERE (To be)</h3>
+          <div class="matrix-row"><span>Io</span><span>SONO</span></div>
+          <div class="matrix-row"><span>Tu</span><span>SEI</span></div>
+          <div class="matrix-row"><span>Lui/Lei</span><span>È</span></div>
+          <div class="matrix-row"><span>Noi</span><span>SIAMO</span></div>
+          <div class="matrix-row"><span>Voi</span><span>SIETE</span></div>
+          <div class="matrix-row"><span>Loro</span><span>SONO</span></div>
+        </div>
+        <div class="matrix-col">
+          <h3 style="color:var(--accent); margin-bottom:1rem;">AVERE (To have)</h3>
+          <div class="matrix-row"><span>Io</span><span>HO</span></div>
+          <div class="matrix-row"><span>Tu</span><span>HAI</span></div>
+          <div class="matrix-row"><span>Lui/Lei</span><span>HA</span></div>
+          <div class="matrix-row"><span>Noi</span><span>ABBIAMO</span></div>
+          <div class="matrix-row"><span>Voi</span><span>AVETE</span></div>
+          <div class="matrix-row"><span>Loro</span><span>HANNO</span></div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Esempio Set:</strong> "Io <u>sono</u> il regista e <u>ho</u> una nuova camera."
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="tab1">
+    <div class="card">
+      <h2>🎯 Drilling Intensivo (Blocco 1-15)</h2>
+      <p>Completa le frasi velocemente. Non pensare, usa l'istinto.</p>
+      <div id="drill-container"></div>
+      <button class="btn" onclick="checkDrill()">Check Answers</button>
+    </div>
+  </div>
+
+  <div class="section" id="tab2">
+    <div class="card">
+      <h2>🎬 Verbi Regolari sul Set (-ARE)</h2>
+      <p>Ripassiamo i verbi d'azione: <strong>GIRARE</strong> (to shoot), <strong>MONTARE</strong> (to edit), <strong>PARLARE</strong>.</p>
+      <table>
+        <tr><td>Io gir-<strong>o</strong></td><td>Noi gir-<strong>iamo</strong></td></tr>
+        <tr><td>Tu gir-<strong>i</strong></td><td>Voi gir-<strong>ate</strong></td></tr>
+        <tr><td>Lui gir-<strong>a</strong></td><td>Loro gir-<strong>ano</strong></td></tr>
+      </table>
+      <div id="action-container" style="margin-top:2rem;"></div>
+      <button class="btn" onclick="checkAction()">Verifica Azioni</button>
+    </div>
+  </div>
+
+  <div class="section" id="tab3">
+    <div class="card">
+      <h2>🗣️ Conversazione: Produzione Anton</h2>
+      <div class="highlight-box">
+        <strong>Missione:</strong> Anton, descrivi questo scenario usando solo il presente.<br><br>
+        "Tu sei sul set a Milano. Hai 3 attori e una camera Sony. Noi siamo pronti per girare. Cosa dici agli attori?"
+      </div>
+      <textarea id="speaking-box" style="width:100%; height:200px; background:#0d0d0d; color:white; border:1px solid var(--border); padding:1rem; border-radius:4px; font-size:1.1rem;" placeholder="Scrivi qui alcune frasi..."></textarea>
+      <p class="hint">Esempio: "Ciao, io sono Anton. Noi abbiamo poco tempo. Giriamo!"</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const drills = [
+    { q: "Io _____ (essere) stanco.", a: "sono" },
+    { q: "Noi _____ (essere) a Londra.", a: "siamo" },
+    { q: "Tu _____ (avere) una camera?", a: "hai" },
+    { q: "Loro _____ (avere) il caffè.", a: "hanno" },
+    { q: "Voi _____ (essere) pronti?", a: "siete" },
+    { q: "Lui _____ (essere) un attore.", a: "è" },
+    { q: "Io _____ (avere) un'idea.", a: "ho" },
+    { q: "Katerine _____ (avere) il copione.", a: "ha" },
+    { q: "Noi _____ (avere) fame.", a: "abbiamo" },
+    { q: "Voi _____ (avere) le luci?", a: "avete" }
+  ];
+
+  const actions = [
+    { q: "Io ______ (girare) un documentario.", a: "giro" },
+    { q: "Noi ______ (montare) il video oggi.", a: "montiamo" },
+    { q: "Loro ______ (parlare) con il cliente.", a: "parlano" },
+    { q: "Tu ______ (guardare) il monitor.", a: "guardi" },
+    { q: "Anton ______ (lavorare) molto.", a: "lavora" }
+  ];
+
+  function showTab(n) {
+    document.querySelectorAll('.section').forEach((s, i) => s.classList.toggle('active', i === n));
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === n));
+  }
+
+  function init() {
+    const dCont = document.getElementById('drill-container');
+    drills.forEach((d, i) => {
+      dCont.innerHTML += `<div class="ex-block">${i+1}. ${d.q}<br><input type="text" id="d-${i}"></div>`;
+    });
+
+    const aCont = document.getElementById('action-container');
+    actions.forEach((a, i) => {
+      aCont.innerHTML += `<div class="ex-block">${i+1}. ${a.q}<br><input type="text" id="a-${i}"></div>`;
+    });
+  }
+
+  function checkDrill() {
+    drills.forEach((d, i) => {
+      const el = document.getElementById(`d-${i}`);
+      el.className = el.value.trim().toLowerCase() === d.a ? 'correct' : 'wrong';
+    });
+  }
+
+  function checkAction() {
+    actions.forEach((a, i) => {
+      const el = document.getElementById(`a-${i}`);
+      el.className = el.value.trim().toLowerCase() === a.a ? 'correct' : 'wrong';
+    });
+  }
+
+  init();
+</script>
+</body>
+</html>
