@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italiano con Sara 🌸 — Imperativo Professionale</title>
+<title>Italiano con Sara 🌸 — Imperativo Professionale ESTESO</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -49,13 +49,6 @@
     background: var(--terracotta);
     opacity: 0.15;
   }
-  .header-tag {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--seafoam);
-    margin-bottom: 0.5rem;
-  }
   .header h1 {
     font-family: 'Fraunces', serif;
     font-size: 2.5rem;
@@ -92,6 +85,7 @@
     transition: width 0.5s ease;
     width: 0%;
   }
+  .progress-text { font-size: 0.8rem; font-weight: 600; color: var(--dark); min-width: 100px; }
 
   /* CONTAINER */
   .container {
@@ -121,12 +115,8 @@
     box-shadow: 0 4px 20px rgba(42,32,24,0.06);
   }
 
-  h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.8rem;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-  }
+  h2 { font-family: 'Fraunces', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 1.5rem; }
+  h3 { font-family: 'Fraunces', serif; color: var(--terracotta); margin-top: 1.5rem; margin-bottom: 1rem; }
 
   .alert-box {
     background: #fff8ee;
@@ -170,12 +160,14 @@
   /* EXERCISES */
   .ex-box {
     margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--warm);
+    padding-top: 1rem;
   }
 
   .input-group {
     margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #fcfcfc;
+    border-radius: 10px;
   }
 
   .label-en {
@@ -236,11 +228,24 @@
     font-size: 0.9rem;
   }
 
-  /* LISTS */
-  .nautic-list {
-    list-style: none;
+  .choice-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--sand);
+    border: 2px solid var(--warm);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.2s;
   }
 
+  .choice-btn:hover { border-color: var(--terracotta); }
+
+  /* LISTS */
+  .nautic-list { list-style: none; }
   .nautic-list li {
     padding: 0.8rem 0;
     display: flex;
@@ -248,12 +253,17 @@
     gap: 1rem;
     border-bottom: 1px dashed var(--warm);
   }
+  .nautic-list li::before { content: '⚓'; color: var(--sea); }
 
-  .nautic-list li::before {
-    content: '⚓';
-    color: var(--sea);
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 2px solid var(--warm);
+    font-family: inherit;
+    resize: none;
   }
-
 </style>
 </head>
 <body>
@@ -280,6 +290,9 @@
       </div>
 
       <p>Impareremo l'<strong>Imperativo Formale</strong>. È il linguaggio che userai durante le manovre, in caso di vento forte o semplicemente per accogliere i turisti a bordo.</p>
+      
+      <h3>Perché raddoppiare l'impegno?</h3>
+      <p>In mare, la comunicazione non può avere errori. Più ti eserciti, più i comandi usciranno naturali durante lo stress di una manovra o di un temporale.</p>
     </div>
 
     <div class="nav-row">
@@ -295,134 +308,239 @@
 
       <div class="verb-comparison">
         <div class="v-table">
-          <h4>Gruppo -ARE (Entrare)</h4>
+          <h4>Gruppo -ARE (Navigare/Entrare)</h4>
+          <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Naviga!</span></div>
+          <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Navighi.</span></div>
           <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Entra!</span></div>
           <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Entri.</span></div>
         </div>
         <div class="v-table">
-          <h4>Gruppo -ERE (Prendere)</h4>
+          <h4>Gruppo -ERE/-IRE (Prendere/Salire)</h4>
           <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Prendi!</span></div>
           <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Prenda.</span></div>
+          <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Sali!</span></div>
+          <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Salga.</span></div>
         </div>
       </div>
 
-      <div class="theory-card" style="background: #fdfaf5;">
-        <h3>I tre verbi "salva-vita" per Sara:</h3>
+      <div class="theory-card" style="background: #fdfaf5; padding: 1.5rem; border-radius: 15px;">
+        <h3>I verbi essenziali per Sara:</h3>
         <ul class="nautic-list">
           <li><strong>Sedersi:</strong> Si sieda! (Please sit down)</li>
           <li><strong>Tenersi:</strong> Si tenga! (Hold on)</li>
           <li><strong>Aspettare:</strong> Aspetti! (Wait)</li>
+          <li><strong>Guardare:</strong> Guardi! (Look)</li>
+          <li><strong>Salire:</strong> Salga! (Come up/on board)</li>
+          <li><strong>Scendere:</strong> Scenda! (Go down/get off)</li>
         </ul>
       </div>
     </div>
 
     <div class="nav-row">
       <button class="btn" style="background:var(--warm)" onclick="go(0)">← Indietro</button>
-      <button class="btn btn-next" onclick="go(2)">Esercizi Formazione →</button>
+      <button class="btn btn-next" onclick="go(2)">Esercizi Parte 1 →</button>
     </div>
   </div>
 
   <div class="section" id="sec2">
     <div class="card">
-      <h2>2. Trasforma in Professionale</h2>
-      <p>Immagina di parlare a un cliente. Trasforma i verbi tra parentesi nella forma di cortesia (Lei).</p>
+      <h2>2. Trasforma in Professionale (A)</h2>
+      <p>Trasforma i verbi tra parentesi nella forma di cortesia (Lei). Attenzione alle finali!</p>
 
       <div class="ex-box">
         <div class="input-group">
           <span class="label-en">"Please, (to enter) the cabin."</span>
-          <input type="text" id="ex2_1" placeholder="Scrivi qui...">
+          <input type="text" id="ex2_1" placeholder="Entrare -> ...">
         </div>
         <div class="input-group">
           <span class="label-en">"(To listen) to my instructions."</span>
-          <input type="text" id="ex2_2" placeholder="Scrivi qui...">
+          <input type="text" id="ex2_2" placeholder="Ascoltare -> ...">
         </div>
         <div class="input-group">
           <span class="label-en">"(To look) at the horizon if you feel sick."</span>
-          <input type="text" id="ex2_3" placeholder="Scrivi qui...">
+          <input type="text" id="ex2_3" placeholder="Guardare -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To wait) for the boat to stop."</span>
+          <input type="text" id="ex2_4" placeholder="Aspettare -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To pass) the rope, please."</span>
+          <input type="text" id="ex2_5" placeholder="Passare -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To pay) attention to the boom."</span>
+          <input type="text" id="ex2_6" placeholder="Prestare -> ...">
         </div>
         
-        <button class="btn btn-check" onclick="checkSec2()">Controlla risposte</button>
+        <button class="btn btn-check" onclick="checkSec2()">Controlla Blocco A</button>
         <div id="fb2" class="feedback"></div>
       </div>
     </div>
 
     <div class="nav-row">
       <button class="btn" style="background:var(--warm)" onclick="go(1)">← Teoria</button>
-      <button class="btn btn-next" onclick="go(3)">Comandi Riflessivi →</button>
+      <button class="btn btn-next" onclick="go(3)">Esercizi Parte 2 →</button>
     </div>
   </div>
 
   <div class="section" id="sec3">
     <div class="card">
-      <h2>3. I verbi con "SI"</h2>
-      <p>Molti comandi in barca riguardano il corpo (sedersi, muoversi, tenersi). In questi casi, il "Si" va sempre <strong>prima</strong> del verbo.</p>
+      <h2>3. Trasforma in Professionale (B)</h2>
+      <p>Ora prova con i verbi in <strong>-ERE</strong> e <strong>-IRE</strong>. La finale deve essere <strong>-A</strong>.</p>
 
-      <div class="alert-box" style="background: var(--sand); border: none; text-align: center;">
-        <h1 style="font-family: Fraunces; color: var(--rust);">Si + Verbo</h1>
-        <p><em>Si sieda... Si muova... Si tenga...</em></p>
-      </div>
-
-      <h3>Scenari pratici:</h3>
-      <div id="mc-area">
-        <div class="ex-card" style="box-shadow: none; border-color: var(--sand);">
-          <p><strong>Scenario A:</strong> C'è un'onda grande. Cosa dici al cliente?</p>
-          <button class="choice-btn" onclick="checkMC(this, true, 'Siediti è informale. Si sieda è corretto!')">Si sieda!</button>
-          <button class="choice-btn" onclick="checkMC(this, false)">Siediti!</button>
-          <button class="choice-btn" onclick="checkMC(this, false)">Sieda si!</button>
+      <div class="ex-box">
+        <div class="input-group">
+          <span class="label-en">"(To take) a life jacket."</span>
+          <input type="text" id="ex3_1" placeholder="Prendere -> ...">
         </div>
+        <div class="input-group">
+          <span class="label-en">"(To come up) on board."</span>
+          <input type="text" id="ex3_2" placeholder="Salire -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To close) the door of the cabin."</span>
+          <input type="text" id="ex3_3" placeholder="Chiudere -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To write) your name on the list."</span>
+          <input type="text" id="ex3_4" placeholder="Scrivere -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To read) the safety rules."</span>
+          <input type="text" id="ex3_5" placeholder="Leggere -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To open) the window for fresh air."</span>
+          <input type="text" id="ex3_6" placeholder="Aprire -> ...">
+        </div>
+        
+        <button class="btn btn-check" onclick="checkSec3()">Controlla Blocco B</button>
+        <div id="fb3" class="feedback"></div>
       </div>
     </div>
 
     <div class="nav-row">
       <button class="btn" style="background:var(--warm)" onclick="go(2)">← Indietro</button>
-      <button class="btn btn-next" onclick="go(4)">Glossario Emergenza →</button>
+      <button class="btn btn-next" onclick="go(4)">I Riflessivi (SI) →</button>
     </div>
   </div>
 
   <div class="section" id="sec4">
     <div class="card">
-      <h2>4. Glossario d'Emergenza</h2>
-      <p>Queste sono le frasi che userai quando il mare si fa serio. Studiale bene.</p>
+      <h2>4. I verbi con "SI"</h2>
+      <p>Molti comandi in barca riguardano il corpo (sedersi, muoversi, tenersi). In questi casi, il "Si" va sempre <strong>prima</strong> del verbo.</p>
+
+      <div class="alert-box" style="background: var(--sand); border: none; text-align: center;">
+        <h1 style="font-family: Fraunces; color: var(--rust);">Si + Verbo</h1>
+        <p><em>Si sieda... Si muova... Si tenga... Si rilassi...</em></p>
+      </div>
+
+      <div class="ex-box">
+        <h3>Esercizio riflessivo:</h3>
+        <div class="input-group">
+          <span class="label-en">"(To sit down) in the cockpit."</span>
+          <input type="text" id="ex4_1" placeholder="Sedersi -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To hold on) during the maneuver."</span>
+          <input type="text" id="ex4_2" placeholder="Tenersi -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To relax) and enjoy the trip."</span>
+          <input type="text" id="ex4_3" placeholder="Rilassarsi -> ...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To move - negative) Don't move!"</span>
+          <input type="text" id="ex4_4" placeholder="Non si muova">
+        </div>
+        <button class="btn btn-check" onclick="checkSec4()">Controlla Riflessivi</button>
+        <div id="fb4" class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(3)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(5)">Scenari di Scelta →</button>
+    </div>
+  </div>
+
+  <div class="section" id="sec5">
+    <div class="card">
+      <h2>5. Scenari pratici di scelta</h2>
+      <p>Scegli la risposta corretta basata sul contesto.</p>
+
+      <div id="mc-area">
+        <div class="input-group">
+          <p><strong>Scenario A:</strong> Un cliente sta camminando pericolosamente a prua.</p>
+          <button class="choice-btn" onclick="scen(this, true)">"Per favore, si sieda subito!"</button>
+          <button class="choice-btn" onclick="scen(this, false)">"Siediti!"</button>
+        </div>
+
+        <div class="input-group">
+          <p><strong>Scenario B:</strong> Devi chiedere a un signore di darti la cima.</p>
+          <button class="choice-btn" onclick="scen(this, false)">"Dammi la corda!"</button>
+          <button class="choice-btn" onclick="scen(this, true)">"Mi dia la cima, per favore."</button>
+        </div>
+
+        <div class="input-group">
+          <p><strong>Scenario C:</strong> Una passeggera vuole scendere dalla barca.</p>
+          <button class="choice-btn" onclick="scen(this, true)">"Aspetti che la barca sia ferma."</button>
+          <button class="choice-btn" onclick="scen(this, false)">"Aspetta!"</button>
+        </div>
+
+        <div class="input-group">
+          <p><strong>Scenario D:</strong> C'è una manovra di virata col boma.</p>
+          <button class="choice-btn" onclick="scen(this, true)">"Attenzione, si abbassi!"</button>
+          <button class="choice-btn" onclick="scen(this, false)">"Abbassati!"</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(4)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(6)">Sfida Finale →</button>
+    </div>
+  </div>
+
+  <div class="section" id="sec6">
+    <div class="card">
+      <h2>6. Glossario e Sfida Finale</h2>
+      <p>Queste sono le frasi "salva-vita". Copiale sul tuo quaderno.</p>
       
       <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
         <tr style="background: var(--dark); color: white;">
           <th style="padding: 10px; text-align: left;">Situazione</th>
           <th style="padding: 10px; text-align: left;">Cosa dire (Lei)</th>
         </tr>
-        <tr>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Vento forte</td>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Si metta il giubbotto."</td>
-        </tr>
-        <tr>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Manovra veloce</td>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Si abbassi subito!"</td>
-        </tr>
-        <tr>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Barca inclinata</td>
-          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Non si muova, resti lì."</td>
-        </tr>
+        <tr><td>Vento forte</td><td>"Si metta il giubbotto."</td></tr>
+        <tr><td>Manovra veloce</td><td>"Si abbassi subito!"</td></tr>
+        <tr><td>Barca inclinata</td><td>"Non si muova, resti lì."</td></tr>
+        <tr><td>Sbarco (Getting off)</td><td>"Attenzione, non corra."</td></tr>
+        <tr><td>Nausea</td><td>"Guardi l'orizzonte."</td></tr>
       </table>
 
       <div class="theory-card" style="margin-top: 2rem;">
-        <h3>🗣️ La tua sfida finale</h3>
-        <p>Registra un audio per Kate o scrivi qui: Un cliente vuole alzarsi mentre stai attraccando. Bloccalo gentilmente ma con autorità usando 3 frasi al "Lei".</p>
-        <textarea style="width:100%; height:100px; padding:10px; border-radius:10px; border:2px solid var(--warm);"></textarea>
+        <h3>🗣️ La sfida di scrittura:</h3>
+        <p>Un cliente ubriaco vuole ballare a prua mentre c'è mare agitato. Scrivi 4 frasi per fermarlo, usando l'imperativo formale (Lei) e spiegando il pericolo.</p>
+        <textarea id="final_essay" placeholder="Esempio: Signore, per favore si sieda..."></textarea>
+        <button class="btn btn-check" onclick="alert('Ottimo lavoro! Fai leggere questo testo a Kate per la correzione!')">Invia a Kate</button>
       </div>
     </div>
 
     <div class="nav-row">
-      <button class="btn" style="background:var(--warm)" onclick="go(3)">← Indietro</button>
-      <button class="btn btn-next" onclick="go(5)">Risultati →</button>
+      <button class="btn" style="background:var(--warm)" onclick="go(5)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(7)">Risultati →</button>
     </div>
   </div>
 
-  <div class="section" id="sec5">
-    <div class="score-wrap">
+  <div class="section" id="sec7">
+    <div class="score-wrap" style="text-align: center;">
       <div class="score-big" id="finalScore">100%</div>
       <div class="score-label">Completato</div>
-      <div class="score-msg">Ottimo lavoro Capitana! 🌸</div>
-      <p class="score-sub">Ora sai come farti ascoltare da qualsiasi equipaggio.</p>
-      <button class="restart-btn" onclick="location.reload()">🔄 Ricomincia lezione</button>
+      <div class="score-msg">Eccellente, Capitana Sara! 🌸</div>
+      <p class="score-sub">Hai completato il doppio degli esercizi. La tua autorità a bordo è ora garantita.</p>
+      <button class="restart-btn" style="padding: 1rem; background: var(--sea); color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 2rem;" onclick="location.reload()">🔄 Ricomincia lezione</button>
     </div>
   </div>
 
@@ -430,7 +548,7 @@
 
 <script>
   let current = 0;
-  const total = 6;
+  const total = 8;
 
   function go(n) {
     document.getElementById(`sec${current}`).classList.remove('active');
@@ -443,38 +561,74 @@
   function updateProgress() {
     const pct = (current / (total - 1)) * 100;
     document.getElementById('progressFill').style.width = pct + '%';
-    const labels = ["Intro", "Teoria", "Pratica", "Riflessivi", "Emergenza", "Fine"];
+    const labels = ["Intro", "Teoria", "Pratica A", "Pratica B", "Riflessivi", "Scenari", "Sfida", "Fine"];
     document.getElementById('progressText').innerText = labels[current];
   }
 
   function checkSec2() {
-    const r1 = document.getElementById('ex2_1').value.trim().toLowerCase();
-    const r2 = document.getElementById('ex2_2').value.trim().toLowerCase();
-    const r3 = document.getElementById('ex2_3').value.trim().toLowerCase();
+    const r = [
+      document.getElementById('ex2_1').value.trim().toLowerCase(),
+      document.getElementById('ex2_2').value.trim().toLowerCase(),
+      document.getElementById('ex2_3').value.trim().toLowerCase(),
+      document.getElementById('ex2_4').value.trim().toLowerCase(),
+      document.getElementById('ex2_5').value.trim().toLowerCase(),
+      document.getElementById('ex2_6').value.trim().toLowerCase()
+    ];
     const fb = document.getElementById('fb2');
-    
-    if(r1.includes("entri") && r2.includes("ascolti") && r3.includes("guardi")) {
-      fb.innerHTML = "✅ Eccellente! Hai capito la regola della 'I' per i verbi -ARE.";
-      fb.className = "feedback show";
-      fb.style.background = "#eef6f0";
-      fb.style.color = "#3a7a4a";
+    if(r[0].includes("entri") && r[1].includes("ascolti") && r[2].includes("guardi") && r[3].includes("aspetti") && r[4].includes("passi") && r[5].includes("presti")) {
+      showFb(fb, true, "Ottimo! Tutti i verbi in -ARE ora finiscono correttamente in -I.");
     } else {
-      fb.innerHTML = "❌ Quasi. Controlla: Entr<b>i</b>, Ascolt<b>i</b>, Guard<b>i</b>.";
-      fb.className = "feedback show";
-      fb.style.background = "#fdf0ee";
-      fb.style.color = "#8a3030";
+      showFb(fb, false, "Controlla le desinenze: devono finire tutte in -I.");
     }
   }
 
-  function checkMC(btn, correct, msg) {
+  function checkSec3() {
+    const r = [
+      document.getElementById('ex3_1').value.trim().toLowerCase(),
+      document.getElementById('ex3_2').value.trim().toLowerCase(),
+      document.getElementById('ex3_3').value.trim().toLowerCase(),
+      document.getElementById('ex3_4').value.trim().toLowerCase(),
+      document.getElementById('ex3_5').value.trim().toLowerCase(),
+      document.getElementById('ex3_6').value.trim().toLowerCase()
+    ];
+    const fb = document.getElementById('fb3');
+    if(r[0].includes("prenda") && r[1].includes("salga") && r[2].includes("chiuda") && r[3].includes("scriva") && r[4].includes("legga") && r[5].includes("apra")) {
+      showFb(fb, true, "Perfetto! I verbi in -ERE e -IRE ora finiscono correttamente in -A.");
+    } else {
+      showFb(fb, false, "Controlla: devono finire tutte in -A (e Salire diventa Salga).");
+    }
+  }
+
+  function checkSec4() {
+    const r = [
+      document.getElementById('ex4_1').value.trim().toLowerCase(),
+      document.getElementById('ex4_2').value.trim().toLowerCase(),
+      document.getElementById('ex4_3').value.trim().toLowerCase(),
+      document.getElementById('ex4_4').value.trim().toLowerCase()
+    ];
+    const fb = document.getElementById('fb4');
+    if(r[0].includes("si sieda") && r[1].includes("si tenga") && r[2].includes("si rilassi") && r[3].includes("non si muova")) {
+      showFb(fb, true, "Bravissima! Il 'Si' prima del verbo è la chiave.");
+    } else {
+      showFb(fb, false, "Ricorda: 'Si' + Verbo (es: Si sieda).");
+    }
+  }
+
+  function showFb(el, correct, msg) {
+    el.innerHTML = (correct ? "✅ " : "❌ ") + msg;
+    el.className = "feedback show";
+    el.style.background = correct ? "#eef6f0" : "#fdf0ee";
+    el.style.color = correct ? "#3a7a4a" : "#8a3030";
+  }
+
+  function scen(btn, correct) {
     if(correct) {
       btn.style.background = "var(--correct)";
       btn.style.color = "white";
-      alert(msg);
     } else {
       btn.style.background = "var(--wrong)";
       btn.style.color = "white";
-      alert("No, questo è troppo informale per un cliente!");
+      alert("Attenzione: questo è informale (Tu). Usa la forma con 'Lei'!");
     }
   }
 </script>
