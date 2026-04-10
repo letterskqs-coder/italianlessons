@@ -3,100 +3,481 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italiano con Sara 🌸 — Imperativo Gentile</title>
+<title>Italiano con Sara 🌸 — Imperativo Professionale</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --sand: #f5efe6; --warm: #e8d9c4; --terracotta: #c4714a; --sea: #4a7f8f; --dark: #2a2018; --correct: #5a9e6b; --wrong: #c45a4a; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--dark); line-height: 1.6; margin: 0; }
-  .header { background: var(--dark); color: var(--sand); padding: 2.5rem 2rem; text-align: left; }
-  .header h1 { font-family: 'Fraunces', serif; font-size: 2.2rem; margin: 0; }
-  .header h1 em { color: var(--terracotta); font-style: italic; }
-  .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .theory-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 1px solid var(--warm); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-  .ex-card { background: white; border-radius: 16px; padding: 1.8rem; margin-bottom: 1.5rem; border: 1px solid var(--warm); }
-  .verb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
-  .verb-box { background: var(--sand); padding: 1rem; border-radius: 12px; border-left: 4px solid var(--terracotta); }
-  .choice-btn { background: var(--sand); border: 2px solid var(--warm); border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; margin: 5px; transition: 0.2s; }
-  .choice-btn:hover { border-color: var(--terracotta); }
-  .choice-btn.correct { background: #eef6f0; border-color: var(--correct); color: #3a7a4a; }
-  .choice-btn.wrong { background: #fdf0ee; border-color: var(--wrong); color: #8a3030; }
-  .feedback { margin-top: 1rem; padding: 10px; border-radius: 8px; display: none; }
-  input { border: 2px solid var(--warm); border-radius: 8px; padding: 8px; width: 150px; }
-  .speaking-prompt { background: var(--dark); color: white; padding: 20px; border-radius: 12px; }
+  :root {
+    --sand: #f5efe6;
+    --warm: #e8d9c4;
+    --terracotta: #c4714a;
+    --rust: #a85535;
+    --sea: #4a7f8f;
+    --seafoam: #7fb8c4;
+    --dark: #2a2018;
+    --mid: #6b5744;
+    --light-text: #8a7060;
+    --correct: #5a9e6b;
+    --wrong: #c45a4a;
+    --neutral: #9b8878;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--dark);
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    color: var(--sand);
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    opacity: 0.15;
+  }
+  .header-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--seafoam);
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    background: var(--warm);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #d9c8b4;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #d9c8b4;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--terracotta);
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+  }
+
+  .section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--warm);
+    box-shadow: 0 4px 20px rgba(42,32,24,0.06);
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .alert-box {
+    background: #fff8ee;
+    border-left: 4px solid var(--terracotta);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  /* VERB TABLES */
+  .verb-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .v-table {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .v-table h4 {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    color: var(--mid);
+  }
+
+  .v-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .v-it { font-weight: 600; color: var(--terracotta); }
+
+  /* EXERCISES */
+  .ex-box {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--warm);
+  }
+
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .label-en {
+    display: block;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--warm);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--sea);
+    background: #fdfaf5;
+  }
+
+  /* BUTTONS */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-family: inherit;
+  }
+
+  .btn-next { background: var(--dark); color: var(--sand); }
+  .btn-next:hover { background: var(--terracotta); }
+  
+  .btn-check {
+    background: var(--sea);
+    color: white;
+    margin-top: 1rem;
+  }
+
+  .feedback {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    display: none;
+    font-size: 0.9rem;
+  }
+
+  /* LISTS */
+  .nautic-list {
+    list-style: none;
+  }
+
+  .nautic-list li {
+    padding: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px dashed var(--warm);
+  }
+
+  .nautic-list li::before {
+    content: '⚓';
+    color: var(--sea);
+  }
+
 </style>
 </head>
 <body>
 
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">Introduzione</div>
+</div>
+
 <div class="header">
-  <div style="color: var(--sea); letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 0.5rem;">UNITÀ 11 · SICUREZZA</div>
-  <h1>Imperativo di<br><em>Cortesia</em></h1>
+  <div class="header-tag">Unità 11 — 13 Aprile 2026</div>
+  <h1>Comandare con<br><em>Autorità e Dolcezza</em></h1>
 </div>
 
 <div class="container">
-  <div class="theory-card">
-    <h2>📖 Teoria: Comandare con Eleganza</h2>
-    <p>Come skipper, devi dare ordini chiari. Con i clienti usiamo la forma <strong>Lei</strong>. Guarda come cambiano i verbi:</p>
-    <div class="verb-grid">
-      <div class="verb-box"><strong>Verbi in -ARE</strong><br><em>Sedere → Si sied<strong>A</strong></em><br><em>Entrare → Entr<strong>I</strong></em></div>
-      <div class="verb-box"><strong>Verbi in -ERE / -IRE</strong><br><em>Tenere → Si teng<strong>A</strong></em><br><em>Salire → Salg<strong>A</strong></em></div>
+
+  <div class="section active" id="sec0">
+    <div class="card">
+      <h2>Buongiorno Skipper! ⛵</h2>
+      <p>Oggi la lezione è fondamentale per il tuo lavoro. Come skipper, non sei solo una guida, sei la responsabile della sicurezza. Devi saper dare ordini.</p>
+      
+      <div class="alert-box">
+        <strong>La sfida di oggi:</strong> In italiano, dare un ordine a un amico (Tu) è diverso da dare un ordine a un cliente (Lei). Usare il "Lei" ti rende professionale e rispettata.
+      </div>
+
+      <p>Impareremo l'<strong>Imperativo Formale</strong>. È il linguaggio che userai durante le manovre, in caso di vento forte o semplicemente per accogliere i turisti a bordo.</p>
     </div>
-    <p>💡 <strong>Nota:</strong> I verbi riflessivi (sedersi, tenersi) mettono il "Si" davanti.</p>
-  </div>
 
-  <div class="ex-card">
-    <h3>🎯 Esercizio 1: Situazioni d'emergenza</h3>
-    <p>C'è un'onda improvvisa. Cosa dici al cliente?</p>
-    <div id="choices-1">
-      <button class="choice-btn" onclick="checkMC(this, true)">"Si sieda subito!"</button>
-      <button class="choice-btn" onclick="checkMC(this, false)">"Siediti ora!"</button>
-      <button class="choice-btn" onclick="checkMC(this, false)">"Si siede!"</button>
+    <div class="nav-row">
+      <span></span>
+      <button class="btn btn-next" onclick="go(1)">Inizia la teoria →</button>
     </div>
-    <div id="fb-1" class="feedback"></div>
   </div>
 
-  <div class="ex-card">
-    <h3>✏️ Esercizio 2: Trasforma il comando</h3>
-    <p>1. (Tenersi) forte: <input type="text" id="inp1"> al corrimano.</p>
-    <p>2. (Fare) attenzione: <input type="text" id="inp2"> al boma!</p>
-    <button class="choice-btn" style="background:var(--terracotta); color:white;" onclick="checkFill()">Controlla</button>
-    <div id="fb-2" class="feedback"></div>
+  <div class="section" id="sec1">
+    <div class="card">
+      <h2>1. Come cambia il verbo?</h2>
+      <p>La regola è "a specchio". I verbi che finiscono in <strong>-ARE</strong> prendono la <strong>-I</strong>. I verbi in <strong>-ERE</strong> e <strong>-IRE</strong> prendono la <strong>-A</strong>.</p>
+
+      <div class="verb-comparison">
+        <div class="v-table">
+          <h4>Gruppo -ARE (Entrare)</h4>
+          <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Entra!</span></div>
+          <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Entri.</span></div>
+        </div>
+        <div class="v-table">
+          <h4>Gruppo -ERE (Prendere)</h4>
+          <div class="v-row"><span>Tu (Amico)</span><span class="v-it">Prendi!</span></div>
+          <div class="v-row"><span>Lei (Cliente)</span><span class="v-it">Prenda.</span></div>
+        </div>
+      </div>
+
+      <div class="theory-card" style="background: #fdfaf5;">
+        <h3>I tre verbi "salva-vita" per Sara:</h3>
+        <ul class="nautic-list">
+          <li><strong>Sedersi:</strong> Si sieda! (Please sit down)</li>
+          <li><strong>Tenersi:</strong> Si tenga! (Hold on)</li>
+          <li><strong>Aspettare:</strong> Aspetti! (Wait)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(0)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(2)">Esercizi Formazione →</button>
+    </div>
   </div>
 
-  <div class="speaking-prompt">
-    <h3>🗣️ Sfida per Sara: Il temporale</h3>
-    <p><em>"Sara! I'm scared, what should I do?"</em></p>
-    <p>Rispondi al cliente usando: <strong>Si sieda</strong>, <strong>Si tenga</strong>, <strong>Stia calmo</strong> e <strong>Non si muova</strong>.</p>
+  <div class="section" id="sec2">
+    <div class="card">
+      <h2>2. Trasforma in Professionale</h2>
+      <p>Immagina di parlare a un cliente. Trasforma i verbi tra parentesi nella forma di cortesia (Lei).</p>
+
+      <div class="ex-box">
+        <div class="input-group">
+          <span class="label-en">"Please, (to enter) the cabin."</span>
+          <input type="text" id="ex2_1" placeholder="Scrivi qui...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To listen) to my instructions."</span>
+          <input type="text" id="ex2_2" placeholder="Scrivi qui...">
+        </div>
+        <div class="input-group">
+          <span class="label-en">"(To look) at the horizon if you feel sick."</span>
+          <input type="text" id="ex2_3" placeholder="Scrivi qui...">
+        </div>
+        
+        <button class="btn btn-check" onclick="checkSec2()">Controlla risposte</button>
+        <div id="fb2" class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(1)">← Teoria</button>
+      <button class="btn btn-next" onclick="go(3)">Comandi Riflessivi →</button>
+    </div>
   </div>
+
+  <div class="section" id="sec3">
+    <div class="card">
+      <h2>3. I verbi con "SI"</h2>
+      <p>Molti comandi in barca riguardano il corpo (sedersi, muoversi, tenersi). In questi casi, il "Si" va sempre <strong>prima</strong> del verbo.</p>
+
+      <div class="alert-box" style="background: var(--sand); border: none; text-align: center;">
+        <h1 style="font-family: Fraunces; color: var(--rust);">Si + Verbo</h1>
+        <p><em>Si sieda... Si muova... Si tenga...</em></p>
+      </div>
+
+      <h3>Scenari pratici:</h3>
+      <div id="mc-area">
+        <div class="ex-card" style="box-shadow: none; border-color: var(--sand);">
+          <p><strong>Scenario A:</strong> C'è un'onda grande. Cosa dici al cliente?</p>
+          <button class="choice-btn" onclick="checkMC(this, true, 'Siediti è informale. Si sieda è corretto!')">Si sieda!</button>
+          <button class="choice-btn" onclick="checkMC(this, false)">Siediti!</button>
+          <button class="choice-btn" onclick="checkMC(this, false)">Sieda si!</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(2)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(4)">Glossario Emergenza →</button>
+    </div>
+  </div>
+
+  <div class="section" id="sec4">
+    <div class="card">
+      <h2>4. Glossario d'Emergenza</h2>
+      <p>Queste sono le frasi che userai quando il mare si fa serio. Studiale bene.</p>
+      
+      <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <tr style="background: var(--dark); color: white;">
+          <th style="padding: 10px; text-align: left;">Situazione</th>
+          <th style="padding: 10px; text-align: left;">Cosa dire (Lei)</th>
+        </tr>
+        <tr>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Vento forte</td>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Si metta il giubbotto."</td>
+        </tr>
+        <tr>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Manovra veloce</td>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Si abbassi subito!"</td>
+        </tr>
+        <tr>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">Barca inclinata</td>
+          <td style="padding: 15px; border-bottom: 1px solid var(--warm);">"Non si muova, resti lì."</td>
+        </tr>
+      </table>
+
+      <div class="theory-card" style="margin-top: 2rem;">
+        <h3>🗣️ La tua sfida finale</h3>
+        <p>Registra un audio per Kate o scrivi qui: Un cliente vuole alzarsi mentre stai attraccando. Bloccalo gentilmente ma con autorità usando 3 frasi al "Lei".</p>
+        <textarea style="width:100%; height:100px; padding:10px; border-radius:10px; border:2px solid var(--warm);"></textarea>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" style="background:var(--warm)" onclick="go(3)">← Indietro</button>
+      <button class="btn btn-next" onclick="go(5)">Risultati →</button>
+    </div>
+  </div>
+
+  <div class="section" id="sec5">
+    <div class="score-wrap">
+      <div class="score-big" id="finalScore">100%</div>
+      <div class="score-label">Completato</div>
+      <div class="score-msg">Ottimo lavoro Capitana! 🌸</div>
+      <p class="score-sub">Ora sai come farti ascoltare da qualsiasi equipaggio.</p>
+      <button class="restart-btn" onclick="location.reload()">🔄 Ricomincia lezione</button>
+    </div>
+  </div>
+
 </div>
 
 <script>
-function checkMC(btn, isCorrect) {
-  const fb = document.getElementById('fb-1');
-  fb.style.display = "block";
-  if(isCorrect) {
-    btn.classList.add('correct');
-    fb.innerHTML = "✅ Esatto! Usiamo 'Si sieda' per essere professionali.";
-    fb.style.color = "var(--correct)";
-  } else {
-    btn.classList.add('wrong');
-    fb.innerHTML = "❌ Troppo informale o grammaticalmente errato.";
-    fb.style.color = "var(--wrong)";
-  }
-}
+  let current = 0;
+  const total = 6;
 
-function checkFill() {
-  const r1 = document.getElementById('inp1').value.toLowerCase().trim();
-  const r2 = document.getElementById('inp2').value.toLowerCase().trim();
-  const fb = document.getElementById('fb-2');
-  fb.style.display = "block";
-  if(r1 === "si tenga" && r2 === "faccia") {
-    fb.innerHTML = "🎉 Bravissima Sara! 'Si tenga' e 'Faccia' sono perfetti.";
-    fb.style.color = "var(--correct)";
-  } else {
-    fb.innerHTML = "⚠️ Controlla: 'Si teng...' e 'Facci...'";
-    fb.style.color = "var(--wrong)";
+  function go(n) {
+    document.getElementById(`sec${current}`).classList.remove('active');
+    document.getElementById(`sec${n}`).classList.add('active');
+    current = n;
+    updateProgress();
+    window.scrollTo(0,0);
   }
-}
+
+  function updateProgress() {
+    const pct = (current / (total - 1)) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    const labels = ["Intro", "Teoria", "Pratica", "Riflessivi", "Emergenza", "Fine"];
+    document.getElementById('progressText').innerText = labels[current];
+  }
+
+  function checkSec2() {
+    const r1 = document.getElementById('ex2_1').value.trim().toLowerCase();
+    const r2 = document.getElementById('ex2_2').value.trim().toLowerCase();
+    const r3 = document.getElementById('ex2_3').value.trim().toLowerCase();
+    const fb = document.getElementById('fb2');
+    
+    if(r1.includes("entri") && r2.includes("ascolti") && r3.includes("guardi")) {
+      fb.innerHTML = "✅ Eccellente! Hai capito la regola della 'I' per i verbi -ARE.";
+      fb.className = "feedback show";
+      fb.style.background = "#eef6f0";
+      fb.style.color = "#3a7a4a";
+    } else {
+      fb.innerHTML = "❌ Quasi. Controlla: Entr<b>i</b>, Ascolt<b>i</b>, Guard<b>i</b>.";
+      fb.className = "feedback show";
+      fb.style.background = "#fdf0ee";
+      fb.style.color = "#8a3030";
+    }
+  }
+
+  function checkMC(btn, correct, msg) {
+    if(correct) {
+      btn.style.background = "var(--correct)";
+      btn.style.color = "white";
+      alert(msg);
+    } else {
+      btn.style.background = "var(--wrong)";
+      btn.style.color = "white";
+      alert("No, questo è troppo informale per un cliente!");
+    }
+  }
 </script>
+
 </body>
 </html>
