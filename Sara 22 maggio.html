@@ -229,6 +229,113 @@ function checkEx1() {
   }
 }
 </script>
+<div class="card">
+  <div class="ctx">Vocabolario & Grammatica</div>
+  <h2>🌊 Parte 2: Dove sono le cose?</h2>
+  <p>Sara, usa le <strong>preposizioni articolate</strong> per spiegare ai passeggeri dove trovare l'attrezzatura. Ricorda: in + la = nella, su + la = sulla.</p>
+  
+  <div class="ex-block">
+    <div class="sentence-row">
+      <span>1. I giubbotti di salvataggio sono</span>
+      <input type="text" id="prep1" placeholder="in + la">
+      <span>cabina.</span>
+    </div>
 
+    <div class="sentence-row">
+      <span>2. Le maschere sono</span>
+      <input type="text" id="prep2" placeholder="su + la">
+      <span>panca a poppa.</span>
+    </div>
+
+    <div class="sentence-row">
+      <span>3. La borsa frigo è</span>
+      <input type="text" id="prep3" placeholder="sotto il">
+      <span>tavolo.</span>
+    </div>
+
+    <div class="sentence-row">
+      <span>4. Chiedi informazioni</span>
+      <input type="text" id="prep4" placeholder="a + lo">
+      <span>skipper.</span>
+    </div>
+    
+    <button class="btn" onclick="checkPrepSara()">Verifica Posizioni</button>
+    <div id="prep-fb" class="fb"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ctx">Briefing di Sicurezza</div>
+  <h2>🚨 Parte 3: Cosa faremo a bordo?</h2>
+  <p>Usa il <strong>Futuro Semplice</strong> per comunicare il programma ai clienti. Questo trasmette sicurezza e professionalità[cite: 1].</p>
+
+  <div class="ex-block">
+    <div class="sentence-row">
+      <span>1. Oggi il mare</span>
+      <input type="text" id="fut1" placeholder="essere (futuro)">
+      <span>calmo[cite: 1].</span>
+    </div>
+
+    <div class="sentence-row">
+      <span>2. Noi</span>
+      <input type="text" id="fut2" placeholder="partire (futuro)">
+      <span>alle nove dal porto[cite: 1].</span>
+    </div>
+
+    <div class="sentence-row">
+      <span>3. Durante il tour, noi</span>
+      <input type="text" id="fut3" placeholder="fare (futuro)">
+      <span>tre soste[cite: 1].</span>
+    </div>
+
+    <div class="sentence-row">
+      <span>4. Il tour</span>
+      <input type="text" id="fut4" placeholder="finire (futuro)">
+      <span>alle tredici[cite: 1].</span>
+    </div>
+
+    <button class="btn" onclick="checkFuturoSara()">Conferma Programma</button>
+    <div id="fut-fb" class="fb"></div>
+  </div>
+</div>
+
+<div class="card" style="border-left-color: var(--gold);">
+  <div class="ctx">Speaking Challenge</div>
+  <h2>🎙️ Diario di Bordo</h2>
+  <p>Immagina di parlare con Kate. Racconta cosa è successo ieri usando il <strong>Passato Prossimo</strong>.</p>
+  <div style="background: var(--gold-light); padding: 15px; border-radius: 10px; font-style: italic; color: var(--navy);">
+    "Ieri (io - accendere) ________ il motore alle otto. I clienti (nuotare) ________ e (scattare) ________ molte foto. Noi (visitare) ________ l'isola di Osljak."
+  </div>
+</div>
+
+<script>
+function checkPrepSara() {
+  const answers = { prep1: 'nella', prep2: 'sulla', prep3: 'sotto il', prep4: 'allo' };
+  let c = 0;
+  for (let id in answers) {
+    const inp = document.getElementById(id);
+    const ok = inp.value.trim().toLowerCase() === answers[id];
+    inp.className = `blank ${ok ? 'ok' : 'no'}`;
+    if (ok) c++;
+  }
+  const fb = document.getElementById('prep-fb');
+  fb.innerHTML = c === 4 ? '🎉 Ottimo! Hai posizionato tutto correttamente.' : `${c}/4 corrette. Controlla le preposizioni articolate!`;
+  fb.className = `fb show ${c === 4 ? 'ok' : 'no'}`;
+}
+
+function checkFuturoSara() {
+  const answers = { fut1: 'sarà', fut2: 'partiremo', fut3: 'faremo', fut4: 'finirà' };
+  let c = 0;
+  for (let id in answers) {
+    const inp = document.getElementById(id);
+    const ok = inp.value.trim().toLowerCase() === answers[id];
+    inp.className = `blank ${ok ? 'ok' : 'no'}`;
+    if (ok) c++;
+  }
+  const fb = document.getElementById('fut-fb');
+  fb.innerHTML = c === 4 ? '⚓ Bravissima! Il futuro è chiaro e professionale[cite: 1].' : `${c}/4 verbi corretti. Ricorda le forme irregolari di essere e fare[cite: 1]!`;
+  fb.className = `fb show ${c === 4 ? 'ok' : 'no'}`;
+}
+</script>
 </body>
 </html>
