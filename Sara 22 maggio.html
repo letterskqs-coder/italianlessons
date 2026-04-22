@@ -3,366 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Italiano con Sara — Skipper Professionale</title>
+<title>Sara: Lezioni 13 & 14 — Skipper B1</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FAF7F2;
-    --ink: #1B3A5C; /* Navy per Sara */
-    --muted: #6B6560;
-    --lake: #2A7BBF; /* Sea blue */
-    --lake-light: #E8F4FD;
-    --lake-mid: #B5D4E8;
-    --gold: #C9942A; /* Gold per i dettagli skipper */
-    --gold-light: #FFF8ED;
-    --green: #3A7A52;
-    --green-light: #E8F5EE;
-    --red: #B84040;
-    --red-light: #FDEAEA;
-    --border: rgba(27, 58, 92, 0.1);
-    --card-bg: #FFFFFF;
-    --shadow: 0 2px 20px rgba(30,30,30,0.07);
+    --cream: #FAF7F2; --ink: #1B3A5C; --muted: #6B6560;
+    --lake: #2A7BBF; --lake-light: #E8F4FD; --lake-mid: #B5D4E8;
+    --gold: #C9942A; --gold-light: #FFF8ED;
+    --green: #3A7A52; --green-light: #E8F5EE;
+    --red: #B84040; --red-light: #FDEAEA;
+    --border: rgba(27, 58, 92, 0.1); --card-bg: #FFFFFF; --shadow: 0 2px 20px rgba(30,30,30,0.07);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.7;
-    font-size: 15px;
-  }
-
-  .hero {
-    background: var(--ink);
-    color: white;
-    padding: 48px 32px 56px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 32px;
-    background: var(--cream);
-    clip-path: ellipse(55% 100% at 50% 100%);
-  }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 20px;
-    padding: 4px 16px;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-  .hero p {
-    font-size: 14px;
-    opacity: 0.8;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .wrapper { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
-
-  /* NAV TABS */
-  .tab-nav {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 8px;
-  }
-  .tab-btn {
-    flex: 1;
-    min-width: 120px;
-    padding: 10px 12px;
-    border: none;
-    background: transparent;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-  .tab-btn:hover { background: var(--cream); color: var(--ink); }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.7; font-size: 15px; }
+  
+  .hero { background: var(--ink); color: white; padding: 48px 32px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 32px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 4px 16px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; line-height: 1.2; margin-bottom: 10px; }
+  
+  .wrapper { max-width: 800px; margin: 0 auto; padding: 32px 20px 60px; }
+  
+  .tab-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 8px; }
+  .tab-btn { flex: 1; min-width: 150px; padding: 12px; border: none; background: transparent; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: 0.2s; text-align: center; }
+  .tab-btn:hover { background: var(--cream); }
   .tab-btn.active { background: var(--lake); color: white; }
 
   .section { display: none; }
-  .section.active { display: block; }
+  .section.active { display: block; animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* CARDS */
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow);
-  }
-  .card-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--lake);
-    margin-bottom: 8px;
-  }
-  .card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; margin-bottom: 20px; box-shadow: var(--shadow); }
+  .card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lake); margin-bottom: 8px; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 15px; }
 
-  /* TEACHER NOTES */
-  .teacher-note {
-    background: var(--gold-light);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 10px 10px 0;
-    padding: 14px 18px;
-    margin-bottom: 16px;
-    font-size: 13px;
-  }
-  .teacher-note strong { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
-
-  /* VOCAB GRID */
-  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
-  .vocab-item {
-    background: var(--lake-light);
-    border: 1px solid var(--lake-mid);
-    border-radius: 10px;
-    padding: 12px 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .vocab-item:hover { background: var(--lake-mid); }
-  .vocab-it { font-weight: 600; font-size: 15px; color: var(--ink); }
-  .vocab-en { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .vocab-ukr { font-size: 11px; color: var(--lake); margin-top: 2px; display: none; }
-  .vocab-item.revealed .vocab-ukr { display: block; }
-
-  /* EXERCISES */
-  .exercise { margin-bottom: 22px; }
-  .option-btn {
-    display: block; width: 100%; text-align: left; padding: 12px 16px; margin-bottom: 8px;
-    border: 1px solid var(--border); border-radius: 10px; background: white; cursor: pointer; transition: 0.2s;
-  }
-  .option-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green); }
-  .option-btn.wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
-
-  .fill-input {
-    border: none; border-bottom: 2px solid var(--lake); background: transparent;
-    width: 140px; padding: 2px 6px; outline: none; text-align: center; font-weight: 500;
-  }
-
-  .convo { border-left: 3px solid var(--gold); padding-left: 20px; margin: 16px 0; }
-  .grammar-box { background: var(--lake-light); border-radius: 12px; padding: 20px; margin: 16px 0; font-size: 14px; }
+  .teacher-note { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 14px; border-radius: 0 10px 10px 0; margin-bottom: 20px; font-size: 13px; }
   
-  /* DRAG AND DROP */
-  .drag-bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; padding: 10px; background: var(--cream); border-radius: 10px; }
-  .drag-word { padding: 6px 14px; background: var(--ink); color: white; border-radius: 20px; font-size: 13px; cursor: grab; }
-  .drop-zone { min-height: 44px; border: 1.5px dashed var(--lake-mid); border-radius: 10px; padding: 8px 12px; margin: 8px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 15px 0; }
+  .vocab-item { background: var(--lake-light); border: 1px solid var(--lake-mid); border-radius: 10px; padding: 15px; text-align: center; }
+  .vocab-it { font-weight: 600; color: var(--ink); }
 
+  .grammar-box { background: var(--lake-light); border-radius: 12px; padding: 20px; margin: 15px 0; }
+  .fill-input { border: none; border-bottom: 2px solid var(--lake); background: transparent; width: 130px; text-align: center; outline: none; font-weight: 500; font-family: inherit; }
+  
+  .btn-check { background: var(--ink); color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 15px; }
+  .btn-check:hover { background: var(--gold); }
+
+  textarea { width: 100%; height: 120px; padding: 15px; border-radius: 10px; border: 1.5px solid var(--lake-mid); font-family: inherit; resize: none; }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="hero-badge">Unità 12 · A2+</div>
-  <h1>Sara lo Skipper</h1>
-  <p>Narrazione al passato e sicurezza a bordo nelle acque della Croazia</p>
+  <div class="hero-badge">Full Module · B1 Transition</div>
+  <h1>Sara: L'Evoluzione dello Skipper</h1>
+  <p>Cortesia Professionale (L13) & Organizzazione di Bordo (L14)</p>
 </div>
 
 <div class="wrapper">
-
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('warm')">Warm-up</button>
-    <button class="tab-btn" onclick="showTab('vocab')">Vocabolario</button>
-    <button class="tab-btn" onclick="showTab('grammar')">Grammatica</button>
-    <button class="tab-btn" onclick="showTab('exercises')">Esercizi</button>
-    <button class="tab-btn" onclick="showTab('speaking')">Parlare</button>
+    <button class="tab-btn active" onclick="showTab('l13')">L13: Il Condizionale</button>
+    <button class="tab-btn" onclick="showTab('l14')">L14: Spazi & Preposizioni</button>
+    <button class="tab-btn" onclick="showTab('speaking')">Sfida Finale (Speaking)</button>
   </div>
 
-  <div id="warm" class="section active">
+  <div id="l13" class="section active">
     <div class="teacher-note">
-      <strong>📋 Note for Kate</strong>
-      Sara is a skipper. Focus on the distinction between what *happened* (Passato Prossimo) and the *conditions* (Imperfetto). Use the boat context to make her feel at home.
+      <strong>🎯 Obiettivo L13:</strong> Sostituire l'imperativo con il condizionale per suonare più professionale. Invece di "Vieni qui", usare "Potrebbe venire qui?".
     </div>
 
     <div class="card">
-      <div class="card-label">Warm-up · 5 min</div>
-      <h3>Com'è andato il tour?</h3>
-      <div class="convo">
-        <div class="convo-line">
-          <strong>Insegnante:</strong> Ciao Sara! Com'era il meteo ieri in mare? C'era vento?
-        </div>
-        <div class="convo-line">
-          <strong>Sara:</strong> Ieri il mare <em>era</em>... e noi <em>abbiamo visitato</em>...
-        </div>
+      <div class="card-label">Grammatica · Cortesia</div>
+      <h3>Vorrei, Potrei, Dovrei</h3>
+      <div class="grammar-box">
+        <p>Il condizionale è il tempo della gentilezza. Guarda come cambiano i tuoi verbi di lavoro:</p>
+        <ul style="list-style:none; margin-top:10px;">
+          <li>✨ <strong>VOLERE</strong> → Io <em>vorrei</em> offrire un aperitivo.</li>
+          <li>✨ <strong>POTERE</strong> → <em>Potrebbe</em> spostarsi a poppa?</li>
+          <li>✨ <strong>DOVERE</strong> → Noi <em>dovremmo</em> rientrare per il vento.</li>
+        </ul>
       </div>
     </div>
 
     <div class="card">
-      <h3>Quick Check</h3>
-      <div class="exercise" id="wq1">
-        <p>Ieri mattina io _____ il motore alle 8:00.</p>
-        <button class="option-btn" onclick="checkQ('wq1', this, true)">ho acceso</button>
-        <button class="option-btn" onclick="checkQ('wq1', this, false)">accendevo</button>
-      </div>
+      <div class="card-label">Esercizio · Trasformazione</div>
+      <h3>Trasforma gli ordini in richieste gentili</h3>
+      <p>1. "Voglio scendere" → "Io <input class="fill-input" id="c1" placeholder="..."> alla prossima baia."</p>
+      <p>2. "Puoi aiutarmi?" → "Mi <input class="fill-input" id="c2" placeholder="..."> aiutare con la cima?"</p>
+      <p>3. "Dobbiamo partire" → "Noi <input class="fill-input" id="c3" placeholder="..."> partire ora."</p>
+      <button class="btn-check" onclick="checkL13()">Verifica Cortesia ✓</button>
     </div>
   </div>
 
-  <div id="vocab" class="section">
+  <div id="l14" class="section">
+    <div class="teacher-note">
+      <strong>🎯 Obiettivo L14:</strong> Descrivere la barca con precisione chirurgica. Usiamo le preposizioni articolate per definire dove sono gli oggetti e le persone.
+    </div>
+
     <div class="card">
       <div class="card-label">Vocabolario Tecnico</div>
-      <h3>Sulla Barca</h3>
-      <div class="vocab-grid" id="vocabGrid"></div>
-      <p style="font-size: 11px; color: var(--muted);">Tocca le card per la traduzione inglese.</p>
-    </div>
-  </div>
-
-  <div id="grammar" class="section">
-    <div class="card">
-      <div class="card-label">Grammatica · Il Mix dei Passati</div>
-      <h3>Passato Prossimo vs Imperfetto</h3>
-      <div class="grammar-box">
-        <p><strong>Imperfetto:</strong> Lo "Sfondo" (Meteo, Ore, Stati d'animo).<br><em>"C'era molto sole e i passeggeri erano felici."</em></p>
-        <hr style="margin:10px 0; opacity: 0.2;">
-        <p><strong>Passato Prossimo:</strong> L'Azione interruttiva (Cosa è successo).<br><em>"All'improvviso, un passeggero ha visto un delfino!"</em></p>
+      <h3>Gli Ambienti della Barca</h3>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="vocab-it">La cabina</div></div>
+        <div class="vocab-item"><div class="vocab-it">Il pozzetto</div></div>
+        <div class="vocab-item"><div class="vocab-it">La dinette</div></div>
+        <div class="vocab-item"><div class="vocab-it">Il gavone</div></div>
+        <div class="vocab-item"><div class="vocab-it">La panca</div></div>
+        <div class="vocab-item"><div class="vocab-it">Il sottocoperta</div></div>
       </div>
     </div>
-  </div>
-
-  <div id="exercises" class="section">
-    <div class="card">
-      <div class="card-label">Esercizio 1 · Riordina</div>
-      <h3>Costruisci il Briefing</h3>
-      <div class="drag-bank" id="bank1"></div>
-      <div class="drop-zone" id="drop1" ondragover="event.preventDefault()" ondrop="dropWord(event, 'drop1', 'bank1')">Trascina qui...</div>
-      <button class="check-btn" style="margin-top:10px; padding: 10px 20px; background: var(--ink); color: white; border: none; border-radius: 8px; cursor: pointer;" onclick="checkOrder()">Controlla ✓</button>
-      <div id="order-fb" style="margin-top: 10px;"></div>
-    </div>
 
     <div class="card">
-      <div class="card-label">Esercizio 2 · Inserimento</div>
-      <h3>Le Preposizioni in Barca</h3>
-      <p>I giubbotti sono <input class="fill-input" id="f1" placeholder="in + la"> cabina.</p>
-      <p>Sali <input class="fill-input" id="f2" placeholder="su + la"> passerella con cura.</p>
-      <button class="check-btn" style="margin-top:10px; padding: 10px 20px; background: var(--ink); color: white; border: none; border-radius: 8px; cursor: pointer;" onclick="checkFill()">Controlla ✓</button>
+      <div class="card-label">Esercizio · Preposizioni</div>
+      <h3>Dove si trova? (nella, sul, dello, alla)</h3>
+      <p>1. Lo skipper è <input class="fill-input" id="p1" placeholder="a + la"> timone.</p>
+      <p>2. Le birre sono <input class="fill-input" id="p2" placeholder="in + il"> frigorifero.</p>
+      <p>3. I bagagli sono <input class="fill-input" id="p3" placeholder="in + la"> cabina.</p>
+      <p>4. La crema solare è <input class="fill-input" id="p4" placeholder="su + la"> panca.</p>
+      <button class="btn-check" onclick="checkL14()">Verifica Posizioni ✓</button>
     </div>
   </div>
 
   <div id="speaking" class="section">
     <div class="card">
-      <div class="card-label">Speaking · Role Play</div>
-      <h3>L'Emergenza</h3>
+      <div class="card-label">Role Play · Situazione Reale</div>
+      <h3>Il Tour di Domani</h3>
       <div class="teacher-note">
-        Kate, fai finta di essere una passeggera che ha paura perché il mare sta diventando mosso. Sara deve calmarla usando il <strong>Futuro</strong> e l'<strong>Imperativo gentile</strong>.
+        Kate, fai finta di essere una cliente molto curiosa. Chiedi a Sara tutto sulla barca e sul programma. Sara deve usare il condizionale per essere gentile e il futuro per i piani.
       </div>
-      <p><strong>Passeggero:</strong> "Oddio Sara! Il vento è fortissimo! Affonderemo?"</p>
-      <p><strong>Sara (Skipper):</strong> (Rassicura, dai ordini, spiega che tra poco arriverete in porto...)</p>
+      <div style="background: var(--lake-light); padding: 20px; border-radius: 12px; font-style: italic;">
+        <strong>Domanda di Kate:</strong> "Sara, <em>potrebbe</em> dirmi dove <em>potrei</em> mettere la mia borsa? E cosa <em>faremo</em> se piove?"
+      </div>
+      <p style="margin-top:20px;"><strong>Risposta di Sara:</strong></p>
+      <textarea id="resp" placeholder="Scrivi una traccia della risposta di Sara..."></textarea>
+      <button class="btn-check" onclick="alert('Perfetto Sara! Preparati a parlarne con Kate.')">Salva Traccia</button>
     </div>
   </div>
-
 </div>
 
 <script>
-const vocab = [
-  {it: 'La Prua', en: 'The Bow'},
-  {it: 'La Poppa', en: 'The Stern'},
-  {it: 'Il Boma', en: 'The Boom'},
-  {it: 'L\'ancora', en: 'The Anchor'},
-  {it: 'La cima', en: 'The rope'},
-  {it: 'Il giubbotto', en: 'The life jacket'}
-];
-
-function buildVocab() {
-  const grid = document.getElementById('vocabGrid');
-  vocab.forEach(v => {
-    const div = document.createElement('div');
-    div.className = 'vocab-item';
-    div.innerHTML = `<div class="vocab-it">${v.it}</div><div class="vocab-ukr" style="display:none; color:var(--gold); font-size:12px;">${v.en}</div>`;
-    div.onclick = () => {
-      const en = div.querySelector('.vocab-ukr');
-      en.style.display = en.style.display === 'none' ? 'block' : 'none';
-    };
-    grid.appendChild(div);
-  });
-}
-buildVocab();
-
-const sentence = ['Per', 'favore', 'indossate', 'il', 'giubbotto', 'di', 'salvataggio'];
-function buildDrag() {
-  const bank = document.getElementById('bank1');
-  [...sentence].sort(() => Math.random() - 0.5).forEach(w => {
-    const span = document.createElement('span');
-    span.className = 'drag-word';
-    span.textContent = w;
-    span.draggable = true;
-    span.ondragstart = e => e.dataTransfer.setData('text', w);
-    bank.appendChild(span);
-  });
-}
-buildDrag();
-
-function dropWord(e, dropId, bankId) {
-  e.preventDefault();
-  const word = e.dataTransfer.getData('text');
-  const zone = document.getElementById(dropId);
-  if(zone.innerText === 'Trascina qui...') zone.innerText = '';
-  const span = document.createElement('span');
-  span.className = 'drag-word';
-  span.textContent = word;
-  zone.appendChild(span);
-}
-
-function checkOrder() {
-  const zone = document.getElementById('drop1');
-  const result = Array.from(zone.querySelectorAll('.drag-word')).map(s => s.textContent).join(' ');
-  const fb = document.getElementById('order-fb');
-  if(result === sentence.join(' ')) {
-    fb.innerHTML = '✅ Corretto!'; fb.style.color = 'green';
-  } else {
-    fb.innerHTML = '❌ Riprova l\'ordine.'; fb.style.color = 'red';
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
   }
-}
 
-function checkFill() {
-  const f1 = document.getElementById('f1').value.toLowerCase();
-  const f2 = document.getElementById('f2').value.toLowerCase();
-  if(f1 === 'nella' && f2 === 'sulla') alert('⚓ Bravissima Sara! Preposizioni perfette.');
-  else alert('Controlla: in + la = nella | su + la = sulla');
-}
+  function checkL13() {
+    const r1 = document.getElementById('c1').value.toLowerCase().trim();
+    const r2 = document.getElementById('c2').value.toLowerCase().trim();
+    const r3 = document.getElementById('c3').value.toLowerCase().trim();
+    if(r1.includes('vorrei') && r2.includes('potrebbe') && r3.includes('dovremmo')) {
+      alert('⚓ Bravissima Sara! Il condizionale è perfetto.');
+    } else {
+      alert('Riprova. Usa: vorrei, potrebbe, dovremmo.');
+    }
+  }
 
-function checkQ(id, btn, correct) {
-  btn.className = correct ? 'option-btn correct' : 'option-btn wrong';
-}
-
-function showTab(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(name).classList.add('active');
-  event.currentTarget.classList.add('active');
-}
+  function checkL14() {
+    const r = [
+      document.getElementById('p1').value.toLowerCase().trim(),
+      document.getElementById('p2').value.toLowerCase().trim(),
+      document.getElementById('p3').value.toLowerCase().trim(),
+      document.getElementById('p4').value.toLowerCase().trim()
+    ];
+    const ans = ['alla', 'nel', 'nella', 'sulla'];
+    let score = 0;
+    r.forEach((val, i) => { if(val === ans[i]) score++; });
+    alert(score + '/4 corrette! Ricorda: a+la=alla, in+il=nel, in+la=nella, su+la=sulla.');
+  }
 </script>
+
 </body>
 </html>
