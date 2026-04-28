@@ -3,167 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nick — L9: Casa e Tempo Libero (Interattiva)</title>
+<title>Nick — L9: Masterclass Casa & Tempo Libero</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
     --bg: #f4f7f6; --card: #ffffff; --nick-blue: #2563a8; --accent: #c8773a;
     --text: #1c1a16; --muted: #6c757d; --border: rgba(0,0,0,0.08);
-    --green: #27ae60; --red: #e74c3c;
+    --green: #27ae60; --red: #e74c3c; --yellow: #fff9e6;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-  header { background: var(--nick-blue); color: white; padding: 30px 20px; text-align: center; border-bottom: 5px solid var(--accent); }
-  .wrapper { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+  header { background: var(--nick-blue); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--accent); }
+  
+  .wrapper { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
 
-  .tab-nav { display: flex; gap: 8px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 10px; }
-  .tab-btn { flex: 1; min-width: 160px; padding: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+  /* NAV */
+  .tab-nav { display: flex; gap: 8px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .tab-btn { flex: 1; min-width: 140px; padding: 12px; background: white; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; font-size: 0.9rem; }
   .tab-btn.active { background: var(--nick-blue); color: white; box-shadow: 0 4px 10px rgba(37,99,168,0.2); }
 
   .section { display: none; animation: fadeIn 0.4s ease; }
   .section.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .card { background: var(--card); border-radius: 16px; padding: 30px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-  h2 { font-family: 'DM Serif Display', serif; color: var(--nick-blue); margin-bottom: 15px; font-size: 1.8rem; }
-  .subtitle { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-bottom: 20px; display: block; }
+  .card { background: var(--card); border-radius: 16px; padding: 35px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+  h2 { font-family: 'DM Serif Display', serif; color: var(--nick-blue); margin-bottom: 15px; font-size: 2rem; border-left: 5px solid var(--accent); padding-left: 15px; }
+  h3 { color: var(--accent); margin: 20px 0 10px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+  
+  .theory-box { background: var(--yellow); border: 1px solid #ffeeba; padding: 20px; border-radius: 12px; margin-bottom: 20px; font-size: 0.95rem; }
+  .teacher-talk { background: #eef6ff; border-left: 4px solid var(--nick-blue); padding: 20px; border-radius: 0 12px 12px 0; margin: 20px 0; }
 
-  .teacher-talk { background: #fffcf0; border-left: 4px solid var(--accent); padding: 20px; border-radius: 0 12px 12px 0; margin: 20px 0; }
-  .translation { font-size: 0.85rem; color: #8a7b5d; display: block; margin-top: 5px; }
-
-  .ex-box { background: #f9fbff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 20px; margin-top: 15px; }
-  .vocab-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-  input[type="text"] { border: none; border-bottom: 2px solid var(--nick-blue); background: transparent; padding: 5px; width: 180px; font-weight: 600; outline: none; }
+  .ex-box { background: #f9fbff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 25px; margin-top: 15px; }
+  .ex-item { margin-bottom: 15px; display: block; }
+  
+  input[type="text"] { border: none; border-bottom: 2px solid var(--nick-blue); background: transparent; padding: 2px 8px; width: 160px; font-weight: 600; outline: none; transition: 0.3s; }
+  input:focus { background: #fff; border-radius: 4px 4px 0 0; }
   input.correct { border-bottom-color: var(--green); color: var(--green); }
   input.wrong { border-bottom-color: var(--red); color: var(--red); }
 
-  textarea { width: 100%; height: 120px; padding: 15px; border-radius: 10px; border: 1.5px solid var(--border); font-family: inherit; margin-top: 10px; resize: none; }
-  .btn-check { background: var(--nick-blue); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 700; transition: 0.2s; margin-top: 15px; }
-  .btn-check:hover { background: #1a4d85; }
-  .feedback-msg { margin-top: 15px; font-weight: 700; display: none; }
+  textarea { width: 100%; height: 100px; padding: 15px; border-radius: 10px; border: 1.5px solid var(--border); font-family: inherit; margin-top: 10px; resize: none; background: #fafafa; }
+  .btn-check { background: var(--nick-blue); color: white; border: none; padding: 12px 30px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.2s; margin-top: 20px; display: block; }
+  .btn-check:hover { background: #1a4d85; transform: scale(1.02); }
+  .feedback-msg { margin-top: 15px; font-weight: 700; display: none; padding: 10px; border-radius: 8px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>⚓ Nick: Lezione Interattiva (28 Aprile)</h1>
-  <p>Livello A2+ / B1 — Consolidamento Vocabolario e Speaking</p>
+  <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 10px;">Nick • 28 Aprile 2026</p>
+  <h1>L9: Masterclass Routine & Casa</h1>
+  <p>Transizione B1: Parlare del quotidiano con precisione</p>
 </header>
 
 <div class="wrapper">
 
-  <!-- NAV -->
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('fase1')">1. Warm-up</button>
-    <button class="tab-btn" onclick="showTab('fase2')">2. Vocabolario</button>
-    <button class="tab-btn" onclick="showTab('fase2b')">2B. Vocabolario Extra</button>
-    <button class="tab-btn" onclick="showTab('fase3')">3. Speaking</button>
-    <button class="tab-btn" onclick="showTab('fase3b')">3B. Speaking Extra</button>
-    <button class="tab-btn" onclick="showTab('fase4')">4. Verifica Finale</button>
+    <button class="tab-btn active" onclick="showTab('teoria')">📖 Teoria</button>
+    <button class="tab-btn" onclick="showTab('fase2')">🏠 Casa (Ex 1-14)</button>
+    <button class="tab-btn" onclick="showTab('fase2b')">🔧 Guasti (Ex 15-28)</button>
+    <button class="tab-btn" onclick="showTab('fase4')">🏁 Test Finale</button>
+    <button class="tab-btn" onclick="showTab('speaking')">🎙 Speaking</button>
   </div>
 
-  <!-- FASE 1 -->
-  <div id="fase1" class="section active">
+  <div id="teoria" class="section active">
     <div class="card">
-      <h2>Warm-up: La mia settimana in 3 parole</h2>
-      <span class="subtitle">Speaking warm-up (IT + EN)</span>
-
-      <div class="teacher-talk">
-        <strong>Katerine:</strong> “Ciao Nick! Descrivi la tua settimana usando tre parole. Poi scegli una parola e raccontami un episodio.”
-        <span class="translation">“Hi Nick! Describe your week using three words. Then choose one word and tell me an episode.”</span>
+      <h2>La Base del Livello B1</h2>
+      
+      <div class="theory-box">
+        <h3>1. I Verbi Riflessivi (Routine)</h3>
+        <p>In italiano, molte azioni quotidiane sono "riflessive" (io faccio l'azione a me stesso).</p>
+        <ul>
+          <li><strong>Svegliarsi</strong> (To wake up) → Mi sveglio</li>
+          <li><strong>Alzarsi</strong> (To get up) → Mi alzo</li>
+          <li><strong>Rilassarsi</strong> (To relax) → Mi rilasso</li>
+        </ul>
+        <p><strong>Al passato:</strong> si usa sempre l'ausiliare <strong>ESSERE</strong>.<br>
+        <em>"Mi sono svegliato alle 8"</em> | <em>"Ci siamo rilassati sul divano"</em></p>
       </div>
 
-      <p><strong>Domande follow-up:</strong></p>
-      <ul style="margin-top:10px; line-height:1.8;">
-        <li>Qual è stato il momento più stressante?</li>
-        <li>C’è stato un momento divertente?</li>
-        <li>Cosa cambieresti della tua settimana?</li>
-      </ul>
+      <div class="theory-box">
+        <h3>2. Connettori Logici</h3>
+        <p>Per non fare liste della spesa, usa questi per unire le frasi:</p>
+        <ul>
+          <li><strong>Quindi / Perciò:</strong> So / Therefore</li>
+          <li><strong>Mentre:</strong> While (due azioni contemporanee)</li>
+          <li><strong>Invece:</strong> Instead / Whereas</li>
+          <li><strong>Comunque:</strong> Anyway</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- FASE 2 -->
   <div id="fase2" class="section">
     <div class="card">
-      <h2>Vocabolario: Casa & Routine</h2>
-      <span class="subtitle">Completa le frasi</span>
+      <h2>Esercizi 1-14: Routine & Spazi</h2>
+      <span class="subtitle">Focus: Verbi riflessivi e oggetti della casa</span>
 
       <div class="ex-box">
-        <p>1. Quando torno dal lavoro mi siedo sul <input id="v1" placeholder="..."></p>
-        <p>2. Il sabato facciamo la <input id="v2" placeholder="..."></p>
-        <p>3. Tengo gli attrezzi nel <input id="v3" placeholder="..."></p>
-        <p>4. Prima di cucinare metto in <input id="v4" placeholder="..."></p>
-        <button class="btn-check" onclick="checkVocab1()">Verifica</button>
-        <p id="msg-v1" class="feedback-msg"></p>
+        <div class="grid-2">
+          <div>
+            <span class="ex-item">1. Mi <input id="v1" placeholder="... (svegliare)"> alle 7:00.</span>
+            <span class="ex-item">2. Mi siedo sul <input id="v2" placeholder="... (sofa)">.</span>
+            <span class="ex-item">3. Noi facciamo la <input id="v3" placeholder="... (shopping)">.</span>
+            <span class="ex-item">4. Metto in <input id="v4" placeholder="... (order)"> la camera.</span>
+            <span class="ex-item">5. Ci <input id="v5" placeholder="... (rilassare)"> molto.</span>
+            <span class="ex-item">6. Il <input id="v6" placeholder="... (rug)"> è in salotto.</span>
+            <span class="ex-item">7. Ho messo il vino in <input id="v7" placeholder="... (fridge)">.</span>
+          </div>
+          <div>
+            <span class="ex-item">8. Il <input id="v8" placeholder="... (storage)"> è pieno.</span>
+            <span class="ex-item">9. Mi sono <input id="v9" placeholder="... (alzato)"> tardi.</span>
+            <span class="ex-item">10. Hai lavato i <input id="v10" placeholder="... (dishes)">?</span>
+            <span class="ex-item">11. Accendo la <input id="v11" placeholder="... (light)">.</span>
+            <span class="ex-item">12. Chiudo la <input id="v12" placeholder="... (window)">.</span>
+            <span class="ex-item">13. C'è polvere sullo <input id="v13" placeholder="... (mirror)">.</span>
+            <span class="ex-item">14. Apro la <input id="v14" placeholder="... (door)">.</span>
+          </div>
+        </div>
+        <button class="btn-check" onclick="checkVocab1()">Verifica Blocco 1</button>
+        <div id="msg-v1" class="feedback-msg"></div>
       </div>
     </div>
   </div>
 
-  <!-- FASE 2B -->
   <div id="fase2b" class="section">
     <div class="card">
-      <h2>Vocabolario Extra: Problemi in Casa</h2>
-      <span class="subtitle">Completa le frasi</span>
+      <h2>Esercizi 15-28: Problemi & Emergenze</h2>
+      <span class="subtitle">Vocabolario tecnico per la gestione della casa</span>
 
       <div class="ex-box">
-        <p>1. La <input id="e1" placeholder="..."> non funziona.</p>
-        <p>2. Il <input id="e2" placeholder="..."> perde acqua.</p>
-        <p>3. La <input id="e3" placeholder="..."> fa rumore.</p>
-        <p>4. Questa <input id="e4" placeholder="..."> non funziona.</p>
-        <p>5. Il <input id="e5" placeholder="..."> non parte.</p>
-        <button class="btn-check" onclick="checkVocab2()">Verifica</button>
-        <p id="msg-v2" class="feedback-msg"></p>
+        <div class="grid-2">
+          <div>
+            <span class="ex-item">15. La <input id="e15" placeholder="..."> (bulb) è bruciata.</span>
+            <span class="ex-item">16. Il <input id="e16" placeholder="..."> (tap) perde.</span>
+            <span class="ex-item">17. La <input id="e17" placeholder="..."> (washing machine) è rotta.</span>
+            <span class="ex-item">18. La <input id="e18" placeholder="..."> (socket) è staccata.</span>
+            <span class="ex-item">19. Il <input id="e19" placeholder="..."> (heating) non va.</span>
+            <span class="ex-item">20. Il <input id="e20" placeholder="..."> (sink) è otturato.</span>
+            <span class="ex-item">21. C'è un <input id="e21" placeholder="..."> (short circuit).</span>
+          </div>
+          <div>
+            <span class="ex-item">22. Devo chiamare l' <input id="e22" placeholder="..."> (electrician).</span>
+            <span class="ex-item">23. Mi serve un <input id="e23" placeholder="..."> (plumber).</span>
+            <span class="ex-item">24. La <input id="e24" placeholder="..."> (lock) è bloccata.</span>
+            <span class="ex-item">25. Il <input id="e25" placeholder="..."> (oven) non scalda.</span>
+            <span class="ex-item">26. Manca la <input id="e26" placeholder="..."> (connection) Wi-Fi.</span>
+            <span class="ex-item">27. Il <input id="e27" placeholder="..."> (roof) perde acqua.</span>
+            <span class="ex-item">28. Il <input id="e28" placeholder="..."> (gate) è aperto.</span>
+          </div>
+        </div>
+        <button class="btn-check" onclick="checkVocab2()">Verifica Blocco 2</button>
+        <div id="msg-v2" class="feedback-msg"></div>
       </div>
     </div>
   </div>
 
-  <!-- FASE 3 -->
-  <div id="fase3" class="section">
-    <div class="card">
-      <h2>Speaking: Il mio weekend ideale</h2>
-      <span class="subtitle">Produzione guidata</span>
-
-      <div class="teacher-talk">
-        <strong>Katerine:</strong> “Descrivi il tuo weekend ideale usando perché, quindi, poi, dopo, alla fine.”
-        <span class="translation">“Describe your ideal weekend using because, so, then, after, finally.”</span>
-      </div>
-
-      <textarea placeholder="Scrivi la tua risposta qui..."></textarea>
-    </div>
-  </div>
-
-  <!-- FASE 3B -->
-  <div id="fase3b" class="section">
-    <div class="card">
-      <h2>Speaking Extra: La mia routine perfetta</h2>
-      <span class="subtitle">Speaking + imprevisto</span>
-
-      <div class="teacher-talk">
-        <strong>Katerine:</strong> “Descrivi la tua routine perfetta. Poi aggiungi un imprevisto!”
-        <span class="translation">“Describe your perfect routine. Then add an unexpected change!”</span>
-      </div>
-
-      <textarea placeholder="Scrivi la tua routine perfetta..."></textarea>
-      <textarea placeholder="Aggiungi un imprevisto..."></textarea>
-    </div>
-  </div>
-
-  <!-- FASE 4 -->
   <div id="fase4" class="section">
     <div class="card">
-      <h2>Verifica Finale</h2>
-      <span class="subtitle">Completa il testo</span>
+      <h2>Esercizi 29-40: Verifica Finale</h2>
+      <span class="subtitle">Test di riepilogo (Mix Grammatica + Lessico)</span>
 
-      <div class="ex-box" style="line-height:2.4;">
-        “Ieri è stata una giornata perfetta. La mattina siamo <input id="f1" placeholder="..."> presto.
-        Abbiamo fatto la <input id="f2" placeholder="..."> e poi abbiamo <input id="f3" placeholder="..."> il pranzo.
-        Il pomeriggio ci siamo rilassati sul <input id="f4" placeholder="...">.
-        La sera abbiamo <input id="f5" placeholder="..."> la cucina.”
-        <button class="btn-check" onclick="checkFinal()">Invia Risposte</button>
-        <p id="msg-f" class="feedback-msg"></p>
+      <div class="ex-box" style="line-height:2.5;">
+        “Sabato scorso (29) <input id="f29" placeholder="io ... (svegliarsi)"> tardi. 
+        Mio compagno (30) <input id="f30" placeholder="ha ... (cucinato)"> la colazione. 
+        Poi noi (31) <input id="f31" placeholder="siamo ... (uscire)"> per fare la (32) <input id="f32" placeholder="(shopping)">.
+        Invece di andare al (33) <input id="f33" placeholder="(supermarket)">, siamo andati al mercato.
+        Purtroppo il (34) <input id="f34" placeholder="(fridge)"> era rotto, (35) <input id="f35" placeholder="(therefore)"> abbiamo chiamato il tecnico.
+        Mentre lui lavorava, io (36) <input id="f36" placeholder="ho ... (messo)"> in (37) <input id="f37" placeholder="(order)"> il (38) <input id="f38" placeholder="(storage room)">.
+        Alla fine (39) <input id="f39" placeholder="ci siamo ... (rilassarsi)"> sul (40) <input id="f40" placeholder="(couch)">.”
+        
+        <button class="btn-check" onclick="checkFinal()">Invia Risposte Finali</button>
+        <div id="msg-f" class="feedback-msg"></div>
       </div>
+    </div>
+  </div>
+
+  <div id="speaking" class="section">
+    <div class="card">
+      <h2>🎙 Sessione di Speaking (50 minuti totali)</h2>
+      <div class="teacher-talk">
+        <strong>Nick, ecco i tuoi prompt per oggi:</strong>
+        <ol style="margin-left:20px; margin-top:10px;">
+          <li>"Qual è l'ultima cosa che hai rotto in casa? Hai provato a ripararla tu o hai chiamato qualcuno?"</li>
+          <li>"Se potessi cambiare una stanza della tua casa, quale cambieresti? Perché?"</li>
+          <li>"Descrivi la tua routine del sabato mattina perfetta: a che ora ti svegli? Cosa mangi? Con chi sei?"</li>
+        </ol>
+      </div>
+      <textarea placeholder="Prepara qui i tuoi punti chiave per parlarne con Katerine..."></textarea>
     </div>
   </div>
 
@@ -179,50 +210,40 @@
 
   function validate(id, correct) {
     const el = document.getElementById(id);
-    const ok = el.value.trim().toLowerCase() === correct;
+    const val = el.value.trim().toLowerCase();
+    const ok = val === correct || val === correct.replace('mi ', '').replace('ho ', '');
     el.className = ok ? 'correct' : 'wrong';
     return ok;
   }
 
   function checkVocab1() {
-    const r = [
-      validate('v1','divano'),
-      validate('v2','spesa'),
-      validate('v3','ripostiglio'),
-      validate('v4','ordine')
-    ];
+    const answers = ['sveglio','divano','spesa','ordine','rilassiamo','tappeto','frigo','ripostiglio','alzato','piatti','luce','finestra','specchio','porta'];
+    let score = 0;
+    answers.forEach((ans, i) => { if(validate('v'+(i+1), ans)) score++; });
     const msg = document.getElementById('msg-v1');
     msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Ottimo!" : "Controlla le risposte.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+    msg.innerHTML = score === 14 ? "🌟 Eccellente Nick! 14/14" : `Hai fatto ${score} su 14. Controlla le risposte.`;
+    msg.style.backgroundColor = score === 14 ? "#d4edda" : "#f8d7da";
   }
 
   function checkVocab2() {
-    const r = [
-      validate('e1','lampadina'),
-      validate('e2','rubinetto'),
-      validate('e3','lavatrice'),
-      validate('e4','presa'),
-      validate('e5','riscaldamento')
-    ];
+    const answers = ['lampadina','rubinetto','lavatrice','presa','riscaldamento','lavandino','corto circuito','elettricista','idraulico','serratura','forno','connessione','tetto','cancello'];
+    let score = 0;
+    answers.forEach((ans, i) => { if(validate('e'+(i+15), ans)) score++; });
     const msg = document.getElementById('msg-v2');
     msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Perfetto!" : "Riprova.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+    msg.innerHTML = score === 14 ? "🛠 Ottimo lavoro tecnico! 14/14" : `Hai fatto ${score} su 14. Riprova.`;
+    msg.style.backgroundColor = score === 14 ? "#d4edda" : "#f8d7da";
   }
 
   function checkFinal() {
-    const r = [
-      validate('f1','usciti'),
-      validate('f2','spesa'),
-      validate('f3','cucinato'),
-      validate('f4','divano'),
-      validate('f5','messo in ordine')
-    ];
+    const answers = ['mi sono svegliato','ha cucinato','siamo usciti','spesa','supermercato','frigo','quindi','ho messo','ordine','ripostiglio','ci siamo rilassati','divano'];
+    let score = 0;
+    answers.forEach((ans, i) => { if(validate('f'+(i+29), ans)) score++; });
     const msg = document.getElementById('msg-f');
     msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Lezione completata!" : "Riprova.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+    msg.innerHTML = score === 12 ? "🏆 Master della Casa! 12/12" : `Punteggio: ${score}/12. Verifica i verbi riflessivi!`;
+    msg.style.backgroundColor = score === 12 ? "#d4edda" : "#f8d7da";
   }
 </script>
 
