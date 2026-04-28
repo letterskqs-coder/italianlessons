@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick — L9: Casa e Tempo Libero (Interattiva)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f4f7f6; --card: #ffffff; --nick-blue: #2563a8; --accent: #c8773a;
+    --text: #1c1a16; --muted: #6c757d; --border: rgba(0,0,0,0.08);
+    --green: #27ae60; --red: #e74c3c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: var(--nick-blue); color: white; padding: 30px 20px; text-align: center; border-bottom: 5px solid var(--accent); }
+  .wrapper { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+
+  .tab-nav { display: flex; gap: 8px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 10px; }
+  .tab-btn { flex: 1; min-width: 160px; padding: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+  .tab-btn.active { background: var(--nick-blue); color: white; box-shadow: 0 4px 10px rgba(37,99,168,0.2); }
+
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .card { background: var(--card); border-radius: 16px; padding: 30px; margin-bottom: 25px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+  h2 { font-family: 'DM Serif Display', serif; color: var(--nick-blue); margin-bottom: 15px; font-size: 1.8rem; }
+  .subtitle { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-bottom: 20px; display: block; }
+
+  .teacher-talk { background: #fffcf0; border-left: 4px solid var(--accent); padding: 20px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+  .translation { font-size: 0.85rem; color: #8a7b5d; display: block; margin-top: 5px; }
+
+  .ex-box { background: #f9fbff; border: 1px solid #e1e8f0; border-radius: 12px; padding: 20px; margin-top: 15px; }
+  .vocab-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  input[type="text"] { border: none; border-bottom: 2px solid var(--nick-blue); background: transparent; padding: 5px; width: 180px; font-weight: 600; outline: none; }
+  input.correct { border-bottom-color: var(--green); color: var(--green); }
+  input.wrong { border-bottom-color: var(--red); color: var(--red); }
+
+  textarea { width: 100%; height: 120px; padding: 15px; border-radius: 10px; border: 1.5px solid var(--border); font-family: inherit; margin-top: 10px; resize: none; }
+  .btn-check { background: var(--nick-blue); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 700; transition: 0.2s; margin-top: 15px; }
+  .btn-check:hover { background: #1a4d85; }
+  .feedback-msg { margin-top: 15px; font-weight: 700; display: none; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚓ Nick: Lezione Interattiva (28 Aprile)</h1>
+  <p>Livello A2+ / B1 — Consolidamento Vocabolario e Speaking</p>
+</header>
+
+<div class="wrapper">
+
+  <!-- NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('fase1')">1. Warm-up</button>
+    <button class="tab-btn" onclick="showTab('fase2')">2. Vocabolario</button>
+    <button class="tab-btn" onclick="showTab('fase2b')">2B. Vocabolario Extra</button>
+    <button class="tab-btn" onclick="showTab('fase3')">3. Speaking</button>
+    <button class="tab-btn" onclick="showTab('fase3b')">3B. Speaking Extra</button>
+    <button class="tab-btn" onclick="showTab('fase4')">4. Verifica Finale</button>
+  </div>
+
+  <!-- FASE 1 -->
+  <div id="fase1" class="section active">
+    <div class="card">
+      <h2>Warm-up: La mia settimana in 3 parole</h2>
+      <span class="subtitle">Speaking warm-up (IT + EN)</span>
+
+      <div class="teacher-talk">
+        <strong>Katerine:</strong> “Ciao Nick! Descrivi la tua settimana usando tre parole. Poi scegli una parola e raccontami un episodio.”
+        <span class="translation">“Hi Nick! Describe your week using three words. Then choose one word and tell me an episode.”</span>
+      </div>
+
+      <p><strong>Domande follow-up:</strong></p>
+      <ul style="margin-top:10px; line-height:1.8;">
+        <li>Qual è stato il momento più stressante?</li>
+        <li>C’è stato un momento divertente?</li>
+        <li>Cosa cambieresti della tua settimana?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FASE 2 -->
+  <div id="fase2" class="section">
+    <div class="card">
+      <h2>Vocabolario: Casa & Routine</h2>
+      <span class="subtitle">Completa le frasi</span>
+
+      <div class="ex-box">
+        <p>1. Quando torno dal lavoro mi siedo sul <input id="v1" placeholder="..."></p>
+        <p>2. Il sabato facciamo la <input id="v2" placeholder="..."></p>
+        <p>3. Tengo gli attrezzi nel <input id="v3" placeholder="..."></p>
+        <p>4. Prima di cucinare metto in <input id="v4" placeholder="..."></p>
+        <button class="btn-check" onclick="checkVocab1()">Verifica</button>
+        <p id="msg-v1" class="feedback-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 2B -->
+  <div id="fase2b" class="section">
+    <div class="card">
+      <h2>Vocabolario Extra: Problemi in Casa</h2>
+      <span class="subtitle">Completa le frasi</span>
+
+      <div class="ex-box">
+        <p>1. La <input id="e1" placeholder="..."> non funziona.</p>
+        <p>2. Il <input id="e2" placeholder="..."> perde acqua.</p>
+        <p>3. La <input id="e3" placeholder="..."> fa rumore.</p>
+        <p>4. Questa <input id="e4" placeholder="..."> non funziona.</p>
+        <p>5. Il <input id="e5" placeholder="..."> non parte.</p>
+        <button class="btn-check" onclick="checkVocab2()">Verifica</button>
+        <p id="msg-v2" class="feedback-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 3 -->
+  <div id="fase3" class="section">
+    <div class="card">
+      <h2>Speaking: Il mio weekend ideale</h2>
+      <span class="subtitle">Produzione guidata</span>
+
+      <div class="teacher-talk">
+        <strong>Katerine:</strong> “Descrivi il tuo weekend ideale usando perché, quindi, poi, dopo, alla fine.”
+        <span class="translation">“Describe your ideal weekend using because, so, then, after, finally.”</span>
+      </div>
+
+      <textarea placeholder="Scrivi la tua risposta qui..."></textarea>
+    </div>
+  </div>
+
+  <!-- FASE 3B -->
+  <div id="fase3b" class="section">
+    <div class="card">
+      <h2>Speaking Extra: La mia routine perfetta</h2>
+      <span class="subtitle">Speaking + imprevisto</span>
+
+      <div class="teacher-talk">
+        <strong>Katerine:</strong> “Descrivi la tua routine perfetta. Poi aggiungi un imprevisto!”
+        <span class="translation">“Describe your perfect routine. Then add an unexpected change!”</span>
+      </div>
+
+      <textarea placeholder="Scrivi la tua routine perfetta..."></textarea>
+      <textarea placeholder="Aggiungi un imprevisto..."></textarea>
+    </div>
+  </div>
+
+  <!-- FASE 4 -->
+  <div id="fase4" class="section">
+    <div class="card">
+      <h2>Verifica Finale</h2>
+      <span class="subtitle">Completa il testo</span>
+
+      <div class="ex-box" style="line-height:2.4;">
+        “Ieri è stata una giornata perfetta. La mattina siamo <input id="f1" placeholder="..."> presto.
+        Abbiamo fatto la <input id="f2" placeholder="..."> e poi abbiamo <input id="f3" placeholder="..."> il pranzo.
+        Il pomeriggio ci siamo rilassati sul <input id="f4" placeholder="...">.
+        La sera abbiamo <input id="f5" placeholder="..."> la cucina.”
+        <button class="btn-check" onclick="checkFinal()">Invia Risposte</button>
+        <p id="msg-f" class="feedback-msg"></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function validate(id, correct) {
+    const el = document.getElementById(id);
+    const ok = el.value.trim().toLowerCase() === correct;
+    el.className = ok ? 'correct' : 'wrong';
+    return ok;
+  }
+
+  function checkVocab1() {
+    const r = [
+      validate('v1','divano'),
+      validate('v2','spesa'),
+      validate('v3','ripostiglio'),
+      validate('v4','ordine')
+    ];
+    const msg = document.getElementById('msg-v1');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean) ? "Ottimo!" : "Controlla le risposte.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  function checkVocab2() {
+    const r = [
+      validate('e1','lampadina'),
+      validate('e2','rubinetto'),
+      validate('e3','lavatrice'),
+      validate('e4','presa'),
+      validate('e5','riscaldamento')
+    ];
+    const msg = document.getElementById('msg-v2');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean) ? "Perfetto!" : "Riprova.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  function checkFinal() {
+    const r = [
+      validate('f1','usciti'),
+      validate('f2','spesa'),
+      validate('f3','cucinato'),
+      validate('f4','divano'),
+      validate('f5','messo in ordine')
+    ];
+    const msg = document.getElementById('msg-f');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean) ? "Lezione completata!" : "Riprova.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+</script>
+
+</body>
+</html>
