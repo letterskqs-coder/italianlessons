@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leliana — L'Italia oltre il Colosseo</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --card: #ffffff;
+      --accent: #c8773a;
+      --accent-soft: #fbe9dd;
+      --deep-blue: #1f3b57;
+      --text: #1c1a16;
+      --muted: #6c757d;
+      --border: rgba(0,0,0,0.08);
+      --green: #27ae60;
+      --red: #e74c3c;
+      --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: radial-gradient(circle at top, #fdfaf5 0, #f4f7f6 45%, #edf1f3 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1f3b57, #2563a8);
+      color: white;
+      padding: 32px 20px 26px;
+      text-align: center;
+      border-bottom: 5px solid var(--accent);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .wrapper {
+      max-width: 980px;
+      margin: 24px auto 40px;
+      padding: 0 18px 40px;
+    }
+
+    .top-intro {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px 22px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 18px;
+    }
+
+    .top-intro-main h2 {
+      font-family: 'DM Serif Display', serif;
+      color: var(--deep-blue);
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .top-intro-main p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .top-intro-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+      justify-content: flex-end;
+    }
+
+    .tag-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.78rem;
+      background: #fdf7f1;
+      color: #8a5a2f;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-pill span.icon {
+      font-size: 0.9rem;
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 25px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 160px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--deep-blue);
+      transition: 0.25s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--deep-blue);
+      color: white;
+      box-shadow: 0 4px 12px rgba(31,59,87,0.35);
+      border-color: transparent;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 26px 24px 24px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(200,119,58,0.12), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      color: var(--deep-blue);
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .teacher-talk {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 16px 16px 14px;
+      border-radius: 0 14px 14px 0;
+      margin: 16px 0 18px;
+      font-size: 0.95rem;
+    }
+
+    .teacher-talk strong {
+      color: #7b4a1f;
+    }
+
+    .translation {
+      font-size: 0.82rem;
+      color: #8a7b5d;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .ex-box {
+      background: #f9fbff;
+      border: 1px solid #e1e8f0;
+      border-radius: 14px;
+      padding: 18px 16px;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .ex-box h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--deep-blue);
+    }
+
+    .ex-box p {
+      margin-bottom: 6px;
+    }
+
+    .ex-box ul {
+      margin-left: 18px;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .ex-box li {
+      margin-bottom: 4px;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px 18px;
+      margin-top: 10px;
+    }
+
+    .vocab-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .vocab-item span.icon {
+      font-size: 1.1rem;
+    }
+
+    input[type="text"] {
+      border: none;
+      border-bottom: 2px solid var(--deep-blue);
+      background: transparent;
+      padding: 4px 2px;
+      min-width: 120px;
+      font-weight: 600;
+      outline: none;
+      font-size: 0.9rem;
+      color: var(--deep-blue);
+    }
+
+    input.correct {
+      border-bottom-color: var(--green);
+      color: var(--green);
+    }
+
+    input.wrong {
+      border-bottom-color: var(--red);
+      color: var(--red);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      font-family: inherit;
+      margin-top: 8px;
+      resize: vertical;
+      font-size: 0.95rem;
+    }
+
+    .btn-check {
+      background: var(--deep-blue);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-check:hover {
+      background: #15283a;
+    }
+
+    .feedback-msg {
+      margin-top: 10px;
+      font-weight: 700;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .pill-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #f1f4f7;
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+
+    .mini-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .quote-box {
+      border-left: 3px solid var(--deep-blue);
+      padding-left: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .timeline {
+      border-left: 2px dashed rgba(0,0,0,0.12);
+      margin-left: 10px;
+      padding-left: 14px;
+      margin-top: 8px;
+    }
+
+    .timeline-step {
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .badge-level {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #e7f0ff;
+      color: #1f3b57;
+      margin-bottom: 6px;
+    }
+
+    .micro-tip {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 720px) {
+      .top-intro {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-cols {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎒 Leliana: L'Italia oltre il Colosseo</h1>
+  <p>Arte, storia e viaggi — usare l’italiano come un passaporto, non come un esame.</p>
+</header>
+
+<div class="wrapper">
+
+  <section class="top-intro">
+    <div class="top-intro-main">
+      <h2>Unità 1 — Viaggio nell’Italia “Nascosta”</h2>
+      <p>
+        Niente tabelle di verbi, niente saluti strategici. In questa lezione esploriamo borghi, arte nascosta,
+        app reali e situazioni vere che puoi vivere domani in Italia. La grammatica c’è, ma è al servizio del viaggio.
+      </p>
+    </div>
+    <div class="top-intro-tags">
+      <div class="tag-pill"><span class="icon">🎨</span><span>Arte & Storia</span></div>
+      <div class="tag-pill"><span class="icon">✈️</span><span>Viaggi in Italia</span></div>
+      <div class="tag-pill"><span class="icon">📱</span><span>App reali</span></div>
+      <div class="tag-pill"><span class="icon">🧠</span><span>Livello B1 attivo</span></div>
+    </div>
+  </section>
+
+  <!-- NAV TABS -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('u1', this)">1. Borghi nascosti</button>
+    <button class="tab-btn" onclick="showTab('u2', this)">2. App & Tech</button>
+    <button class="tab-btn" onclick="showTab('u3', this)">3. Galateo del caffè</button>
+    <button class="tab-btn" onclick="showTab('u4', this)">4. Vocabolario intuitivo</button>
+    <button class="tab-btn" onclick="showTab('u5', this)">5. Arte: Cristo Velato</button>
+    <button class="tab-btn" onclick="showTab('u6', this)">6. Speaking: viaggio segreto</button>
+    <button class="tab-btn" onclick="showTab('u7', this)">7. Teoria soft</button>
+    <button class="tab-btn" onclick="showTab('u8', this)">8. Test narrativo</button>
+  </div>
+
+  <!-- SEZIONE U1: BORGHI NASCOSTI -->
+  <section id="u1" class="section active">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Unità 1 · Contesto reale · B1</div>
+        <h2>I Borghi più belli — L’Italia “nascosta”</h2>
+        <span class="subtitle">Scoprire luoghi reali e imparare a parlarne come una persona del posto.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Invece delle grandi città, gli italiani amano i borghi: piccoli paesi medievali, spesso sospesi nel tempo.”
+          <span class="translation">“Instead of big cities, Italians love ‘borghi’: small medieval towns, often frozen in time.”</span>
+        </div>
+
+        <div class="two-cols">
+          <div>
+            <div class="ex-box">
+              <h3>1. Civita di Bagnoregio (Lazio)</h3>
+              <p>
+                Chiamata <strong>“La città che muore”</strong>. Si raggiunge solo con un ponte pedonale sospeso.
+              </p>
+              <p class="micro-tip">
+                💡 Immagina di arrivare al tramonto, con la nebbia sotto il ponte e il borgo illuminato.
+              </p>
+              <div class="quote-box">
+                <span class="mini-label">Mini speaking</span>
+                <p>
+                  In 2–3 frasi, descrivi come ti sentiresti arrivando a Civita di Bagnoregio.
+                  Usa almeno una parola di emozione: <em>felice, curiosa, sorpresa, tranquilla…</em>
+                </p>
+              </div>
+              <textarea id="u1s1" placeholder="Scrivi qui le tue 2–3 frasi in italiano..."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <div class="ex-box">
+              <h3>2. Curon Venosta (Trentino-Alto Adige)</h3>
+              <p>
+                Un campanile che esce da un lago artificiale. In inverno, il lago può ghiacciare e puoi camminare vicino al campanile.
+              </p>
+              <p class="micro-tip">
+                💡 È un luogo perfetto per chi ama foto surreali e paesaggi di montagna.
+              </p>
+              <div class="quote-box">
+                <span class="mini-label">Domanda guidata</span>
+                <p>
+                  Preferisci paesaggi di montagna o di mare? Scrivi una frase con <strong>“perché”</strong>.
+                </p>
+              </div>
+              <textarea id="u1s2" placeholder="Preferisco la montagna / il mare perché..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-box">
+          <h3>3. Sperlonga (Lazio)</h3>
+          <p>
+            Un borgo bianco a picco sul mare, amato dall’Imperatore Tiberio. Vicoli stretti, case bianche, mare azzurro.
+          </p>
+          <div class="timeline">
+            <div class="timeline-step">
+              <strong>Mattina:</strong> passeggiata tra i vicoli bianchi.
+            </div>
+            <div class="timeline-step">
+              <strong>Pomeriggio:</strong> spiaggia e mare.
+            </div>
+            <div class="timeline-step">
+              <strong>Sera:</strong> cena in una terrazza con vista.
+            </div>
+          </div>
+          <p class="micro-tip">
+            ✏️ Scrivi una mini-giornata ideale a Sperlonga usando <strong>poi</strong>, <strong>dopo</strong>, <strong>alla fine</strong>.
+          </p>
+          <textarea id="u1s3" placeholder="Al mattino... poi... dopo... alla fine..."></textarea>
+        </div>
+
+        <div class="ex-box">
+          <h3>Check rapido: lessico dei borghi</h3>
+          <p>Completa con la parola giusta (in italiano):</p>
+          <div class="vocab-grid">
+            <div class="vocab-item">
+              <span class="icon">🏰</span>
+              <span>Un piccolo paese medievale si chiama <input type="text" id="u1v1" placeholder="..."></span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">🌉</span>
+              <span>Per arrivare a Civita usi un <input type="text" id="u1v2" placeholder="..."></span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">🔔</span>
+              <span>A Curon vedi un <input type="text" id="u1v3" placeholder="..."> nel lago.</span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">🌊</span>
+              <span>Sperlonga è un borgo sul <input type="text" id="u1v4" placeholder="..."></span>
+            </div>
+          </div>
+          <button class="btn-check" onclick="checkU1Vocab()">Verifica vocabolario borghi</button>
+          <p id="msg-u1v" class="feedback-msg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U2: APP & TECH -->
+  <section id="u2" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Unità 1 · App & Tech</div>
+        <h2>App & Tech per sopravvivere in Italia</h2>
+        <span class="subtitle">Usare le stesse app che usano gli italiani, con il vocabolario che ti serve davvero.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Se vuoi viaggiare con sicurezza, devi capire cosa vedi sullo schermo. Le app sono il tuo primo dizionario vivo.”
+          <span class="translation">“If you want to travel safely, you need to understand what you see on the screen. Apps are your first living dictionary.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Treni — Trenìt / Trenitalia</h3>
+          <p>
+            App per controllare orari, ritardi e binari dei treni. Perfetta per muoverti tra città e borghi.
+          </p>
+          <ul>
+            <li><strong>Binario</strong> — platform</li>
+            <li><strong>Ritardo</strong> — delay</li>
+            <li><strong>Partenza</strong> — departure</li>
+            <li><strong>Arrivo</strong> — arrival</li>
+          </ul>
+          <p class="micro-tip">
+            ✏️ Esercizio: completa le frasi con la parola giusta.
+          </p>
+          <p>
+            1. Il mio treno parte dal <input type="text" id="u2t1" placeholder="..."> 3.  
+          </p>
+          <p>
+            2. Il treno ha 20 minuti di <input type="text" id="u2t2" placeholder="...">.  
+          </p>
+          <p>
+            3. L’<input type="text" id="u2t3" placeholder="..."> è prevista alle 18:45.  
+          </p>
+          <p>
+            4. La <input type="text" id="u2t4" placeholder="..."> è alle 17:10.  
+          </p>
+          <button class="btn-check" onclick="checkU2Treni()">Verifica treni</button>
+          <p id="msg-u2t" class="feedback-msg"></p>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. TheFork — Prenotare un ristorante</h3>
+          <p>
+            App per prenotare ristoranti senza telefonare. Perfetta se ti blocchi al telefono in un’altra lingua.
+          </p>
+          <ul>
+            <li><strong>Prenotare un tavolo</strong> — to book a table</li>
+            <li><strong>Orario</strong> — time / slot</li>
+            <li><strong>Sconto</strong> — discount</li>
+            <li><strong>Recensioni</strong> — reviews</li>
+          </ul>
+          <div class="two-cols">
+            <div>
+              <p class="mini-label">Esercizio di completamento</p>
+              <p>
+                1. Vorrei <input type="text" id="u2f1" placeholder="..."> un tavolo per due.  
+              </p>
+              <p>
+                2. C’è uno <input type="text" id="u2f2" placeholder="..."> del 30%.  
+              </p>
+              <p>
+                3. Controllo le <input type="text" id="u2f3" placeholder="..."> prima di scegliere.  
+              </p>
+              <p>
+                4. A che <input type="text" id="u2f4" placeholder="..."> vuoi mangiare?  
+              </p>
+              <button class="btn-check" onclick="checkU2Fork()">Verifica TheFork</button>
+              <p id="msg-u2f" class="feedback-msg"></p>
+            </div>
+            <div>
+              <p class="mini-label">Mini-speaking guidato</p>
+              <p>
+                Immagina di essere a Napoli e di voler prenotare una pizzeria famosa.
+                Scrivi un messaggio semplice che potresti dire o pensare:
+              </p>
+              <textarea id="u2s1" placeholder="Vorrei prenotare un tavolo a Napoli perché..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-box">
+          <h3>3. EasyPark — Parcheggiare in città</h3>
+          <p>
+            App per pagare il parcheggio nelle città italiane. Ti salva quando non hai monete.
+          </p>
+          <ul>
+            <li><strong>Strisce blu</strong> — blue lines, parcheggio a pagamento</li>
+            <li><strong>Tariffa oraria</strong> — hourly rate</li>
+            <li><strong>Prolungare</strong> — to extend</li>
+          </ul>
+          <p class="micro-tip">
+            ✏️ Completa le frasi:
+          </p>
+          <p>
+            1. Parcheggio sulle <input type="text" id="u2p1" placeholder="..."> e pago con l’app.  
+          </p>
+          <p>
+            2. La <input type="text" id="u2p2" placeholder="..."> è di 2 euro all’ora.  
+          </p>
+          <p>
+            3. Devo <input type="text" id="u2p3" placeholder="..."> il parcheggio di 30 minuti.  
+          </p>
+          <button class="btn-check" onclick="checkU2Park()">Verifica parcheggio</button>
+          <p id="msg-u2p" class="feedback-msg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U3: GALATEO DEL CAFFÈ -->
+  <section id="u3" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Cultura · Caffè</div>
+        <h2>Galateo della caffetteria italiana</h2>
+        <span class="subtitle">Ordinare un caffè come una persona del posto, non come una turista spaesata.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “In Italia, il bar è un piccolo teatro sociale. Il caffè è una scusa per parlare, osservare, respirare la città.”
+          <span class="translation">“In Italy, the bar is a small social theatre. Coffee is an excuse to talk, observe, breathe the city.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Cappuccino dopo le 11:00?</h3>
+          <p>
+            Regola non scritta: il cappuccino è una bevanda da colazione. Dopo le 11:00, molti italiani lo considerano “troppo”.
+          </p>
+          <p class="micro-tip">
+            ✏️ Domanda: tu cosa faresti?
+          </p>
+          <textarea id="u3s1" placeholder="Scrivi se berresti cappuccino dopo le 11:00 e perché..."></textarea>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Al banco vs al tavolo</h3>
+          <p>
+            Al <strong>banco</strong> il caffè costa circa 1,20€. Al <strong>tavolo</strong> il prezzo può raddoppiare o triplicare.
+          </p>
+          <div class="two-cols">
+            <div>
+              <p class="mini-label">Completamento</p>
+              <p>
+                1. Se ho fretta, prendo il caffè al <input type="text" id="u3c1" placeholder="...">.  
+              </p>
+              <p>
+                2. Se voglio sedermi e parlare, vado al <input type="text" id="u3c2" placeholder="...">.  
+              </p>
+              <button class="btn-check" onclick="checkU3Caffe()">Verifica caffè</button>
+              <p id="msg-u3c" class="feedback-msg"></p>
+            </div>
+            <div>
+              <p class="mini-label">Mini roleplay</p>
+              <p>
+                Scrivi cosa diresti al barista per ordinare un espresso al banco.
+              </p>
+              <textarea id="u3s2" placeholder="Buongiorno, un caffè al banco per favore..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-box">
+          <h3>3. Piccolo dialogo guidato</h3>
+          <p>
+            Completa il dialogo con una parola o espressione naturale.
+          </p>
+          <p>
+            <strong>Barista:</strong> Buongiorno, cosa prende?  
+          </p>
+          <p>
+            <strong>Leliana:</strong> Buongiorno, <input type="text" id="u3d1" placeholder="..."> un cappuccino, grazie.  
+          </p>
+          <p>
+            <strong>Barista:</strong> Lo vuole al banco o al tavolo?  
+          </p>
+          <p>
+            <strong>Leliana:</strong> Al <input type="text" id="u3d2" placeholder="...">, per favore.  
+          </p>
+          <button class="btn-check" onclick="checkU3Dialogo()">Verifica dialogo</button>
+          <p id="msg-u3d" class="feedback-msg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U4: VOCABOLARIO INTUITIVO -->
+  <section id="u4" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Lessico · Intuizione</div>
+        <h2>Vocabolario “Intuizione” — usare le lingue che hai già</h2>
+        <span class="subtitle">Usare inglese e tedesco per indovinare l’italiano, senza studiare liste.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Tu parli già tre lingue. Il tuo cervello è un traduttore naturale. Non memorizzare: indovina.”
+          <span class="translation">“You already speak three languages. Your brain is a natural translator. Don’t memorize: guess.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Parole trasparenti</h3>
+          <p>
+            Guarda queste coppie e completa la forma italiana:
+          </p>
+          <div class="vocab-grid">
+            <div class="vocab-item">
+              <span class="icon">📚</span>
+              <span>EN: Situation → IT: <input type="text" id="u4v1" placeholder="..."></span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">🏛️</span>
+              <span>DE: Kultur → IT: <input type="text" id="u4v2" placeholder="..."></span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">📜</span>
+              <span>EN: History / DE: Historie → IT: <input type="text" id="u4v3" placeholder="..."></span>
+            </div>
+            <div class="vocab-item">
+              <span class="icon">🗺️</span>
+              <span>EN: Region → IT: <input type="text" id="u4v4" placeholder="..."></span>
+            </div>
+          </div>
+          <button class="btn-check" onclick="checkU4Vocab()">Verifica parole trasparenti</button>
+          <p id="msg-u4v" class="feedback-msg"></p>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Frasi di prova</h3>
+          <p>
+            Usa le parole che hai appena completato in 2 frasi semplici.
+          </p>
+          <textarea id="u4s1" placeholder="Scrivi due frasi usando 'situazione', 'cultura', 'storia' o 'regione'..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SEZIONE U5: ARTE — CRISTO VELATO -->
+  <section id="u5" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Arte · Napoli</div>
+        <h2>Il Cristo Velato — Marmo che sembra tessuto</h2>
+        <span class="subtitle">Guardare un’opera d’arte con occhi curiosi e parole semplici.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Il Cristo Velato a Napoli è una scultura di marmo così realistica che sembra coperta da un vero velo.”
+          <span class="translation">“The ‘Cristo Velato’ in Naples is a marble sculpture so realistic it looks covered by a real veil.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Vocabolario dell’arte</h3>
+          <p>Completa con la parola giusta:</p>
+          <p>
+            1. Il Cristo Velato è una <input type="text" id="u5v1" placeholder="..."> (scultura / dipinto?).  
+          </p>
+          <p>
+            2. È fatto di <input type="text" id="u5v2" placeholder="..."> (materiale: marble).  
+          </p>
+          <p>
+            3. Il velo sembra <input type="text" id="u5v3" placeholder="..."> (real / vero).  
+          </p>
+          <button class="btn-check" onclick="checkU5Vocab()">Verifica arte</button>
+          <p id="msg-u5v" class="feedback-msg"></p>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Domanda di connessione</h3>
+          <p>
+            Secondo te, come si dice “marmo” in inglese o tedesco? Vedi la somiglianza con l’italiano?
+          </p>
+          <textarea id="u5s1" placeholder="Scrivi la tua risposta, collegando le lingue che conosci..."></textarea>
+        </div>
+
+        <div class="ex-box">
+          <h3>3. Mini-descrizione guidata</h3>
+          <p>
+            Scrivi 3 frasi per descrivere il Cristo Velato come se lo stessi raccontando a un’amica.
+          </p>
+          <textarea id="u5s2" placeholder="Per me il Cristo Velato è..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U6: SPEAKING — VIAGGIO SEGRETO -->
+  <section id="u6" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Speaking · Viaggio</div>
+        <h2>Speaking: Il tuo primo viaggio “segreto” in Italia</h2>
+        <span class="subtitle">Montagna o mare? Scegli un luogo e costruisci una piccola storia.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Se domani potessi partire, andresti in montagna o al mare? Usiamo l’italiano per costruire il tuo viaggio.”
+          <span class="translation">“If you could leave tomorrow, would you go to the mountains or to the sea? Let’s use Italian to build your trip.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Scelta rapida</h3>
+          <p>
+            Scegli una delle due opzioni e scrivila:
+          </p>
+          <p>
+            Preferisco andare in <input type="text" id="u6c1" placeholder="montagna / mare"> perché...
+          </p>
+          <textarea id="u6s1" placeholder="Completa la frase spiegando il perché..."></textarea>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Mini-itinerario di un giorno</h3>
+          <p>
+            Usa <strong>poi</strong>, <strong>dopo</strong>, <strong>alla fine</strong> per creare una piccola storia del tuo giorno ideale.
+          </p>
+          <textarea id="u6s2" placeholder="Al mattino... poi... dopo... alla fine..."></textarea>
+        </div>
+
+        <div class="ex-box">
+          <h3>3. Imprevisto</h3>
+          <p>
+            Aggiungi un imprevisto (es. pioggia, treno in ritardo, ristorante chiuso) e spiega come reagisci.
+          </p>
+          <textarea id="u6s3" placeholder="Durante il viaggio succede che... quindi io..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U7: TEORIA SOFT (CONNETTORI + STRUTTURA) -->
+  <section id="u7" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Teoria soft · B1</div>
+        <h2>Teoria B1 “soft”: Connettori logici per non parlare a elenchi</h2>
+        <span class="subtitle">Un po’ di struttura, ma solo quella che ti serve per raccontare storie.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “I connettori sono come ponti tra le frasi. Senza di loro, parli a punti elenco. Con loro, racconti storie.”
+          <span class="translation">“Connectors are like bridges between sentences. Without them, you speak in bullet points. With them, you tell stories.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Connettori chiave</h3>
+          <ul>
+            <li><strong>perché</strong> — reason (because)</li>
+            <li><strong>quindi</strong> — consequence (so / therefore)</li>
+            <li><strong>poi / dopo</strong> — sequence (then / after)</li>
+            <li><strong>alla fine</strong> — conclusion (in the end / finally)</li>
+          </ul>
+          <p class="micro-tip">
+            ✏️ Esercizio: completa con il connettore giusto.
+          </p>
+          <p>
+            1. Ero stanca, <input type="text" id="u7c1" placeholder="..."> sono andata a dormire presto.  
+          </p>
+          <p>
+            2. Ha piovuto tutto il giorno, <input type="text" id="u7c2" placeholder="..."> siamo rimasti in casa.  
+          </p>
+          <p>
+            3. Prima abbiamo visitato il borgo, <input type="text" id="u7c3" placeholder="..."> siamo andati al mare.  
+          </p>
+          <p>
+            4. Non ho preso il treno <input type="text" id="u7c4" placeholder="..."> era in ritardo di un’ora.  
+          </p>
+          <p>
+            5. Abbiamo camminato tutto il giorno, <input type="text" id="u7c5" placeholder="..."> eravamo distrutti.  
+          </p>
+          <button class="btn-check" onclick="checkU7Connettori()">Verifica connettori</button>
+          <p id="msg-u7c" class="feedback-msg"></p>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Trasforma elenco in storia</h3>
+          <p>
+            Elenco (non naturale): “Sono andata a Napoli. Ho visto il Cristo Velato. Ho mangiato la pizza. Sono tornata in hotel.”
+          </p>
+          <p>
+            Trasforma questo elenco in una piccola storia usando almeno 3 connettori.
+          </p>
+          <textarea id="u7s1" placeholder="Per esempio: Sono andata a Napoli perché... Poi... Alla fine..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE U8: TEST NARRATIVO FINALE -->
+  <section id="u8" class="section">
+    <div class="card">
+      <div class="card-inner">
+        <div class="badge-level">Test narrativo · B1</div>
+        <h2>Test finale: Un giorno in un borgo italiano</h2>
+        <span class="subtitle">Un paragrafo che unisce viaggio, app, caffè, arte e connettori.</span>
+
+        <div class="teacher-talk">
+          <strong>Katerine:</strong> “Ora mettiamo tutto insieme: borghi, app, caffè, arte e connettori. Non pensare alla perfezione, pensa alla storia.”
+          <span class="translation">“Now we put everything together: villages, apps, coffee, art and connectors. Don’t think about perfection, think about the story.”</span>
+        </div>
+
+        <div class="ex-box">
+          <h3>1. Cloze test guidato</h3>
+          <p style="line-height: 2;">
+            “Ieri sono andata in un borgo vicino a Napoli. Al mattino ho preso il treno dal
+            <input type="text" id="u8t1" placeholder="..."> 3 e c’era un po’ di
+            <input type="text" id="u8t2" placeholder="...">, ma sono arrivata lo stesso.
+            Prima ho visitato il centro storico e <input type="text" id="u8t3" placeholder="..."> ho bevuto un caffè
+            al <input type="text" id="u8t4" placeholder="...">.  
+            <input type="text" id="u8t5" placeholder="..."> ho usato un’app per
+            <input type="text" id="u8t6" placeholder="..."> un tavolo in una piccola trattoria con
+            <input type="text" id="u8t7" placeholder="..."> del 20%.  
+            Nel pomeriggio ho visto una scultura di <input type="text" id="u8t8" placeholder="..."> bellissima,
+            <input type="text" id="u8t9" placeholder="..."> alla fine sono tornata in hotel stanca ma felice.”
+          </p>
+          <button class="btn-check" onclick="checkU8Test()">Verifica test narrativo</button>
+          <p id="msg-u8t" class="feedback-msg"></p>
+        </div>
+
+        <div class="ex-box">
+          <h3>2. Versione libera</h3>
+          <p>
+            Adesso scrivi la tua versione personale di un giorno in Italia, usando almeno:
+          </p>
+          <ul>
+            <li>1 borgo o città</li>
+            <li>1 app (Trenitalia, TheFork, EasyPark…)</li>
+            <li>1 momento al bar</li>
+            <li>1 elemento d’arte</li>
+            <li>3 connettori (perché, quindi, poi, dopo, alla fine…)</li>
+          </ul>
+          <textarea id="u8s1" placeholder="Scrivi qui la tua storia personale..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div> <!-- fine .wrapper -->
+
+<!-- SCRIPT: FUNZIONI INTERATTIVE -->
+<script>
+  // Cambio tab
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  // Validatore generico
+  function validate(id, correct) {
+    const el = document.getElementById(id);
+    if (!el) return false;
+    const ok = el.value.trim().toLowerCase() === correct.toLowerCase();
+    el.className = ok ? 'correct' : 'wrong';
+    return ok;
+  }
+
+  // U1: vocabolario borghi
+  function checkU1Vocab() {
+    const r = [
+      validate('u1v1','borgo'),
+      validate('u1v2','ponte'),
+      validate('u1v3','campanile'),
+      validate('u1v4','mare')
+    ];
+    const msg = document.getElementById('msg-u1v');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Perfetto! Hai il vocabolario base per parlare dei borghi."
+      : "Qualche parola è da rivedere. Pensa alle immagini: paese, ponte, campanile, mare.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U2: treni
+  function checkU2Treni() {
+    const r = [
+      validate('u2t1','binario'),
+      validate('u2t2','ritardo'),
+      validate('u2t3','arrivo'),
+      validate('u2t4','partenza')
+    ];
+    const msg = document.getElementById('msg-u2t');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Ottimo! Sei pronta a leggere un tabellone dei treni."
+      : "Riprova: pensa a cosa vedi in stazione (binario, ritardo, partenza, arrivo).";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U2: TheFork
+  function checkU2Fork() {
+    const r = [
+      validate('u2f1','prenotare'),
+      validate('u2f2','sconto'),
+      validate('u2f3','recensioni'),
+      validate('u2f4','orario')
+    ];
+    const msg = document.getElementById('msg-u2f');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Perfetto! Puoi prenotare una cena senza paura."
+      : "Controlla: prenotare, sconto, recensioni, orario.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U2: EasyPark
+  function checkU2Park() {
+    const r = [
+      validate('u2p1','strisce blu'),
+      validate('u2p2','tariffa oraria'),
+      validate('u2p3','prolungare')
+    ];
+    const msg = document.getElementById('msg-u2p');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Benissimo! Puoi parcheggiare come una persona del posto."
+      : "Rivedi: strisce blu, tariffa oraria, prolungare.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U3: caffè — al banco / al tavolo
+  function checkU3Caffe() {
+    const r = [
+      validate('u3c1','banco'),
+      validate('u3c2','tavolo')
+    ];
+    const msg = document.getElementById('msg-u3c');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Perfetto! Sai dove bere il caffè a seconda della situazione."
+      : "Ricorda: al banco = veloce, al tavolo = più caro ma rilassato.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U3: dialogo bar
+  function checkU3Dialogo() {
+    const r = [
+      validate('u3d1','vorrei'),
+      validate('u3d2','banco')
+    ];
+    const msg = document.getElementById('msg-u3d');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Dialogo naturale! Puoi ordinare un caffè senza problemi."
+      : "Riprova: 'Vorrei un cappuccino' e 'al banco'.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U4: parole trasparenti
+  function checkU4Vocab() {
+    const r = [
+      validate('u4v1','situazione'),
+      validate('u4v2','cultura'),
+      validate('u4v3','storia'),
+      validate('u4v4','regione')
+    ];
+    const msg = document.getElementById('msg-u4v');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Bravissima! Il tuo cervello multilingue funziona alla grande."
+      : "Riprova: pensa alle parole inglesi/tedesche e alla loro forma italiana.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U5: arte — Cristo Velato
+  function checkU5Vocab() {
+    const r = [
+      validate('u5v1','scultura'),
+      validate('u5v2','marmo'),
+      validate('u5v3','vero')
+    ];
+    const msg = document.getElementById('msg-u5v');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Perfetto! Hai il vocabolario base per parlare di quest’opera."
+      : "Rivedi: scultura, marmo, vero.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U7: connettori
+  function checkU7Connettori() {
+    const r = [
+      validate('u7c1','quindi'),
+      validate('u7c2','quindi'),
+      validate('u7c3','poi'),
+      validate('u7c4','perché'),
+      validate('u7c5','alla fine')
+    ];
+    const msg = document.getElementById('msg-u7c');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Connettori perfetti! Le tue storie hanno una struttura naturale."
+      : "Riprova: pensa a causa (perché), conseguenza (quindi), sequenza (poi), conclusione (alla fine).";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+
+  // U8: test narrativo
+  function checkU8Test() {
+    const r = [
+      validate('u8t1','binario'),
+      validate('u8t2','ritardo'),
+      validate('u8t3','poi'),
+      validate('u8t4','banco'),
+      validate('u8t5','poi'),
+      validate('u8t6','prenotare'),
+      validate('u8t7','sconto'),
+      validate('u8t8','marmo'),
+      validate('u8t9','alla fine')
+    ];
+    const msg = document.getElementById('msg-u8t');
+    msg.style.display = 'block';
+    msg.innerHTML = r.every(Boolean)
+      ? "Test narrativo completato! Hai usato viaggio, app, caffè e arte in modo coerente."
+      : "Qualche parola è da rivedere. Ripensa alle unità: treni, bar, app, arte, connettori.";
+    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+  }
+</script>
+</body>
+</html>
