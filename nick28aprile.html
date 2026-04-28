@@ -56,14 +56,14 @@
 
   <!-- NAV -->
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('fase1')">1. Warm-up</button>
-    <button class="tab-btn" onclick="showTab('fase2')">2. Vocabolario</button>
-    <button class="tab-btn" onclick="showTab('fase2b')">2B. Vocabolario Extra</button>
-    <button class="tab-btn" onclick="showTab('fase3')">3. Speaking</button>
-    <button class="tab-btn" onclick="showTab('fase3b')">3B. Speaking Extra</button>
-    <button class="tab-btn" onclick="showTab('fase5')">5. Teoria B1</button>
-    <button class="tab-btn" onclick="showTab('fase6')">6. Esercizi B1</button>
-    <button class="tab-btn" onclick="showTab('fase4')">4. Verifica Finale</button>
+    <button class="tab-btn active" onclick="showTab('fase1', this)">1. Warm-up</button>
+    <button class="tab-btn" onclick="showTab('fase2', this)">2. Vocabolario</button>
+    <button class="tab-btn" onclick="showTab('fase2b', this)">2B. Vocabolario Extra</button>
+    <button class="tab-btn" onclick="showTab('fase3', this)">3. Speaking</button>
+    <button class="tab-btn" onclick="showTab('fase3b', this)">3B. Speaking Extra</button>
+    <button class="tab-btn" onclick="showTab('fase5', this)">5. Teoria B1</button>
+    <button class="tab-btn" onclick="showTab('fase6', this)">6. Esercizi B1</button>
+    <button class="tab-btn" onclick="showTab('fase4', this)">4. Verifica Finale</button>
   </div>
 
   <!-- FASE 1 -->
@@ -267,166 +267,166 @@
       <span class="subtitle">10 spazi</span>
 
       <div class="ex-box" style="line-height:2.2;">
-        “Ieri mi <input id="t1"> presto, poi mi <input id="t2"> e <input id="t3"> ho fatto colazione.
-        Ci <input id="t4"> per uscire e <input id="t5"> siamo andati a fare la <input id="t6">.
-        Il <input id="t7"> perdeva acqua, <input id="t8"> abbiamo chiamato l’idraulico.
-        Alla fine ci <input id="t9"> sul <input id="t10">.”
-        <button class="btn-check" onclick="checkBlocco3()">Verifica</button>
-<script>
-  /* CAMBIO TAB */
-  function showTab(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
+        “Ieri mi <input id="t1"> presto, poi mi <input id="t2"><script>
+/* CAMBIO TAB */
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
 
-  /* VALIDATORE GENERICO */
-  function validate(id, correct) {
-    const el = document.getElementById(id);
-    const ok = el.value.trim().toLowerCase() === correct.toLowerCase();
-    el.className = ok ? 'correct' : 'wrong';
-    return ok;
-  }
+/* VALIDATORE GENERICO */
+function validate(id, correct) {
+  const el = document.getElementById(id);
+  const ok = el.value.trim().toLowerCase() === correct.toLowerCase();
+  el.className = ok ? 'correct' : 'wrong';
+  return ok;
+}
 
-  /* VOCABOLARIO BASE */
-  function checkVocab1() {
-    const r = [
-      validate('v1','divano'),
-      validate('v2','spesa'),
-      validate('v3','ripostiglio'),
-      validate('v4','ordine')
-    ];
-    const msg = document.getElementById('msg-v1');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Ottimo!" : "Controlla le risposte.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* VOCABOLARIO BASE */
+function checkVocab1() {
+  const r = [
+    validate('v1','divano'),
+    validate('v2','spesa'),
+    validate('v3','ripostiglio'),
+    validate('v4','ordine')
+  ];
+  const msg = document.getElementById('msg-v1');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Ottimo!" : "Controlla le risposte.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* VOCABOLARIO EXTRA */
-  function checkVocab2() {
-    const r = [
-      validate('e1','lampadina'),
-      validate('e2','rubinetto'),
-      validate('e3','lavatrice'),
-      validate('e4','presa'),
-      validate('e5','riscaldamento')
-    ];
-    const msg = document.getElementById('msg-v2');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Perfetto!" : "Riprova.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* VOCABOLARIO EXTRA */
+function checkVocab2() {
+  const r = [
+    validate('e1','lampadina'),
+    validate('e2','rubinetto'),
+    validate('e3','lavatrice'),
+    validate('e4','presa'),
+    validate('e5','riscaldamento')
+  ];
+  const msg = document.getElementById('msg-v2');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Perfetto!" : "Riprova.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* RIFLESSIVI */
-  function checkRiflessivi() {
-    const r = [
-      validate('r1','mi sono svegliato'),
-      validate('r2','ci siamo preparati'),
-      validate('r3','si è vestito'),
-      validate('r4','ci siamo rilassati'),
-      validate('r5','mi sono addormentato'),
-      validate('r6','ci siamo visti'),
-      validate('r7','si sono preparati'),
-      validate('r8','mi sono sentito'),
-      validate('r9','ci siamo alzati'),
-      validate('r10','ci siamo salutati')
-    ];
-    const msg = document.getElementById('msg-r');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Ottimo uso dei riflessivi!" : "Controlla le forme riflessive.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* RIFLESSIVI */
+function checkRiflessivi() {
+  const r = [
+    validate('r1','mi sono svegliato'),
+    validate('r2','ci siamo preparati'),
+    validate('r3','si è vestito'),
+    validate('r4','ci siamo rilassati'),
+    validate('r5','mi sono addormentato'),
+    validate('r6','ci siamo visti'),
+    validate('r7','si sono preparati'),
+    validate('r8','mi sono sentito'),
+    validate('r9','ci siamo alzati'),
+    validate('r10','ci siamo salutati')
+  ];
+  const msg = document.getElementById('msg-r');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Ottimo uso dei riflessivi!" : "Controlla le forme riflessive.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* CONNETTORI */
-  function checkConnettori() {
-    const r = [
-      validate('c1','quindi'),
-      validate('c2','quindi'),
-      validate('c3','poi'),
-      validate('c4','quindi'),
-      validate('c5','quindi'),
-      validate('c6','poi'),
-      validate('c7','alla fine'),
-      validate('c8','perché'),
-      validate('c9','quindi'),
-      validate('c10','poi')
-    ];
-    const msg = document.getElementById('msg-c');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Connettori perfetti!" : "Rivedi i connettori logici.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* CONNETTORI */
+function checkConnettori() {
+  const r = [
+    validate('c1','quindi'),
+    validate('c2','quindi'),
+    validate('c3','poi'),
+    validate('c4','quindi'),
+    validate('c5','quindi'),
+    validate('c6','poi'),
+    validate('c7','alla fine'),
+    validate('c8','perché'),
+    validate('c9','quindi'),
+    validate('c10','poi')
+  ];
+  const msg = document.getElementById('msg-c');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Connettori perfetti!" : "Rivedi i connettori logici.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* BLOCCO 1 — CASA & ROUTINE */
-  function checkBlocco1() {
-    const r = [
-      validate('b1','divano'),
-      validate('b2','spesa'),
-      validate('b3','ripostiglio'),
-      validate('b4','ordine'),
-      validate('b5','sveglio'),
-      validate('b6','sposto'),
-      validate('b7','sediamo'),
-      validate('b8','preparo'),
-      validate('b9','addormentiamo'),
-      validate('b10','lavo')
-    ];
-    const msg = document.getElementById('msg-b1');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Blocco 1 completato!" : "Rivedi qualche parola.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* BLOCCO 1 — CASA & ROUTINE */
+function checkBlocco1() {
+  const r = [
+    validate('b1','divano'),
+    validate('b2','spesa'),
+    validate('b3','ripostiglio'),
+    validate('b4','ordine'),
+    validate('b5','sveglio'),
+    validate('b6','sposto'),
+    validate('b7','sediamo'),
+    validate('b8','preparo'),
+    validate('b9','addormentiamo'),
+    validate('b10','lavo')
+  ];
+  const msg = document.getElementById('msg-b1');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Blocco 1 completato!" : "Rivedi qualche parola.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* BLOCCO 2 — MANUTENZIONE */
-  function checkBlocco2() {
-    const r = [
-      validate('m1','rubinetto'),
-      validate('m2','serratura'),
-      validate('m3','doccia'),
-      validate('m4','lampadina'),
-      validate('m5','riscaldamento'),
-      validate('m6','idraulico'),
-      validate('m7','serratura'),
-      validate('m8','presa'),
-      validate('m9','lavatrice'),
-      validate('m10','riscaldamento')
-    ];
-    const msg = document.getElementById('msg-b2');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Blocco 2 perfetto!" : "Rivedi il vocabolario tecnico.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* BLOCCO 2 — MANUTENZIONE */
+function checkBlocco2() {
+  const r = [
+    validate('m1','rubinetto'),
+    validate('m2','serratura'),
+    validate('m3','doccia'),
+    validate('m4','lampadina'),
+    validate('m5','riscaldamento'),
+    validate('m6','idraulico'),
+    validate('m7','serratura'),
+    validate('m8','presa'),
+    validate('m9','lavatrice'),
+    validate('m10','riscaldamento')
+  ];
+  const msg = document.getElementById('msg-b2');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Blocco 2 perfetto!" : "Rivedi il vocabolario tecnico.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* BLOCCO 3 — TEST FINALE NARRATIVO */
-  function checkBlocco3() {
-    const r = [
-      validate('t1','mi sono svegliato'),
-      validate('t2','mi sono alzato'),
-      validate('t3','poi'),
-      validate('t4','ci siamo preparati'),
-      validate('t5','quindi'),
-      validate('t6','spesa'),
-      validate('t7','rubinetto'),
-      validate('t8','quindi'),
-      validate('t9','ci siamo rilassati'),
-      validate('t10','divano')
-    ];
-    const msg = document.getElementById('msg-b3');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean) ? "Test narrativo completato!" : "Riprova a collegare riflessivi, connettori e lessico.";
-    msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
-  }
+/* BLOCCO 3 — TEST FINALE NARRATIVO */
+function checkBlocco3() {
+  const r = [
+    validate('t1','mi sono svegliato'),
+    validate('t2','mi sono alzato'),
+    validate('t3','poi'),
+    validate('t4','ci siamo preparati'),
+    validate('t5','quindi'),
+    validate('t6','spesa'),
+    validate('t7','rubinetto'),
+    validate('t8','quindi'),
+    validate('t9','ci siamo rilassati'),
+    validate('t10','divano')
+  ];
+  const msg = document.getElementById('msg-b3');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Test narrativo completato!" : "Riprova a collegare riflessivi, connettori e lessico.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
 
-  /* VERIFICA FINALE */
-  function checkFinal() {
-    const r = [
-      validate('f1','usciti'),
-      validate('f2','spesa'),
-      validate('f3','cucinato'),
-      validate('f4','divano'),
-      validate('f5','messo in ordine')
-    ];
-    const msg = document.getElementById('msg-f');
-    msg.style.display = 'block';
-    msg.innerHTML = r.every(Boolean
+/* VERIFICA FINALE */
+function checkFinal() {
+  const r = [
+    validate('f1','usciti'),
+    validate('f2','spesa'),
+    validate('f3','cucinato'),
+    validate('f4','divano'),
+    validate('f5','messo in ordine')
+  ];
+  const msg = document.getElementById('msg-f');
+  msg.style.display = 'block';
+  msg.innerHTML = r.every(Boolean) ? "Lezione completata!" : "Controlla le ultime risposte.";
+  msg.style.color = r.every(Boolean) ? "var(--green)" : "var(--red)";
+}
+</script>
+</body>
+</html>
