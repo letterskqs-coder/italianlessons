@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara · Lezione 26 · B1 Avanzato</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #060E18;
+  --deep: #0A1628;
+  --hull: #112240;
+  --wake: #1A3A5C;
+  --horizon: #1E6B8A;
+  --sea: #2E9AB5;
+  --foam: #7ECFE3;
+  --salt: #C8EBF2;
+  --white: #F0F8FA;
+  --gold: #C8953A;
+  --gold-light: #F5E6C8;
+  --coral: #C84B38;
+  --coral-light: #F5DDD8;
+  --green: #2A8A52;
+  --green-light: #D8F0E5;
+  --muted: #6A8FA8;
+  --border: rgba(30,107,138,0.2);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--night);
+  color: var(--white);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: var(--deep);
+  padding: 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(46,154,181,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(200,149,58,0.06) 0%, transparent 60%);
+}
+.wave-bar {
+  height: 3px;
+  background: repeating-linear-gradient(90deg,
+    var(--sea) 0, var(--sea) 18px,
+    var(--gold) 18px, var(--gold) 20px,
+    transparent 20px, transparent 28px);
+  opacity: 0.7;
+}
+.hero-inner {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: end;
+}
+.hero-meta { display: flex; flex-direction: column; gap: 10px; }
+.lesson-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sea);
+}
+.lesson-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--sea); }
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.hero h1 span { color: var(--sea); }
+.hero-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.lesson-stats {
+  display: flex; flex-direction: column; gap: 8px;
+  align-items: flex-end;
+}
+.stat-pill {
+  background: rgba(46,154,181,0.12);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--foam); letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.timer-pill {
+  background: var(--gold);
+  color: var(--deep);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ── NAV ── */
+.nav-wrap {
+  background: var(--hull);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; gap: 2px; padding: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: none; border-radius: 8px;
+  background: transparent;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab-btn:hover { background: rgba(46,154,181,0.1); color: var(--foam); }
+.tab-btn.active { background: var(--sea); color: var(--deep); }
+.tab-btn .mins {
+  display: inline-block;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px; padding: 1px 6px;
+  font-size: 9px; margin-left: 4px; vertical-align: middle;
+}
+.tab-btn.active .mins { background: rgba(0,0,0,0.15); }
+
+/* ── WRAPPER ── */
+.wrapper { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--hull);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 18px;
+}
+.card-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sea); margin-bottom: 10px;
+}
+.card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--white); margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+/* ── SUBTITLE STYLE (bilingual) ── */
+.bilingual { margin: 16px 0; }
+.bi-line {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--wake);
+  background: rgba(17,34,64,0.6);
+}
+.bi-line.highlight { border-left-color: var(--sea); background: rgba(46,154,181,0.08); }
+.bi-it { font-size: 15px; font-weight: 500; color: var(--white); }
+.bi-it em { color: var(--sea); font-style: normal; font-weight: 600; }
+.bi-en { font-size: 13px; color: var(--muted); font-style: italic; align-self: center; }
+.bi-role {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 3px;
+}
+
+/* ── NOTE BOX ── */
+.note {
+  background: rgba(200,149,58,0.1);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px; margin-bottom: 16px;
+  font-size: 13px; line-height: 1.6;
+  color: var(--gold-light);
+}
+.note strong {
+  display: block; font-family: 'Syne', sans-serif;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+
+/* ── VOCAB ── */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 10px; margin: 14px 0; }
+.v-card {
+  background: rgba(10,22,40,0.8);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px;
+  cursor: pointer; transition: all 0.22s;
+  position: relative; overflow: hidden;
+}
+.v-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--sea); transform: scaleX(0);
+  transition: transform 0.22s; transform-origin: left;
+}
+.v-card:hover { border-color: var(--sea); background: rgba(46,154,181,0.08); }
+.v-card:hover::before { transform: scaleX(1); }
+.v-card.open { border-color: var(--sea); background: rgba(46,154,181,0.1); }
+.v-card.open::before { transform: scaleX(1); }
+.v-it { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--foam); }
+.v-en { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.v-example { font-size: 12px; color: var(--salt); font-style: italic; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); display: none; }
+.v-card.open .v-example { display: block; }
+.v-hint { font-size: 9px; color: var(--muted); text-align: right; margin-top: 6px; }
+
+/* ── GRAMMAR TABLE ── */
+.gram-wrap { overflow-x: auto; margin: 12px 0; }
+.gram-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 500px; }
+.gram-table th {
+  background: rgba(46,154,181,0.15);
+  color: var(--sea); font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 9px 12px;
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+.gram-table td {
+  padding: 9px 12px; border-bottom: 1px solid rgba(30,107,138,0.1);
+  vertical-align: top;
+}
+.gram-table td:first-child { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--sea); }
+.gram-table tr:last-child td { border-bottom: none; }
+.gram-table tr:hover td { background: rgba(46,154,181,0.05); }
+
+/* ── QUIZ ── */
+.ex { margin-bottom: 22px; }
+.ex .prompt {
+  font-size: 15px; font-weight: 500;
+  margin-bottom: 12px; line-height: 1.5;
+  padding: 14px 16px;
+  background: rgba(17,34,64,0.8);
+  border-radius: 10px;
+  border-left: 3px solid var(--wake);
+}
+.ex .prompt .sub { font-size: 12px; color: var(--muted); font-style: italic; display: block; margin-top: 4px; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  text-align: left; padding: 11px 16px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: rgba(10,22,40,0.6);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 14px; color: var(--white);
+  cursor: pointer; transition: all 0.18s;
+}
+.opt:hover:not(:disabled) { border-color: var(--sea); background: rgba(46,154,181,0.1); }
+.opt.correct { background: rgba(42,138,82,0.15); border-color: var(--green); color: #8AE0B0; }
+.opt.wrong { background: rgba(200,75,56,0.12); border-color: var(--coral); color: #F0A090; }
+.fb {
+  font-size: 13px; margin-top: 8px; padding: 10px 14px;
+  border-radius: 9px; display: none; line-height: 1.6;
+}
+.fb.show { display: block; }
+.fb.ok { background: rgba(42,138,82,0.12); color: #8AE0B0; border: 1px solid rgba(42,138,82,0.3); }
+.fb.no { background: rgba(200,75,56,0.1); color: #F0A090; border: 1px solid rgba(200,75,56,0.25); }
+
+/* ── FILL BLANK ── */
+.fill-line { font-size: 15px; margin-bottom: 14px; line-height: 2.4; }
+.blank {
+  border: none; border-bottom: 2px solid var(--sea);
+  background: transparent; color: var(--white);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px; width: 140px; text-align: center; outline: none;
+}
+.blank.ok { border-color: var(--green); color: #8AE0B0; }
+.blank.no { border-color: var(--coral); color: #F0A090; }
+.btn {
+  display: inline-block; margin-top: 12px;
+  padding: 10px 22px; background: var(--sea);
+  color: var(--deep); border: none; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.06em; cursor: pointer; transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.85; }
+
+/* ── SCENARIO CARD ── */
+.scenario {
+  background: rgba(6,14,24,0.9);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 22px; margin: 14px 0;
+  position: relative; overflow: hidden;
+}
+.scenario::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 3px; background: var(--sea);
+}
+.scenario-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sea); margin-bottom: 8px;
+}
+.scenario p { font-size: 14px; color: var(--salt); line-height: 1.8; }
+.scenario strong { color: var(--foam); }
+
+/* ── SPEAK CARD ── */
+.speak-card {
+  background: rgba(200,149,58,0.06);
+  border: 1px solid rgba(200,149,58,0.25);
+  border-radius: 12px; padding: 18px 22px; margin: 14px 0;
+}
+.speak-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.speak-card li { list-style: none; margin-bottom: 9px; font-size: 14px; color: var(--salt); }
+.speak-card li::before { content: '→ '; color: var(--gold); font-weight: 600; }
+
+/* ── TAG ── */
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.06em; margin-right: 6px;
+}
+.tag-b1 { background: rgba(46,154,181,0.15); color: var(--foam); }
+.tag-b2 { background: rgba(200,149,58,0.15); color: var(--gold-light); }
+.tag-pro { background: rgba(42,138,82,0.15); color: #8AE0B0; }
+.tag-speak { background: rgba(200,149,58,0.1); color: var(--gold); }
+
+/* ── PROGRESS ── */
+.progress-strip {
+  display: flex; gap: 4px; margin-bottom: 24px;
+  align-items: center;
+}
+.prog-seg {
+  height: 4px; border-radius: 2px; flex: 1;
+  background: var(--wake); transition: background 0.4s;
+}
+.prog-seg.done { background: var(--sea); }
+.prog-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: var(--muted); margin-left: 8px; white-space: nowrap; }
+
+hr.div { border: none; border-top: 1px solid var(--border); margin: 22px 0; }
+
+/* ── TRANSLATION AREA ── */
+textarea.ti {
+  width: 100%; padding: 12px 14px;
+  background: rgba(6,14,24,0.8);
+  border: 1px solid var(--border); border-radius: 10px;
+  font-family: 'Instrument Sans', sans-serif; font-size: 14px;
+  color: var(--white); resize: vertical; min-height: 60px;
+  margin-top: 6px;
+}
+textarea.ti:focus { outline: none; border-color: var(--sea); }
+.reveal-ans {
+  display: inline-block; margin-top: 8px;
+  padding: 7px 16px;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; color: var(--muted);
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s;
+}
+.reveal-ans:hover { border-color: var(--sea); color: var(--sea); }
+
+/* ── SUMMARY GRID ── */
+.sum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.sum-cell { background: rgba(17,34,64,0.8); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.sum-cell h5 { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sea); margin-bottom: 6px; }
+.sum-cell p { font-size: 13px; color: var(--salt); }
+
+@media (max-width: 540px) {
+  .bi-line { grid-template-columns: 1fr; }
+  .bi-en { display: none; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .lesson-stats { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+  .sum-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wave-bar"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <div class="lesson-tag">Lezione 26 · Capitano Sara</div>
+      <h1>Italiano<br><span>in alto mare</span></h1>
+      <p class="hero-sub">B1 Advanced · Nautical Italian · 50 minutes · bilingual EN/IT</p>
+    </div>
+    <div class="lesson-stats">
+      <div class="stat-pill">B1 → B1+</div>
+      <div class="stat-pill">⚓ 25 lezioni</div>
+      <div class="timer-pill">⏱ 50 min</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="goTab('warm')">Warm-up <span class="mins">8'</span></button>
+    <button class="tab-btn" onclick="goTab('vocab')">Vocaboli <span class="mins">10'</span></button>
+    <button class="tab-btn" onclick="goTab('grammar')">Grammatica <span class="mins">12'</span></button>
+    <button class="tab-btn" onclick="goTab('esercizi')">Esercizi <span class="mins">10'</span></button>
+    <button class="tab-btn" onclick="goTab('roleplay')">Role-play <span class="mins">10'</span></button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<!-- ══════════ WARM-UP ══════════ -->
+<div id="warm" class="section active">
+
+  <div class="progress-strip" id="prog-warm"></div>
+
+  <div class="note"><strong>📋 Kate · warm-up</strong>After 25 lessons Sara can handle more complexity. Push her: ask for full sentences, narratives, opinions — not just answers. Use the bilingual lines below as reading prompts if she freezes. Target: 3–4 sentences per answer minimum.</div>
+
+  <div class="card">
+    <div class="card-label">Warm-up · Conversazione libera · 8 min</div>
+    <h3>L'ultima navigazione</h3>
+    <div class="bilingual">
+
+      <div class="bi-line highlight">
+        <div class="bi-it"><span class="bi-role">Insegnante</span><em>Raccontami</em> dell'ultima traversata. Com'erano le condizioni meteo?</div>
+        <div class="bi-en">Tell me about your last crossing. What were the weather conditions like?</div>
+      </div>
+
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Insegnante</span>Hai avuto dei <em>imprevisti</em> a bordo? Come li hai gestiti?</div>
+        <div class="bi-en">Did you have any unexpected problems on board? How did you handle them?</div>
+      </div>
+
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Insegnante</span>Com'era il rapporto con i <em>clienti</em>? Qualcuno difficile da gestire?</div>
+        <div class="bi-en">How was the relationship with your clients? Anyone difficult to handle?</div>
+      </div>
+
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Insegnante</span>Se potessi <em>cambiare</em> qualcosa di quella navigazione, cosa faresti?</div>
+        <div class="bi-en">If you could change something about that voyage, what would you do? (conditional!)</div>
+      </div>
+
+    </div>
+    <div class="note"><strong>Grammatica da osservare</strong>Note: the last question uses the conditional (faresti). If she uses it correctly → reinforce. If she uses present/infinitive → note for grammar section. Do not correct yet.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Quick check · 3 domande rapide</div>
+    <h3>Prima di iniziare — ricordi?</h3>
+
+    <div class="ex" id="wq1">
+      <p class="prompt">Come si dice "the anchor has dragged" in italiano?<span class="sub">From last lesson's vocabulary</span></p>
+      <div class="opts">
+        <button class="opt" onclick="chk('wq1',this,false)">L'ancora è caduta</button>
+        <button class="opt" onclick="chk('wq1',this,true)">L'ancora ha dragato / L'ancora è arretrata</button>
+        <button class="opt" onclick="chk('wq1',this,false)">L'ancora è rotta</button>
+      </div>
+      <div class="fb" id="wq1-fb"></div>
+    </div>
+
+    <div class="ex" id="wq2">
+      <p class="prompt">"I clienti si sono lamentati del rumore." — Cosa significa?<span class="sub">Passive vs reflexive comprehension</span></p>
+      <div class="opts">
+        <button class="opt" onclick="chk('wq2',this,false)">The clients were complained about</button>
+        <button class="opt" onclick="chk('wq2',this,true)">The clients complained about the noise</button>
+        <button class="opt" onclick="chk('wq2',this,false)">The clients made noise</button>
+      </div>
+      <div class="fb" id="wq2-fb"></div>
+    </div>
+
+    <div class="ex" id="wq3">
+      <p class="prompt">Completa: "Se avessimo avuto più vento, _____ arrivati prima." (arrivare)<span class="sub">Conditional perfect — advanced</span></p>
+      <div class="opts">
+        <button class="opt" onclick="chk('wq3',this,false)">siamo</button>
+        <button class="opt" onclick="chk('wq3',this,true)">saremmo</button>
+        <button class="opt" onclick="chk('wq3',this,false)">saremo</button>
+      </div>
+      <div class="fb" id="wq3-fb"></div>
+    </div>
+  </div>
+
+</div><!-- /warm -->
+
+<!-- ══════════ VOCABOLI ══════════ -->
+<div id="vocab" class="section">
+
+  <div class="note"><strong>📋 Kate · vocaboli</strong>B1+ vocabulary: technical, professional, and nuanced. After 25 lessons Sara should know the basics — push into register differences (formal vs informal with clients), metaphorical uses, and collocations. Click each card to reveal a usage example.</div>
+
+  <div class="card">
+    <div class="card-label"><span class="tag tag-pro">Professionale</span>Vocabolario · Gestione clienti avanzata · 10 min</div>
+    <h3>Comunicare con autorevolezza</h3>
+    <div class="vocab-grid" id="vg1"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="tag tag-b2">B1/B2</span>Vocabolario · Meteo e situazioni di crisi</div>
+    <h3>Linguaggio tecnico avanzato</h3>
+    <div class="vocab-grid" id="vg2"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Esercizio · Collocazioni</div>
+    <h3>Con quale verbo si usa?</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Match the noun with its most natural verb. Click the correct verb.</p>
+
+    <div class="ex" id="vq1">
+      <p class="prompt">___ una rotta alternativa</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('vq1',this,false)">fare</button>
+        <button class="opt" onclick="chk('vq1',this,true)">tracciare</button>
+        <button class="opt" onclick="chk('vq1',this,false)">mettere</button>
+      </div>
+      <div class="fb" id="vq1-fb"></div>
+    </div>
+
+    <div class="ex" id="vq2">
+      <p class="prompt">___ le condizioni meteo</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('vq2',this,false)">guardare</button>
+        <button class="opt" onclick="chk('vq2',this,true)">monitorare</button>
+        <button class="opt" onclick="chk('vq2',this,false)">sentire</button>
+      </div>
+      <div class="fb" id="vq2-fb"></div>
+    </div>
+
+    <div class="ex" id="vq3">
+      <p class="prompt">___ un'emergenza</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('vq3',this,false)">risolvere</button>
+        <button class="opt" onclick="chk('vq3',this,true)">gestire</button>
+        <button class="opt" onclick="chk('vq3',this,false)">togliere</button>
+      </div>
+      <div class="fb" id="vq3-fb"></div>
+    </div>
+  </div>
+
+</div><!-- /vocab -->
+
+<!-- ══════════ GRAMMATICA ══════════ -->
+<div id="grammar" class="section">
+
+  <div class="note"><strong>📋 Kate · grammatica</strong>Two grammar points today: (1) Congiuntivo imperfetto — essential for expressing doubt, hypothesis, wishes in client interactions. (2) Il periodo ipotetico (if-clauses) type 2 & 3. Sara is ready for this after 25 lessons — she has the conditional, now add the full structure.</div>
+
+  <!-- CONGIUNTIVO IMPERFETTO -->
+  <div class="card">
+    <div class="card-label"><span class="tag tag-b2">B1/B2</span>Grammatica 1 · 12 min</div>
+    <h3>Il congiuntivo imperfetto</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;"><em>Used after: volevo che, speravo che, pensavo che, nonostante, sebbene, come se…</em></p>
+
+    <div class="gram-wrap">
+      <table class="gram-table">
+        <tr><th>Pronome</th><th>ESSERE</th><th>AVERE</th><th>-ARE (navigare)</th><th>-IRE (partire)</th></tr>
+        <tr><td>io</td><td>fossi</td><td>avessi</td><td>navigassi</td><td>partissi</td></tr>
+        <tr><td>tu</td><td>fossi</td><td>avessi</td><td>navigassi</td><td>partissi</td></tr>
+        <tr><td>lui/lei</td><td>fosse</td><td>avesse</td><td>navigasse</td><td>partisse</td></tr>
+        <tr><td>noi</td><td>fossimo</td><td>avessimo</td><td>navigassimo</td><td>partissimo</td></tr>
+        <tr><td>voi</td><td>foste</td><td>aveste</td><td>navigaste</td><td>partiste</td></tr>
+        <tr><td>loro</td><td>fossero</td><td>avessero</td><td>navigassero</td><td>partissero</td></tr>
+      </table>
+    </div>
+
+    <div class="bilingual" style="margin-top:16px;">
+      <div class="bi-line highlight">
+        <div class="bi-it">Speravo che il vento <em>calasse</em> nel pomeriggio.</div>
+        <div class="bi-en">I was hoping the wind would drop in the afternoon.</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it">Volevo che i clienti <em>capissero</em> le norme di sicurezza.</div>
+        <div class="bi-en">I wanted the clients to understand the safety rules.</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it">Nonostante <em>ci fosse</em> nebbia, siamo partiti.</div>
+        <div class="bi-en">Despite the fact that there was fog, we left.</div>
+      </div>
+    </div>
+
+    <hr class="div">
+
+    <div class="ex" id="gq1">
+      <p class="prompt">Speravo che il mare ___ più calmo. (essere)</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('gq1',this,false)">era</button>
+        <button class="opt" onclick="chk('gq1',this,true)">fosse</button>
+        <button class="opt" onclick="chk('gq1',this,false)">sia</button>
+      </div>
+      <div class="fb" id="gq1-fb"></div>
+    </div>
+
+    <div class="ex" id="gq2">
+      <p class="prompt">Volevo che i passeggeri ___ le istruzioni. (ascoltare)</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('gq2',this,false)">ascoltano</button>
+        <button class="opt" onclick="chk('gq2',this,false)">ascoltino</button>
+        <button class="opt" onclick="chk('gq2',this,true)">ascoltassero</button>
+      </div>
+      <div class="fb" id="gq2-fb"></div>
+    </div>
+  </div>
+
+  <!-- PERIODO IPOTETICO -->
+  <div class="card">
+    <div class="card-label"><span class="tag tag-b2">B1/B2</span>Grammatica 2 · Il periodo ipotetico</div>
+    <h3>Se + congiuntivo imperfetto + condizionale</h3>
+
+    <div class="gram-wrap">
+      <table class="gram-table">
+        <tr><th>Tipo</th><th>Struttura</th><th>Esempio nautico</th><th>Significato</th></tr>
+        <tr>
+          <td>Tipo 1<br><span style="font-size:11px;color:var(--muted);font-weight:400;">reale/possibile</span></td>
+          <td>Se + presente → futuro/presente</td>
+          <td>Se c'è vento, partiamo domani.</td>
+          <td>Likely / real condition</td>
+        </tr>
+        <tr>
+          <td>Tipo 2<br><span style="font-size:11px;color:var(--muted);font-weight:400;">ipotetico</span></td>
+          <td>Se + congiuntivo imperfetto → condizionale</td>
+          <td>Se <strong>avessi</strong> una barca più grande, <strong>prenderei</strong> più clienti.</td>
+          <td>Hypothetical / unlikely</td>
+        </tr>
+        <tr>
+          <td>Tipo 3<br><span style="font-size:11px;color:var(--muted);font-weight:400;">impossibile</span></td>
+          <td>Se + congiuntivo trapassato → condizionale passato</td>
+          <td>Se <strong>avessimo aspettato</strong>, non <strong>saremmo partiti</strong> in tempo.</td>
+          <td>Impossible / past regret</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr class="div">
+
+    <div class="ex" id="gq3">
+      <p class="prompt">Se ___ il motore, chiameremmo i soccorsi. (cedere — tipo 2)</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('gq3',this,false)">cede</button>
+        <button class="opt" onclick="chk('gq3',this,true)">cedesse</button>
+        <button class="opt" onclick="chk('gq3',this,false)">cederà</button>
+      </div>
+      <div class="fb" id="gq3-fb"></div>
+    </div>
+
+    <div class="ex" id="gq4">
+      <p class="prompt">Se ___ la previsione, non saremmo partiti. (leggere — tipo 3)</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('gq4',this,false)">leggessimo</button>
+        <button class="opt" onclick="chk('gq4',this,true)">avessimo letto</button>
+        <button class="opt" onclick="chk('gq4',this,false)">leggiamo</button>
+      </div>
+      <div class="fb" id="gq4-fb"></div>
+    </div>
+
+    <div class="ex" id="gq5">
+      <p class="prompt">Se <em>fossi</em> arrivata prima, ___ subito il porto. (controllare — tipo 3)</p>
+      <div class="opts">
+        <button class="opt" onclick="chk('gq5',this,false)">controllavo</button>
+        <button class="opt" onclick="chk('gq5',this,false)">avrei controllato</button>
+        <button class="opt" onclick="chk('gq5',this,true)">avrei controllato</button>
+      </div>
+      <div class="fb" id="gq5-fb"></div>
+    </div>
+  </div>
+
+</div><!-- /grammar -->
+
+<!-- ══════════ ESERCIZI ══════════ -->
+<div id="esercizi" class="section">
+
+  <div class="note"><strong>📋 Kate · esercizi</strong>Mixed production exercises. Sara should write full sentences, not just fill words. For the translation section: she writes first, then reveals — push her to try before looking. Correction: after each answer, discuss alternatives.</div>
+
+  <div class="card">
+    <div class="card-label">Esercizio 1 · Completa il report di bordo</div>
+    <h3>Giornale di bordo — in italiano</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Fill in using: <em>calava · avessimo aspettato · fosse · monitorato · gestito</em></p>
+
+    <div class="fill-line">Le condizioni erano difficili, sebbene il vento <input class="blank" id="f1" data-a="calava"> leggermente verso sera.</div>
+    <div class="fill-line">Speravo che il mare <input class="blank" id="f2" data-a="fosse"> più tranquillo nel canale.</div>
+    <div class="fill-line">Avevo <input class="blank" id="f3" data-a="monitorato"> le previsioni ogni due ore.</div>
+    <div class="fill-line">Ho <input class="blank" id="f4" data-a="gestito"> l'emergenza con calma e professionalità.</div>
+    <div class="fill-line">Se <input class="blank" id="f5" data-a="avessimo aspettato">, avremmo perso la finestra meteo.</div>
+    <button class="btn" onclick="checkFill()">Controlla ✓</button>
+    <div class="fb" id="fill-fb"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Esercizio 2 · Traduzione professionale</div>
+    <h3>Da inglese a italiano — contesto lavorativo</h3>
+    <div id="trans-cont"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="tag tag-b2">Avanzato</span>Esercizio 3 · Correggi l'errore</div>
+    <h3>Trova e riscrivi</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Each sentence has one error. Write the corrected version below.</p>
+    <div id="error-cont"></div>
+  </div>
+
+</div><!-- /esercizi -->
+
+<!-- ══════════ ROLE-PLAY ══════════ -->
+<div id="roleplay" class="section">
+
+  <div class="note"><strong>📋 Kate · role-play</strong>10 minutes. Two scenarios — pick the one most relevant to Sara's week. Push for register: professional Italian with clients is more formal than casual Italian. She should avoid "okay", "sì sì", one-word answers. Minimum 3 sentences per turn.</div>
+
+  <div class="card">
+    <div class="card-label"><span class="tag tag-pro">Scenario A</span>Reclamo di un cliente</div>
+    <h3>Il passeggero insoddisfatto</h3>
+    <div class="scenario">
+      <div class="scenario-tag">Contesto</div>
+      <p>Un cliente italiano ha prenotato una settimana di charter. Arriva e scopre che la cabina è più piccola di quanto si aspettasse. È irritato. <strong>Tu sei Sara — devi gestire la situazione con professionalità, senza perdere il cliente.</strong></p>
+    </div>
+
+    <div class="bilingual" style="margin-top:14px;">
+      <div class="bi-line highlight">
+        <div class="bi-it"><span class="bi-role">Cliente (insegnante)</span>Guardi, questa non è la cabina che mi era stata descritta. È inaccettabile per il prezzo che pago.</div>
+        <div class="bi-en">Look, this is not the cabin I was described. It's unacceptable for the price I'm paying.</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Sara →</span><em>Risponde con calma, si scusa, propone una soluzione…</em></div>
+        <div class="bi-en">Responds calmly, apologises, proposes a solution…</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Cliente</span>Voglio un rimborso parziale almeno. Non è quello che mi aspettavo.</div>
+        <div class="bi-en">I want at least a partial refund. This is not what I expected.</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Cliente</span>Anche i servizi a bordo — mi era stato detto che ci sarebbe stato un cuoco. Dov'è?</div>
+        <div class="bi-en">Also the services on board — I was told there would be a cook. Where is he?</div>
+      </div>
+    </div>
+
+    <div class="speak-card" style="margin-top:14px;">
+      <h4>⚓ Frasi da usare — registro formale</h4>
+      <ul>
+        <li><em>Capisco la sua frustrazione e mi scuso per l'inconveniente.</em></li>
+        <li><em>Posso assicurarle che faremo tutto il possibile per…</em></li>
+        <li><em>Purtroppo non dipende da me, tuttavia posso proporre…</em></li>
+        <li><em>Le chiedo di darmi qualche ora per verificare la situazione.</em></li>
+        <li><em>Tenga presente che le condizioni meteo potrebbero…</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="tag tag-pro">Scenario B</span>Emergenza in mare</div>
+    <h3>Comunicazione di crisi con i passeggeri</h3>
+    <div class="scenario">
+      <div class="scenario-tag">Contesto</div>
+      <p>Siete a 20 miglia dalla costa. Il motore ausiliario ha un problema. Il vento sta aumentando. I passeggeri sono nervosi. <strong>Sara deve comunicare la situazione con autorità, chiarezza, senza creare panico.</strong></p>
+    </div>
+
+    <div class="bilingual" style="margin-top:14px;">
+      <div class="bi-line highlight">
+        <div class="bi-it"><span class="bi-role">Passeggero</span>Cosa succede? Ho sentito uno strano rumore. Siamo in pericolo?</div>
+        <div class="bi-en">What's happening? I heard a strange noise. Are we in danger?</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Sara →</span><em>Spiega con calma, rassicura, dà istruzioni chiare…</em></div>
+        <div class="bi-en">Explains calmly, reassures, gives clear instructions…</div>
+      </div>
+      <div class="bi-line">
+        <div class="bi-it"><span class="bi-role">Passeggero</span>Dobbiamo chiamare i soccorsi? Ho bambini con me!</div>
+        <div class="bi-en">Should we call for help? I have children with me!</div>
+      </div>
+    </div>
+
+    <div class="speak-card" style="margin-top:14px;">
+      <h4>⚓ Frasi di autorità e rassicurazione</h4>
+      <ul>
+        <li><em>La situazione è sotto controllo. Vi chiedo di restare calmi.</em></li>
+        <li><em>Ho già allertato la Capitaneria di porto per precauzione.</em></li>
+        <li><em>Vi prego di indossare i giubbotti di salvataggio e sedervi a poppa.</em></li>
+        <li><em>Come capitano, sono responsabile della vostra sicurezza.</em></li>
+        <li><em>Procederemo con navigazione a vela mentre il motore viene ispezionato.</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Fine lezione · Riepilogo</div>
+    <h3>Lezione 26 — completata ⚓</h3>
+    <div class="sum-grid">
+      <div class="sum-cell"><h5>Grammatica</h5><p>Congiuntivo imperfetto · Periodo ipotetico tipo 2 e 3</p></div>
+      <div class="sum-cell"><h5>Vocabolario</h5><p>Gestione clienti avanzata · Lessico di crisi · Collocazioni nautiche</p></div>
+      <div class="sum-cell"><h5>Produzione</h5><p>Giornale di bordo · Traduzione professionale · Role-play cliente/emergenza</p></div>
+      <div class="sum-cell"><h5>Per casa</h5><p>Scrivere un reclamo di un cliente immaginario (10 righe) + risposta professionale della capitana</p></div>
+    </div>
+  </div>
+
+</div><!-- /roleplay -->
+
+</div><!-- /wrapper -->
+
+<script>
+// ── VOCAB DATA ──
+const v1 = [
+  {it:'lamentarsi (di)', en:'to complain (about)', ex:'"I clienti si sono lamentati del rumore notturno."'},
+  {it:'gestire', en:'to handle / manage', ex:'"Ho gestito l\'emergenza con calma."'},
+  {it:'rassicurare', en:'to reassure', ex:'"Ho rassicurato i passeggeri sulla situazione."'},
+  {it:'far fronte a', en:'to deal with / face', ex:'"Dobbiamo far fronte alle condizioni avverse."'},
+  {it:'a malincuore', en:'reluctantly', ex:'"A malincuore ho deciso di rientrare."'},
+  {it:'prendere in carico', en:'to take charge of', ex:'"Ho preso in carico la situazione immediatamente."'},
+  {it:'interfacciarsi con', en:'to liaise with', ex:'"Mi sono interfacciata con la Capitaneria."'},
+  {it:'l\'inconveniente', en:'the inconvenience', ex:'"Mi scuso per l\'inconveniente causato."'},
+];
+const v2 = [
+  {it:'la burrasca', en:'the gale / storm', ex:'"Era prevista una burrasca per il pomeriggio."'},
+  {it:'il colpo di vento', en:'the squall / gust', ex:'"Un colpo di vento improvviso ha cambiato la rotta."'},
+  {it:'la deriva', en:'the drift / lee drift', ex:'"Con questo vento, la deriva è considerevole."'},
+  {it:'tracciare una rotta', en:'to plot a course', ex:'"Ho tracciato una rotta alternativa verso il porto più vicino."'},
+  {it:'monitorare', en:'to monitor', ex:'"Monitoravo le condizioni ogni due ore."'},
+  {it:'la finestra meteo', en:'the weather window', ex:'"Dobbiamo sfruttare la finestra meteo domani mattina."'},
+  {it:'il mayday', en:'mayday (distress call)', ex:'"Solo in ultima istanza si lancia il mayday."'},
+  {it:'l\'ancora ha dragato', en:'the anchor has dragged', ex:'"Stanotte l\'ancora ha dragato — dobbiamo spostarci."'},
+];
+
+function buildVocab(data, id) {
+  const g = document.getElementById(id);
+  data.forEach(w => {
+    const d = document.createElement('div');
+    d.className = 'v-card';
+    d.innerHTML = `<div class="v-it">${w.it}</div><div class="v-en">${w.en}</div><div class="v-example">${w.ex}</div><div class="v-hint">tap</div>`;
+    d.onclick = () => d.classList.toggle('open');
+    g.appendChild(d);
+  });
+}
+buildVocab(v1, 'vg1');
+buildVocab(v2, 'vg2');
+
+// ── TRANSLATION EXERCISES ──
+const trans = [
+  {en:'Despite the bad weather, we managed to reach the port safely.', ans:'Nonostante il maltempo, siamo riusciti ad arrivare al porto in sicurezza.'},
+  {en:'If the engine had not broken down, we would have arrived on time.', ans:'Se il motore non si fosse rotto, saremmo arrivati in orario.'},
+  {en:'I was hoping the passengers would stay calm during the manoeuvre.', ans:'Speravo che i passeggeri rimanessero calmi durante la manovra.'},
+];
+const tc = document.getElementById('trans-cont');
+trans.forEach((t,i) => {
+  const d = document.createElement('div');
+  d.style.marginBottom = '20px';
+  d.innerHTML = `<p style="font-size:15px;font-weight:500;margin-bottom:8px;color:var(--salt);">"${t.en}"</p>
+    <textarea class="ti" id="tr${i}" placeholder="Scrivi la traduzione…"></textarea>
+    <button class="reveal-ans" onclick="revT(${i},'${t.ans.replace(/'/g,"\\'")}')">Mostra risposta</button>
+    <div class="fb" id="trfb${i}"></div>`;
+  tc.appendChild(d);
+});
+function revT(i,a){const f=document.getElementById(`trfb${i}`);f.innerHTML=`<strong>Risposta:</strong> ${a}`;f.className='fb show ok';}
+
+// ── ERROR CORRECTION ──
+const errors = [
+  {wrong:'"Speravo che il vento calA." (after speravo che)', right:'calasse (congiuntivo imperfetto dopo speravo che)'},
+  {wrong:'"Se avevo più tempo, venivo." (ipotetico tipo 2)', right:'Se avessi più tempo, verrei. (congiuntivo imp. + condizionale)'},
+  {wrong:'"I clienti si hanno lamentati del servizio."', right:'si sono lamentati (verbo riflessivo → ESSERE al passato)'},
+];
+const ec = document.getElementById('error-cont');
+errors.forEach((e,i) => {
+  const d = document.createElement('div');
+  d.style.marginBottom = '18px';
+  d.innerHTML = `<p style="padding:11px 14px;background:rgba(200,75,56,0.1);border:1px solid rgba(200,75,56,0.3);border-radius:9px;font-size:15px;color:#F0A090;margin-bottom:8px;">"${e.wrong}"</p>
+    <textarea class="ti" id="er${i}" placeholder="Scrivi la versione corretta…"></textarea>
+    <button class="reveal-ans" onclick="revE(${i},'${e.right.replace(/'/g,"\\'")}')">Mostra correzione</button>
+    <div class="fb" id="erfb${i}"></div>`;
+  ec.appendChild(d);
+});
+function revE(i,a){const f=document.getElementById(`erfb${i}`);f.innerHTML=`<strong>Correzione:</strong> ${a}`;f.className='fb show ok';}
+
+// ── QUIZ FEEDBACK ──
+const fbMsg = {
+  wq1:{ok:'Corretto! ✓ "Dragare" is the technical term for when an anchor loses grip and drifts.',no:'"To drag" → dragare. L\'ancora ha dragato = the anchor dragged.'},
+  wq2:{ok:'Esatto! ✓ "Si sono lamentati" = reflexive past → they complained.',no:'Si sono lamentati = they complained. Lamentarsi = to complain (reflexive verb).'},
+  wq3:{ok:'Perfetto! ✓ Tipo 3: se + congiuntivo trapassato → condizionale passato (saremmo arrivati).',no:'Tipo 3 (impossible): se + congiuntivo trapassato → condizionale passato: saremmo.'},
+  gq1:{ok:'Esatto! ✓ Dopo "speravo che" → congiuntivo imperfetto: fosse.',no:'Dopo speravo che → congiuntivo imperfetto: fosse (not era, not sia).'},
+  gq2:{ok:'Perfetto! ✓ Loro → ascoltassero (congiuntivo imperfetto -ARE).',no:'Loro + congiuntivo imp. -ARE: ascolt + assero = ascoltassero.'},
+  gq3:{ok:'Corretto! ✓ Tipo 2: se + congiuntivo imperfetto (cedesse) → condizionale.',no:'Tipo 2 richiede congiuntivo imperfetto: cedesse (not cede, not cederà).'},
+  gq4:{ok:'Esatto! ✓ Tipo 3: se + congiuntivo trapassato (avessimo letto).',no:'Tipo 3 (passato impossibile): avessimo letto = congiuntivo trapassato.'},
+  gq5:{ok:'Corretto! ✓ Tipo 3 risultato: avrei controllato = condizionale passato.',no:'Con "se fossi arrivata" (tipo 3) → condizionale passato: avrei controllato.'},
+  vq1:{ok:'Esatto! ✓ Si traccia una rotta — to plot a course.',no:'La collocazione corretta è "tracciare una rotta" — to plot a course.'},
+  vq2:{ok:'Corretto! ✓ Monitorare le condizioni = to monitor conditions.',no:'"Monitorare" è il verbo tecnico corretto per le condizioni meteo.'},
+  vq3:{ok:'Perfetto! ✓ Gestire un\'emergenza = to manage an emergency.',no:'"Gestire" = to handle/manage. La collocazione corretta è "gestire un\'emergenza".'},
+};
+
+function chk(id, btn, correct) {
+  const ex = document.getElementById(id);
+  ex.querySelectorAll('.opt').forEach(b => b.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  const fb = document.getElementById(`${id}-fb`);
+  const m = fbMsg[id];
+  fb.innerHTML = correct ? (m?.ok||'Corretto! ✓') : (m?.no||'Non esatto.');
+  fb.className = `fb show ${correct?'ok':'no'}`;
+}
+
+function checkFill() {
+  const fields = [
+    {id:'f1',a:'calava'},{id:'f2',a:'fosse'},{id:'f3',a:'monitorato'},
+    {id:'f4',a:'gestito'},{id:'f5',a:'avessimo aspettato'},
+  ];
+  let c = 0;
+  fields.forEach(f => {
+    const inp = document.getElementById(f.id);
+    const ok = inp.value.trim().toLowerCase() === f.a;
+    inp.className = `blank ${ok?'ok':'no'}`;
+    if(ok) c++;
+  });
+  const fb = document.getElementById('fill-fb');
+  fb.innerHTML = c===5 ? '🎉 Tutto corretto! Ottimo lavoro, Capitana.' : `${c}/5 corrette — riprova le parole in rosso.`;
+  fb.className = `fb show ${c===5?'ok':'no'}`;
+}
+
+// ── PROGRESS BAR ──
+const tabs = ['warm','vocab','grammar','esercizi','roleplay'];
+const labels = ['Warm-up','Vocaboli','Grammatica','Esercizi','Role-play'];
+function buildProgress(activeId) {
+  tabs.forEach(t => {
+    const el = document.getElementById(`prog-${t}`);
+    if (!el) return;
+    el.innerHTML = '';
+    tabs.forEach((tab, i) => {
+      const seg = document.createElement('div');
+      seg.className = 'prog-seg' + (tabs.indexOf(t) >= i ? ' done' : '');
+      el.appendChild(seg);
+    });
+    const lbl = document.createElement('span');
+    lbl.className = 'prog-label';
+    const idx = tabs.indexOf(t);
+    lbl.textContent = `${idx+1}/5`;
+    el.appendChild(lbl);
+  });
+}
+// Insert progress strips
+tabs.forEach(t => {
+  const sec = document.getElementById(t);
+  const strip = document.createElement('div');
+  strip.className = 'progress-strip';
+  strip.id = `prog-${t}`;
+  sec.insertBefore(strip, sec.firstChild);
+});
+buildProgress('warm');
+
+function goTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  document.querySelectorAll('.tab-btn')[tabs.indexOf(name)].classList.add('active');
+  // update progress
+  const idx = tabs.indexOf(name);
+  const strip = document.getElementById(`prog-${name}`);
+  if(strip) {
+    strip.innerHTML = '';
+    tabs.forEach((_, i) => {
+      const seg = document.createElement('div');
+      seg.className = 'prog-seg' + (i <= idx ? ' done' : '');
+      strip.appendChild(seg);
+    });
+    const lbl = document.createElement('span');
+    lbl.className = 'prog-label';
+    lbl.textContent = `${idx+1}/5 · ${labels[idx]}`;
+    strip.appendChild(lbl);
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+goTab('warm');
+</script>
+</body>
+</html>
