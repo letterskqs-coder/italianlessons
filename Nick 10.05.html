@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick · L7 — Passato Prossimo con ESSERE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #121a1c;
+    --card: #192024;
+    --border: rgba(255,255,255,0.08);
+    --blue: #3a7fc1;
+    --sky: #5eb8d4;
+    --green: #4a9b6f;
+    --red: #c04a4a;
+    --gold: #e0b84a;
+    --muted: rgba(255,255,255,0.4);
+    --text: rgba(255,255,255,0.88);
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+  body::before { content:''; position:fixed; top:0;left:0;right:0;bottom:0; background:radial-gradient(ellipse at 30% 20%, rgba(58,127,193,0.13) 0%, transparent 55%),radial-gradient(ellipse at 80% 85%, rgba(94,184,212,0.07) 0%, transparent 50%); pointer-events:none; z-index:0; }
+  .wrap { max-width:800px; margin:0 auto; padding:40px 22px 80px; position:relative; z-index:1; }
+
+  .hdr { text-align:center; margin-bottom:44px; animation:fadeIn 0.7s ease; }
+  .pill { display:inline-flex; align-items:center; gap:8px; background:rgba(58,127,193,0.15); border:1px solid rgba(58,127,193,0.35); color:var(--sky); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 16px; border-radius:20px; margin-bottom:18px; }
+  .hdr h1 { font-family:'Fraunces',serif; font-size:clamp(28px,5vw,44px); line-height:1.15; margin-bottom:8px; }
+  .hdr h1 span { color:var(--sky); }
+  .hdr p { color:var(--muted); font-size:14px; font-weight:300; }
+
+  .prog-row { display:flex; align-items:center; gap:12px; margin-bottom:44px; }
+  .prog-bg { flex:1; height:6px; background:rgba(255,255,255,0.07); border-radius:4px; overflow:hidden; }
+  .prog-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--blue),var(--sky)); border-radius:4px; transition:width 0.5s; }
+  .prog-pct { font-size:12px; color:var(--sky); font-weight:700; }
+
+  .div { display:flex; align-items:center; gap:14px; color:rgba(255,255,255,0.2); font-size:10px; letter-spacing:2.5px; text-transform:uppercase; margin:34px 0 24px; }
+  .div::before,.div::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.07); }
+
+  .card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:28px; margin-bottom:22px; animation:fadeUp 0.5s ease both; }
+  .card-head { display:flex; align-items:flex-start; gap:12px; margin-bottom:20px; }
+  .badge { width:30px; height:30px; border-radius:8px; background:rgba(58,127,193,0.2); border:1px solid rgba(58,127,193,0.4); color:var(--sky); font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .card-title { font-family:'Fraunces',serif; font-size:17px; color:var(--sky); margin-bottom:3px; }
+  .card-sub { font-size:12px; color:var(--muted); }
+
+  .gram-box { background:rgba(94,184,212,0.07); border:1px solid rgba(94,184,212,0.18); border-left:3px solid var(--sky); border-radius:10px; padding:18px 22px; margin-bottom:18px; font-size:15px; line-height:1.9; }
+  .gram-box .rule { font-family:'Fraunces',serif; font-size:18px; color:var(--sky); margin-bottom:10px; }
+  .gram-box code { background:rgba(255,255,255,0.08); padding:2px 8px; border-radius:5px; font-family:monospace; font-size:14px; color:#aaddff; }
+
+  .mini-table { width:100%; border-collapse:collapse; font-size:14px; margin-bottom:16px; }
+  .mini-table th { background:rgba(255,255,255,0.05); color:var(--sky); padding:9px 14px; text-align:left; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .mini-table td { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .mini-table td:first-child { color:#aaddff; font-weight:500; }
+  .mini-table tr:last-child td { border-bottom:none; }
+
+  .warn { background:rgba(224,184,74,0.08); border:1px solid rgba(224,184,74,0.22); border-left:3px solid var(--gold); border-radius:10px; padding:14px 18px; font-size:14px; color:rgba(255,255,255,0.75); margin-bottom:16px; line-height:1.6; }
+  .warn strong { color:var(--gold); }
+
+  .instr { font-size:13px; color:var(--muted); font-style:italic; margin-bottom:16px; line-height:1.6; }
+  .instr strong { color:rgba(255,255,255,0.75); font-style:normal; }
+
+  .gap-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; font-size:15px; margin-bottom:12px; color:var(--text); line-height:2; }
+  .gap-in { background:rgba(255,255,255,0.06); border:2px solid rgba(255,255,255,0.13); border-radius:8px; color:white; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; padding:5px 12px; min-width:130px; text-align:center; outline:none; transition:all 0.2s; }
+  .gap-in:focus { border-color:var(--sky); background:rgba(94,184,212,0.07); }
+  .gap-in.ok { border-color:var(--green); background:rgba(74,155,111,0.15); color:#7fd4a0; }
+  .gap-in.no { border-color:var(--red); background:rgba(192,74,74,0.15); color:#ff9090; }
+
+  /* ESSERE agreement grid */
+  .agree-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:18px; }
+  .agree-cell { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center; font-size:13px; }
+  .agree-cell .pron { color:var(--sky); font-weight:600; margin-bottom:4px; }
+  .agree-cell .form { font-size:12px; color:rgba(255,255,255,0.5); }
+
+  .sel { background:rgba(255,255,255,0.06); border:2px solid rgba(255,255,255,0.13); border-radius:8px; color:white; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; padding:6px 12px; outline:none; cursor:pointer; transition:all 0.2s; }
+  .sel:focus { border-color:var(--sky); }
+  .sel option { background:#192024; color:white; }
+  .sel.ok { border-color:var(--green); background:rgba(74,155,111,0.15); color:#7fd4a0; }
+  .sel.no { border-color:var(--red); background:rgba(192,74,74,0.12); color:#ff9090; }
+
+  .mcq-item { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:13px; padding:18px; margin-bottom:13px; }
+  .mcq-q { font-size:15px; margin-bottom:13px; line-height:1.5; }
+  .mcq-opts { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .mcq-opt { padding:10px 14px; border-radius:9px; border:2px solid rgba(255,255,255,0.1); background:transparent; color:rgba(255,255,255,0.7); font-family:'Plus Jakarta Sans',sans-serif; font-size:13.5px; cursor:pointer; transition:all 0.18s; text-align:left; }
+  .mcq-opt:hover { border-color:var(--sky); color:var(--sky); }
+  .mcq-opt.ok { background:rgba(74,155,111,0.2); border-color:var(--green); color:#7fd4a0; }
+  .mcq-opt.no { background:rgba(192,74,74,0.15); border-color:var(--red); color:#ff9090; }
+  .mcq-fb { font-size:13px; margin-top:10px; padding:8px 13px; border-radius:8px; display:none; font-weight:500; line-height:1.5; }
+  .mcq-fb.show { display:block; }
+  .mcq-fb.ok { background:rgba(74,155,111,0.15); color:#7fd4a0; }
+  .mcq-fb.no { background:rgba(192,74,74,0.12); color:#ff9090; }
+
+  .dialogue { background:rgba(255,255,255,0.03); border-radius:12px; padding:18px; margin-bottom:16px; }
+  .d-line { display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
+  .d-who { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; white-space:nowrap; margin-top:3px; min-width:50px; }
+  .d-marco .d-who { color:#7ab8e8; }
+  .d-nick .d-who { color:var(--gold); }
+  .d-text { font-size:15px; line-height:1.6; }
+
+  .write-box { width:100%; background:rgba(255,255,255,0.04); border:2px solid rgba(255,255,255,0.12); border-radius:12px; color:white; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; line-height:1.7; padding:14px; resize:vertical; outline:none; transition:border-color 0.2s; min-height:110px; }
+  .write-box:focus { border-color:var(--sky); }
+  .write-box::placeholder { color:rgba(255,255,255,0.2); }
+
+  .btn-check { background:rgba(74,155,111,0.2); border:1px solid rgba(74,155,111,0.4); color:#7fd4a0; padding:11px 24px; border-radius:10px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; margin-top:6px; }
+  .btn-check:hover { background:rgba(74,155,111,0.35); transform:translateY(-1px); }
+  .btn-reveal { background:transparent; border:1px solid rgba(255,255,255,0.14); color:var(--muted); padding:8px 16px; border-radius:8px; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; cursor:pointer; transition:all 0.2s; margin-left:10px; }
+  .btn-reveal:hover { color:rgba(255,255,255,0.7); }
+  .score-chip { display:inline-flex; background:rgba(74,155,111,0.15); border:1px solid rgba(74,155,111,0.3); color:#7fd4a0; border-radius:20px; padding:4px 14px; font-size:13px; font-weight:700; margin-left:10px; }
+
+  .note { background:rgba(94,184,212,0.07); border:1px solid rgba(94,184,212,0.18); border-radius:11px; padding:13px 17px; margin-top:14px; font-size:13px; color:rgba(255,255,255,0.58); line-height:1.6; }
+  .note strong { color:var(--sky); }
+
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px);} to{opacity:1;transform:translateY(0);} }
+  @media(max-width:560px){ .mcq-opts,.agree-grid{grid-template-columns:1fr 1fr;} .card{padding:20px 16px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="pill">🇮🇹 Nick · A2→B1 · Lezione 7</div>
+    <h1>Passato Prossimo<br><span>con ESSERE</span></h1>
+    <p>Raccontare un weekend / un viaggio · Telling about a trip or weekend</p>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-bg"><div class="prog-fill" id="prog"></div></div>
+    <div class="prog-pct" id="prog-pct">0%</div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div class="div">📖 Grammatica · Grammar</div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">G</div>
+      <div>
+        <div class="card-title">ESSERE + participio — con accordo!</div>
+        <div class="card-sub">The past participle must agree with the subject in gender and number</div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <strong>⚠️ Differenza chiave da L6 · Key difference from L6:</strong><br>
+      Con AVERE — il participio <strong>non cambia mai</strong>: ho mangiato · hai mangiato · hanno mangiato<br>
+      Con ESSERE — il participio <strong>si accorda col soggetto</strong>: lui è arrivat<strong>o</strong> · lei è arrivat<strong>a</strong> · loro sono arrivat<strong>i</strong>
+    </div>
+
+    <div class="gram-box">
+      <div class="rule">ESSERE + participio passato (accordato)</div>
+      <p style="font-size:14px; margin-bottom:12px;">I verbi con ESSERE sono spesso verbi di <strong style="color:#aaddff;">movimento</strong> o <strong style="color:#aaddff;">cambiamento di stato</strong>.</p>
+      <p><code>andare · venire · uscire · partire · arrivare · tornare · restare · stare · essere · nascere · morire</code></p>
+    </div>
+
+    <div class="agree-grid">
+      <div class="agree-cell"><div class="pron">io (m)</div>sono arrivat<strong style="color:var(--sky);">o</strong><div class="form">-o</div></div>
+      <div class="agree-cell"><div class="pron">io (f)</div>sono arrivat<strong style="color:var(--sky);">a</strong><div class="form">-a</div></div>
+      <div class="agree-cell"><div class="pron">noi (m/mf)</div>siamo arrivat<strong style="color:var(--sky);">i</strong><div class="form">-i</div></div>
+      <div class="agree-cell"><div class="pron">noi (f)</div>siamo arrivat<strong style="color:var(--sky);">e</strong><div class="form">-e</div></div>
+    </div>
+
+    <table class="mini-table">
+      <tr><th>Infinito</th><th>Participio</th><th>Io (m)</th><th>Io (f)</th><th>Loro (m)</th></tr>
+      <tr><td>andare</td><td>andato/a/i/e</td><td>sono andato</td><td>sono andata</td><td>sono andati</td></tr>
+      <tr><td>venire</td><td>venuto/a/i/e</td><td>sono venuto</td><td>sono venuta</td><td>sono venuti</td></tr>
+      <tr><td>uscire</td><td>uscito/a/i/e</td><td>sono uscito</td><td>sono uscita</td><td>sono usciti</td></tr>
+      <tr><td>partire</td><td>partito/a/i/e</td><td>sono partito</td><td>sono partita</td><td>sono partiti</td></tr>
+      <tr><td>tornare</td><td>tornato/a/i/e</td><td>sono tornato</td><td>sono tornata</td><td>sono tornati</td></tr>
+      <tr><td>nascere ⚠️</td><td><strong style="color:#aaddff;">nato</strong>/a/i/e</td><td>sono nato</td><td>sono nata</td><td>sono nati</td></tr>
+    </table>
+
+    <div class="note"><strong>💡 Trick per Nick:</strong> If you can do it on foot or by transport, it likely takes ESSERE: andato, venuto, partito, arrivato, uscito, tornato. Also: all reflexive verbs take ESSERE!</div>
+  </div>
+
+  <!-- SEZIONE A: DIALOGO -->
+  <div class="div">🎧 Ascolto · Listening</div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">A</div>
+      <div>
+        <div class="card-title">Nick e Marco parlano del weekend a Milano</div>
+        <div class="card-sub">Leggi insieme · Read together — nota i participi accordati!</div>
+      </div>
+    </div>
+
+    <div class="dialogue">
+      <div class="d-line d-marco"><span class="d-who">Marco</span><span class="d-text">Nick! Sei andato a Milano questo weekend? Com'è andata?</span></div>
+      <div class="d-line d-nick"><span class="d-who">Nick</span><span class="d-text">Sì! Sono partito venerdì sera con il treno. Sono arrivato a Milano verso le nove. Mi sono perso un po' in centro — le strade sono un labirinto!</span></div>
+      <div class="d-line d-marco"><span class="d-who">Marco</span><span class="d-text">Ah ah! E dove sei stato?</span></div>
+      <div class="d-line d-nick"><span class="d-who">Nick</span><span class="d-text">Sono andato al Duomo — incredibile! Poi siamo usciti io e un amico a cena in un ristorante vicino alla Galleria. Siamo tornati all'hotel tardi, verso mezzanotte.</span></div>
+      <div class="d-line d-marco"><span class="d-who">Marco</span><span class="d-text">E quando sei tornato a casa?</span></div>
+      <div class="d-line d-nick"><span class="d-who">Nick</span><span class="d-text">Domenica pomeriggio. Il treno è partito alle quattro. Sono arrivato stanco ma felicissimo!</span></div>
+    </div>
+
+    <p class="instr"><strong>Esercizio A1 — Vero o Falso?</strong></p>
+
+    <div class="tf-item" data-ans="true">
+      <div class="tf-stmt">1. Nick è partito venerdì sera.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(this,'true')">✓ Vero</button><button class="tf-btn" onclick="doTF(this,'false')">✗ Falso</button></div>
+      <div class="tf-fb">✓ Sì! È partito venerdì sera in treno. <em>He left Friday evening by train.</em></div>
+    </div>
+
+    <div class="tf-item" data-ans="false">
+      <div class="tf-stmt">2. Nick è andato a Milano in macchina.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(this,'true')">✓ Vero</button><button class="tf-btn" onclick="doTF(this,'false')">✗ Falso</button></div>
+      <div class="tf-fb">Falso! È andato in <em>treno</em>. <em>He went by train, not by car.</em></div>
+    </div>
+
+    <div class="tf-item" data-ans="true">
+      <div class="tf-stmt">3. Nick e il suo amico sono usciti a cena insieme.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(this,'true')">✓ Vero</button><button class="tf-btn" onclick="doTF(this,'false')">✗ Falso</button></div>
+      <div class="tf-fb">✓ Esatto! Siamo usciti — nota il plurale! <em>They went out together — note the plural form!</em></div>
+    </div>
+
+    <div class="tf-item" data-ans="false">
+      <div class="tf-stmt">4. Nick è tornato a casa sabato.</div>
+      <div class="tf-btns"><button class="tf-btn" onclick="doTF(this,'true')">✓ Vero</button><button class="tf-btn" onclick="doTF(this,'false')">✗ Falso</button></div>
+      <div class="tf-fb">Falso! È tornato <em>domenica</em> pomeriggio. <em>He returned on Sunday afternoon.</em></div>
+    </div>
+  </div>
+
+  <!-- SEZIONE B: ACCORDO -->
+  <div class="div">📝 Accordo del participio · Agreement</div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">B</div>
+      <div>
+        <div class="card-title">Scegli la forma corretta del participio</div>
+        <div class="card-sub">Select the correct past participle ending (-o / -a / -i / -e)</div>
+      </div>
+    </div>
+
+    <p class="instr"><strong>Esercizio B1.</strong> Choose the correct form. Remember: the participle agrees with the subject! <em>Scegli la forma corretta. Il participio si accorda col soggetto!</em></p>
+
+    <div class="gap-row">1. Marco è <select class="sel" data-ans="andato">
+      <option value="">—</option><option>andato</option><option>andata</option><option>andati</option><option>andate</option>
+    </select> al supermercato.</div>
+
+    <div class="gap-row">2. Mia sorella è <select class="sel" data-ans="uscita">
+      <option value="">—</option><option>uscito</option><option>uscita</option><option>usciti</option><option>uscite</option>
+    </select> con le amiche.</div>
+
+    <div class="gap-row">3. Nick e Marco sono <select class="sel" data-ans="partiti">
+      <option value="">—</option><option>partito</option><option>partita</option><option>partiti</option><option>partite</option>
+    </select> presto stamattina.</div>
+
+    <div class="gap-row">4. Le ragazze sono <select class="sel" data-ans="tornate">
+      <option value="">—</option><option>tornato</option><option>tornata</option><option>tornati</option><option>tornate</option>
+    </select> alle dieci.</div>
+
+    <div class="gap-row">5. Io (Nick, maschio) sono <select class="sel" data-ans="arrivato">
+      <option value="">—</option><option>arrivato</option><option>arrivata</option><option>arrivati</option><option>arrivate</option>
+    </select> in ritardo.</div>
+
+    <div class="gap-row">6. Noi (due donne) siamo <select class="sel" data-ans="venute">
+      <option value="">—</option><option>venuto</option><option>venuta</option><option>venuti</option><option>venute</option>
+    </select> in taxi.</div>
+
+    <button class="btn-check" onclick="checkSels('b1')">Controlla ✓</button>
+    <button class="btn-reveal" onclick="revealSels()">Mostra risposte</button>
+    <span class="score-chip" id="sc-b" style="display:none"></span>
+  </div>
+
+  <!-- SEZIONE C: MCQ AVERE O ESSERE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">C</div>
+      <div>
+        <div class="card-title">AVERE o ESSERE? — scegli il verbo ausiliare</div>
+        <div class="card-sub">Choose the correct auxiliary verb</div>
+      </div>
+    </div>
+
+    <p class="instr"><strong>Esercizio C1.</strong> Which auxiliary — AVERE or ESSERE? <em>Quale ausiliare — AVERE o ESSERE?</em></p>
+
+    <div class="mcq-item" data-c="b">
+      <div class="mcq-q">1. Nick _____ mangiato la pizza. (mangiare)</div>
+      <div class="mcq-opts">
+        <button class="mcq-opt" onclick="doMCQ(this,'a','b')">a) è</button>
+        <button class="mcq-opt" onclick="doMCQ(this,'b','b')">b) ha</button>
+      </div>
+      <div class="mcq-fb">✓ <strong>ha</strong> mangiato — MANGIARE takes AVERE. No movement, just eating!</div>
+    </div>
+
+    <div class="mcq-item" data-c="a">
+      <div class="mcq-q">2. Marco _____ andato a Roma ieri. (andare)</div>
+      <div class="mcq-opts">
+        <button class="mcq-opt" onclick="doMCQ(this,'a','a')">a) è</button>
+        <button class="mcq-opt" onclick="doMCQ(this,'b','a')">b) ha</button>
+      </div>
+      <div class="mcq-fb">✓ <strong>è</strong> andato — ANDARE takes ESSERE. Movement verb!</div>
+    </div>
+
+    <div class="mcq-item" data-c="b">
+      <div class="mcq-q">3. Abbiamo _____ un film bello ieri sera. (vedere)</div>
+      <div class="mcq-opts">
+        <button class="mcq-opt" onclick="doMCQ(this,'a','b')">a) siamo</button>
+        <button class="mcq-opt" onclick="doMCQ(this,'b','b')">b) abbiamo</button>
+      </div>
+      <div class="mcq-fb">✓ <strong>abbiamo</strong> visto — VEDERE takes AVERE.</div>
+    </div>
+
+    <div class="mcq-item" data-c="a">
+      <div class="mcq-q">4. Le amiche di Marco _____ arrivate in ritardo. (arrivare)</div>
+      <div class="mcq-opts">
+        <button class="mcq-opt" onclick="doMCQ(this,'a','a')">a) sono</button>
+        <button class="mcq-opt" onclick="doMCQ(this,'b','a')">b) hanno</button>
+      </div>
+      <div class="mcq-fb">✓ <strong>sono</strong> arrivate — ARRIVARE takes ESSERE. Note the -e ending for feminine plural!</div>
+    </div>
+
+    <div class="mcq-item" data-c="a">
+      <div class="mcq-q">5. Nick _____ rimasto a casa tutto il giorno. (rimanere)</div>
+      <div class="mcq-opts">
+        <button class="mcq-opt" onclick="doMCQ(this,'a','a')">a) è</button>
+        <button class="mcq-opt" onclick="doMCQ(this,'b','a')">b) ha</button>
+      </div>
+      <div class="mcq-fb">✓ <strong>è</strong> rimasto — RIMANERE (to stay/remain) takes ESSERE. State change verb!</div>
+    </div>
+
+    <div class="note"><strong>💡 Nick's cheat sheet:</strong> AVERE verbs have an object ("what?"): ho mangiato <em>la pizza</em>, ho visto <em>un film</em>. ESSERE verbs describe where you went or how you changed — no object needed.</div>
+  </div>
+
+  <!-- SEZIONE D: PRODUZIONE -->
+  <div class="div">✍️ Produzione libera · Free production</div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">D</div>
+      <div>
+        <div class="card-title">Il mio ultimo weekend</div>
+        <div class="card-sub">Scrivi 6–8 frasi · Write 6–8 sentences</div>
+      </div>
+    </div>
+
+    <p class="instr"><strong>Esercizio D1.</strong> Describe your last real weekend to Marco. Use BOTH avere AND essere verbs. Include at least 1 movement verb with correct agreement. <em>Descrivi il tuo weekend a Marco. Usa sia AVERE che ESSERE con accordo corretto.</em></p>
+
+    <div style="background:rgba(255,255,255,0.03); border-radius:9px; padding:13px; margin-bottom:14px; font-size:13px; color:rgba(255,255,255,0.38);">
+      <strong style="color:rgba(255,255,255,0.55);">Verbi ESSERE:</strong> andare · uscire · tornare · arrivare · restare · venire<br>
+      <strong style="color:rgba(255,255,255,0.55);">Verbi AVERE:</strong> mangiare · bere · fare · vedere · leggere · sentire
+    </div>
+
+    <textarea class="write-box" placeholder="Questo weekend sono..."></textarea>
+
+    <div class="note"><strong>💬 Compito · Homework:</strong> Racconta a Marco (in italiano!) tre cose che hai fatto questo weekend — una con ESSERE, una con AVERE, una a tua scelta. <em>Tell Marco 3 things you did this weekend — one with ESSERE, one with AVERE, one free choice.</em></div>
+  </div>
+
+</div>
+
+<script>
+function upProg() {
+  const tfItems = document.querySelectorAll('.tf-item').length;
+  const mcqItems = document.querySelectorAll('.mcq-item').length;
+  const selItems = document.querySelectorAll('.sel').length;
+  const all = tfItems + mcqItems + selItems;
+  const tfDone = document.querySelectorAll('.tf-btn.ok').length / 2;
+  const mcqDone = document.querySelectorAll('.mcq-opt.ok').length;
+  const selDone = document.querySelectorAll('.sel.ok').length;
+  const pct = Math.round(((tfDone+mcqDone+selDone)/all)*100);
+  document.getElementById('prog').style.width = Math.min(pct,100)+'%';
+  document.getElementById('prog-pct').textContent = Math.min(pct,100)+'%';
+}
+
+function doTF(btn, chosen) {
+  const item = btn.closest('.tf-item');
+  if (item.querySelector('.ok,.no')) return;
+  const ans = item.dataset.ans;
+  const fb = item.querySelector('.tf-fb');
+  item.querySelectorAll('.tf-btn').forEach(b => b.disabled=true);
+  if (chosen===ans) { btn.classList.add('ok'); fb.classList.add('show','ok'); }
+  else { btn.classList.add('no'); fb.classList.add('show','no'); item.querySelector('[onclick*="'+ans+'"]').classList.add('ok'); }
+  upProg();
+}
+
+function doMCQ(btn, chosen, correct) {
+  const item = btn.closest('.mcq-item');
+  if (item.querySelector('.ok,.no')) return;
+  const fb = item.querySelector('.mcq-fb');
+  item.querySelectorAll('.mcq-opt').forEach(b => b.disabled=true);
+  if (chosen===correct) { btn.classList.add('ok'); fb.classList.add('show','ok'); }
+  else { btn.classList.add('no'); fb.classList.add('show','no'); }
+  upProg();
+}
+
+function checkSels(id) {
+  let c=0,t=0;
+  document.querySelectorAll('.sel').forEach(s => {
+    t++;
+    s.classList.remove('ok','no');
+    if (s.value===s.dataset.ans) { s.classList.add('ok'); c++; }
+    else if (s.value) s.classList.add('no');
+  });
+  const sc=document.getElementById('sc-b'); sc.style.display='inline-flex'; sc.textContent=c+'/'+t;
+  upProg();
+}
+
+function revealSels() {
+  document.querySelectorAll('.sel').forEach(s => { s.value=s.dataset.ans; s.classList.add('ok'); s.classList.remove('no'); });
+}
+</script>
+</body>
+</html>
