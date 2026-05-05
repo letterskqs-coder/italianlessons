@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara · Lezione 2 — Verbi Modali & Clienti Difficili</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #0d1b2a;
+    --teal: #1a7a6e;
+    --sea: #2eb8a0;
+    --foam: #e8f4f2;
+    --sand: #f5f0e8;
+    --gold: #d4a843;
+    --coral: #e05a4e;
+    --amber: #e8943a;
+    --white: #fefefe;
+    --text: #1a2535;
+    --muted: #607080;
+    --border: #c8ddd8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a1520;
+    background-image: radial-gradient(ellipse at 80% 20%, rgba(26,122,110,0.12) 0%, transparent 60%),
+                      radial-gradient(ellipse at 20% 80%, rgba(212,168,67,0.06) 0%, transparent 50%);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* HEADER */
+  .lesson-header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.8s ease;
+  }
+
+  .lesson-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .lesson-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .lesson-header h1 em { color: var(--gold); font-style: italic; }
+
+  .lesson-subtitle {
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .anchor-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+
+  /* PROGRESS */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--amber), var(--gold));
+    border-radius: 8px;
+    transition: width 0.6s ease;
+  }
+  .progress-label { font-size: 12px; color: var(--gold); font-weight: 600; white-space: nowrap; }
+
+  /* CARD */
+  .section-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .section-badge {
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    color: var(--navy);
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .section-title-it {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .section-title-en {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 400;
+  }
+
+  /* SKILL DIVIDER */
+  .skill-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 36px 0 28px;
+    color: rgba(255,255,255,0.25);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .skill-divider::before, .skill-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  /* READING TEXT */
+  .reading-box {
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.18);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 22px;
+    font-family: 'Playfair Display', serif;
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .reading-box p + p { margin-top: 14px; }
+
+  .reading-box .hl-modal { color: var(--sea); font-style: italic; }
+  .reading-box .hl-potere { color: var(--amber); font-style: italic; }
+  .reading-box .hl-dovere { color: #e07890; font-style: italic; }
+  .reading-box .hl-se { color: var(--gold); font-style: italic; }
+
+  .reading-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.6);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* INSTRUCTION */
+  .instruction {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  .instruction strong { color: rgba(255,255,255,0.8); font-style: normal; }
+
+  /* MCQ */
+  .mcq-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  .mcq-question {
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .mcq-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mcq-opt {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .mcq-opt:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,168,67,0.06); }
+  .mcq-opt.correct { background: rgba(26,122,110,0.25); border-color: var(--sea); color: var(--sea); }
+  .mcq-opt.incorrect { background: rgba(224,90,78,0.15); border-color: var(--coral); color: #ff9090; }
+  .mcq-opt:disabled { cursor: default; }
+
+  .mcq-feedback {
+    font-size: 13px;
+    margin-top: 10px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    display: none;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .mcq-feedback.show { display: block; }
+  .mcq-feedback.ok { background: rgba(26,122,110,0.18); color: var(--sea); }
+  .mcq-feedback.no { background: rgba(224,90,78,0.12); color: #ff9090; }
+
+  /* GAP */
+  .gap-sentence {
+    font-size: 15px;
+    line-height: 2.2;
+    margin-bottom: 12px;
+    color: rgba(255,255,255,0.88);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .gap-input {
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 5px 12px;
+    min-width: 140px;
+    max-width: 200px;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .gap-input:focus { border-color: var(--gold); background: rgba(212,168,67,0.06); }
+  .gap-input.correct { border-color: var(--sea); background: rgba(26,122,110,0.18); color: var(--sea); }
+  .gap-input.incorrect { border-color: var(--coral); background: rgba(224,90,78,0.12); color: #ff9090; }
+
+  /* SELECT DROPDOWN */
+  .gap-select {
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 6px 12px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gap-select:focus { border-color: var(--gold); }
+  .gap-select option { background: #0d1b2a; color: white; }
+  .gap-select.correct { border-color: var(--sea); background: rgba(26,122,110,0.18); color: var(--sea); }
+  .gap-select.incorrect { border-color: var(--coral); background: rgba(224,90,78,0.12); color: #ff9090; }
+
+  /* ROLE-PLAY CARDS */
+  .roleplay-scenario {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .roleplay-scenario:hover { border-color: rgba(212,168,67,0.3); }
+
+  .client-bubble {
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px 12px 12px 0;
+    padding: 14px 18px;
+    font-style: italic;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .client-bubble::before {
+    content: '👤 Cliente:';
+    display: block;
+    font-size: 10px;
+    font-style: normal;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .sara-response {
+    position: relative;
+  }
+  .sara-response::before {
+    content: '⛵ Sara (tu):';
+    display: block;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .response-area {
+    width: 100%;
+    background: rgba(212,168,67,0.05);
+    border: 2px solid rgba(212,168,67,0.2);
+    border-radius: 12px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 14px 16px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 80px;
+  }
+  .response-area:focus { border-color: var(--gold); }
+  .response-area::placeholder { color: rgba(255,255,255,0.22); }
+
+  .show-model-btn {
+    background: transparent;
+    border: 1px solid rgba(212,168,67,0.3);
+    color: rgba(212,168,67,0.7);
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+  }
+  .show-model-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .model-answer {
+    background: rgba(26,122,110,0.1);
+    border: 1px solid rgba(46,184,160,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--sea);
+    margin-top: 10px;
+    display: none;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .model-answer strong { color: rgba(255,255,255,0.7); font-style: normal; display: block; font-size: 11px; letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; }
+  .model-answer.visible { display: block; animation: fadeUp 0.3s ease; }
+
+  /* SE TABLE */
+  .se-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .se-table th {
+    background: rgba(212,168,67,0.12);
+    color: var(--gold);
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .se-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.82);
+    line-height: 1.5;
+  }
+  .se-table tr:last-child td { border-bottom: none; }
+  .se-table td:first-child { color: var(--gold); font-style: italic; }
+
+  /* TEACHER NOTE */
+  .teacher-note {
+    background: rgba(212,168,67,0.07);
+    border: 1px solid rgba(212,168,67,0.18);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .teacher-note strong { color: var(--gold); }
+
+  /* BUTTONS */
+  .check-btn {
+    background: linear-gradient(135deg, var(--teal), var(--sea));
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .check-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,184,160,0.3); }
+
+  .reveal-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.45);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 10px;
+  }
+  .reveal-btn:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.3); }
+
+  .score-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(46,184,160,0.12);
+    border: 1px solid rgba(46,184,160,0.25);
+    color: var(--sea);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(224,90,78,0.1);
+    border: 1px solid rgba(224,90,78,0.25);
+    border-left: 4px solid var(--coral);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  .warning-box strong { color: #ff9090; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+  /* FINAL RECAP */
+  .recap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .recap-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+  }
+  .recap-item strong { color: var(--sea); display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+
+  @media (max-width: 600px) {
+    .mcq-options { grid-template-columns: 1fr; }
+    .recap-grid { grid-template-columns: 1fr; }
+    .section-card { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <div class="lesson-header">
+    <span class="anchor-icon">⚓</span>
+    <div class="lesson-tag">Sara · Skipper A2 · Week Lesson 2</div>
+    <h1>Verbi Modali & <em>Clienti Difficili</em></h1>
+    <p class="lesson-subtitle">Lettura in contesto · Grammatica · Role-play · Produzione scritta</p>
+    <p class="lesson-subtitle" style="color:rgba(255,255,255,0.28); font-size:12px; margin-top:4px;">Reading in context · Grammar · Role-play · Writing output</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress"></div></div>
+    <div class="progress-label" id="progress-label">0%</div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SEZIONE A: LETTURA        -->
+  <!-- ========================= -->
+  <div class="skill-divider">📖 Lettura in contesto · Reading</div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-badge">A</div>
+      <div>
+        <div class="section-title-it">Una mattina complicata in porto</div>
+        <div class="section-title-en">A complicated morning at the port — reading comprehension</div>
+      </div>
+    </div>
+
+    <div class="reading-label">📰 Testo · Text — leggi ad alta voce prima · read aloud first</div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sea)"></div><span>POTERE (can)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e07890"></div><span>DOVERE (must)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div><span>VOLERE / VORREI</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div><span>SE + presente</span></div>
+    </div>
+
+    <div class="reading-box">
+      <p>Stamattina al porto c'è un cliente insoddisfatto. Si chiama Marco e <span class="hl-modal">vuole</span> un rimborso — ma le condizioni del contratto non lo permettono. Sara <span class="hl-dovere">deve</span> gestire la situazione con calma e professionalità.</p>
+
+      <p>Marco dice: "<span class="hl-modal">Voglio</span> cancellare il tour. Il mare sembra agitato." Sara risponde con pazienza: "Capisco, Marco. Però <span class="hl-potere">possiamo</span> controllare insieme le previsioni meteo. <span class="hl-se">Se il mare è davvero agitato</span>, non partiamo — è la nostra politica. <span class="hl-se">Se invece il mare è calmo</span>, <span class="hl-dovere">dobbiamo</span> rispettare la prenotazione."</p>
+
+      <p>Marco non è convinto: "<span class="hl-modal">Vorrei</span> almeno cambiare la data." Sara risponde: "<span class="hl-potere">Puoi</span> cambiare la data con 24 ore di anticipo. Oggi purtroppo non è possibile, ma <span class="hl-potere">posso</span> darti un voucher per il prossimo tour. <span class="hl-se">Se accetti</span>, <span class="hl-potere">possiamo</span> risolvere tutto adesso."</p>
+
+      <p>Alla fine Marco accetta il voucher. Sara <span class="hl-dovere">deve</span> sempre ricordare: un cliente soddisfatto torna sempre.</p>
+    </div>
+
+    <p class="instruction"><strong>Esercizio A1 — Comprensione.</strong> Choose the best answer. <em>Scegli la risposta migliore.</em></p>
+
+    <div class="mcq-item" data-correct="b">
+      <div class="mcq-question">1. Perché Marco vuole cancellare il tour?</div>
+      <div class="mcq-options">
+        <button class="mcq-opt" onclick="checkMCQ(this,'a','b')">Ha dimenticato la prenotazione.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'b','b')">Pensa che il mare sia agitato.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'c','b')">Non gli piace Sara.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'d','b')">Vuole un tour diverso.</button>
+      </div>
+      <div class="mcq-feedback">✓ Esatto! Marco ha paura del mare agitato — ma Sara controlla le previsioni. <em>Marco is worried about rough seas.</em></div>
+    </div>
+
+    <div class="mcq-item" data-correct="c">
+      <div class="mcq-question">2. Cosa offre Sara a Marco alla fine?</div>
+      <div class="mcq-options">
+        <button class="mcq-opt" onclick="checkMCQ(this,'a','c')">Un rimborso completo.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'b','c')">Una scusa e nient'altro.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'c','c')">Un voucher per il prossimo tour.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'d','c')">Uno sconto del 50%.</button>
+      </div>
+      <div class="mcq-feedback">✓ Brava! Sara offre un voucher — professionale e gentile. <em>A voucher for the next tour.</em></div>
+    </div>
+
+    <div class="mcq-item" data-correct="a">
+      <div class="mcq-question">3. Sara dice: "Se il mare è davvero agitato, non partiamo." Quale forma verbale usa con SE?</div>
+      <div class="mcq-options">
+        <button class="mcq-opt" onclick="checkMCQ(this,'a','a')">Il presente indicativo.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'b','a')">Il futuro semplice.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'c','a')">Il passato prossimo.</button>
+        <button class="mcq-opt" onclick="checkMCQ(this,'d','a')">Il condizionale presente.</button>
+      </div>
+      <div class="mcq-feedback">✓ Perfetto! Regola d'oro: SE + presente → non futuro! <em>Rule: SE + present tense — never SE + future!</em></div>
+    </div>
+
+    <div class="teacher-note">
+      <strong>💡 Domande orali:</strong> "Sei mai stata in una situazione simile con un cliente?" · "Come risponderesti a Marco in inglese?" · "Cosa significa 'purtroppo' nel testo?" — Elicit full sentences, not single words.
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SEZIONE B: MODALI         -->
+  <!-- ========================= -->
+  <div class="skill-divider">📘 Grammatica · Verbi Modali</div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-badge">B</div>
+      <div>
+        <div class="section-title-it">POSSO / DEVO / VORREI — scegli il modale giusto</div>
+        <div class="section-title-en">Choose the correct modal verb in context</div>
+      </div>
+    </div>
+
+    <p class="instruction"><strong>Esercizio B1.</strong> Select the correct modal verb from the dropdown. Think about meaning: permission/ability (POSSO), obligation (DEVO), polite wish (VORREI). <em>Scegli il verbo modale corretto. Pensa al significato.</em></p>
+
+    <div class="gap-sentence">
+      1. Il cliente chiede: "<select class="gap-select" data-answer="Posso">
+        <option value="">— scegli —</option>
+        <option>Posso</option><option>Devo</option><option>Vorrei</option>
+      </select> pagare con la carta?"
+    </div>
+
+    <div class="gap-sentence">
+      2. Sara dice ai clienti: "Tutti <select class="gap-select" data-answer="devono">
+        <option value="">— scegli —</option>
+        <option>possono</option><option>devono</option><option>vorrebbero</option>
+      </select> indossare il giubbotto."
+    </div>
+
+    <div class="gap-sentence">
+      3. Un cliente al telefono: "<select class="gap-select" data-answer="Vorrei">
+        <option value="">— scegli —</option>
+        <option>Voglio</option><option>Devo</option><option>Vorrei</option>
+      </select> prenotare un tour privato per sabato."
+    </div>
+
+    <div class="gap-sentence">
+      4. "Se c'è il temporale, noi <select class="gap-select" data-answer="dobbiamo">
+        <option value="">— scegli —</option>
+        <option>dobbiamo</option><option>possiamo</option><option>vogliamo</option>
+      </select> tornare in porto."
+    </div>
+
+    <div class="gap-sentence">
+      5. Sara: "Certo! <select class="gap-select" data-answer="Posso">
+        <option value="">— scegli —</option>
+        <option>Devo</option><option>Posso</option><option>Vorrei</option>
+      </select> darti un voucher per il prossimo tour."
+    </div>
+
+    <div class="gap-sentence">
+      6. "Buongiorno! <select class="gap-select" data-answer="Vorrei">
+        <option value="">— scegli —</option>
+        <option>Voglio</option><option>Devo</option><option>Vorrei</option>
+      </select> sapere il prezzo del tour con pranzo."
+    </div>
+
+    <button class="check-btn" onclick="checkSelects('b1')">Controlla · Check ✓</button>
+    <button class="reveal-btn" onclick="revealSelects('b1')">Mostra risposte</button>
+    <span class="score-chip" id="score-b1" style="display:none"></span>
+
+    <div class="teacher-note" style="margin-top:18px;">
+      <strong>💡 Focus: VOGLIO vs VORREI.</strong> After checking, drill this contrast orally: "Sara, di' 'Voglio un caffè' — adesso con più educazione, come a un cliente." Students often understand the rule but forget it in real speech.
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SEZIONE C: SE             -->
+  <!-- ========================= -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-badge">C</div>
+      <div>
+        <div class="section-title-it">Frasi con SE — decisioni in mare</div>
+        <div class="section-title-en">SE sentences — real decisions at sea</div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      ⚠️ <strong>Regola d'oro · Golden rule:</strong><br>
+      SE + <strong>presente</strong> → risultato al <strong>presente o futuro</strong><br>
+      <em>Se piove, torniamo. ✓</em> &nbsp;|&nbsp; <em>Se pioverà, torneremo. ✗ WRONG!</em>
+    </div>
+
+    <table class="se-table">
+      <tr><th>SE + presente (condizione)</th><th>Risultato · Result</th></tr>
+      <tr><td>Se il mare è calmo...</td><td>...andiamo a Osljak.</td></tr>
+      <tr><td>Se c'è il temporale...</td><td>...non partiamo.</td></tr>
+      <tr><td>Se il cliente accetta...</td><td>...risolviamo tutto.</td></tr>
+      <tr><td>Se il motore non funziona...</td><td>...chiamiamo il porto.</td></tr>
+    </table>
+
+    <p class="instruction"><strong>Esercizio C1.</strong> Complete the SE sentences with a logical result. Use present tense verbs. <em>Completa le frasi con SE. Usa il presente indicativo.</em></p>
+
+    <div class="gap-sentence" style="flex-direction:column; align-items:flex-start; gap:6px;">
+      <span>1. Se il vento è troppo forte,</span>
+      <input class="gap-input" style="max-width:100%; width:100%;" data-answer="riduciamo le vele" placeholder="riduciamo / rallentiamo / torniamo...">
+    </div>
+    <div class="gap-sentence" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:4px;">
+      <span>2. Se un cliente non indossa il giubbotto,</span>
+      <input class="gap-input" style="max-width:100%; width:100%;" data-answer="non partiamo" placeholder="non partiamo / spieghiamo...">
+    </div>
+    <div class="gap-sentence" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:4px;">
+      <span>3. Se il mare è calmo e il cielo è blu,</span>
+      <input class="gap-input" style="max-width:100%; width:100%;" data-answer="è una giornata perfetta per navigare" placeholder="è perfetto / navighiamo...">
+    </div>
+    <div class="gap-sentence" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:4px;">
+      <span>4. Se i clienti hanno paura,</span>
+      <input class="gap-input" style="max-width:100%; width:100%;" data-answer="resto calma e spiego la situazione" placeholder="rimaniamo calmi / spiego...">
+    </div>
+
+    <button class="check-btn" onclick="checkSEGaps()">Controlla · Check ✓</button>
+    <button class="reveal-btn" onclick="revealSEGaps()">Suggerimenti · Hints</button>
+
+    <div class="teacher-note">
+      <strong>💡 Produzione orale:</strong> Ask Sara to invent 2 original SE sentences from her real work experience. Correct only the tense — accept any logical content. This builds confidence with the structure.
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SEZIONE D: ROLE-PLAY      -->
+  <!-- ========================= -->
+  <div class="skill-divider">🎭 Role-play · Clienti difficili</div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-badge">D</div>
+      <div>
+        <div class="section-title-it">Sei Sara — rispondi ai clienti!</div>
+        <div class="section-title-en">You are Sara — write your professional response in Italian</div>
+      </div>
+    </div>
+
+    <p class="instruction"><strong>Esercizio D1 — Role-play scritto.</strong> Read the client's message. Write Sara's response in Italian — calm, professional, and clear. Use POTERE, DOVERE, or VORREI + at least one SE sentence where appropriate. <em>Usa almeno un verbo modale e, dove possibile, una frase con SE.</em></p>
+
+    <!-- Scenario 1 -->
+    <div class="roleplay-scenario">
+      <div class="client-bubble">"Ciao Sara! Vorrei portare il mio cane di 30 kg sulla barca. È possibile?"</div>
+      <div class="sara-response">
+        <textarea class="response-area" placeholder="Ciao! Capisco che vuole portare il suo cane... però..."></textarea>
+        <button class="show-model-btn" onclick="showModel(this)">💡 Mostra risposta modello · Show model answer</button>
+        <div class="model-answer"><strong>Risposta modello · Model answer:</strong>Ciao! Capisco, però purtroppo non possiamo accettare animali di grandi dimensioni a bordo. Se il cane è piccolo e in una borsa, possiamo parlarne. In alternativa, posso consigliarle un tour privato dove le regole sono più flessibili. Vorrei trovare una soluzione per lei!</div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="roleplay-scenario">
+      <div class="client-bubble">"Buongiorno. Ho prenotato per domani ma domani piove. Voglio i soldi indietro."</div>
+      <div class="sara-response">
+        <textarea class="response-area" placeholder="Buongiorno! Capisco la sua preoccupazione..."></textarea>
+        <button class="show-model-btn" onclick="showModel(this)">💡 Mostra risposta modello · Show model answer</button>
+        <div class="model-answer"><strong>Risposta modello · Model answer:</strong>Buongiorno! Capisco la sua preoccupazione. Se domani piove davvero, non partiamo — è la nostra politica. In quel caso, può scegliere tra un rimborso completo o un voucher per un'altra data. Dobbiamo però aspettare le previsioni ufficiali di domani mattina. La chiamo io appena ho la conferma!</div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="roleplay-scenario">
+      <div class="client-bubble">"Sara, il bambino ha toccato il boma! È pericoloso?"</div>
+      <div class="sara-response">
+        <textarea class="response-area" placeholder="Tranquilla! Il bambino..."></textarea>
+        <button class="show-model-btn" onclick="showModel(this)">💡 Mostra risposta modello · Show model answer</button>
+        <div class="model-answer"><strong>Risposta modello · Model answer:</strong>Tranquilla! Il bambino non si è fatto del male, ma il boma può essere pericoloso quando viriamo. Tutti devono stare lontani dal boma mentre navighiamo — dobbiamo abbassare la testa quando cambiamo direzione. Se volete, posso spiegare di nuovo le procedure di sicurezza. Siamo al sicuro, fidatevi di me!</div>
+      </div>
+    </div>
+
+    <div class="teacher-note">
+      <strong>💡 Attività orale:</strong> After writing, have Sara read ONE response aloud as if talking to the real client — natural speed, eye contact if possible. Then swap: you play the client and improvise a follow-up question. This builds real communicative fluency.
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- SEZIONE E: PRODUZIONE     -->
+  <!-- ========================= -->
+  <div class="skill-divider">✍️ Produzione scritta · Writing</div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-badge">E</div>
+      <div>
+        <div class="section-title-it">Scrivi il tuo script professionale</div>
+        <div class="section-title-en">Write your own professional tour script</div>
+      </div>
+    </div>
+
+    <p class="instruction"><strong>Esercizio E1 — Compito a casa · Homework.</strong><br>
+    Scrivi lo script completo di Sara per l'inizio di un tour. Includi: benvenuto, presentazione, sicurezza, meteo, regole. <strong>10–12 frasi.</strong><br>
+    <em>Write Sara's complete script for the start of a tour: welcome, intro, safety, weather, rules. 10–12 sentences.</em></p>
+
+    <div style="background: rgba(255,255,255,0.03); border-radius:10px; padding: 14px; margin-bottom: 14px; font-size:13px; color: rgba(255,255,255,0.4);">
+      <strong style="color:rgba(255,255,255,0.6);">Usa obbligatoriamente · Must include:</strong><br>
+      ✦ Almeno 2 verbi modali (POSSO / DEVO / VORREI) · At least 2 modal verbs<br>
+      ✦ Almeno 1 frase con SE · At least 1 SE sentence<br>
+      ✦ Almeno 2 preposizioni articolate (nel / alla / sulla...) · At least 2 articulated prepositions<br>
+      ✦ Almeno 1 verbo al passato prossimo (es: "Oggi ho controllato...") · 1 verb in passato prossimo
+    </div>
+
+    <textarea class="response-area" style="min-height:180px;" placeholder="Benvenuti a bordo! Mi chiamo Sara e sono la vostra skipper..."></textarea>
+
+    <div class="recap-grid">
+      <div class="recap-item">
+        <strong>Checklist modale</strong>
+        ☐ POSSO / PUOI / POSSONO<br>
+        ☐ DEVO / DEVE / DOBBIAMO<br>
+        ☐ VORREI / VORRESTE
+      </div>
+      <div class="recap-item">
+        <strong>Checklist strutture</strong>
+        ☐ SE + presente (non futuro!)<br>
+        ☐ Preposizione articolata<br>
+        ☐ Passato prossimo (ho...)
+      </div>
+    </div>
+
+    <div class="teacher-note" style="margin-top:14px;">
+      <strong>💡 Correzione in classe:</strong> Read Sara's script aloud together — mark errors with 3 categories only: (V) verbo, (P) preposizione, (T) tempo verbale. Don't over-correct. Celebrate what's right first, then focus on 2–3 patterns to improve next lesson.
+    </div>
+  </div>
+
+  <!-- RECAP FINALE -->
+  <div class="section-card" style="border-color: rgba(212,168,67,0.2);">
+    <div class="section-header">
+      <div class="section-badge" style="background: rgba(212,168,67,0.2); color: var(--gold);">✓</div>
+      <div>
+        <div class="section-title-it">Questa settimana — riepilogo obiettivi</div>
+        <div class="section-title-en">This week's learning goals summary</div>
+      </div>
+    </div>
+
+    <div class="recap-grid">
+      <div class="recap-item">
+        <strong>Lezione 1</strong>
+        Passato prossimo in contesto nautico · Preposizioni articolate · Comprensione orale del racconto
+      </div>
+      <div class="recap-item">
+        <strong>Lezione 2</strong>
+        Verbi modali POSSO / DEVO / VORREI · SE + presente · Gestire clienti difficili in italiano
+      </div>
+      <div class="recap-item">
+        <strong>Strutture attive</strong>
+        "Ho salpato / Ho spiegato / Siamo tornati" · "Posso darle un voucher" · "Se il mare è calmo..."
+      </div>
+      <div class="recap-item">
+        <strong>Prossima settimana</strong>
+        Futuro semplice · Descrizioni di luoghi (isole, porti) · Vocabolario della cultura croata
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// MCQ
+let mcqScore = 0, mcqTotal = 0;
+
+function checkMCQ(btn, chosen, correct) {
+  const item = btn.closest('.mcq-item');
+  if (item.querySelector('.mcq-opt.correct, .mcq-opt.incorrect')) return;
+
+  const feedback = item.querySelector('.mcq-feedback');
+  const opts = item.querySelectorAll('.mcq-opt');
+  opts.forEach(o => o.disabled = true);
+
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    feedback.classList.add('show','ok');
+    mcqScore++;
+  } else {
+    btn.classList.add('incorrect');
+    feedback.classList.add('show','no');
+    feedback.textContent = '✗ Non esatto. ' + feedback.textContent;
+  }
+  mcqTotal++;
+  updateProgress();
+}
+
+// SELECT MODALI
+function checkSelects(section) {
+  let correct = 0, total = 0;
+  document.querySelectorAll('.gap-select').forEach(sel => {
+    total++;
+    if (sel.value.toLowerCase() === sel.dataset.answer.toLowerCase()) {
+      sel.classList.add('correct'); sel.classList.remove('incorrect');
+      correct++;
+    } else if (sel.value !== '') {
+      sel.classList.add('incorrect'); sel.classList.remove('correct');
+    }
+  });
+  const sc = document.getElementById('score-b1');
+  sc.style.display = 'inline-flex';
+  sc.textContent = correct + '/' + total;
+  updateProgress();
+}
+
+function revealSelects(section) {
+  document.querySelectorAll('.gap-select').forEach(sel => {
+    sel.value = sel.dataset.answer;
+    sel.classList.add('correct');
+  });
+}
+
+// SE GAPS — open answers, just reveal hints
+function checkSEGaps() {
+  const inputs = document.querySelectorAll('#se-gaps .gap-input, .gap-input[data-answer]');
+  // For open answers, we only check if filled
+  document.querySelectorAll('.gap-sentence input.gap-input[placeholder*="riduciamo"], .gap-sentence input.gap-input[placeholder*="non partiamo"], .gap-sentence input.gap-input[placeholder*="perfetto"], .gap-sentence input.gap-input[placeholder*="calmi"]').forEach(inp => {
+    if (inp.value.trim().length > 3) {
+      inp.classList.add('correct');
+    }
+  });
+  updateProgress();
+}
+
+function revealSEGaps() {
+  document.querySelectorAll('.gap-sentence input').forEach(inp => {
+    if (inp.dataset.answer) {
+      inp.value = inp.dataset.answer;
+      inp.classList.add('correct');
+    }
+  });
+}
+
+// MODEL ANSWERS
+function showModel(btn) {
+  const model = btn.nextElementSibling;
+  model.classList.toggle('visible');
+  btn.textContent = model.classList.contains('visible') ? '▲ Nascondi · Hide' : '💡 Mostra risposta modello · Show model answer';
+}
+
+// PROGRESS
+function updateProgress() {
+  const mcqDone = document.querySelectorAll('.mcq-opt.correct').length;
+  const selDone = document.querySelectorAll('.gap-select.correct').length;
+  const total = document.querySelectorAll('.mcq-item').length + document.querySelectorAll('.gap-select').length;
+  const pct = Math.round(((mcqDone + selDone) / total) * 100);
+  document.getElementById('progress').style.width = Math.min(pct, 100) + '%';
+  document.getElementById('progress-label').textContent = Math.min(pct, 100) + '%';
+}
+</script>
+</body>
+</html>
