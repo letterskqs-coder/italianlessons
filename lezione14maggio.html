@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara · Lezione 2 — Pronuncia & Grammatica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rust:#C4541A;--rust-l:#FAF0EA;--rust-m:#E8825A;--rust-d:#8A3510;
+  --ink:#1E1916;--muted:#7A6E66;--subtle:#B0A89E;
+  --cream:#F8F4EE;--surf:#FFFFFF;--border:#E6DDD4;
+  --olive:#5A6E3A;--olive-l:#EEF2E6;
+  --navy:#1E3A5F;--navy-l:#E8EEF5;
+  --gold:#C08A20;--gold-l:#FBF3DC;
+  --r:12px;--shadow:0 2px 8px rgba(30,25,22,.07),0 1px 2px rgba(30,25,22,.05);
+}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;padding-bottom:5rem}
+
+/* ─── HERO ─── */
+.hero{background:var(--ink);color:#fff;padding:0;position:relative;overflow:hidden}
+.hero-stripe{height:6px;background:linear-gradient(90deg,var(--rust) 0%,var(--rust-m) 40%,var(--gold) 100%)}
+.hero-body{padding:2.5rem 2rem 2rem;max-width:780px;margin:0 auto;position:relative}
+.hero-body::after{content:'LEZIONE\A2';white-space:pre;position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:80px;font-weight:600;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-.03em;pointer-events:none}
+.lesson-no{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--rust-m);margin-bottom:.6rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4.5vw,40px);font-weight:400;line-height:1.15;margin-bottom:.5rem}
+.hero h1 em{font-style:italic;color:var(--rust-m)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12)}
+
+/* ─── LAYOUT ─── */
+.wrap{max-width:780px;margin:0 auto;padding:0 1rem}
+
+/* ─── PROGRESS BAR ─── */
+.progress-strip{background:var(--surf);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,25,22,.06)}
+.progress-inner{max-width:780px;margin:0 auto;display:flex;align-items:stretch}
+.prog-btn{flex:1;padding:12px 6px 10px;border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:11px;color:var(--muted);cursor:pointer;transition:all .18s;border-bottom:3px solid transparent;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2}
+.prog-btn .pb-icon{font-size:15px}
+.prog-btn .pb-time{font-size:9px;color:var(--subtle);letter-spacing:.04em}
+.prog-btn:hover{color:var(--rust);background:var(--rust-l)}
+.prog-btn.active{color:var(--rust);border-bottom-color:var(--rust);font-weight:600}
+.prog-btn.done{color:var(--olive);border-bottom-color:var(--olive)}
+.prog-btn.done .pb-icon::after{content:'✓';font-size:9px;vertical-align:super;margin-left:1px;color:var(--olive)}
+
+/* ─── PANELS ─── */
+.panel{display:none}
+.panel.active{display:block;animation:rise .3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ─── TYPOGRAPHY ─── */
+.section-head{display:flex;align-items:baseline;gap:10px;margin:2rem 0 1rem}
+.sh-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+.sh-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--ink)}
+.sh-time{font-size:11px;color:var(--subtle);margin-left:auto;white-space:nowrap}
+
+/* ─── CARDS ─── */
+.card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+.card-rust{background:var(--rust-l);border-color:#E8C0A8}
+.card-olive{background:var(--olive-l);border-color:#C0CFA8}
+.card-navy{background:var(--navy-l);border-color:#B8CBDF}
+.card-gold{background:var(--gold-l);border-color:#E0C880}
+
+/* ─── READING TEXT ─── */
+.reading{font-family:'Playfair Display',serif;font-size:16.5px;line-height:1.9;color:var(--ink)}
+.reading p{margin-bottom:1.1em}
+.reading p:last-child{margin-bottom:0}
+.anno{background:#FFF8C0;border-bottom:1.5px solid #D4B040;cursor:help;border-radius:2px;padding:0 2px;position:relative}
+.anno:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:0;background:var(--ink);color:#fff;font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap;font-family:'Outfit',sans-serif;font-style:normal;z-index:10;pointer-events:none}
+
+/* ─── PRONUNCIATION ─── */
+.phon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:1rem}
+.phon-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:all .2s;text-align:center;position:relative;overflow:hidden}
+.phon-card::before{content:'';position:absolute;inset:0;background:var(--rust);opacity:0;transition:opacity .2s}
+.phon-card:hover::before{opacity:.04}
+.phon-card.playing{border-color:var(--rust);box-shadow:0 0 0 3px rgba(196,84,26,.15)}
+.phon-symbol{font-size:28px;font-family:'Playfair Display',serif;color:var(--rust);line-height:1;margin-bottom:4px}
+.phon-label{font-size:13px;font-weight:600;color:var(--ink)}
+.phon-ex{font-size:12px;color:var(--muted);margin-top:3px;font-style:italic}
+.phon-hint{font-size:11px;color:var(--subtle);margin-top:4px}
+.play-icon{font-size:18px;margin-bottom:4px}
+
+.stress-word{font-size:20px;font-family:'Playfair Display',serif;display:inline-block;margin:4px 8px;cursor:pointer;transition:color .15s;letter-spacing:.02em}
+.stress-syl{display:inline}
+.stress-syl.stressed{color:var(--rust);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.stress-hint{font-size:12px;color:var(--muted);font-style:italic;margin-left:4px}
+
+/* ─── MINIMAL PAIRS ─── */
+.pairs-row{display:flex;gap:10px;margin-bottom:8px;align-items:stretch;flex-wrap:wrap}
+.pair-box{flex:1;min-width:120px;padding:12px 14px;border-radius:var(--r);border:1px solid var(--border);background:var(--surf);text-align:center;cursor:pointer;transition:all .18s}
+.pair-box:hover{border-color:var(--rust);background:var(--rust-l)}
+.pair-box.chosen-a{background:var(--navy-l);border-color:var(--navy)}
+.pair-box.chosen-b{background:var(--rust-l);border-color:var(--rust)}
+.pair-word{font-family:'Playfair Display',serif;font-size:20px}
+.pair-ipa{font-size:12px;color:var(--muted);margin-top:2px}
+.pair-en{font-size:12px;color:var(--subtle);font-style:italic}
+.vs-badge{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--subtle);width:30px;flex-shrink:0}
+
+/* ─── GRAMMAR ─── */
+.rule-box{border-left:3px solid var(--rust);padding:.75rem 1rem;margin-bottom:1rem;background:var(--rust-l);border-radius:0 var(--r) var(--r) 0}
+.rule-title{font-size:12px;font-weight:600;color:var(--rust-d);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.4rem}
+.rule-body{font-size:14px;color:var(--ink);line-height:1.7}
+.rule-body strong{color:var(--rust)}
+
+.conj-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:.5rem}
+.conj-table th{padding:8px 12px;background:var(--ink);color:#fff;text-align:left;font-weight:500;font-size:12px;letter-spacing:.04em}
+.conj-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.conj-table tr:last-child td{border-bottom:none}
+.conj-table tr:nth-child(even) td{background:var(--cream)}
+.conj-table td:first-child{color:var(--muted);font-weight:500}
+.conj-table td:nth-child(2){color:var(--rust);font-weight:600}
+.conj-table td:nth-child(3){color:var(--ink);font-style:italic}
+
+.formula{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:var(--r);padding:8px 16px;font-size:13px;font-family:'Outfit',sans-serif;margin:8px 0;flex-wrap:wrap}
+.formula .f-part{padding:3px 8px;border-radius:4px;font-weight:600}
+.formula .f-aux{background:var(--rust)}
+.formula .f-pp{background:var(--gold)}
+.formula .f-subj{background:rgba(255,255,255,.15)}
+.formula .f-plus{color:rgba(255,255,255,.4)}
+
+/* ─── EXERCISES ─── */
+.ex-label{font-size:12px;font-weight:600;color:var(--rust);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
+.ex-intro{font-size:13px;color:var(--muted);background:var(--cream);padding:.65rem 1rem;border-radius:8px;border:1px solid var(--border);margin-bottom:1rem;line-height:1.6}
+
+.mcq-q{margin-bottom:1.1rem}
+.mcq-q:last-of-type{margin-bottom:0}
+.mcq-text{font-size:14px;font-weight:500;margin-bottom:8px;line-height:1.5;color:var(--ink)}
+.mcq-opts{display:flex;flex-direction:column;gap:6px}
+.opt{padding:9px 13px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:14px;font-family:'Outfit',sans-serif;text-align:left;background:var(--surf);transition:all .15s;line-height:1.4;color:var(--ink)}
+.opt:hover{background:var(--rust-l);border-color:var(--rust-m)}
+.opt.correct{background:#EAF5DE;border-color:#5A9E22;color:#2A5A08}
+.opt.wrong{background:#FDECEA;border-color:#C0392B;color:#7A1A10}
+.opt.disabled{pointer-events:none}
+
+.fill-wrap{margin-bottom:1rem}
+.fill-sent{font-family:'Playfair Display',serif;font-size:16px;line-height:1.8;color:var(--ink);margin-bottom:5px}
+.fill-clue{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:5px}
+.fill-inp{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:'Outfit',sans-serif;background:var(--surf);color:var(--ink);outline:none;transition:all .18s}
+.fill-inp:focus{border-color:var(--rust);box-shadow:0 0 0 3px rgba(196,84,26,.1)}
+.fill-inp.ok{border-color:#5A9E22;background:#EAF5DE;color:#2A5A08}
+.fill-inp.err{border-color:#C0392B;background:#FDECEA}
+.fb{font-size:12px;margin-top:4px;padding:4px 8px;border-radius:4px;display:none}
+.fb.good{display:block;background:#EAF5DE;color:#2A5A08}
+.fb.bad{display:block;background:#FDECEA;color:#7A1A10}
+
+/* ─── SCORE ─── */
+.score-row{display:flex;align-items:center;gap:12px;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:999px;overflow:hidden;border:1px solid var(--border)}
+.score-fill{height:100%;background:var(--rust);border-radius:999px;transition:width .5s ease}
+.score-num{font-size:13px;color:var(--muted);font-weight:600;min-width:44px;text-align:right}
+
+/* ─── PRODUCTION ─── */
+.prompt-box{background:linear-gradient(135deg,var(--ink) 0%,#2E2420 100%);color:#fff;border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.prompt-box .pb-tag{font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--rust-m);text-transform:uppercase;margin-bottom:.5rem}
+.prompt-box .pb-text{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;line-height:1.6;margin-bottom:.75rem}
+.prompt-box .pb-hint{font-size:12px;color:rgba(255,255,255,.5)}
+
+.starter-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1rem}
+.s-chip{padding:6px 13px;border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--ink);cursor:pointer;background:var(--surf);transition:all .15s;font-family:'Outfit',sans-serif}
+.s-chip:hover{background:var(--rust-l);border-color:var(--rust-m);color:var(--rust-d)}
+
+textarea.prod{width:100%;min-height:90px;padding:12px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'Playfair Display',serif;line-height:1.75;color:var(--ink);background:var(--surf);resize:vertical;outline:none;transition:border .18s}
+textarea.prod:focus{border-color:var(--rust);box-shadow:0 0 0 3px rgba(196,84,26,.08)}
+.wc{font-size:11px;color:var(--subtle);text-align:right;margin-top:4px}
+
+/* ─── BUTTONS ─── */
+.next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:11px 24px;background:var(--rust);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-family:'Outfit',sans-serif;cursor:pointer;font-weight:600;transition:background .15s;letter-spacing:.01em}
+.next-btn:hover{background:var(--rust-d)}
+.check-btn{display:inline-flex;align-items:center;gap:6px;margin-top:1rem;padding:9px 18px;background:transparent;color:var(--rust);border:1.5px solid var(--rust);border-radius:var(--r);font-size:13px;font-family:'Outfit',sans-serif;cursor:pointer;font-weight:600;transition:all .15s}
+.check-btn:hover{background:var(--rust-l)}
+.reset-btn{padding:9px 16px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:var(--r);font-size:13px;font-family:'Outfit',sans-serif;cursor:pointer;margin-left:8px;transition:all .15s}
+.reset-btn:hover{background:var(--cream);color:var(--ink)}
+
+/* ─── PRONUNCIATION DISPLAY ─── */
+.ipa-word{font-size:32px;font-family:'Playfair Display',serif;color:var(--rust);text-align:center;margin:1rem 0 .25rem;letter-spacing:.04em}
+.ipa-pron{font-size:16px;color:var(--muted);text-align:center;font-style:italic;margin-bottom:.5rem}
+.ipa-en{font-size:13px;color:var(--subtle);text-align:center}
+
+/* ─── WORD SORT ─── */
+.sort-pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:1.5px dashed var(--border);border-radius:var(--r);margin-bottom:10px;background:var(--cream)}
+.sort-zone{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:1.5px dashed var(--border);border-radius:var(--r);margin-bottom:6px;position:relative}
+.sort-zone-label{position:absolute;top:-10px;left:12px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:0 6px;background:var(--surf)}
+.sort-zone.essere-zone .sort-zone-label{color:var(--navy);background:var(--navy-l)}
+.sort-zone.avere-zone .sort-zone-label{color:var(--rust);background:var(--rust-l)}
+.sort-zone.essere-zone{background:var(--navy-l);border-color:#B8CBDF}
+.sort-zone.avere-zone{background:var(--rust-l);border-color:#E8C0A8}
+.sortable{padding:7px 14px;border-radius:20px;font-size:13px;font-weight:500;cursor:grab;user-select:none;transition:all .2s;border:1px solid transparent}
+.sortable.pool-item{background:var(--surf);border-color:var(--border);color:var(--ink)}
+.sortable.pool-item:hover{border-color:var(--rust-m);background:var(--rust-l)}
+.sortable.in-essere{background:var(--navy-l);border-color:var(--navy);color:var(--navy)}
+.sortable.in-avere{background:var(--rust-l);border-color:var(--rust);color:var(--rust-d)}
+
+/* ─── DIALOGUE ─── */
+.d-entry{display:flex;gap:12px;align-items:flex-start;margin-bottom:.9rem}
+.d-entry:last-child{margin-bottom:0}
+.d-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+.d-av.sara{background:#F0E0D0;color:var(--rust-d)}
+.d-av.other{background:#E0E4D8;color:var(--olive)}
+.d-bub{flex:1}
+.d-name{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.04em;margin-bottom:3px;text-transform:uppercase}
+.d-it{font-size:15px;line-height:1.65;color:var(--ink)}
+.d-en{font-size:12px;color:var(--muted);font-style:italic;margin-top:2px}
+.d-gap{border:none;border-bottom:2px solid var(--rust-m);width:120px;font-size:15px;font-family:'Playfair Display',serif;background:transparent;outline:none;color:var(--rust-d);padding:0 4px}
+.d-gap.ok{border-bottom-color:#5A9E22;color:#2A5A08}
+.d-gap.err{border-bottom-color:#C0392B}
+
+/* ─── TIP ─── */
+.tip{background:var(--gold-l);border-radius:var(--r);padding:10px 14px;font-size:13px;color:#7A5A00;margin-top:1rem;line-height:1.6;border-left:3px solid var(--gold)}
+.tip strong{color:#5A3E00}
+
+footer{text-align:center;font-size:12px;color:var(--subtle);margin-top:3rem;padding:1rem}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-body">
+    <div class="lesson-no">Lezione 2 · Sara · A2–B1</div>
+    <h1>Pronuncia &amp; Grammatica<br><em>dal testo alla voce</em></h1>
+    <div class="hero-sub">Fonologia italiana · Passato prossimo · Preposizioni · Accordo aggettivi</div>
+    <div class="hero-pills">
+      <span class="pill">🔊 Pronuncia guidata</span>
+      <span class="pill">📖 2 testi autentici</span>
+      <span class="pill">✏️ 5 sezioni esercizi</span>
+      <span class="pill">⏱ 50 min</span>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<div class="progress-strip">
+  <div class="progress-inner">
+    <button class="prog-btn active" id="pb0" onclick="goTo(0,this)"><span class="pb-icon">🔊</span><span>Pronuncia</span><span class="pb-time">MIN 1–12</span></button>
+    <button class="prog-btn" id="pb1" onclick="goTo(1,this)"><span class="pb-icon">📖</span><span>Testo 1</span><span class="pb-time">MIN 13–20</span></button>
+    <button class="prog-btn" id="pb2" onclick="goTo(2,this)"><span class="pb-icon">🔧</span><span>Pass. Pross.</span><span class="pb-time">MIN 21–30</span></button>
+    <button class="prog-btn" id="pb3" onclick="goTo(3,this)"><span class="pb-icon">📖</span><span>Testo 2</span><span class="pb-time">MIN 31–38</span></button>
+    <button class="prog-btn" id="pb4" onclick="goTo(4,this)"><span class="pb-icon">🏗</span><span>Prep. + Agg.</span><span class="pb-time">MIN 39–46</span></button>
+    <button class="prog-btn" id="pb5" onclick="goTo(5,this)"><span class="pb-icon">🎙</span><span>Produzione</span><span class="pb-time">MIN 47–50</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════
+     PANEL 0 — PRONUNCIA
+══════════════════════════════════════════ -->
+<div class="panel active" id="panel-0">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 1</span>
+    <span class="sh-title">Pronuncia italiana</span>
+    <span class="sh-time">⏱ min 1–12</span>
+  </div>
+
+  <!-- A: Suoni difficili -->
+  <div class="card">
+    <div class="ex-label">A · I suoni più difficili per chi parla inglese o croato</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem">Clicca su ogni scheda per vedere esempi e consigli. In aula: leggi ad alta voce ogni parola esempio. · <em>Click each card. In class: read each example word aloud.</em></p>
+
+    <div class="phon-grid">
+      <div class="phon-card" onclick="showPhon('gli')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">GL</div>
+        <div class="phon-label">gli / glio</div>
+        <div class="phon-ex">figlio, moglie, gli</div>
+        <div class="phon-hint">Come "llya" in spagnolo</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('gn')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">GN</div>
+        <div class="phon-label">gn</div>
+        <div class="phon-ex">gnocchi, lavagna, bagno</div>
+        <div class="phon-hint">Come "ny" — suono nasale palatale</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('sc')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">SC</div>
+        <div class="phon-label">sci / sce</div>
+        <div class="phon-ex">scena, sci, sciopero</div>
+        <div class="phon-hint">Come "sh" in inglese</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('ci')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">CI/CE</div>
+        <div class="phon-label">c + i/e</div>
+        <div class="phon-ex">ciao, centro, cena</div>
+        <div class="phon-hint">Come "ch" in "church"</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('gi')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">GI/GE</div>
+        <div class="phon-label">g + i/e</div>
+        <div class="phon-ex">gelato, giorno, gente</div>
+        <div class="phon-hint">Come "j" in "journey"</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('r')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">R</div>
+        <div class="phon-label">La "r" vibrante</div>
+        <div class="phon-ex">Roma, mare, tre, caro</div>
+        <div class="phon-hint">Vibrazione sulla punta della lingua</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('dop')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">CC/TT</div>
+        <div class="phon-label">Consonanti doppie</div>
+        <div class="phon-ex">fatto, notte, pizza, bello</div>
+        <div class="phon-hint">Pausa + consonante più lunga</div>
+      </div>
+      <div class="phon-card" onclick="showPhon('z')">
+        <div class="play-icon">👅</div>
+        <div class="phon-symbol">Z</div>
+        <div class="phon-label">z / zz</div>
+        <div class="phon-ex">pizza, zero, ragazzo</div>
+        <div class="phon-hint">"ts" (pizza) oppure "dz" (zero)</div>
+      </div>
+    </div>
+
+    <!-- DETAIL BOX -->
+    <div id="phon-detail" style="display:none;margin-top:1rem;padding:1.25rem;background:var(--ink);border-radius:var(--r);color:#fff;animation:rise .2s ease">
+      <div id="pd-content"></div>
+    </div>
+  </div>
+
+  <!-- B: Accento tonico -->
+  <div class="card">
+    <div class="ex-label">B · Accento tonico — dove cade l'accento?</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem">La sillaba sottolineata e in rosso è quella accentata. Leggi ad alta voce, esagerando l'accento. · <em>The underlined red syllable is stressed. Read aloud, exaggerating the stress.</em></p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:1rem">
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl stressed">CA</span><span class="stress-syl">-sa</span></div>
+        <div style="font-size:11px;color:var(--muted)">house · piana</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl">ci</span><span class="stress-syl stressed">TTÀ</span></div>
+        <div style="font-size:11px;color:var(--muted)">city · tronca</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl">ta</span><span class="stress-syl stressed">VO</span><span class="stress-syl">-lo</span></div>
+        <div style="font-size:11px;color:var(--muted)">table · sdrucciola</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl stressed">BE</span><span class="stress-syl">-ne</span></div>
+        <div style="font-size:11px;color:var(--muted)">well · piana</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl">be</span><span class="stress-syl stressed">LLÌ</span><span class="stress-syl">-ssi</span><span class="stress-syl">-mo</span></div>
+        <div style="font-size:11px;color:var(--muted)">beautiful · bisdrucciola</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl stressed">DO</span><span class="stress-syl">-me</span><span class="stress-syl">-ni</span><span class="stress-syl">-ca</span></div>
+        <div style="font-size:11px;color:var(--muted)">Sunday · sdrucciola</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl">mer</span><span class="stress-syl stressed">CA</span><span class="stress-syl">-to</span></div>
+        <div style="font-size:11px;color:var(--muted)">market · piana</div>
+      </div>
+      <div style="text-align:center">
+        <div class="stress-word"><span class="stress-syl">ca</span><span class="stress-syl stressed">FÈ</span></div>
+        <div style="font-size:11px;color:var(--muted)">coffee · tronca</div>
+      </div>
+    </div>
+
+    <div class="tip"><strong>💡 Regola d'oro:</strong> In italiano l'accento cade spesso sulla penultima sillaba (<em>ca-SA, ta-VO-lo</em>). Le parole con accento sull'ultima sillaba hanno sempre l'accento scritto (<em>città, caffè, perché</em>). Le parole sdrucciole sono le più "musicali"!</div>
+  </div>
+
+  <!-- C: Coppie minime -->
+  <div class="card">
+    <div class="ex-label">C · Coppie minime — un suono cambia tutto</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Ascolta (o leggi ad alta voce) la differenza. Il significato cambia completamente! · <em>Read aloud — one sound changes the meaning completely.</em></p>
+
+    <div class="pairs-row">
+      <div class="pair-box"><div class="pair-word">pesca</div><div class="pair-ipa">[ˈpɛska]</div><div class="pair-en">fishing</div></div>
+      <div class="vs-badge">VS</div>
+      <div class="pair-box"><div class="pair-word">pésca</div><div class="pair-ipa">[ˈpeska]</div><div class="pair-en">peach</div></div>
+    </div>
+    <div class="pairs-row">
+      <div class="pair-box"><div class="pair-word">fato</div><div class="pair-ipa">[ˈfato]</div><div class="pair-en">fate</div></div>
+      <div class="vs-badge">VS</div>
+      <div class="pair-box"><div class="pair-word">fatto</div><div class="pair-ipa">[ˈfatto]</div><div class="pair-en">done / fact</div></div>
+    </div>
+    <div class="pairs-row">
+      <div class="pair-box"><div class="pair-word">caro</div><div class="pair-ipa">[ˈkaro]</div><div class="pair-en">dear / expensive</div></div>
+      <div class="vs-badge">VS</div>
+      <div class="pair-box"><div class="pair-word">carro</div><div class="pair-ipa">[ˈkarro]</div><div class="pair-en">cart / wagon</div></div>
+    </div>
+    <div class="pairs-row">
+      <div class="pair-box"><div class="pair-word">nono</div><div class="pair-ipa">[ˈnono]</div><div class="pair-en">ninth</div></div>
+      <div class="vs-badge">VS</div>
+      <div class="pair-box"><div class="pair-word">nonno</div><div class="pair-ipa">[ˈnonno]</div><div class="pair-en">grandfather</div></div>
+    </div>
+
+    <div class="tip" style="margin-top:1rem"><strong>💡 Le doppie fanno la differenza!</strong> In italiano la consonante doppia va "tenuta" un momento prima di rilasciarla. <em>Ca-RO</em> (roll lightly) vs <em>CA-RRO</em> (hold the R). Prova con la tua insegnante!</div>
+  </div>
+
+  <!-- D: Reading aloud -->
+  <div class="card card-rust">
+    <div class="ex-label">D · Leggi ad alta voce — frase per frase</div>
+    <p style="font-size:13px;color:var(--rust-d);margin-bottom:1rem">Leggi queste frasi ad alta voce. La tua insegnante ti correggerà la pronuncia. · <em>Read these sentences aloud. Your teacher will correct your pronunciation.</em></p>
+    <div style="display:flex;flex-direction:column;gap:.85rem">
+      <div style="padding:.75rem 1rem;background:var(--surf);border-radius:8px;border-left:3px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px">Gli gnocchi della nonna sono buonissimi.</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:3px">Grandmother's gnocchi are absolutely delicious. <em>(gli, gn, doppie)</em></div>
+      </div>
+      <div style="padding:.75rem 1rem;background:var(--surf);border-radius:8px;border-left:3px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px">La scena del film era bellissima: c'era la città di notte.</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:3px">The film scene was beautiful: there was the city at night. <em>(sc, ci, doppie)</em></div>
+      </div>
+      <div style="padding:.75rem 1rem;background:var(--surf);border-radius:8px;border-left:3px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px">Ho prenotato un ristorante vicino al mercato del rione.</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:3px">I booked a restaurant near the neighbourhood market. <em>(r vibrante, doppie)</em></div>
+      </div>
+      <div style="padding:.75rem 1rem;background:var(--surf);border-radius:8px;border-left:3px solid var(--rust)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px">Mio figlio ha già mangiato gli spaghetti alla carbonara.</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:3px">My son has already eaten the spaghetti carbonara. <em>(gli, gi, z)</em></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(1,document.getElementById('pb1'))">Vai al Testo 1 →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL 1 — TESTO 1
+══════════════════════════════════════════ -->
+<div class="panel" id="panel-1">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 2</span>
+    <span class="sh-title">Testo 1 — Una settimana in barca</span>
+    <span class="sh-time">⏱ min 13–20</span>
+  </div>
+
+  <div class="card">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;font-style:italic">Le parole <span style="background:#FFF8C0;border-bottom:1.5px solid #D4B040;padding:0 3px;border-radius:2px">evidenziate</span> sono usate negli esercizi successivi. · <em>Highlighted words are used in the following exercises.</em></p>
+    <div class="reading">
+      <p><strong>Una lettera dal mare</strong></p>
+      <p>Cara Giulia,</p>
+      <p>ti scrivo dal porto di <anno data-tip="Split — Croatian city">Spalato</anno>, dove sono arrivata ieri sera dopo una settimana in barca. È stato un viaggio <anno data-tip="intense / demanding">intenso</anno> ma indimenticabile — uno di quelli che ti cambiano un po' dentro.</p>
+      <p>Abbiamo <anno data-tip="set sail / left port">salpato</anno> lunedì mattina con il vento del nord. Le prime ore sono state <anno data-tip="rough / difficult">dure</anno>: le onde erano alte e quasi tutti i passeggeri avevano il mal di mare. Io no — forse perché sono abituata, forse perché ero troppo occupata a <anno data-tip="manoeuvre / steer">manovrare</anno> la barca insieme al capitano.</p>
+      <p>Martedì abbiamo <anno data-tip="anchored">ancorato</anno> vicino a un'isola piccola e silenziosa. Ho nuotato per la prima volta in acque così trasparenti — sembrava di galleggiare nell'aria. Nel pomeriggio abbiamo esplorato il paese: solo venti case, una chiesa bianca, un bar con tre tavoli fuori. Ho ordinato un caffè — ovviamente pessimo, non eravamo in Italia! — ma la vista del tramonto era <anno data-tip="worth it / priceless">impagabile</anno>.</p>
+      <p>Mercoledì e giovedì abbiamo navigato verso sud, con il vento <anno data-tip="favourable">favorevole</anno>. Ho imparato un sacco di cose: come leggere le <anno data-tip="charts / maps">carte nautiche</anno>, come fare i nodi, come capire il meteo guardando le nuvole. È strano come il mare insegni la <anno data-tip="patience">pazienza</anno> — non puoi forzare il vento, devi aspettare, adattarti.</p>
+      <p>Venerdì sera siamo <anno data-tip="returned to port">rientrate in porto</anno> a Spalato. Le ragazze dell'equipaggio hanno organizzato una piccola festa sul ponte: musica, vino locale, le stelle sopra di noi. Qualcuno ha suonato la chitarra. Ho pensato a te e a quanto mi manchi.</p>
+      <p>A presto,<br><em>Sara</em></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ex-label">Comprensione — rispondi</div>
+    <div class="ex-intro">Rispondi alle domande. Alcune richiedono di ragionare oltre il testo. · <em>Answer the questions. Some require reasoning beyond the text.</em></div>
+
+    <div class="mcq-q" id="t1q1">
+      <div class="mcq-text">1. Quando è partita la barca?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t1q1',false)">a) Venerdì sera</button>
+        <button class="opt" onclick="mcq(this,'t1q1',true)">b) Lunedì mattina</button>
+        <button class="opt" onclick="mcq(this,'t1q1',false)">c) Martedì all'alba</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t1q2">
+      <div class="mcq-text">2. Perché Sara non aveva il mal di mare?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t1q2',false)">a) Aveva preso una medicina</button>
+        <button class="opt" onclick="mcq(this,'t1q2',true)">b) È abituata e/o era impegnata a manovrare</button>
+        <button class="opt" onclick="mcq(this,'t1q2',false)">c) Le onde erano piccole</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t1q3">
+      <div class="mcq-text">3. Che cosa ha imparato Sara durante il viaggio?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t1q3',true)">a) Carte nautiche, nodi, meteo — e la pazienza</button>
+        <button class="opt" onclick="mcq(this,'t1q3',false)">b) Come cucinare pesce fresco</button>
+        <button class="opt" onclick="mcq(this,'t1q3',false)">c) A suonare la chitarra</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t1q4">
+      <div class="mcq-text">4. 🧠 Inferenza: A chi scrive Sara? Come lo sai?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t1q4',true)">a) A Giulia — la chiama per nome e dice "mi manchi"</button>
+        <button class="opt" onclick="mcq(this,'t1q4',false)">b) Alla sua famiglia in Croazia</button>
+        <button class="opt" onclick="mcq(this,'t1q4',false)">c) Al capitano della barca</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t1q5">
+      <div class="mcq-text">5. Qual era il problema del caffè sull'isola?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t1q5',false)">a) Era freddo</button>
+        <button class="opt" onclick="mcq(this,'t1q5',false)">b) Costava troppo</button>
+        <button class="opt" onclick="mcq(this,'t1q5',true)">c) Non erano in Italia — il caffè era pessimo</button>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-t1" style="width:0%"></div></div>
+      <span class="score-num" id="sn-t1">0 / 5</span>
+    </div>
+  </div>
+
+  <!-- Risposta aperta -->
+  <div class="card card-navy">
+    <div class="ex-label" style="color:var(--navy)">Risposta aperta — scrivi in italiano</div>
+    <p style="font-size:14px;font-weight:500;margin-bottom:8px;color:var(--navy)">In 2–3 frasi: qual è la "lezione di vita" che Sara ha imparato in mare? Usa parole tue.</p>
+    <div style="font-size:12px;color:#5A7AA0;margin-bottom:10px;font-style:italic">In 2–3 sentences: what is the "life lesson" Sara learned at sea? Use your own words.</div>
+    <textarea class="prod" placeholder="Secondo me, Sara ha imparato che..." oninput="wc(this,'wc-t1')"></textarea>
+    <div class="wc" id="wc-t1">0 parole</div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(2,document.getElementById('pb2'))">Vai al Passato Prossimo →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL 2 — PASSATO PROSSIMO
+══════════════════════════════════════════ -->
+<div class="panel" id="panel-2">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 3</span>
+    <span class="sh-title">Il Passato Prossimo</span>
+    <span class="sh-time">⏱ min 21–30</span>
+  </div>
+
+  <!-- Regola -->
+  <div class="card">
+    <div class="ex-label">La Regola</div>
+    <div class="formula"><span class="f-part f-subj">SOGGETTO</span><span class="f-plus">+</span><span class="f-part f-aux">AVERE / ESSERE (pres.)</span><span class="f-plus">+</span><span class="f-part f-pp">PARTICIPIO PASSATO</span></div>
+
+    <div class="rule-box" style="margin-top:1rem">
+      <div class="rule-title">Come si forma il participio?</div>
+      <div class="rule-body">
+        verbi in <strong>-ARE</strong> → <strong>-ATO</strong> &nbsp;|&nbsp; mangiare → mangi<strong>ato</strong><br>
+        verbi in <strong>-ERE</strong> → <strong>-UTO</strong> &nbsp;|&nbsp; avere → av<strong>uto</strong><br>
+        verbi in <strong>-IRE</strong> → <strong>-ITO</strong> &nbsp;|&nbsp; dormire → dorm<strong>ito</strong><br>
+        <span style="font-size:12px;color:var(--muted)">⚠ Molti verbi -ERE sono irregolari: scrivere → scritto · vedere → visto · fare → fatto · essere → stato</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
+      <div>
+        <div class="rule-box" style="background:var(--rust-l);border-color:var(--rust)">
+          <div class="rule-title">AVERE — verbi transitivi</div>
+          <div class="rule-body">
+            Ho <strong>mangiato</strong> la pasta.<br>
+            Hai <strong>visto</strong> il film?<br>
+            Ha <strong>scritto</strong> una lettera.<br>
+            <span style="font-size:12px;color:var(--muted)">Il participio NON si accorda (di solito)</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="rule-box" style="background:var(--navy-l);border-color:var(--navy)">
+          <div class="rule-title">ESSERE — movim. / stato / riflessivi</div>
+          <div class="rule-body">
+            Sono <strong>arrivata</strong>. (f.s.)<br>
+            Siamo <strong>partiti</strong>. (m.pl.)<br>
+            Si sono <strong>alzate</strong>. (f.pl.)<br>
+            <span style="font-size:12px;color:#5A7AA0">Il participio si accorda con il soggetto!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabella coniugazione -->
+    <div style="overflow-x:auto;margin-top:1.25rem">
+      <table class="conj-table">
+        <tr><th>Pronome</th><th>ANDARE (essere)</th><th>Esempio</th><th>MANGIARE (avere)</th><th>Esempio</th></tr>
+        <tr><td>io</td><td>sono andato/a</td><td>Sono andato al mare.</td><td>ho mangiato</td><td>Ho mangiato il pesce.</td></tr>
+        <tr><td>tu</td><td>sei andato/a</td><td>Sei andata in vacanza?</td><td>hai mangiato</td><td>Hai mangiato il risotto?</td></tr>
+        <tr><td>lui/lei</td><td>è andato/a</td><td>Sara è andata a Spalato.</td><td>ha mangiato</td><td>Ha mangiato gli gnocchi.</td></tr>
+        <tr><td>noi</td><td>siamo andati/e</td><td>Siamo andate in barca.</td><td>abbiamo mangiato</td><td>Abbiamo mangiato insieme.</td></tr>
+        <tr><td>voi</td><td>siete andati/e</td><td>Siete andati al ristorante?</td><td>avete mangiato</td><td>Avete mangiato bene?</td></tr>
+        <tr><td>loro</td><td>sono andati/e</td><td>Sono andate a ballare.</td><td>hanno mangiato</td><td>Hanno mangiato tantissimo.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ESSERE o AVERE? — word sort -->
+  <div class="card">
+    <div class="ex-label">Esercizio 1 — ESSERE o AVERE?</div>
+    <div class="ex-intro">Clicca i verbi per spostarli nella categoria giusta. · <em>Click verbs to sort them into the right category.</em><br><span style="font-size:12px;color:var(--muted)">💡 Suggerimento: verbi di movimento, stato fisico, riflessivi → ESSERE. Verbi con oggetto diretto → AVERE.</span></div>
+
+    <div class="sort-pool" id="sort-pool">
+      <!-- chips injected by JS -->
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+      <div class="sort-zone essere-zone" id="zone-essere"><span class="sort-zone-label" style="color:var(--navy)">ESSERE</span></div>
+      <div class="sort-zone avere-zone" id="zone-avere"><span class="sort-zone-label" style="color:var(--rust-d)">AVERE</span></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="check-btn" onclick="checkSort()">Verifica</button>
+      <button class="reset-btn" onclick="resetSort()">↺ Reset</button>
+    </div>
+    <div id="fb-sort" class="fb"></div>
+  </div>
+
+  <!-- Esercizio 2 — completa con passato prossimo -->
+  <div class="card">
+    <div class="ex-label">Esercizio 2 — Completa con il passato prossimo</div>
+    <div class="ex-intro">Inserisci la forma corretta del passato prossimo. Attenzione all'accordo! · <em>Fill in the correct form. Watch the agreement!</em></div>
+
+    <div class="fill-wrap">
+      <div class="fill-sent">Ieri Sara _____ (arrivare) a Spalato dopo una settimana in barca.</div>
+      <div class="fill-clue">Sara è femmina · verbo di movimento → usa ESSERE · accorda al femminile singolare</div>
+      <input class="fill-inp" type="text" placeholder="è arrivata" oninput="sf(this,'è arrivata','p1')"><div id="fb-p1" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Mercoledì noi _____ (imparare) a leggere le carte nautiche.</div>
+      <div class="fill-clue">noi (misto) · verbo transitivo → usa AVERE</div>
+      <input class="fill-inp" type="text" placeholder="abbiamo imparato" oninput="sf(this,'abbiamo imparato','p2')"><div id="fb-p2" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Le ragazze _____ (organizzare) una piccola festa sul ponte.</div>
+      <div class="fill-clue">loro (femminile) · verbo transitivo → usa AVERE</div>
+      <input class="fill-inp" type="text" placeholder="hanno organizzato" oninput="sf(this,'hanno organizzato','p3')"><div id="fb-p3" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Io _____ (nuotare) per la prima volta in acque così trasparenti.</div>
+      <div class="fill-clue">io (Sara = femmina) · verbo intransitivo → AVERE (nuotare usa avere!)</div>
+      <input class="fill-inp" type="text" placeholder="ho nuotato" oninput="sf(this,'ho nuotato','p4')"><div id="fb-p4" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Venerdì sera noi _____ (rientrare) in porto a Spalato.</div>
+      <div class="fill-clue">noi (donne) · verbo di movimento → usa ESSERE · accordo femminile plurale</div>
+      <input class="fill-inp" type="text" placeholder="siamo rientrate" oninput="sf(this,'siamo rientrate','p5')"><div id="fb-p5" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Qualcuno _____ (suonare) la chitarra tutta la sera.</div>
+      <div class="fill-clue">qualcuno · verbo transitivo → usa AVERE</div>
+      <input class="fill-inp" type="text" placeholder="ha suonato" oninput="sf(this,'ha suonato','p6')"><div id="fb-p6" class="fb"></div>
+    </div>
+  </div>
+
+  <!-- Esercizio 3 — dal presente al passato -->
+  <div class="card">
+    <div class="ex-label">Esercizio 3 — Trasforma dal presente al passato prossimo</div>
+    <div class="ex-intro">Riscrivi la frase usando il passato prossimo. · <em>Rewrite the sentence in the passato prossimo.</em></div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Oggi mangio una pizza. → Ieri...</div>
+      <input class="fill-inp" type="text" placeholder="Ieri ho mangiato una pizza." oninput="sf(this,'ieri ho mangiato una pizza','pp1')"><div id="fb-pp1" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Vado al mercato ogni domenica. → Domenica scorsa...</div>
+      <input class="fill-inp" type="text" placeholder="Domenica scorsa sono andata..." oninput="sf(this,'domenica scorsa sono andata al mercato','pp2')"><div id="fb-pp2" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Faccio colazione al bar. → Stamattina...</div>
+      <input class="fill-inp" type="text" placeholder="Stamattina ho fatto colazione al bar." oninput="sf(this,'stamattina ho fatto colazione al bar','pp3')"><div id="fb-pp3" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(3,document.getElementById('pb3'))">Vai al Testo 2 →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL 3 — TESTO 2
+══════════════════════════════════════════ -->
+<div class="panel" id="panel-3">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 4</span>
+    <span class="sh-title">Testo 2 — Ricetta e ritmo di vita</span>
+    <span class="sh-time">⏱ min 31–38</span>
+  </div>
+
+  <div class="card">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;font-style:italic">Questo testo usa molte preposizioni e aggettivi — osservali mentre leggi. · <em>This text uses many prepositions and adjectives — notice them as you read.</em></p>
+    <div class="reading">
+      <p><strong>Il segreto della pasta perfetta</strong></p>
+      <p>C'è un momento, in ogni cucina italiana, in cui il tempo si ferma. È il momento in cui l'acqua inizia a <anno data-tip="boil">bollire</anno> e si aggiunge il sale grosso. Non è un gesto meccanico — è quasi un rito. La quantità di sale? "Quanto basta," dicono le nonne italiane, con quella <anno data-tip="wisdom/awareness">consapevolezza</anno> che si acquisisce solo con gli anni.</p>
+      <p>Ho imparato a fare la pasta <anno data-tip="from scratch / by hand">a mano</anno> da Rossana, un'amica di Roma che abita <anno data-tip="in the neighbourhood">nel mio rione</anno>. Lei ha sessant'anni e le mani <anno data-tip="skilful / expert">esperte</anno> di chi ha impastato migliaia di volte. "Il segreto," mi ha detto, "è sentire la pasta. Non guardare l'orologio."</p>
+      <p>La ricetta base è semplice: 100 grammi di farina <anno data-tip="per person">a persona</anno>, un uovo, un pizzico di sale. Si impasta <anno data-tip="energetically">con energia</anno> per almeno dieci minuti, fino a quando l'impasto non diventa <anno data-tip="smooth / silky">liscio e setoso</anno>. Poi si lascia riposare <anno data-tip="wrapped / covered">avvolta</anno> nella pellicola per trenta minuti — questa è la parte più difficile: aspettare.</p>
+      <p>Quando si stende la pasta, il mattarello deve muoversi con <anno data-tip="confidence / assurance">sicurezza</anno>: pressione <anno data-tip="uniform / even">uniforme</anno>, movimenti <anno data-tip="long / wide">ampi</anno>, rotazione di novanta gradi ogni tanto. La sfoglia deve essere quasi <anno data-tip="transparent">trasparente</anno> — si dice che si deve riuscire a leggere il giornale attraverso di essa.</p>
+      <p>Rossana mi ha insegnato anche la cosa più importante: che in Italia si mangia insieme. Non <anno data-tip="in a rush / quickly">di fretta</anno>, non da soli davanti allo schermo. La pasta è un <anno data-tip="pretext / excuse">pretesto</anno> per stare insieme — il vero ingrediente segreto è il tempo, non il tipo di farina.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ex-label">Comprensione — vero / falso / non detto</div>
+    <div class="mcq-q" id="t2q1">
+      <div class="mcq-text">1. Rossana ha imparato la pasta da sua nonna.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t2q1',false)">Vero</button>
+        <button class="opt" onclick="mcq(this,'t2q1',false)">Falso</button>
+        <button class="opt" onclick="mcq(this,'t2q1',true)">Non detto nel testo</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t2q2">
+      <div class="mcq-text">2. La ricetta base usa 100g di farina e un uovo a persona.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t2q2',true)">Vero</button>
+        <button class="opt" onclick="mcq(this,'t2q2',false)">Falso</button>
+        <button class="opt" onclick="mcq(this,'t2q2',false)">Non detto nel testo</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t2q3">
+      <div class="mcq-text">3. La sfoglia deve essere molto spessa.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t2q3',false)">Vero</button>
+        <button class="opt" onclick="mcq(this,'t2q3',true)">Falso — quasi trasparente</button>
+        <button class="opt" onclick="mcq(this,'t2q3',false)">Non detto nel testo</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="t2q4">
+      <div class="mcq-text">4. 🧠 Qual è il "vero ingrediente segreto" secondo il testo?</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'t2q4',false)">a) Il tipo di farina speciale</button>
+        <button class="opt" onclick="mcq(this,'t2q4',true)">b) Il tempo — stare insieme a tavola senza fretta</button>
+        <button class="opt" onclick="mcq(this,'t2q4',false)">c) La qualità delle uova</button>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-t2" style="width:0%"></div></div>
+      <span class="score-num" id="sn-t2">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- Dialogo con gaps -->
+  <div class="card">
+    <div class="ex-label">Dialogo con lacune — completa il dialogo al ristorante</div>
+    <div class="ex-intro">Completa il dialogo con le parole nel riquadro. · <em>Complete the dialogue with words from the box.</em><br>
+    <strong>Usa:</strong> vorrei · il conto · consiglia · senza glutine · insieme · posso · come primo · avete</div>
+    <div style="display:flex;flex-direction:column;gap:.9rem;margin-top:.75rem">
+      <div class="d-entry"><div class="d-av other">C</div><div class="d-bub"><div class="d-name">Cameriere</div><div class="d-it">Buonasera! Siete pronte per ordinare?</div></div></div>
+      <div class="d-entry"><div class="d-av sara">S</div><div class="d-bub"><div class="d-name">Sara</div><div class="d-it"><input class="d-gap" type="text" placeholder="______" oninput="dg(this,'vorrei','dg1')"> un tavolo per due, per favore.</div><div id="fb-dg1" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av other">C</div><div class="d-bub"><div class="d-name">Cameriere</div><div class="d-it">Certo! Cosa prendete?</div></div></div>
+      <div class="d-entry"><div class="d-av sara">S</div><div class="d-bub"><div class="d-name">Sara</div><div class="d-it">Cosa mi <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'consiglia','dg2')">?</div><div id="fb-dg2" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av other">C</div><div class="d-bub"><div class="d-name">Cameriere</div><div class="d-it">Il risotto ai porcini è ottimo oggi. È anche <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'senza glutine','dg3')">!</div><div id="fb-dg3" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av sara">S</div><div class="d-bub"><div class="d-name">Sara</div><div class="d-it">Perfetto! Prendo quello <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'come primo','dg4')">.</div><div id="fb-dg4" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av sara">S</div><div class="d-bub"><div class="d-name">Sara</div><div class="d-it"><input class="d-gap" type="text" placeholder="______" oninput="dg(this,'avete','dg5')"> il branzino come secondo?</div><div id="fb-dg5" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av other">C</div><div class="d-bub"><div class="d-name">Cameriere</div><div class="d-it">Sì, con patate e rosmarino. Pagate <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'insieme','dg6')"> o separati?</div><div id="fb-dg6" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+      <div class="d-entry"><div class="d-av sara">S</div><div class="d-bub"><div class="d-name">Sara</div><div class="d-it">Insieme, grazie. Ah, <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'posso','dg7')"> avere <input class="d-gap" type="text" placeholder="______" oninput="dg(this,'il conto','dg8')"> dopo?</div><div id="fb-dg7" style="font-size:11px;color:var(--olive);margin-top:2px"></div></div></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(4,document.getElementById('pb4'))">Vai a Preposizioni e Aggettivi →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL 4 — PREPOSIZIONI + AGGETTIVI
+══════════════════════════════════════════ -->
+<div class="panel" id="panel-4">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 5</span>
+    <span class="sh-title">Preposizioni & Accordo Aggettivi</span>
+    <span class="sh-time">⏱ min 39–46</span>
+  </div>
+
+  <!-- PREPOSIZIONI -->
+  <div class="card">
+    <div class="ex-label">A · Preposizioni semplici e articolate</div>
+    <div style="overflow-x:auto">
+      <table class="conj-table">
+        <tr><th>Prep.</th><th>Uso principale</th><th>+ il</th><th>+ la</th><th>+ i</th><th>+ le</th><th>+ l'</th></tr>
+        <tr><td>di</td><td>possesso, specificazione</td><td>del</td><td>della</td><td>dei</td><td>delle</td><td>dell'</td></tr>
+        <tr><td>a</td><td>luogo, destinazione, modo</td><td>al</td><td>alla</td><td>ai</td><td>alle</td><td>all'</td></tr>
+        <tr><td>da</td><td>origine, da dove, da quando</td><td>dal</td><td>dalla</td><td>dai</td><td>dalle</td><td>dall'</td></tr>
+        <tr><td>in</td><td>luogo (stati), mezzo, tempo</td><td>nel</td><td>nella</td><td>nei</td><td>nelle</td><td>nell'</td></tr>
+        <tr><td>su</td><td>sopra, circa, argomento</td><td>sul</td><td>sulla</td><td>sui</td><td>sulle</td><td>sull'</td></tr>
+        <tr><td>con</td><td>compagnia, mezzo</td><td colspan="5" style="color:var(--muted);font-style:italic">Non si articola (di solito)</td></tr>
+        <tr><td>per</td><td>scopo, destinazione, durata</td><td colspan="5" style="color:var(--muted);font-style:italic">Non si articola</td></tr>
+      </table>
+    </div>
+    <div class="rule-box" style="margin-top:1rem">
+      <div class="rule-title">Dal testo — esempi reali</div>
+      <div class="rule-body">
+        "ho imparato a fare la pasta <strong>a mano</strong>" → a + modo<br>
+        "un'amica <strong>di Roma</strong>" → di + specificazione<br>
+        "<strong>nel mio rione</strong>" → in + il = nel<br>
+        "<strong>sul ponte</strong>" → su + il = sul<br>
+        "impasta <strong>con energia</strong>" → con + sostantivo (non articolato)<br>
+        "<strong>per trenta minuti</strong>" → per + durata
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ex-label">Esercizio preposizioni — scegli la preposizione corretta</div>
+    <div class="mcq-q" id="prq1">
+      <div class="mcq-text">1. Sara scrive una lettera _____ sua amica Giulia.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'prq1',false)">di</button>
+        <button class="opt" onclick="mcq(this,'prq1',true)">alla</button>
+        <button class="opt" onclick="mcq(this,'prq1',false)">sulla</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="prq2">
+      <div class="mcq-text">2. Lascia riposare l'impasto _____ trenta minuti.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'prq2',false)">di</button>
+        <button class="opt" onclick="mcq(this,'prq2',false)">in</button>
+        <button class="opt" onclick="mcq(this,'prq2',true)">per</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="prq3">
+      <div class="mcq-text">3. Le stelle erano _____ di noi, nel cielo.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'prq3',false)">ai</button>
+        <button class="opt" onclick="mcq(this,'prq3',true)">sopra</button>
+        <button class="opt" onclick="mcq(this,'prq3',false)">della</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="prq4">
+      <div class="mcq-text">4. "_____ primo prendo il risotto, _____ secondo il branzino."</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'prq4',true)">Come / come</button>
+        <button class="opt" onclick="mcq(this,'prq4',false)">Per / per</button>
+        <button class="opt" onclick="mcq(this,'prq4',false)">In / in</button>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-pr" style="width:0%"></div></div>
+      <span class="score-num" id="sn-pr">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- AGGETTIVI -->
+  <div class="card">
+    <div class="ex-label">B · Accordo degli aggettivi</div>
+    <div class="rule-box">
+      <div class="rule-title">La Regola</div>
+      <div class="rule-body">
+        L'aggettivo deve concordare in <strong>genere</strong> (m/f) e <strong>numero</strong> (s/pl) con il sostantivo.<br><br>
+        <strong>Aggettivi in -O/-A:</strong> bello→ bella→ belli→ belle<br>
+        <strong>Aggettivi in -E:</strong> interessante → interessanti (invariato m/f!)<br>
+        <strong>Aggettivi in -CO:</strong> fresco → fresca → freschi → fresche
+      </div>
+    </div>
+    <div style="overflow-x:auto;margin-top:1rem">
+      <table class="conj-table">
+        <tr><th>Aggettivo</th><th>M. sing.</th><th>F. sing.</th><th>M. pl.</th><th>F. pl.</th></tr>
+        <tr><td>bello</td><td>un vino bello</td><td>una vista bella</td><td>vini belli</td><td>viste belle</td></tr>
+        <tr><td>fresco</td><td>pane fresco</td><td>pasta fresca</td><td>pomodori freschi</td><td>fragole fresche</td></tr>
+        <tr><td>interessante</td><td>un libro int.</td><td>una storia int.</td><td>libri int.</td><td>storie int.</td></tr>
+        <tr><td>buono</td><td>un caffè buono</td><td>una pizza buona</td><td>caffè buoni</td><td>pizze buone</td></tr>
+        <tr><td>piccolo</td><td>un bar piccolo</td><td>un'isola piccola</td><td>bar piccoli</td><td>isole piccole</td></tr>
+      </table>
+    </div>
+    <div class="tip" style="margin-top:1rem"><strong>💡 Bello "bel" davanti al nome:</strong> bel vino, bell'uomo, bello spettacolo, bella donna, bei ragazzi, begli occhi, belle ragazze. Segue le stesse regole dell'articolo determinativo!</div>
+  </div>
+
+  <div class="card">
+    <div class="ex-label">Esercizio aggettivi — scegli la forma corretta</div>
+    <div class="mcq-q" id="agq1">
+      <div class="mcq-text">1. Le onde erano alte e le acque erano molto _____ (trasparente).</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'agq1',false)">trasparento</button>
+        <button class="opt" onclick="mcq(this,'agq1',true)">trasparenti</button>
+        <button class="opt" onclick="mcq(this,'agq1',false)">trasparenta</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="agq2">
+      <div class="mcq-text">2. Rossana ha le mani _____ (esperto) di chi ha impastato migliaia di volte.</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'agq2',false)">esperto</button>
+        <button class="opt" onclick="mcq(this,'agq2',false)">esperti</button>
+        <button class="opt" onclick="mcq(this,'agq2',true)">esperte</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="agq3">
+      <div class="mcq-text">3. Ho mangiato una pizza _____ con pomodori _____ (fresco).</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'agq3',false)">fresca / fresco</button>
+        <button class="opt" onclick="mcq(this,'agq3',true)">fresca / freschi</button>
+        <button class="opt" onclick="mcq(this,'agq3',false)">fresco / freschi</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="agq4">
+      <div class="mcq-text">4. "Che _____ tramonto!" (bello — davanti al sostantivo)</div>
+      <div class="mcq-opts">
+        <button class="opt" onclick="mcq(this,'agq4',false)">bello</button>
+        <button class="opt" onclick="mcq(this,'agq4',true)">bel</button>
+        <button class="opt" onclick="mcq(this,'agq4',false)">bella</button>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-ag" style="width:0%"></div></div>
+      <span class="score-num" id="sn-ag">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- Esercizio combinato -->
+  <div class="card">
+    <div class="ex-label">Esercizio combinato — preposizioni + aggettivi</div>
+    <div class="ex-intro">Correggi gli errori nelle frasi. Ogni frase ha 1 o 2 errori. · <em>Correct the errors. Each sentence has 1 or 2 mistakes.</em></div>
+    <div class="fill-wrap">
+      <div class="fill-sent">❌ "Ho comprato dei pomodoro fresco del mercato."</div>
+      <div class="fill-clue">Correggi il sostantivo e l'aggettivo (plurale).</div>
+      <input class="fill-inp" type="text" placeholder="Ho comprato dei pomodori freschi al mercato." oninput="sf(this,'ho comprato dei pomodori freschi al mercato','co1')"><div id="fb-co1" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">❌ "L'impasto deve essere liscio e setoso — aspetta per trenta minuta."</div>
+      <div class="fill-clue">Correggi il plurale sbagliato.</div>
+      <input class="fill-inp" type="text" placeholder="...aspetta per trenta minuti." oninput="sf(this,'l\'impasto deve essere liscio e setoso aspetta per trenta minuti','co2')"><div id="fb-co2" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">❌ "Sara ha scritto una lettera a la sua amica."</div>
+      <div class="fill-clue">Attenzione alla preposizione articolata!</div>
+      <input class="fill-inp" type="text" placeholder="Sara ha scritto una lettera alla sua amica." oninput="sf(this,'sara ha scritto una lettera alla sua amica','co3')"><div id="fb-co3" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(5,document.getElementById('pb5'))">Vai alla produzione finale →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL 5 — PRODUZIONE FINALE
+══════════════════════════════════════════ -->
+<div class="panel" id="panel-5">
+
+  <div class="section-head">
+    <span class="sh-label">Sez. 6</span>
+    <span class="sh-title">Produzione guidata</span>
+    <span class="sh-time">⏱ min 47–50</span>
+  </div>
+
+  <!-- Orale -->
+  <div style="background:linear-gradient(135deg,var(--ink) 0%,#2E1A10 100%);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;color:#fff">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--rust-m);text-transform:uppercase;margin-bottom:.5rem">🎙 Produzione orale — parlate insieme</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-style:italic;margin-bottom:.75rem;line-height:1.5">"Racconta qualcosa che hai fatto di recente che ti ha insegnato qualcosa. Usa il passato prossimo."</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:1rem"><em>"Tell something you did recently that taught you something. Use the passato prossimo."</em></div>
+    <div style="font-size:11px;color:var(--rust-m);font-weight:600;letter-spacing:.06em;margin-bottom:.5rem">STRUTTURE DA USARE:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px">
+      <span style="padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:12px;color:rgba(255,255,255,.8)">Sono andata/o a...</span>
+      <span style="padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:12px;color:rgba(255,255,255,.8)">Ho imparato che...</span>
+      <span style="padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:12px;color:rgba(255,255,255,.8)">È stato/a [aggettivo]</span>
+      <span style="padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:12px;color:rgba(255,255,255,.8)">Non mi aspettavo che...</span>
+      <span style="padding:5px 12px;border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:12px;color:rgba(255,255,255,.8)">Il momento più bello è stato...</span>
+    </div>
+  </div>
+
+  <!-- Compito scritto 1 -->
+  <div class="card">
+    <div class="prompt-box">
+      <div class="pb-tag">✍ Compito scritto 1 — Email informale</div>
+      <div class="pb-text">"Scrivi un'email a un'amica (80–100 parole). Racconta una cosa bella che hai fatto questa settimana. Usa il passato prossimo, almeno 2 preposizioni articolate, e 3 aggettivi concordati correttamente."</div>
+      <div class="pb-hint">Use passato prossimo · at least 2 articulated prepositions · 3 correctly agreed adjectives</div>
+    </div>
+    <div class="starter-chips">
+      <span class="s-chip" onclick="ins('prod1','Cara ___,\n')">Cara...,</span>
+      <span class="s-chip" onclick="ins('prod1','ti scrivo perché ')">ti scrivo perché</span>
+      <span class="s-chip" onclick="ins('prod1','questa settimana ho ')">questa settimana ho</span>
+      <span class="s-chip" onclick="ins('prod1','sono andata ')">sono andata</span>
+      <span class="s-chip" onclick="ins('prod1','è stato bellissimo')">è stato bellissimo</span>
+      <span class="s-chip" onclick="ins('prod1','ho imparato che ')">ho imparato che</span>
+      <span class="s-chip" onclick="ins('prod1','un bacio, Sara')">un bacio, Sara</span>
+    </div>
+    <textarea class="prod" id="prod1" placeholder="Cara Giulia,\n..." oninput="wc(this,'wc1')"></textarea>
+    <div class="wc" id="wc1">0 parole</div>
+  </div>
+
+  <!-- Compito scritto 2 -->
+  <div class="card">
+    <div class="prompt-box">
+      <div class="pb-tag">✍ Compito scritto 2 — Descrizione di un piatto</div>
+      <div class="pb-text">"Descrivi il tuo piatto preferito (60–80 parole). Usa: aggettivi concordati, preposizioni, e almeno una frase al passato prossimo (es: 'l'ho mangiato per la prima volta...')"</div>
+      <div class="pb-hint">Describe your favourite dish · adjectives · prepositions · one passato prossimo sentence</div>
+    </div>
+    <div class="starter-chips">
+      <span class="s-chip" onclick="ins('prod2','Il mio piatto preferito è ')">Il mio piatto preferito è</span>
+      <span class="s-chip" onclick="ins('prod2','È un piatto ')">È un piatto</span>
+      <span class="s-chip" onclick="ins('prod2','Si prepara con ')">Si prepara con</span>
+      <span class="s-chip" onclick="ins('prod2','L\'ho mangiato per la prima volta ')">L'ho mangiato per la prima volta</span>
+      <span class="s-chip" onclick="ins('prod2','Ha un sapore ')">Ha un sapore</span>
+    </div>
+    <textarea class="prod" id="prod2" placeholder="Il mio piatto preferito è..." oninput="wc(this,'wc2')"></textarea>
+    <div class="wc" id="wc2">0 parole</div>
+  </div>
+
+  <!-- FINE -->
+  <div class="card card-olive" style="text-align:center;padding:2rem">
+    <div style="font-size:32px;margin-bottom:.5rem">🎉</div>
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--olive);margin-bottom:.5rem">Lezione completata!</div>
+    <div style="font-size:14px;color:#4A5E2A;line-height:1.7">Hai lavorato su: <strong>pronuncia</strong> (suoni difficili, accento, doppie) · <strong>comprensione</strong> di 2 testi autentici · <strong>passato prossimo</strong> (essere/avere, accordo) · <strong>preposizioni articolate</strong> · <strong>accordo degli aggettivi</strong> · <strong>produzione orale e scritta</strong>.</div>
+    <div style="font-size:13px;color:#6A8E3A;margin-top:1rem;font-style:italic">Per casa: rileggi i due testi ad alta voce 2 volte. Ascolta la tua pronuncia e confronta. · <em>Homework: read both texts aloud twice. Listen to your pronunciation and compare.</em></div>
+  </div>
+
+</div>
+
+</div><!-- /wrap -->
+<footer>Sara · Lezione 2 · Pronuncia & Grammatica · A2–B1 · Kate · 50 minuti</footer>
+
+<script>
+// ── NAV ──
+function goTo(n, btn) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.prog-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+n).classList.add('active');
+  btn.classList.add('active');
+  for(let i=0;i<n;i++) document.getElementById('pb'+i).classList.add('done');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── PHON DETAIL ──
+const phonData = {
+  gli:{word:'figlio',ipa:'[ˈfiʎʎo]',en:'son',tip:'La lingua tocca il palato morbido — suono simile a "ly" velocissimo. Prova: fi-LLYA. Parole: moglie, gli, figlio, aglio.'},
+  gn:{word:'gnocchi',ipa:'[ˈɲɔkki]',en:'gnocchi',tip:'Consonante nasale palatale — come "ny" in "canyon". Non si pronuncia la "g" separata. Parole: lavagna, bagno, giugno, ogni.'},
+  sc:{word:'scena',ipa:'[ˈʃɛna]',en:'scene',tip:'Davanti a "i" o "e" si pronuncia come la "sh" inglese in "she". Davanti ad a/o/u si pronuncia "sk". Es: scarpa [sk] vs scena [ʃ].'},
+  ci:{word:'ciao',ipa:'[tʃao]',en:'hi/bye',tip:'Davanti a "i" o "e" la C italiana diventa "ch" (come in church). ciao, centro, cena, cielo. Davanti a a/o/u rimane "k": casa, colore.'},
+  gi:{word:'gelato',ipa:'[dʒeˈlato]',en:'ice cream',tip:'Davanti a "i" o "e" la G diventa "j" (come in journey). gelato, gente, giorno, giardino. Davanti a a/o/u rimane dura: gatto, gusto.'},
+  r:{word:'Roma',ipa:'[ˈrɔma]',en:'Rome',tip:'La R italiana è vibrante alveolare — la punta della lingua vibra sul palato. Non è come la R inglese (gutturale). Prova: dì "da" veloce molte volte — la lingua sale!'},
+  dop:{word:'notte',ipa:'[ˈnɔtte]',en:'night',tip:'Le consonanti doppie si "tengono" un attimo prima di rilasciarle. notte vs note, fatto vs fato, palla vs pala. Fa una pausa micro-scondica prima della consonante.'},
+  z:{word:'pizza',ipa:'[ˈpittsa]',en:'pizza',tip:'La Z ha due suoni: "ts" (pizza, grazie, stazione) e "dz" (zero, zona). In Italia la pronuncia varia anche per regione!'}
+};
+function showPhon(key) {
+  const d = phonData[key];
+  const box = document.getElementById('phon-detail');
+  box.style.display='block';
+  document.getElementById('pd-content').innerHTML=`
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:42px;color:var(--rust-m);line-height:1">${d.word}</div>
+        <div style="font-size:16px;color:rgba(255,255,255,.6);font-style:italic;margin-top:4px">${d.ipa}</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:2px">${d.en}</div>
+      </div>
+      <div style="flex:1;min-width:200px;font-size:14px;color:rgba(255,255,255,.8);line-height:1.7">${d.tip}</div>
+    </div>`;
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── MCQ ──
+const scores={t1:{c:0,t:5},t2:{c:0,t:4},pr:{c:0,t:4},ag:{c:0,t:4}};
+const answered={};
+function mcq(btn,qId,correct){
+  if(answered[qId])return;
+  answered[qId]=true;
+  btn.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+  btn.classList.add(correct?'correct':'wrong');
+  let grp='';
+  if(['t1q1','t1q2','t1q3','t1q4','t1q5'].includes(qId))grp='t1';
+  else if(['t2q1','t2q2','t2q3','t2q4'].includes(qId))grp='t2';
+  else if(['prq1','prq2','prq3','prq4'].includes(qId))grp='pr';
+  else if(['agq1','agq2','agq3','agq4'].includes(qId))grp='ag';
+  if(!grp)return;
+  if(correct)scores[grp].c++;
+  const pct=Math.round(scores[grp].c/scores[grp].t*100);
+  document.getElementById('sf-'+grp).style.width=pct+'%';
+  document.getElementById('sn-'+grp).textContent=scores[grp].c+' / '+scores[grp].t;
+}
+
+// ── FILL ──
+function sf(input,answer,id){
+  const v=input.value.trim().toLowerCase().replace(/[.!?,]/g,'').replace(/\s+/g,' ');
+  const a=answer.toLowerCase().replace(/[.!?,]/g,'').replace(/\s+/g,' ');
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){input.classList.add('ok');input.classList.remove('err');if(fb){fb.textContent='✓ Corretto!';fb.className='fb good';}}
+  else if(v.length>3){input.classList.add('err');input.classList.remove('ok');if(fb)fb.className='fb';}
+  else{input.classList.remove('ok','err');if(fb)fb.className='fb';}
+}
+
+// ── DIALOGUE GAPS ──
+function dg(input,answer,id){
+  const v=input.value.trim().toLowerCase();
+  const a=answer.toLowerCase();
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){input.classList.add('ok');input.classList.remove('err');if(fb)fb.textContent='✓';}
+  else{input.classList.remove('ok');if(fb)fb.textContent='';}
+}
+
+// ── SORT (essere/avere) ──
+const sortData=[
+  {v:'andare',cat:'essere'},{v:'arrivare',cat:'essere'},{v:'partire',cat:'essere'},
+  {v:'mangiare',cat:'avere'},{v:'scrivere',cat:'avere'},{v:'vedere',cat:'avere'},
+  {v:'tornare',cat:'essere'},{v:'dormire',cat:'avere'},{v:'uscire',cat:'essere'},
+  {v:'comprare',cat:'avere'},{v:'nascere',cat:'essere'},{v:'bere',cat:'avere'}
+];
+let sortState={};
+function initSort(){
+  sortState={};
+  const pool=document.getElementById('sort-pool');
+  pool.innerHTML='';
+  sortData.forEach((item,i)=>{
+    sortState[item.v]='pool';
+    const chip=document.createElement('span');
+    chip.className='sortable pool-item';
+    chip.textContent=item.v;
+    chip.id='sc-'+item.v;
+    chip.onclick=()=>cycleSort(item.v,item.cat);
+    pool.appendChild(chip);
+  });
+  document.getElementById('zone-essere').innerHTML='<span class="sort-zone-label" style="color:var(--navy)">ESSERE</span>';
+  document.getElementById('zone-avere').innerHTML='<span class="sort-zone-label" style="color:var(--rust-d)">AVERE</span>';
+  document.getElementById('fb-sort').className='fb';
+}
+function cycleSort(v,correctCat){
+  const chip=document.getElementById('sc-'+v);
+  const pool=document.getElementById('sort-pool');
+  const zE=document.getElementById('zone-essere');
+  const zA=document.getElementById('zone-avere');
+  if(sortState[v]==='pool'){
+    sortState[v]='essere';
+    chip.className='sortable in-essere';
+    zE.appendChild(chip);
+  } else if(sortState[v]==='essere'){
+    sortState[v]='avere';
+    chip.className='sortable in-avere';
+    zA.appendChild(chip);
+  } else {
+    sortState[v]='pool';
+    chip.className='sortable pool-item';
+    pool.appendChild(chip);
+  }
+}
+function checkSort(){
+  let ok=0;
+  const fb=document.getElementById('fb-sort');
+  sortData.forEach(item=>{
+    if(sortState[item.v]===item.cat) ok++;
+    const chip=document.getElementById('sc-'+item.v);
+    if(sortState[item.v]===item.cat){chip.style.outline='2px solid #5A9E22';}
+    else if(sortState[item.v]!=='pool'){chip.style.outline='2px solid #C0392B';}
+  });
+  fb.textContent=ok===sortData.length?'✓ Perfetto! '+ok+'/'+sortData.length+' corretti!':'Hai '+ok+'/'+sortData.length+' corretti. Gli errori sono evidenziati in rosso. Riprova!';
+  fb.className=ok===sortData.length?'fb good':'fb bad';
+}
+function resetSort(){initSort();}
+
+// ── WORD COUNT ──
+function wc(el,id){
+  const words=el.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById(id).textContent=words+' parole';
+}
+
+// ── INSERT CHIP ──
+function ins(id,text){
+  const ta=document.getElementById(id);
+  ta.value+=text;
+  wc(ta,id==='prod1'?'wc1':'wc2');
+  ta.focus();
+}
+
+// ── INIT ──
+window.onload=()=>initSort();
+</script>
+</body>
+</html>
