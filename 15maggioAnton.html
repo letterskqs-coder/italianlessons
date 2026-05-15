@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton · Lezione — Vita Quotidiana A1–A2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0E0F;
+  --bg2:#141416;
+  --bg3:#1C1C1F;
+  --bg4:#242428;
+  --border:#2E2E34;
+  --border2:#3A3A42;
+  --text:#E8E4DC;
+  --muted:#8A8680;
+  --subtle:#56544E;
+  --amber:#D4922A;
+  --amber-l:rgba(212,146,42,.12);
+  --amber-d:#A06B14;
+  --blue:#4A8FD4;
+  --blue-l:rgba(74,143,212,.1);
+  --green:#4AAB7A;
+  --green-l:rgba(74,171,122,.1);
+  --red:#C05050;
+  --red-l:rgba(192,80,80,.1);
+  --r:10px;
+}
+
+/* ── BASE ── */
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:5rem;line-height:1.6}
+
+/* ── NOISE TEXTURE ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
+
+/* ── HERO ── */
+.hero{position:relative;padding:0;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-film{height:4px;background:repeating-linear-gradient(90deg,var(--amber) 0,var(--amber) 14px,transparent 14px,transparent 20px)}
+.hero-inner{max-width:800px;margin:0 auto;padding:3rem 1.5rem 2.5rem;position:relative;z-index:1}
+.hero-label{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.hero-label::before{content:'';display:inline-block;width:24px;height:1px;background:var(--amber)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,54px);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:.5rem;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:14px;color:var(--muted);margin-bottom:1.5rem;max-width:480px;line-height:1.7}
+.hero-meta{display:flex;gap:1rem;flex-wrap:wrap}
+.meta-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--border2);border-radius:4px;font-size:11px;color:var(--muted);letter-spacing:.04em}
+.meta-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+/* scanline */
+.hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none}
+
+/* ── NAV ── */
+.nav-strip{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:800px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:14px 16px 12px;border:none;background:transparent;font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);cursor:pointer;transition:all .18s;border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;white-space:nowrap}
+.nav-btn .nb-icon{font-size:14px}
+.nav-btn .nb-time{font-size:9px;color:var(--subtle);letter-spacing:.05em}
+.nav-btn:hover{color:var(--amber);background:rgba(212,146,42,.04)}
+.nav-btn.active{color:var(--amber);border-bottom-color:var(--amber);font-weight:500}
+.nav-btn.done{color:var(--green);border-bottom-color:transparent}
+
+/* ── WRAP ── */
+.wrap{max-width:800px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+
+/* ── PANELS ── */
+.panel{display:none}
+.panel.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── SECTION HEADS ── */
+.sec-head{margin:2.5rem 0 1.25rem;display:flex;align-items:flex-start;gap:14px}
+.sec-num{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--amber);background:var(--amber-l);border:1px solid rgba(212,146,42,.25);border-radius:4px;padding:3px 8px;white-space:nowrap;margin-top:3px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--text);line-height:1.2}
+.sec-title em{font-style:italic;color:var(--amber)}
+.sec-sub{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.6}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.card-amber{background:var(--amber-l);border-color:rgba(212,146,42,.25)}
+.card-blue{background:var(--blue-l);border-color:rgba(74,143,212,.2)}
+.card-green{background:var(--green-l);border-color:rgba(74,171,122,.2)}
+
+/* ── READING TEXT ── */
+.reading{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:2;color:var(--text);font-weight:300}
+.reading p{margin-bottom:1.1em}
+.reading p:last-child{margin-bottom:0}
+.reading strong{font-weight:600;color:var(--text)}
+.glo{border-bottom:1px dashed var(--amber);color:inherit;cursor:help;transition:color .15s;position:relative}
+.glo:hover{color:var(--amber)}
+.glo::after{content:attr(data-en);position:absolute;bottom:calc(100%+6px);left:0;background:var(--bg4);border:1px solid var(--border2);color:var(--text);font-family:'Barlow',sans-serif;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;pointer-events:none;z-index:20;font-style:normal}
+.glo:not(:hover)::after{display:none}
+.en-note{font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);font-style:italic;font-weight:300}
+
+/* ── EX LABELS ── */
+.ex-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.85rem;display:flex;align-items:center;gap:8px}
+.ex-label::before{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.ex-intro{font-size:13px;color:var(--muted);background:var(--bg3);padding:.65rem 1rem;border-radius:6px;border-left:2px solid var(--border2);margin-bottom:1rem;line-height:1.65}
+
+/* ── MCQ ── */
+.mcq-q{margin-bottom:1.1rem}
+.mcq-q:last-of-type{margin-bottom:0}
+.q-text{font-size:14px;font-weight:500;margin-bottom:8px;line-height:1.5;color:var(--text)}
+.q-en{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:8px}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{padding:9px 14px;border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:14px;font-family:'Barlow',sans-serif;text-align:left;background:var(--bg3);color:var(--text);transition:all .15s;line-height:1.4}
+.opt:hover{border-color:var(--amber);background:var(--amber-l);color:var(--text)}
+.opt.correct{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.opt.wrong{background:var(--red-l);border-color:var(--red);color:var(--red)}
+.opt.disabled{pointer-events:none;opacity:.85}
+.opt.show-correct{background:var(--green-l);border-color:var(--green);color:var(--green)}
+
+/* ── FILL ── */
+.fill-wrap{margin-bottom:1.1rem}
+.fill-wrap:last-child{margin-bottom:0}
+.fill-sent{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--text);margin-bottom:4px}
+.fill-sent-en{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:5px}
+.fill-clue{font-size:11px;color:var(--subtle);margin-bottom:6px;padding:3px 8px;background:var(--bg3);border-radius:4px;display:inline-block}
+.fill-inp{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:'Barlow',sans-serif;background:var(--bg3);color:var(--text);outline:none;transition:all .18s}
+.fill-inp::placeholder{color:var(--subtle)}
+.fill-inp:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(212,146,42,.1)}
+.fill-inp.ok{border-color:var(--green);background:var(--green-l);color:var(--green)}
+.fill-inp.err{border-color:var(--red);background:var(--red-l)}
+.fb{font-size:12px;margin-top:4px;padding:3px 8px;border-radius:4px;display:none}
+.fb.good{display:block;background:var(--green-l);color:var(--green)}
+.fb.bad{display:block;background:var(--red-l);color:var(--red)}
+
+/* ── SCORE ── */
+.score-row{display:flex;align-items:center;gap:12px;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.score-track{flex:1;height:4px;background:var(--bg4);border-radius:999px;overflow:hidden}
+.score-fill{height:100%;background:var(--amber);border-radius:999px;transition:width .5s ease}
+.score-num{font-size:12px;color:var(--muted);min-width:44px;text-align:right;font-weight:500;letter-spacing:.04em}
+
+/* ── VOCAB CARDS ── */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.v-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;transition:border-color .15s;cursor:default}
+.v-card:hover{border-color:var(--amber)}
+.v-it{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text);margin-bottom:2px}
+.v-en{font-size:12px;color:var(--muted);font-style:italic}
+.v-ex{font-size:12px;color:var(--amber);margin-top:4px;opacity:.8}
+
+/* ── GRAMMAR TABLE ── */
+.gram-table{width:100%;border-collapse:collapse;font-size:13px;margin:.75rem 0}
+.gram-table th{padding:8px 12px;background:var(--bg4);color:var(--muted);text-align:left;font-weight:500;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.gram-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.gram-table tr:last-child td{border-bottom:none}
+.gram-table td:first-child{color:var(--muted);font-size:12px}
+.gram-table td:nth-child(2){color:var(--amber);font-weight:500}
+.gram-table td:nth-child(3){font-style:italic;color:var(--text);font-size:13px}
+
+.rule-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:4px;font-size:13px;font-weight:500;margin:4px 4px 4px 0}
+.rule-pres{background:rgba(74,143,212,.15);color:var(--blue);border:1px solid rgba(74,143,212,.3)}
+.rule-pass{background:var(--amber-l);color:var(--amber);border:1px solid rgba(212,146,42,.3)}
+.rule-imp{background:rgba(160,107,180,.15);color:#C090D8;border:1px solid rgba(160,107,180,.3)}
+
+/* ── TIMELINE STRIP ── */
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--border);margin-left:8px;padding-left:1.5rem}
+.tl-item{position:relative;padding-bottom:1.25rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-1.65rem;top:4px;width:10px;height:10px;border-radius:50%;background:var(--bg3);border:2px solid var(--amber)}
+.tl-time{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--amber);text-transform:uppercase;margin-bottom:2px}
+.tl-it{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text)}
+.tl-en{font-size:12px;color:var(--muted);font-style:italic}
+
+/* ── DIALOGUE ── */
+.d-wrap{display:flex;flex-direction:column;gap:.9rem}
+.d-row{display:flex;gap:12px;align-items:flex-start}
+.d-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;letter-spacing:.02em}
+.d-av.anton{background:var(--amber-l);color:var(--amber);border:1px solid rgba(212,146,42,.3)}
+.d-av.other{background:var(--bg4);color:var(--muted);border:1px solid var(--border)}
+.d-bub{flex:1}
+.d-name{font-size:10px;color:var(--subtle);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.d-it{font-size:15px;line-height:1.65;color:var(--text)}
+.d-en{font-size:12px;color:var(--muted);font-style:italic;margin-top:2px}
+.d-gap{border:none;border-bottom:1.5px solid var(--amber);background:transparent;font-size:15px;font-family:'Barlow',sans-serif;color:var(--amber);outline:none;padding:0 4px;min-width:80px;transition:border-color .15s}
+.d-gap:focus{border-bottom-color:var(--text)}
+.d-gap.ok{border-bottom-color:var(--green);color:var(--green)}
+.d-gap.err{border-bottom-color:var(--red)}
+
+/* ── SCAFFOLD ── */
+.scaffold{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:1rem 1.25rem;margin-top:.75rem}
+.scaffold-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--amber);margin-bottom:.65rem;text-transform:uppercase}
+.chip-pool{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:6px 14px;border:1px solid var(--border2);border-radius:20px;font-size:13px;color:var(--text);background:var(--bg4);cursor:pointer;transition:all .15s;font-family:'Barlow',sans-serif;user-select:none}
+.chip:hover{border-color:var(--amber);color:var(--amber)}
+.chip.used{opacity:.3;pointer-events:none}
+.built-display{margin-top:10px;min-height:40px;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--amber);font-style:italic;background:var(--bg);line-height:1.6}
+.built-word{display:inline-block;cursor:pointer;margin-right:4px;padding:1px 3px;border-radius:3px;transition:background .15s}
+.built-word:hover{background:var(--red-l);color:var(--red)}
+
+/* ── PRODUCTION ── */
+.prod-box{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border:1px solid var(--border2);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.prod-prompt{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:var(--text);line-height:1.6;margin-bottom:.5rem}
+.prod-prompt-en{font-size:13px;color:var(--muted);margin-bottom:1rem;line-height:1.6}
+textarea.prod{width:100%;min-height:80px;padding:12px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:'Barlow',sans-serif;line-height:1.75;color:var(--text);background:var(--bg3);resize:vertical;outline:none;transition:border .18s}
+textarea.prod::placeholder{color:var(--subtle)}
+textarea.prod:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(212,146,42,.08)}
+.wc{font-size:11px;color:var(--subtle);text-align:right;margin-top:4px}
+
+/* ── BUTTONS ── */
+.next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:11px 22px;background:var(--amber);color:var(--bg);border:none;border-radius:6px;font-size:13px;font-family:'Barlow',sans-serif;cursor:pointer;font-weight:600;transition:all .15s;letter-spacing:.03em}
+.next-btn:hover{background:var(--amber-d);transform:translateY(-1px)}
+.check-btn{display:inline-flex;align-items:center;gap:6px;margin-top:.85rem;padding:8px 16px;background:transparent;color:var(--amber);border:1px solid rgba(212,146,42,.4);border-radius:6px;font-size:12px;font-family:'Barlow',sans-serif;cursor:pointer;font-weight:500;transition:all .15s}
+.check-btn:hover{background:var(--amber-l)}
+.reset-btn{padding:8px 14px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:'Barlow',sans-serif;cursor:pointer;margin-left:8px;transition:all .15s}
+.reset-btn:hover{color:var(--text);border-color:var(--border2)}
+
+/* ── TIP ── */
+.tip{background:var(--amber-l);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;padding:10px 14px;font-size:13px;color:var(--text);margin-top:1rem;line-height:1.65}
+.tip strong{color:var(--amber)}
+
+/* ── COMPLETION ── */
+.completion{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:2rem;text-align:center;margin-top:1rem}
+.completion-icon{font-size:40px;margin-bottom:.75rem}
+.completion-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--amber);margin-bottom:.5rem}
+.completion-body{font-size:14px;color:var(--muted);line-height:1.8;max-width:500px;margin:0 auto}
+.completion-hw{font-size:13px;color:var(--subtle);font-style:italic;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+
+footer{text-align:center;font-size:11px;color:var(--subtle);padding:2rem 1rem;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-film"></div>
+  <div class="hero-inner">
+    <div class="hero-label">Anton · A1–A2 · Como</div>
+    <h1>Una giornata<br><em>come tante</em></h1>
+    <div class="hero-sub">Testo di comprensione · Presente, Passato Prossimo, Imperfetto · Vocabolario della vita di tutti i giorni</div>
+    <div class="hero-meta">
+      <span class="meta-tag"><span class="dot"></span>50 minuti</span>
+      <span class="meta-tag"><span class="dot"></span>Scaffolding completo</span>
+      <span class="meta-tag"><span class="dot"></span>Testo + 5 sezioni</span>
+      <span class="meta-tag"><span class="dot"></span>Testo in IT + EN</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<div class="nav-strip">
+  <div class="nav-inner">
+    <button class="nav-btn active" id="nb0" onclick="goTo(0,this)"><span class="nb-icon">📖</span><span>Testo</span><span class="nb-time">MIN 1–12</span></button>
+    <button class="nav-btn" id="nb1" onclick="goTo(1,this)"><span class="nb-icon">🔍</span><span>Comprensione</span><span class="nb-time">MIN 13–20</span></button>
+    <button class="nav-btn" id="nb2" onclick="goTo(2,this)"><span class="nb-icon">📚</span><span>Vocabolario</span><span class="nb-time">MIN 21–27</span></button>
+    <button class="nav-btn" id="nb3" onclick="goTo(3,this)"><span class="nb-icon">🔧</span><span>I Tempi</span><span class="nb-time">MIN 28–38</span></button>
+    <button class="nav-btn" id="nb4" onclick="goTo(4,this)"><span class="nb-icon">💬</span><span>Dialogo</span><span class="nb-time">MIN 39–45</span></button>
+    <button class="nav-btn" id="nb5" onclick="goTo(5,this)"><span class="nb-icon">✍</span><span>Produzione</span><span class="nb-time">MIN 46–50</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════
+     PANEL 0 — TESTO
+══════════════════════════════════════ -->
+<div class="panel active" id="panel-0">
+
+  <div class="sec-head">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="sec-num">SEZIONE 1</span></div>
+      <div class="sec-title">Il testo — <em>Leggi e ascolta dentro di te</em></div>
+      <div class="sec-sub">Leggi con calma. Le parole <span class="glo" data-en="hover = translation" style="cursor:default">sottolineate</span> hanno la traduzione se ci passi sopra con il mouse. · <em>Read carefully. Underlined words show a translation on hover.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="reading">
+      <p><strong>Una giornata come tante</strong></p>
+
+      <p>Quando Anton si sveglia la mattina, la prima cosa che fa è aprire la <glo data-en="window / blind">tapparella</glo> della sua camera. Abita in un piccolo appartamento a Como, al secondo piano di un palazzo vecchio con i <glo data-en="shutters / wooden shutter frames">scuri di legno</glo>. Fuori, il lago si vede appena tra i tetti.</p>
+
+      <p>La sua routine è sempre uguale. Alle sette prepara il caffè — sempre lo stesso: caffè lungo, niente zucchero, una tazza grande. Poi si siede al <glo data-en="desk">tavolo da lavoro</glo> vicino alla finestra e guarda il taccuino dove scrive le sue idee per i film. Anton è un <glo data-en="filmmaker / film director">regista</glo>. Non famoso, non ancora — ma ogni mattina scrive, anche solo due righe.</p>
+
+      <p>Ieri mattina ha fatto qualcosa di diverso. Invece di restare a casa, è uscito presto con la macchina fotografica. Ha <glo data-en="walked / strolled">camminato</glo> lungo il lungolago per un'ora, ha fotografato un vecchio pescatore, tre gatti sul muro e una bambina che mangiava un gelato al limone alle otto di mattina. "La vita reale è il miglior copione," pensa sempre.</p>
+
+      <p>Nel pomeriggio ha incontrato Luca, il suo amico di sempre, al bar sotto casa. Hanno ordinato due caffè e un <glo data-en="sandwich / filled roll">tramezzino</glo> al prosciutto. Luca parlava — come sempre — tantissimo: del lavoro, della fidanzata, del nuovo appartamento. Anton <glo data-en="listened / was listening">ascoltava</glo> in silenzio, annuiva, ogni tanto sorrideva. Non aveva molto da dire. Ma era <glo data-en="comfortable / at ease">a suo agio</glo>.</p>
+
+      <p>La sera, Anton ha cucinato per sé: pasta al <glo data-en="butter and sage — a simple classic">burro e salvia</glo>, semplice e veloce. Ha mangiato guardando fuori dalla finestra. Le luci del lungolago si riflettevano nell'acqua. Ha pensato al film che vuole fare: una storia senza parole, solo <glo data-en="images / shots">immagini</glo>. Come quella mattina.</p>
+    </div>
+  </div>
+
+  <!-- EN VERSION toggle -->
+  <div class="card card-amber" style="cursor:pointer" onclick="toggleEn(this)">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:13px;color:var(--amber);font-weight:500">📄 English version — clicca per leggere / click to read</span>
+      <span id="en-arrow" style="color:var(--amber);font-size:16px">▶</span>
+    </div>
+    <div id="en-text" style="display:none;margin-top:1rem">
+      <div class="reading" style="font-size:15px;color:var(--muted);line-height:1.85">
+        <p><strong>A day like any other</strong></p>
+        <p>When Anton wakes up in the morning, the first thing he does is open the blind in his room. He lives in a small apartment in Como, on the second floor of an old building with wooden shutters. Outside, the lake can just be seen between the rooftops.</p>
+        <p>His routine is always the same. At seven he makes coffee — always the same: lungo, no sugar, a big cup. Then he sits at his work desk by the window and looks at the notebook where he writes his ideas for films. Anton is a filmmaker. Not famous, not yet — but every morning he writes, even if just two lines.</p>
+        <p>Yesterday morning he did something different. Instead of staying home, he went out early with his camera. He walked along the lakefront for an hour, photographed an old fisherman, three cats on a wall and a little girl eating a lemon ice cream at eight in the morning. "Real life is the best script," he always thinks.</p>
+        <p>In the afternoon he met his lifelong friend Luca at the bar downstairs. They ordered two coffees and a prosciutto sandwich. Luca talked — as always — a great deal: about work, his girlfriend, the new apartment. Anton listened in silence, nodded, occasionally smiled. He didn't have much to say. But he was comfortable.</p>
+        <p>In the evening, Anton cooked for himself: pasta with butter and sage, simple and quick. He ate looking out the window. The lights of the lakefront were reflecting in the water. He thought about the film he wants to make: a story without words, only images. Like that morning.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-amber" style="padding:1rem 1.25rem">
+    <div style="font-size:13px;color:var(--amber);font-weight:500;margin-bottom:.4rem">🎬 Domanda per iniziare — parlate insieme</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text)">Com'è la tua routine mattutina? Cosa fai prima — il caffè o la doccia?</div>
+    <div class="en-note" style="margin-top:4px">What is your morning routine like? What do you do first — coffee or shower?</div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(1,document.getElementById('nb1'))">Comprensione del testo →</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 1 — COMPRENSIONE
+══════════════════════════════════════ -->
+<div class="panel" id="panel-1">
+
+  <div class="sec-head">
+    <div>
+      <span class="sec-num">SEZIONE 2</span>
+      <div class="sec-title" style="margin-top:6px">Comprensione — <em>Hai capito?</em></div>
+      <div class="sec-sub">Rispondi alle domande sul testo. Alcune richiedono di ragionare. · <em>Answer the questions. Some require inference.</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ex-label">Parte A — scelta multipla</div>
+    <div class="ex-intro">Scegli la risposta corretta. · <em>Choose the correct answer.</em></div>
+
+    <div class="mcq-q" id="q1">
+      <div class="q-text">1. Dove abita Anton?</div>
+      <div class="q-en">Where does Anton live?</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'q1',false)">a) In una grande casa con giardino a Milano</button>
+        <button class="opt" onclick="chk(this,'q1',true)">b) In un piccolo appartamento a Como, al secondo piano</button>
+        <button class="opt" onclick="chk(this,'q1',false)">c) In un hotel vicino al lago</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="q2">
+      <div class="q-text">2. Cosa fa Anton ogni mattina prima di uscire?</div>
+      <div class="q-en">What does Anton do every morning before going out?</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'q2',false)">a) Guarda un film</button>
+        <button class="opt" onclick="chk(this,'q2',true)">b) Prepara il caffè e scrive idee nel taccuino</button>
+        <button class="opt" onclick="chk(this,'q2',false)">c) Telefona a Luca</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="q3">
+      <div class="q-text">3. Cosa ha fotografato Anton ieri mattina?</div>
+      <div class="q-en">What did Anton photograph yesterday morning?</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'q3',false)">a) Il lago e le montagne</button>
+        <button class="opt" onclick="chk(this,'q3',true)">b) Un pescatore, tre gatti e una bambina con il gelato</button>
+        <button class="opt" onclick="chk(this,'q3',false)">c) Il suo appartamento e la finestra</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="q4">
+      <div class="q-text">4. Come si comportava Anton al bar con Luca?</div>
+      <div class="q-en">How did Anton behave at the bar with Luca?</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'q4',false)">a) Parlava molto e raccontava le sue avventure</button>
+        <button class="opt" onclick="chk(this,'q4',true)">b) Ascoltava in silenzio, annuiva, sorrideva ogni tanto</button>
+        <button class="opt" onclick="chk(this,'q4',false)">c) Era annoiato e voleva andare via</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="q5">
+      <div class="q-text">5. 🎬 Inferenza: Cosa ci dice il testo sul carattere di Anton?</div>
+      <div class="q-en">Inference: What does the text tell us about Anton's personality?</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'q5',false)">a) È una persona estroversa e chiacchierona</button>
+        <button class="opt" onclick="chk(this,'q5',true)">b) È osservatore, silenzioso, trova ispirazione nella vita quotidiana</button>
+        <button class="opt" onclick="chk(this,'q5',false)">c) È triste e solitario, non ha amici</button>
+      </div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-comp" style="width:0%"></div></div>
+      <span class="score-num" id="sn-comp">0 / 5</span>
+    </div>
+  </div>
+
+  <!-- Parte B — vero/falso -->
+  <div class="card">
+    <div class="ex-label">Parte B — vero o falso?</div>
+
+    <div class="mcq-q" id="vf1">
+      <div class="q-text">6. Anton mette lo zucchero nel caffè.</div>
+      <div class="q-en">Anton puts sugar in his coffee.</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vf1',false)">Vero</button>
+        <button class="opt" onclick="chk(this,'vf1',true)">Falso — beve il caffè senza zucchero</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="vf2">
+      <div class="q-text">7. Ieri sera Anton ha cucinato qualcosa di complicato.</div>
+      <div class="q-en">Yesterday evening Anton cooked something complicated.</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vf2',false)">Vero</button>
+        <button class="opt" onclick="chk(this,'vf2',true)">Falso — pasta al burro e salvia, semplice e veloce</button>
+      </div>
+    </div>
+
+    <div class="mcq-q" id="vf3">
+      <div class="q-text">8. Il film che Anton vuole fare avrà molti dialoghi.</div>
+      <div class="q-en">The film Anton wants to make will have lots of dialogue.</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vf3',false)">Vero</button>
+        <button class="opt" onclick="chk(this,'vf3',true)">Falso — una storia senza parole, solo immagini</button>
+      </div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-vf" style="width:0%"></div></div>
+      <span class="score-num" id="sn-vf">0 / 3</span>
+    </div>
+  </div>
+
+  <!-- Parte C — risposta aperta -->
+  <div class="card card-blue">
+    <div class="ex-label" style="color:var(--blue)">Parte C — scrivi in italiano</div>
+    <div class="q-text" style="margin-bottom:6px">9. In una o due frasi: cosa significa "La vita reale è il miglior copione" per Anton?</div>
+    <div class="q-en" style="margin-bottom:10px">In one or two sentences: what does "Real life is the best script" mean for Anton?</div>
+    <textarea class="prod" placeholder="Secondo me, questa frase significa che..." oninput="wc(this,'wc-c')"></textarea>
+    <div class="wc" id="wc-c">0 parole</div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(2,document.getElementById('nb2'))">Vai al vocabolario →</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 2 — VOCABOLARIO
+══════════════════════════════════════ -->
+<div class="panel" id="panel-2">
+
+  <div class="sec-head">
+    <div>
+      <span class="sec-num">SEZIONE 3</span>
+      <div class="sec-title" style="margin-top:6px">Vocabolario — <em>Vita di tutti i giorni</em></div>
+      <div class="sec-sub">Parole essenziali per raccontare la propria giornata. · <em>Essential words for describing your daily life.</em></div>
+    </div>
+  </div>
+
+  <!-- Routine mattutina -->
+  <div class="card">
+    <div class="ex-label">Routine mattutina / mattinale</div>
+    <div class="vocab-grid">
+      <div class="v-card"><div class="v-it">svegliarsi</div><div class="v-en">to wake up</div><div class="v-ex">Mi sveglio alle 7.</div></div>
+      <div class="v-card"><div class="v-it">alzarsi</div><div class="v-en">to get up</div><div class="v-ex">Mi alzo tardi.</div></div>
+      <div class="v-card"><div class="v-it">fare la doccia</div><div class="v-en">to have a shower</div><div class="v-ex">Faccio la doccia.</div></div>
+      <div class="v-card"><div class="v-it">prepararsi</div><div class="v-en">to get ready</div><div class="v-ex">Mi preparo in 10'.</div></div>
+      <div class="v-card"><div class="v-it">fare colazione</div><div class="v-en">to have breakfast</div><div class="v-ex">Faccio colazione.</div></div>
+      <div class="v-card"><div class="v-it">uscire di casa</div><div class="v-en">to leave home</div><div class="v-ex">Esco alle 8.</div></div>
+      <div class="v-card"><div class="v-it">il taccuino</div><div class="v-en">notebook</div><div class="v-ex">Scrivo nel taccuino.</div></div>
+      <div class="v-card"><div class="v-it">la tapparella</div><div class="v-en">roller blind / shutter</div><div class="v-ex">Apro la tapparella.</div></div>
+    </div>
+  </div>
+
+  <!-- Fuori casa -->
+  <div class="card">
+    <div class="ex-label">Fuori casa — in città</div>
+    <div class="vocab-grid">
+      <div class="v-card"><div class="v-it">fare una passeggiata</div><div class="v-en">to go for a walk</div><div class="v-ex">Faccio una passeggiata.</div></div>
+      <div class="v-card"><div class="v-it">il lungolago</div><div class="v-en">lakefront promenade</div><div class="v-ex">Cammino sul lungolago.</div></div>
+      <div class="v-card"><div class="v-it">il bar sotto casa</div><div class="v-en">bar downstairs/nearby</div><div class="v-ex">Vado al bar sotto casa.</div></div>
+      <div class="v-card"><div class="v-it">ordinare</div><div class="v-en">to order</div><div class="v-ex">Ordino un caffè.</div></div>
+      <div class="v-card"><div class="v-it">incontrare</div><div class="v-en">to meet (someone)</div><div class="v-ex">Incontro un amico.</div></div>
+      <div class="v-card"><div class="v-it">fotografare</div><div class="v-en">to photograph</div><div class="v-ex">Fotografo il lago.</div></div>
+      <div class="v-card"><div class="v-it">il tramezzino</div><div class="v-en">sandwich</div><div class="v-ex">Prendo un tramezzino.</div></div>
+      <div class="v-card"><div class="v-it">la macchina fotografica</div><div class="v-en">camera</div><div class="v-ex">Porto la macchina.</div></div>
+    </div>
+  </div>
+
+  <!-- Sera -->
+  <div class="card">
+    <div class="ex-label">La sera — in casa</div>
+    <div class="vocab-grid">
+      <div class="v-card"><div class="v-it">cucinare</div><div class="v-en">to cook</div><div class="v-ex">Cucino per me.</div></div>
+      <div class="v-card"><div class="v-it">mangiare da solo</div><div class="v-en">to eat alone</div><div class="v-ex">Mangio da solo.</div></div>
+      <div class="v-card"><div class="v-it">guardare fuori</div><div class="v-en">to look outside</div><div class="v-ex">Guardo fuori dalla finestra.</div></div>
+      <div class="v-card"><div class="v-it">riflettere / pensare</div><div class="v-en">to reflect / to think</div><div class="v-ex">Penso al mio film.</div></div>
+      <div class="v-card"><div class="v-it">addormentarsi</div><div class="v-en">to fall asleep</div><div class="v-ex">Mi addormento tardi.</div></div>
+      <div class="v-card"><div class="v-it">le luci</div><div class="v-en">the lights</div><div class="v-ex">Le luci del lago.</div></div>
+    </div>
+  </div>
+
+  <!-- Esercizio vocab -->
+  <div class="card">
+    <div class="ex-label">Esercizio — abbina parola e definizione</div>
+    <div class="ex-intro">Scegli la parola giusta. · <em>Choose the right word.</em></div>
+
+    <div class="mcq-q" id="vq1">
+      <div class="q-text">1. "Inizio la giornata, apro gli occhi, non dormo più"</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vq1',false)">cucinare</button>
+        <button class="opt" onclick="chk(this,'vq1',true)">svegliarsi</button>
+        <button class="opt" onclick="chk(this,'vq1',false)">addormentarsi</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="vq2">
+      <div class="q-text">2. "Vedo un amico per caso o appuntamento"</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vq2',true)">incontrare</button>
+        <button class="opt" onclick="chk(this,'vq2',false)">fotografare</button>
+        <button class="opt" onclick="chk(this,'vq2',false)">ordinare</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="vq3">
+      <div class="q-text">3. "Preparo il cibo per mangiare"</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vq3',false)">camminare</button>
+        <button class="opt" onclick="chk(this,'vq3',false)">guardarsi</button>
+        <button class="opt" onclick="chk(this,'vq3',true)">cucinare</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="vq4">
+      <div class="q-text">4. "Cammino per la città senza una destinazione precisa"</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'vq4',true)">fare una passeggiata</button>
+        <button class="opt" onclick="chk(this,'vq4',false)">uscire di casa</button>
+        <button class="opt" onclick="chk(this,'vq4',false)">prepararsi</button>
+      </div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-vq" style="width:0%"></div></div>
+      <span class="score-num" id="sn-vq">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- Esercizio 2: completa con vocab -->
+  <div class="card">
+    <div class="ex-label">Inserisci la parola giusta</div>
+    <div class="ex-intro">Usa: <strong>lungolago · tramezzino · taccuino · tapparella · fotografato · incontrare</strong></div>
+
+    <div class="fill-wrap">
+      <div class="fill-sent">Anton apre la _____ e vede il lago tra i tetti.</div>
+      <input class="fill-inp" type="text" placeholder="tapparella" oninput="sf(this,'tapparella','v1')"><div id="fb-v1" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Ogni mattina scrive le sue idee nel _____.</div>
+      <input class="fill-inp" type="text" placeholder="taccuino" oninput="sf(this,'taccuino','v2')"><div id="fb-v2" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Ha camminato sul _____ per un'ora con la macchina fotografica.</div>
+      <input class="fill-inp" type="text" placeholder="lungolago" oninput="sf(this,'lungolago','v3')"><div id="fb-v3" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Ha _____ un pescatore, tre gatti e una bambina.</div>
+      <input class="fill-inp" type="text" placeholder="fotografato" oninput="sf(this,'fotografato','v4')"><div id="fb-v4" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Al bar hanno ordinato due caffè e un _____ al prosciutto.</div>
+      <input class="fill-inp" type="text" placeholder="tramezzino" oninput="sf(this,'tramezzino','v5')"><div id="fb-v5" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(3,document.getElementById('nb3'))">Vai ai tempi verbali →</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 3 — I TEMPI
+══════════════════════════════════════ -->
+<div class="panel" id="panel-3">
+
+  <div class="sec-head">
+    <div>
+      <span class="sec-num">SEZIONE 4</span>
+      <div class="sec-title" style="margin-top:6px">I tempi verbali — <em>quando succede?</em></div>
+      <div class="sec-sub">Presente · Passato Prossimo · Imperfetto. Tre tempi che servono ogni giorno. · <em>Three tenses you need every day.</em></div>
+    </div>
+  </div>
+
+  <!-- SCHEMA VISIVO -->
+  <div class="card">
+    <div class="ex-label">Schema — i 3 tempi nel testo</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem">Dal testo di Anton vediamo tutti e tre i tempi. · <em>From Anton's story we see all three tenses.</em></p>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:10px">
+
+      <div style="padding:1rem 1.25rem;border:1px solid rgba(74,143,212,.3);border-radius:var(--r);background:var(--blue-l)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem">
+          <span class="rule-chip rule-pres">PRESENTE</span>
+          <span style="font-size:12px;color:var(--muted)">Abitudini, routine, fatti generali · <em>habits, routines, general facts</em></span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">ogni mattina / sempre</div><div class="tl-it">"Anton <strong style="color:var(--blue)">apre</strong> la tapparella."</div><div class="tl-en">every morning — he opens the blind</div></div>
+          <div class="tl-item"><div class="tl-time">abitudine</div><div class="tl-it">"La sua routine <strong style="color:var(--blue)">è</strong> sempre uguale."</div><div class="tl-en">habit — his routine is always the same</div></div>
+          <div class="tl-item" style="padding-bottom:0"><div class="tl-time">fatto generale</div><div class="tl-it">"Anton <strong style="color:var(--blue)">è</strong> un regista."</div><div class="tl-en">general fact — Anton is a filmmaker</div></div>
+        </div>
+      </div>
+
+      <div style="padding:1rem 1.25rem;border:1px solid rgba(212,146,42,.3);border-radius:var(--r);background:var(--amber-l)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem">
+          <span class="rule-chip rule-pass">PASSATO PROSSIMO</span>
+          <span style="font-size:12px;color:var(--muted)">Azioni finite ieri, la settimana scorsa · <em>completed actions</em></span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">ieri mattina</div><div class="tl-it">"<strong style="color:var(--amber)">È uscito</strong> presto con la macchina fotografica."</div><div class="tl-en">completed: he went out early</div></div>
+          <div class="tl-item"><div class="tl-time">ieri mattina</div><div class="tl-it">"<strong style="color:var(--amber)">Ha fotografato</strong> un pescatore."</div><div class="tl-en">completed: he photographed a fisherman</div></div>
+          <div class="tl-item" style="padding-bottom:0"><div class="tl-time">ieri pomeriggio</div><div class="tl-it">"<strong style="color:var(--amber)">Ha incontrato</strong> Luca al bar."</div><div class="tl-en">completed: he met Luca</div></div>
+        </div>
+      </div>
+
+      <div style="padding:1rem 1.25rem;border:1px solid rgba(160,107,180,.3);border-radius:var(--r);background:rgba(160,107,180,.08)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:.5rem">
+          <span class="rule-chip rule-imp">IMPERFETTO</span>
+          <span style="font-size:12px;color:var(--muted)">Azione continua nel passato, descrizione · <em>ongoing past action, description</em></span>
+        </div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">situazione passata</div><div class="tl-it">"Luca <strong style="color:#C090D8">parlava</strong> tantissimo."</div><div class="tl-en">ongoing in the past — Luca was talking a lot</div></div>
+          <div class="tl-item" style="padding-bottom:0"><div class="tl-time">descrizione</div><div class="tl-it">"Anton <strong style="color:#C090D8">ascoltava</strong> in silenzio."</div><div class="tl-en">ongoing state — Anton was listening in silence</div></div>
+        </div>
+        <div class="tip" style="margin-top:.75rem"><strong>💡 Regola semplice:</strong> Passato prossimo = una volta, finito ("ha mangiato la pizza"). Imperfetto = situazione, descrizione, ripetizione nel passato ("mangiava la pizza ogni venerdì"). Quando stai raccontando, li usi insieme!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coniugazione rapida -->
+  <div class="card">
+    <div class="ex-label">Coniugazione rapida — verbi utili</div>
+    <div style="overflow-x:auto">
+      <table class="gram-table">
+        <tr><th>Pronome</th><th>ANDARE (p.p.)</th><th>FARE (p.p.)</th><th>MANGIARE (p.p.)</th><th>ESSERE (imperf.)</th></tr>
+        <tr><td>io</td><td>sono andato/a</td><td>ho fatto</td><td>ho mangiato</td><td>ero</td></tr>
+        <tr><td>tu</td><td>sei andato/a</td><td>hai fatto</td><td>hai mangiato</td><td>eri</td></tr>
+        <tr><td>lui/lei</td><td>è andato/a</td><td>ha fatto</td><td>ha mangiato</td><td>era</td></tr>
+        <tr><td>noi</td><td>siamo andati/e</td><td>abbiamo fatto</td><td>abbiamo mangiato</td><td>eravamo</td></tr>
+        <tr><td>voi</td><td>siete andati/e</td><td>avete fatto</td><td>avete mangiato</td><td>eravate</td></tr>
+        <tr><td>loro</td><td>sono andati/e</td><td>hanno fatto</td><td>hanno mangiato</td><td>erano</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Es 1: identifica il tempo -->
+  <div class="card">
+    <div class="ex-label">Esercizio 1 — che tempo è?</div>
+    <div class="ex-intro">Scegli il tempo verbale usato in ogni frase. · <em>Choose the tense used in each sentence.</em></div>
+
+    <div class="mcq-q" id="tq1">
+      <div class="q-text">1. "Anton apre la tapparella ogni mattina."</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'tq1',true)">Presente — abitudine quotidiana</button>
+        <button class="opt" onclick="chk(this,'tq1',false)">Passato prossimo — azione finita</button>
+        <button class="opt" onclick="chk(this,'tq1',false)">Imperfetto — descrizione passata</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="tq2">
+      <div class="q-text">2. "Ieri mattina ha fotografato un pescatore."</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'tq2',false)">Presente — abitudine quotidiana</button>
+        <button class="opt" onclick="chk(this,'tq2',true)">Passato prossimo — azione finita ieri</button>
+        <button class="opt" onclick="chk(this,'tq2',false)">Imperfetto — descrizione passata</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="tq3">
+      <div class="q-text">3. "Luca parlava — come sempre — tantissimo."</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'tq3',false)">Presente — abitudine quotidiana</button>
+        <button class="opt" onclick="chk(this,'tq3',false)">Passato prossimo — azione finita</button>
+        <button class="opt" onclick="chk(this,'tq3',true)">Imperfetto — azione continua nel passato</button>
+      </div>
+    </div>
+    <div class="mcq-q" id="tq4">
+      <div class="q-text">4. "Anton è un regista."</div>
+      <div class="opts">
+        <button class="opt" onclick="chk(this,'tq4',true)">Presente — fatto generale / identità</button>
+        <button class="opt" onclick="chk(this,'tq4',false)">Passato prossimo</button>
+        <button class="opt" onclick="chk(this,'tq4',false)">Imperfetto</button>
+      </div>
+    </div>
+    <div class="score-row">
+      <div class="score-track"><div class="score-fill" id="sf-tq" style="width:0%"></div></div>
+      <span class="score-num" id="sn-tq">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- Es 2: completa con il tempo giusto -->
+  <div class="card">
+    <div class="ex-label">Esercizio 2 — usa il tempo corretto</div>
+    <div class="ex-intro">Scrivi il verbo al tempo giusto: presente, passato prossimo o imperfetto. La parola chiave ti aiuta. · <em>Write the verb in the correct tense. The key word helps you.</em></div>
+
+    <div class="fill-wrap">
+      <div class="fill-sent">Ogni mattina Anton _____ (preparare) il caffè.</div>
+      <div class="fill-sent-en">Every morning Anton prepares coffee.</div>
+      <div class="fill-clue">ogni mattina → presente</div>
+      <input class="fill-inp" type="text" placeholder="prepara" oninput="sf(this,'prepara','t1')"><div id="fb-t1" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Ieri mattina Anton _____ (uscire) presto di casa.</div>
+      <div class="fill-sent-en">Yesterday morning Anton left home early.</div>
+      <div class="fill-clue">ieri mattina → passato prossimo · essere</div>
+      <input class="fill-inp" type="text" placeholder="è uscito" oninput="sf(this,'è uscito','t2')"><div id="fb-t2" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Mentre Luca parlava, Anton _____ (ascoltare) in silenzio.</div>
+      <div class="fill-sent-en">While Luca was talking, Anton was listening in silence.</div>
+      <div class="fill-clue">mentre / situazione continua → imperfetto</div>
+      <input class="fill-inp" type="text" placeholder="ascoltava" oninput="sf(this,'ascoltava','t3')"><div id="fb-t3" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Anton e Luca _____ (ordinare) due caffè al bar.</div>
+      <div class="fill-sent-en">Anton and Luca ordered two coffees at the bar.</div>
+      <div class="fill-clue">azione finita → passato prossimo · avere</div>
+      <input class="fill-inp" type="text" placeholder="hanno ordinato" oninput="sf(this,'hanno ordinato','t4')"><div id="fb-t4" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">La sera Anton _____ (cucinare) la pasta al burro e salvia.</div>
+      <div class="fill-sent-en">In the evening Anton cooked pasta with butter and sage.</div>
+      <div class="fill-clue">ieri sera, azione finita → passato prossimo</div>
+      <input class="fill-inp" type="text" placeholder="ha cucinato" oninput="sf(this,'ha cucinato','t5')"><div id="fb-t5" class="fb"></div>
+    </div>
+    <div class="fill-wrap">
+      <div class="fill-sent">Le luci del lungolago _____ (riflettersi) nell'acqua.</div>
+      <div class="fill-sent-en">The lights of the lakefront were reflecting in the water.</div>
+      <div class="fill-clue">descrizione passata → imperfetto</div>
+      <input class="fill-inp" type="text" placeholder="si riflettevano" oninput="sf(this,'si riflettevano','t6')"><div id="fb-t6" class="fb"></div>
+    </div>
+  </div>
+
+  <!-- Es 3: ricostruzione della storia -->
+  <div class="card">
+    <div class="ex-label">Esercizio 3 — racconta la giornata di Anton</div>
+    <div class="ex-intro">Guarda le immagini-azione e scrivi una frase al passato prossimo per ognuna. · <em>Look at the action prompts and write a sentence in the passato prossimo for each.</em></div>
+    <div style="display:flex;flex-direction:column;gap:.85rem">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--amber-l);border:1px solid rgba(212,146,42,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📸</div>
+        <div style="flex:1">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:5px">Anton / uscire / lungolago / mattina</div>
+          <input class="fill-inp" type="text" placeholder="Stamattina Anton è uscito sul lungolago." oninput="sf(this,'stamattina anton è uscito sul lungolago','r1')"><div id="fb-r1" class="fb"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--amber-l);border:1px solid rgba(212,146,42,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">☕</div>
+        <div style="flex:1">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:5px">Anton e Luca / ordinare / caffè / bar</div>
+          <input class="fill-inp" type="text" placeholder="Anton e Luca hanno ordinato un caffè al bar." oninput="sf(this,'anton e luca hanno ordinato un caffè al bar','r2')"><div id="fb-r2" class="fb"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--amber-l);border:1px solid rgba(212,146,42,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🍝</div>
+        <div style="flex:1">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:5px">Anton / cucinare / pasta / sera</div>
+          <input class="fill-inp" type="text" placeholder="La sera Anton ha cucinato la pasta." oninput="sf(this,'la sera anton ha cucinato la pasta','r3')"><div id="fb-r3" class="fb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(4,document.getElementById('nb4'))">Vai al dialogo →</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 4 — DIALOGO
+══════════════════════════════════════ -->
+<div class="panel" id="panel-4">
+
+  <div class="sec-head">
+    <div>
+      <span class="sec-num">SEZIONE 5</span>
+      <div class="sec-title" style="margin-top:6px">Dialogo — <em>Anton al bar</em></div>
+      <div class="sec-sub">Anton incontra Luca. Completa il dialogo — poi recita la parte di Anton ad alta voce. · <em>Complete the dialogue, then role-play Anton's part aloud.</em></div>
+    </div>
+  </div>
+
+  <!-- Dialogo con lacune -->
+  <div class="card">
+    <div class="ex-label">Completa il dialogo</div>
+    <div class="ex-intro">Usa le parole: <strong>hai fatto · stamattina · sono uscito · ho fotografato · non molto · si riflettevano</strong></div>
+
+    <div class="d-wrap">
+      <div class="d-row">
+        <div class="d-av other">L</div>
+        <div class="d-bub"><div class="d-name">Luca</div>
+          <div class="d-it">Ciao Anton! Cosa <input class="d-gap" oninput="dg(this,'hai fatto','dg1')" placeholder="______"> stamattina?</div>
+          <div class="d-en">Hey Anton! What did you do this morning?</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av anton">A</div>
+        <div class="d-bub"><div class="d-name">Anton</div>
+          <div class="d-it"><input class="d-gap" oninput="dg(this,'stamattina','dg2')" placeholder="______"> <input class="d-gap" oninput="dg(this,'sono uscito','dg3')" placeholder="______"> presto. Ho camminato sul lungolago.</div>
+          <div class="d-en">This morning I went out early. I walked along the lakefront.</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av other">L</div>
+        <div class="d-bub"><div class="d-name">Luca</div>
+          <div class="d-it">Ah sì? E hai portato la macchina fotografica?</div>
+          <div class="d-en">Oh really? And did you bring your camera?</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av anton">A</div>
+        <div class="d-bub"><div class="d-name">Anton</div>
+          <div class="d-it">Sì. <input class="d-gap" oninput="dg(this,'ho fotografato','dg4')" placeholder="______"> un vecchio pescatore e alcune scene del lago.</div>
+          <div class="d-en">Yes. I photographed an old fisherman and some scenes of the lake.</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av other">L</div>
+        <div class="d-bub"><div class="d-name">Luca</div>
+          <div class="d-it">Bello! Hai parlato con il pescatore?</div>
+          <div class="d-en">Nice! Did you talk to the fisherman?</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av anton">A</div>
+        <div class="d-bub"><div class="d-name">Anton</div>
+          <div class="d-it"><input class="d-gap" oninput="dg(this,'non molto','dg5')" placeholder="______">. Ma le luci dell'acqua <input class="d-gap" oninput="dg(this,'si riflettevano','dg6')" placeholder="______"> — era bellissimo.</div>
+          <div class="d-en">Not much. But the lights in the water were reflecting — it was beautiful.</div>
+        </div>
+      </div>
+      <div class="d-row">
+        <div class="d-av other">L</div>
+        <div class="d-bub"><div class="d-name">Luca</div>
+          <div class="d-it">Sei sempre il solito poeta! Dai, ordiniamo un caffè.</div>
+          <div class="d-en">You're always the same poet! Come on, let's order a coffee.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scaffold orale -->
+  <div class="card card-amber">
+    <div class="ex-label" style="color:var(--amber)">Costruisci la tua risposta — scaffolding orale</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text);margin-bottom:.5rem">Luca chiede: <em>"Com'era la tua mattinata?"</em></div>
+    <div class="en-note" style="margin-bottom:1rem">Luca asks: "How was your morning?"</div>
+    <div class="scaffold">
+      <div class="scaffold-label">Clicca le parole nell'ordine giusto — poi dì la frase ad alta voce</div>
+      <div class="chip-pool" id="cp1">
+        <span class="chip" onclick="addChip(this,'presto','sb1','cb1')">presto</span>
+        <span class="chip" onclick="addChip(this,'sono uscito','sb1','cb1')">sono uscito</span>
+        <span class="chip" onclick="addChip(this,'stamattina','sb1','cb1')">stamattina</span>
+        <span class="chip" onclick="addChip(this,'sul lungolago','sb1','cb1')">sul lungolago</span>
+        <span class="chip" onclick="addChip(this,'ho fotografato','sb1','cb1')">ho fotografato</span>
+        <span class="chip" onclick="addChip(this,'alcune scene','sb1','cb1')">alcune scene</span>
+        <span class="chip" onclick="addChip(this,'era bellissimo','sb1','cb1')">era bellissimo</span>
+      </div>
+      <div class="built-display" id="sb1">La tua frase apparirà qui...</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="reset-btn" onclick="resetScaffold('sb1','cp1','cb1')">↺ Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Role play -->
+  <div class="card card-blue">
+    <div class="ex-label" style="color:var(--blue)">Role-play — ora tocca a te!</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text);margin-bottom:.5rem">"Sei Anton. L'insegnante fa la parte di Luca. Racconta la tua giornata di ieri in italiano — almeno 4 frasi."</div>
+    <div class="en-note" style="margin-bottom:1rem">"You are Anton. Your teacher plays Luca. Tell yesterday's story in Italian — at least 4 sentences."</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1rem">
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">Ieri mattina sono...</span>
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">Ho camminato...</span>
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">Ho fotografato...</span>
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">Nel pomeriggio ho...</span>
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">La sera ho cucinato...</span>
+      <span style="padding:5px 12px;border:1px solid var(--border2);border-radius:20px;font-size:12px;color:var(--muted)">Era bellissimo perché...</span>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo(5,document.getElementById('nb5'))">Produzione finale →</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 5 — PRODUZIONE
+══════════════════════════════════════ -->
+<div class="panel" id="panel-5">
+
+  <div class="sec-head">
+    <div>
+      <span class="sec-num">SEZIONE 6</span>
+      <div class="sec-title" style="margin-top:6px">Produzione — <em>scrivi la tua storia</em></div>
+      <div class="sec-sub">Tre compiti scritti. Usa quello che hai imparato oggi. · <em>Three writing tasks. Use everything you practised today.</em></div>
+    </div>
+  </div>
+
+  <!-- Compito 1 -->
+  <div class="prod-box">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;margin-bottom:.5rem">✍ Compito 1 — La mia routine (presente)</div>
+    <div class="prod-prompt">"Descrivi la tua routine mattutina. Cosa fai di solito? A che ora ti svegli? Cosa mangi? (40–60 parole)"</div>
+    <div class="prod-prompt-en">"Describe your morning routine. What do you usually do? What time do you wake up? What do you eat?" (40–60 words)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.75rem">
+      <span class="chip" style="font-size:12px" onclick="ins('p1','Di solito mi sveglio alle ')">Di solito mi sveglio alle</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p1','Prima di tutto ')">Prima di tutto</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p1','Poi faccio ')">Poi faccio</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p1','A colazione mangio ')">A colazione mangio</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p1','Esco di casa alle ')">Esco di casa alle</span>
+    </div>
+    <textarea class="prod" id="p1" placeholder="Di solito mi sveglio alle..." oninput="wc(this,'wc1')"></textarea>
+    <div class="wc" id="wc1">0 parole</div>
+  </div>
+
+  <!-- Compito 2 -->
+  <div class="prod-box">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;margin-bottom:.5rem">✍ Compito 2 — Ieri (passato prossimo)</div>
+    <div class="prod-prompt">"Racconta la tua giornata di ieri. Cosa hai fatto? Dove sei andato/a? Con chi? (50–70 parole)"</div>
+    <div class="prod-prompt-en">"Tell about your day yesterday. What did you do? Where did you go? With whom?" (50–70 words)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.75rem">
+      <span class="chip" style="font-size:12px" onclick="ins('p2','Ieri mattina sono ')">Ieri mattina sono</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p2','Ho incontrato ')">Ho incontrato</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p2','Abbiamo ')">Abbiamo</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p2','Nel pomeriggio ho ')">Nel pomeriggio ho</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p2','La sera ho ')">La sera ho</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p2','È stato ')">È stato</span>
+    </div>
+    <textarea class="prod" id="p2" placeholder="Ieri mattina sono..." oninput="wc(this,'wc2')"></textarea>
+    <div class="wc" id="wc2">0 parole</div>
+  </div>
+
+  <!-- Compito 3 -->
+  <div class="prod-box">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--amber);text-transform:uppercase;margin-bottom:.5rem">✍ Compito 3 — Come Anton (presente + passato + imperfetto)</div>
+    <div class="prod-prompt">"Sei Anton. Scrivi 5–6 frasi su una mattina speciale vicino al lago di Como. Usa tutti e tre i tempi."</div>
+    <div class="prod-prompt-en">"You are Anton. Write 5–6 sentences about a special morning near Lake Como. Use all three tenses."</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.75rem">
+      <span class="chip" style="font-size:12px" onclick="ins('p3','La mattina di solito ')">La mattina di solito</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p3','Ieri però ')">Ieri però</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p3','Il lago era ')">Il lago era</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p3','Ho visto ')">Ho visto</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p3','Mentre camminavo ')">Mentre camminavo</span>
+      <span class="chip" style="font-size:12px" onclick="ins('p3','Ho pensato che ')">Ho pensato che</span>
+    </div>
+    <textarea class="prod" id="p3" placeholder="La mattina di solito mi sveglio alle..." oninput="wc(this,'wc3')"></textarea>
+    <div class="wc" id="wc3">0 parole</div>
+  </div>
+
+  <!-- FINE -->
+  <div class="completion">
+    <div class="completion-icon">🎬</div>
+    <div class="completion-title">Lezione completata, Anton.</div>
+    <div class="completion-body">
+      Oggi hai lavorato su: <strong style="color:var(--amber)">vocabolario della vita quotidiana</strong> · <strong style="color:var(--amber)">comprensione di un testo autentico</strong> · <strong style="color:var(--amber)">presente, passato prossimo e imperfetto</strong> · <strong style="color:var(--amber)">dialogo al bar</strong> · <strong style="color:var(--amber)">produzione scritta e orale</strong>.
+    </div>
+    <div class="completion-hw">
+      📖 <strong>Per casa:</strong> Rileggi il testo due volte. Poi scrivi 3 frasi sulla tua giornata di domani (futuro con il presente: "domani vado, faccio, cucino..."). ·
+      <em>Homework: Re-read the text twice. Write 3 sentences about tomorrow's day.</em>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /wrap -->
+<footer>Anton · Lezione · A1–A2 · Vita Quotidiana · Tempi Verbali · Kate · Como</footer>
+
+<script>
+// ── NAV ──
+function goTo(n,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+n).classList.add('active');
+  btn.classList.add('active');
+  for(let i=0;i<n;i++) document.getElementById('nb'+i).classList.add('done');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── EN TOGGLE ──
+function toggleEn(card){
+  const box=document.getElementById('en-text');
+  const arr=document.getElementById('en-arrow');
+  const visible=box.style.display==='block';
+  box.style.display=visible?'none':'block';
+  arr.textContent=visible?'▶':'▼';
+}
+
+// ── MCQ ──
+const scores={comp:{c:0,t:5},vf:{c:0,t:3},vq:{c:0,t:4},tq:{c:0,t:4}};
+const answered={};
+function chk(btn,qId,correct){
+  if(answered[qId])return;
+  answered[qId]=true;
+  btn.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+  btn.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    btn.parentElement.querySelectorAll('.opt').forEach(o=>{
+      if(o.getAttribute('onclick')&&o.getAttribute('onclick').includes('true')&&o!==btn)
+        o.classList.add('show-correct');
+    });
+  }
+  let grp='';
+  if(['q1','q2','q3','q4','q5'].includes(qId))grp='comp';
+  else if(['vf1','vf2','vf3'].includes(qId))grp='vf';
+  else if(['vq1','vq2','vq3','vq4'].includes(qId))grp='vq';
+  else if(['tq1','tq2','tq3','tq4'].includes(qId))grp='tq';
+  if(!grp)return;
+  if(correct)scores[grp].c++;
+  document.getElementById('sf-'+grp).style.width=Math.round(scores[grp].c/scores[grp].t*100)+'%';
+  document.getElementById('sn-'+grp).textContent=scores[grp].c+' / '+scores[grp].t;
+}
+
+// ── FILL ──
+function sf(input,answer,id){
+  const v=input.value.trim().toLowerCase().replace(/[.!?,]/g,'').replace(/\s+/g,' ');
+  const a=answer.toLowerCase().replace(/[.!?,]/g,'').replace(/\s+/g,' ');
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){
+    input.classList.add('ok');input.classList.remove('err');
+    if(fb){fb.textContent='✓ Corretto!';fb.className='fb good';}
+  } else if(v.length>2){
+    input.classList.remove('ok');input.classList.add('err');
+    if(fb)fb.className='fb';
+  } else {
+    input.classList.remove('ok','err');
+    if(fb)fb.className='fb';
+  }
+}
+
+// ── DIALOGUE GAPS ──
+function dg(input,answer,id){
+  const v=input.value.trim().toLowerCase();
+  const a=answer.toLowerCase();
+  if(v===a){input.classList.add('ok');input.classList.remove('err');}
+  else if(v.length>1){input.classList.remove('ok');input.classList.add('err');}
+  else input.classList.remove('ok','err');
+}
+
+// ── WORD COUNT ──
+function wc(el,id){
+  const n=el.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById(id).textContent=n+' parole';
+}
+
+// ── INSERT ──
+function ins(id,text){
+  const ta=document.getElementById(id);
+  ta.value+=(ta.value&&!ta.value.endsWith(' ')?'\n':'')+text;
+  wc(ta,id==='p1'?'wc1':id==='p2'?'wc2':'wc3');
+  ta.focus();
+}
+
+// ── SCAFFOLD ──
+let scaffoldState={};
+function addChip(chip,word,sbId,cbId){
+  if(chip.classList.contains('used'))return;
+  chip.classList.add('used');
+  if(!scaffoldState[sbId])scaffoldState[sbId]=[];
+  scaffoldState[sbId].push({word,chip});
+  renderScaffold(sbId);
+}
+function renderScaffold(sbId){
+  const box=document.getElementById(sbId);
+  if(!scaffoldState[sbId]||!scaffoldState[sbId].length){box.textContent='La tua frase apparirà qui...';return;}
+  box.innerHTML=scaffoldState[sbId].map((item,i)=>
+    `<span class="built-word" onclick="removeChip('${sbId}',${i})">${item.word}</span>`
+  ).join('');
+}
+function removeChip(sbId,idx){
+  const item=scaffoldState[sbId][idx];
+  if(item&&item.chip){item.chip.classList.remove('used');}
+  scaffoldState[sbId].splice(idx,1);
+  renderScaffold(sbId);
+}
+function resetScaffold(sbId,cpId,cbId){
+  scaffoldState[sbId]=[];
+  document.getElementById(sbId).textContent='La tua frase apparirà qui...';
+  document.getElementById(cpId).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+}
+</script>
+</body>
+</html>
