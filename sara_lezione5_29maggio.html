@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara · 29 Maggio · Il Cibo che Siamo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;
+  --cream2:#F2EDE4;
+  --cream3:#E8E0D4;
+  --ink:#140E08;
+  --ink2:#241A10;
+  --muted:#6A5E50;
+  --subtle:#A89880;
+  --rule:#C8BAA8;
+  --rule2:#DDD4C4;
+  --bordeaux:#8B1A2A;
+  --bordeaux-l:rgba(139,26,42,.08);
+  --bordeaux-bright:#A8222E;
+  --olive:#4A5E2A;
+  --olive-l:rgba(74,94,42,.08);
+  --caramel:#B87830;
+  --caramel-l:rgba(184,120,48,.1);
+  --r:6px;
+  --sh:0 1px 4px rgba(20,14,8,.07),0 4px 18px rgba(20,14,8,.05);
+}
+
+body{
+  font-family:'EB Garamond',serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.65;
+  padding-bottom:6rem;
+  min-height:100vh;
+}
+
+/* ── HALFTONE BG ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(20,14,8,.025) 1px,transparent 1px);
+  background-size:14px 14px;
+}
+
+/* ══════════════════
+   MASTHEAD — rivista anni '60
+══════════════════ */
+.masthead{
+  background:var(--ink2);
+  color:var(--cream);
+  padding:0;
+  position:relative;overflow:hidden;
+}
+/* top bar */
+.mast-topbar{
+  background:var(--bordeaux);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:6px 2rem;
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(250,247,242,.6);
+}
+.mast-topbar strong{color:var(--cream);font-weight:400}
+
+.mast-body{
+  max-width:860px;margin:0 auto;
+  padding:2.5rem 2rem 2rem;
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:2rem;align-items:end;
+  position:relative;z-index:1;
+}
+
+/* big geometric circle decoration */
+.mast-body::before{
+  content:'';
+  position:absolute;
+  width:320px;height:320px;
+  border:2px solid rgba(250,247,242,.04);
+  border-radius:50%;
+  right:-60px;top:50%;transform:translateY(-50%);
+  pointer-events:none;
+}
+.mast-body::after{
+  content:'';
+  position:absolute;
+  width:200px;height:200px;
+  border:1px solid rgba(250,247,242,.06);
+  border-radius:50%;
+  right:0;top:50%;transform:translateY(-50%);
+  pointer-events:none;
+}
+
+.mast-left{}
+.mag-name{
+  font-family:'Playfair Display SC',serif;
+  font-size:10px;letter-spacing:.22em;
+  color:rgba(250,247,242,.4);
+  margin-bottom:.4rem;text-transform:uppercase;
+}
+.mast-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,6.5vw,62px);
+  font-weight:700;
+  line-height:.95;
+  letter-spacing:-.02em;
+  margin-bottom:.75rem;
+}
+.mast-h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--caramel);
+  display:block;
+  font-size:clamp(28px,5vw,48px);
+}
+.mast-deck{
+  font-size:14px;
+  color:rgba(250,247,242,.5);
+  font-style:italic;
+  line-height:1.7;
+  max-width:380px;
+  margin-bottom:1.5rem;
+  font-weight:400;
+}
+.mast-pills{display:flex;gap:8px;flex-wrap:wrap}
+.mpill{
+  font-family:'DM Mono',monospace;
+  font-size:10px;font-weight:400;
+  padding:3px 10px;
+  border:1px solid rgba(250,247,242,.15);
+  border-radius:2px;
+  color:rgba(250,247,242,.45);
+  letter-spacing:.06em;
+}
+
+.mast-right{
+  border-left:1px solid rgba(250,247,242,.08);
+  padding-left:2rem;
+  display:flex;flex-direction:column;gap:1rem;
+  justify-content:flex-end;
+}
+.mast-date{
+  font-family:'Playfair Display',serif;
+  font-size:42px;font-weight:700;
+  color:var(--cream);line-height:1;
+}
+.mast-date span{
+  display:block;
+  font-family:'DM Mono',monospace;
+  font-size:11px;font-weight:300;
+  color:rgba(250,247,242,.4);
+  letter-spacing:.1em;margin-top:4px;
+  text-transform:uppercase;
+}
+.mast-details{
+  display:flex;flex-direction:column;gap:4px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:rgba(250,247,242,.3);letter-spacing:.06em;
+}
+.mast-details b{color:rgba(250,247,242,.55);font-weight:400}
+
+/* ══════════════════
+   NAV
+══════════════════ */
+.nav-outer{
+  background:var(--cream);
+  border-bottom:2px solid var(--ink);
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 3px 0 var(--cream3),0 3px 16px rgba(20,14,8,.1);
+}
+.nav-inner{
+  max-width:860px;margin:0 auto;
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  border-top:1px solid var(--rule);
+}
+.nav-inner::-webkit-scrollbar{display:none}
+.nb{
+  flex-shrink:0;padding:12px 16px 10px;
+  border:none;background:transparent;
+  font-family:'EB Garamond',serif;font-size:13px;
+  color:var(--muted);cursor:pointer;transition:all .18s;
+  border-bottom:2.5px solid transparent;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  white-space:nowrap;
+  border-right:1px solid var(--rule2);
+}
+.nb:last-child{border-right:none}
+.nb .ni{font-size:14px}
+.nb .nt{font-family:'DM Mono',monospace;font-size:9px;color:var(--subtle);letter-spacing:.05em}
+.nb:hover{color:var(--bordeaux);background:var(--bordeaux-l)}
+.nb.active{color:var(--bordeaux);border-bottom-color:var(--bordeaux);font-style:italic;font-weight:500}
+.nb.done{color:var(--olive)}
+
+/* ══════════════════
+   WRAP
+══════════════════ */
+.wrap{max-width:860px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+
+/* ══════════════════
+   PANELS
+══════════════════ */
+.panel{display:none}
+.panel.active{display:block;animation:reveal .3s ease}
+@keyframes reveal{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ══════════════════
+   SECTION HEADS — editorial
+══════════════════ */
+.sec-hd{
+  margin:3rem 0 1.75rem;
+  display:flex;align-items:flex-start;gap:1.5rem;
+  border-top:3px solid var(--ink);
+  padding-top:1rem;
+}
+.sec-hd-num{
+  font-family:'Playfair Display',serif;
+  font-size:64px;font-weight:700;
+  color:var(--rule);line-height:.85;
+  flex-shrink:0;margin-top:-6px;
+  letter-spacing:-.03em;
+}
+.sec-hd-text{}
+.sec-kicker{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bordeaux);margin-bottom:.25rem;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:400;
+  line-height:1.15;color:var(--ink);
+}
+.sec-title em{font-style:italic}
+.sec-deck{
+  font-size:14px;color:var(--muted);margin-top:.35rem;
+  line-height:1.7;max-width:500px;font-style:italic;
+}
+.sec-time{
+  margin-left:auto;flex-shrink:0;
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--subtle);border:1px solid var(--rule);
+  padding:4px 10px;border-radius:2px;letter-spacing:.05em;
+  margin-top:6px;white-space:nowrap;
+}
+
+/* ══════════════════
+   CARDS
+══════════════════ */
+.card{
+  background:var(--cream);
+  border:1px solid var(--rule2);
+  border-radius:var(--r);
+  padding:1.75rem;margin-bottom:1rem;
+  box-shadow:var(--sh);
+}
+.card-bord{background:#F8F0F0;border-color:#DDB8B8}
+.card-oliv{background:#EEF4E8;border-color:#B8CCA8}
+.card-cara{background:#FAF3E8;border-color:#E0C898}
+.card-cream{background:var(--cream2);border-color:var(--rule)}
+
+/* ══════════════════
+   READING — normal prose
+══════════════════ */
+.reading{font-size:18px;line-height:2;color:var(--ink);font-weight:400}
+.reading p{margin-bottom:1.1em}
+.reading p:last-child{margin-bottom:0}
+.reading strong{font-weight:700}
+
+/* ══════════════════
+   INTERLINEAR — parola per parola
+══════════════════ */
+.interlinear{line-height:1}
+.interlinear-note{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--muted);margin-bottom:1.25rem;
+  padding:.5rem .85rem;background:var(--cream2);
+  border-radius:var(--r);border-left:2px solid var(--rule);
+  letter-spacing:.02em;
+}
+.interlinear p{
+  display:flex;flex-wrap:wrap;
+  gap:0 6px;margin-bottom:1.6rem;
+  align-items:flex-end;
+}
+.interlinear p:last-child{margin-bottom:0}
+.wp{display:inline-flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:8px}
+.wp .it{
+  font-family:'Playfair Display',serif;
+  font-size:18px;color:var(--ink);
+  font-weight:400;line-height:1.1;white-space:nowrap;
+}
+.wp .it.vb{
+  background:#FFF0EC;
+  box-shadow:inset 0 -2px 0 var(--bordeaux);
+  border-radius:2px;padding:0 3px;
+  font-weight:700;color:var(--bordeaux);
+}
+.wp .it.kw{
+  background:#FFF8EC;
+  box-shadow:inset 0 -2px 0 var(--caramel);
+  border-radius:2px;padding:0 3px;
+  color:var(--caramel);font-style:italic;
+}
+.wp .it.pr{
+  background:#EEF4E8;
+  box-shadow:inset 0 -2px 0 var(--olive);
+  border-radius:2px;padding:0 3px;
+  color:var(--olive);font-weight:500;
+}
+.wp .en{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--muted);
+  font-style:italic;line-height:1;
+  white-space:nowrap;letter-spacing:.01em;
+}
+.wp.punct .it{font-size:18px;font-weight:400}
+.wp.punct .en{visibility:hidden;font-size:7px}
+
+/* pull quote */
+.pull{
+  margin:1.5rem 0;
+  padding:1.25rem 1.75rem;
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+  text-align:center;
+}
+.pull-it{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-style:italic;font-weight:400;
+  color:var(--ink);line-height:1.55;
+}
+.pull-en{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--muted);margin-top:.5rem;font-style:italic;
+}
+
+/* ══════════════════
+   EX LABELS
+══════════════════ */
+.exl{
+  font-family:'DM Mono',monospace;
+  font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bordeaux);margin-bottom:.85rem;
+  display:flex;align-items:center;gap:12px;
+}
+.exl::after{content:'';flex:1;height:1px;background:var(--rule2)}
+.exin{
+  font-size:13px;color:var(--muted);background:var(--cream2);
+  padding:.65rem 1rem;border-radius:var(--r);
+  border-left:2px solid var(--rule);margin-bottom:1rem;
+  line-height:1.65;font-style:italic;
+}
+
+/* ══════════════════
+   MCQ
+══════════════════ */
+.mq{margin-bottom:1.1rem}
+.mq:last-of-type{margin-bottom:0}
+.qt{font-size:15px;font-weight:500;margin-bottom:5px;line-height:1.5;color:var(--ink)}
+.qe{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-bottom:7px}
+.os{display:flex;flex-direction:column;gap:6px}
+.o{
+  padding:9px 14px;border:1px solid var(--rule2);border-radius:var(--r);
+  cursor:pointer;font-size:14px;font-family:'EB Garamond',serif;
+  text-align:left;background:var(--cream);color:var(--ink);
+  transition:all .15s;line-height:1.4;
+}
+.o:hover{background:var(--bordeaux-l);border-color:#DDB8B8;color:var(--bordeaux)}
+.o.correct{background:#E8F5E0;border-color:#7AAE5A;color:#2A5A10}
+.o.wrong{background:#FAE8E8;border-color:var(--bordeaux);color:var(--bordeaux)}
+.o.disabled{pointer-events:none}
+
+/* ══════════════════
+   FILL
+══════════════════ */
+.fw{margin-bottom:1.1rem}
+.fw:last-child{margin-bottom:0}
+.fs{font-family:'Playfair Display',serif;font-size:17px;line-height:1.85;color:var(--ink);margin-bottom:4px}
+.fen{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-bottom:4px}
+.fc{font-family:'DM Mono',monospace;font-size:9px;color:var(--subtle);margin-bottom:5px;display:inline-block;padding:2px 8px;background:var(--cream2);border-radius:3px;letter-spacing:.02em}
+.fi{
+  width:100%;padding:9px 12px;border:1px solid var(--rule2);border-radius:var(--r);
+  font-size:14px;font-family:'EB Garamond',serif;background:var(--cream);
+  color:var(--ink);outline:none;transition:all .18s;
+}
+.fi::placeholder{color:var(--subtle)}
+.fi:focus{border-color:var(--bordeaux);box-shadow:0 0 0 3px var(--bordeaux-l)}
+.fi.ok{border-color:#7AAE5A;background:#E8F5E0;color:#2A5A10}
+.fi.err{border-color:var(--bordeaux);background:#FAE8E8}
+.fb{font-family:'DM Mono',monospace;font-size:10px;margin-top:3px;padding:3px 8px;border-radius:3px;display:none}
+.fb.good{display:block;background:#E8F5E0;color:#2A5A10}
+.fb.bad{display:block;background:#FAE8E8;color:#7A1A10}
+
+/* ══════════════════
+   SCORE
+══════════════════ */
+.sr{display:flex;align-items:center;gap:12px;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--rule2)}
+.st{flex:1;height:3px;background:var(--cream2);border-radius:999px;overflow:hidden}
+.sf{height:100%;background:linear-gradient(90deg,var(--bordeaux),var(--bordeaux-bright));border-radius:999px;transition:width .5s ease}
+.sn{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:44px;text-align:right}
+
+/* ══════════════════
+   VOCAB
+══════════════════ */
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px}
+.vc{background:var(--cream2);border:1px solid var(--rule2);border-radius:var(--r);padding:11px 13px;transition:border-color .15s;cursor:default}
+.vc:hover{border-color:var(--bordeaux)}
+.vi{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink)}
+.ve{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-top:2px}
+.vx{font-size:13px;color:var(--bordeaux);margin-top:4px;font-style:italic}
+
+/* ══════════════════
+   GRAMMAR RULE BOXES
+══════════════════ */
+.rule-box{border:1px solid var(--rule2);border-radius:var(--r);overflow:hidden;margin-bottom:1rem}
+.rb-head{
+  background:var(--ink2);color:var(--cream);
+  padding:10px 1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.rb-title{font-family:'Playfair Display',serif;font-size:17px;font-style:italic}
+.rb-tag{
+  font-family:'DM Mono',monospace;font-size:9px;
+  background:var(--bordeaux);color:#fff;
+  padding:2px 8px;border-radius:2px;letter-spacing:.06em;
+}
+.rb-body{padding:1.5rem;font-size:14px;line-height:1.85;color:var(--ink)}
+.rb-body p{margin-bottom:.75rem}
+.rb-body p:last-child{margin-bottom:0}
+.rb-body strong{color:var(--bordeaux-bright);font-weight:700}
+.rb-body em{color:var(--caramel);font-style:italic}
+
+/* grammar grid comparison */
+.gram-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:.75rem 0}
+.gc-col{padding:.85rem 1rem;border-radius:var(--r);border:1px solid var(--rule2)}
+.gc-col.pass-pross{background:#F8F0F0;border-color:#DDB8B8}
+.gc-col.imperf{background:#FFF8EC;border-color:#E0C898}
+.gc-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.gc-label.pp{color:var(--bordeaux)}
+.gc-label.imp{color:var(--caramel)}
+.gc-rule{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:.5rem}
+.gc-ex{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);font-style:italic;line-height:1.7}
+.gc-ex strong{font-style:normal}
+
+/* conj table */
+.conj{width:100%;border-collapse:collapse;font-size:13px;margin:.75rem 0}
+.conj th{padding:6px 10px;background:var(--ink2);color:var(--cream);text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.1)}
+.conj th:last-child{border-right:none}
+.conj td{padding:6px 10px;border-bottom:1px solid var(--rule2);font-family:'EB Garamond',serif;font-size:14px}
+.conj tr:last-child td{border-bottom:none}
+.conj td:first-child{color:var(--muted);font-style:italic;font-size:12px}
+.conj td:nth-child(2){color:var(--bordeaux);font-weight:700}
+.conj td:nth-child(3){color:var(--caramel);font-weight:500}
+.conj tr:nth-child(even) td{background:var(--cream2)}
+
+/* pronomi table */
+.pron-table{width:100%;border-collapse:collapse;font-size:14px;margin:.75rem 0}
+.pron-table th{padding:8px 12px;background:var(--ink2);color:var(--cream);text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em}
+.pron-table td{padding:8px 12px;border-bottom:1px solid var(--rule2)}
+.pron-table tr:last-child td{border-bottom:none}
+.pron-table td:first-child{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.pron-table td:nth-child(2){font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--olive)}
+.pron-table td:nth-child(3){font-size:13px;color:var(--muted);font-style:italic}
+.pron-table td:nth-child(4){font-size:13px;font-style:italic;color:var(--bordeaux)}
+
+/* ══════════════════
+   DIALOGUE
+══════════════════ */
+.dw{display:flex;flex-direction:column;gap:.9rem}
+.dr{display:flex;gap:14px;align-items:flex-start}
+.dav{
+  width:34px;height:34px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:700;
+  flex-shrink:0;margin-top:2px;letter-spacing:.04em;
+}
+.dav.sara{background:var(--bordeaux-l);color:var(--bordeaux);border:1px solid #DDB8B8}
+.dav.other{background:var(--cream2);color:var(--muted);border:1px solid var(--rule)}
+.db{flex:1}
+.dn{font-family:'DM Mono',monospace;font-size:9px;color:var(--subtle);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.di{font-size:15px;line-height:1.65;color:var(--ink)}
+.de{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-top:2px}
+.dg{border:none;border-bottom:1.5px solid var(--bordeaux);background:transparent;font-size:15px;font-family:'EB Garamond',serif;color:var(--bordeaux);outline:none;padding:0 4px;min-width:80px;transition:border-color .15s}
+.dg:focus{border-bottom-color:var(--ink)}
+.dg.ok{border-bottom-color:#7AAE5A;color:#2A5A10}
+.dg.err{border-bottom-color:var(--bordeaux-bright)}
+
+/* phrase list */
+.pi{padding:.5rem 0 .5rem 1.1rem;border-left:2.5px solid var(--bordeaux);margin-bottom:.55rem}
+.pi:last-child{margin-bottom:0}
+.pi .pit{font-size:15px;color:var(--ink)}
+.pi .pie{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-top:2px}
+
+/* ══════════════════
+   SCAFFOLD
+══════════════════ */
+.scaffold{background:var(--cream2);border:1px solid var(--rule);border-radius:var(--r);padding:1rem 1.25rem;margin-top:.85rem}
+.slb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:.65rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:6px 14px;border:1px solid var(--rule);border-radius:20px;font-size:13px;color:var(--ink);background:var(--cream);cursor:pointer;transition:all .15s;font-family:'EB Garamond',serif}
+.chip:hover{border-color:var(--bordeaux);color:var(--bordeaux);background:var(--bordeaux-l)}
+.chip.used{opacity:.28;pointer-events:none}
+.built{margin-top:10px;min-height:42px;padding:10px 14px;border:1px solid var(--rule2);border-radius:var(--r);font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--bordeaux);background:var(--cream);line-height:1.65}
+.bw{display:inline-block;margin-right:4px;padding:1px 3px;border-radius:2px;cursor:pointer;transition:background .15s}
+.bw:hover{background:#FAE8E8;color:var(--bordeaux)}
+
+/* tip */
+.tip{background:var(--caramel-l);border-left:3px solid var(--caramel);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;font-size:13px;color:var(--ink2);margin-top:.85rem;line-height:1.65}
+.tip strong{color:#7A4A00}
+
+/* ══════════════════
+   PRODUCTION
+══════════════════ */
+.pbox{background:var(--ink2);border-radius:var(--r);padding:1.75rem;margin-bottom:1rem;color:var(--cream);position:relative;overflow:hidden}
+.pbox::after{
+  content:'«»';
+  position:absolute;right:1.5rem;bottom:-1rem;
+  font-family:'Playfair Display',serif;font-size:100px;
+  color:rgba(250,247,242,.04);pointer-events:none;letter-spacing:-.05em;
+}
+.ptag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin-bottom:.5rem}
+.pprompt{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;line-height:1.6;margin-bottom:.4rem}
+.pen{font-family:'DM Mono',monospace;font-size:11px;color:rgba(250,247,242,.4);line-height:1.6;margin-bottom:1rem}
+.phints{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.85rem}
+.phint{padding:5px 12px;border:1px solid rgba(250,247,242,.14);border-radius:20px;font-size:13px;color:rgba(250,247,242,.6);cursor:pointer;transition:all .15s;font-family:'EB Garamond',serif;background:rgba(250,247,242,.05)}
+.phint:hover{background:rgba(250,247,242,.12);color:var(--cream)}
+textarea.prod{width:100%;min-height:80px;padding:12px;border:1px solid rgba(250,247,242,.14);border-radius:var(--r);font-size:14px;font-family:'EB Garamond',serif;line-height:1.8;color:var(--cream);background:rgba(250,247,242,.07);resize:vertical;outline:none;transition:border .18s}
+textarea.prod::placeholder{color:rgba(250,247,242,.25)}
+textarea.prod:focus{border-color:rgba(139,26,42,.5);box-shadow:0 0 0 3px rgba(139,26,42,.08)}
+.wc{font-family:'DM Mono',monospace;font-size:9px;color:rgba(250,247,242,.25);text-align:right;margin-top:4px}
+
+/* ══════════════════
+   BUTTONS
+══════════════════ */
+.next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:11px 24px;background:var(--bordeaux);color:var(--cream);border:none;border-radius:var(--r);font-size:14px;font-family:'EB Garamond',serif;cursor:pointer;font-style:italic;transition:all .15s}
+.next-btn:hover{background:var(--bordeaux-bright);transform:translateY(-1px)}
+.reset-btn{padding:9px 14px;background:transparent;color:var(--muted);border:1px solid var(--rule);border-radius:var(--r);font-size:12px;font-family:'DM Mono',monospace;cursor:pointer;margin-left:8px;transition:all .15s;letter-spacing:.04em}
+.reset-btn:hover{background:var(--cream2);color:var(--ink)}
+
+/* ══════════════════
+   DONE
+══════════════════ */
+.done{background:var(--ink2);border-radius:var(--r);padding:2.5rem 2rem;text-align:center;color:var(--cream);margin-top:1rem}
+.done-rule{width:60px;height:2px;background:var(--bordeaux);margin:0 auto .75rem}
+.done-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;font-style:italic;margin-bottom:.5rem;color:var(--caramel)}
+.done-body{font-size:14px;color:rgba(250,247,242,.65);line-height:1.9;max-width:540px;margin:0 auto}
+.done-hw{font-family:'DM Mono',monospace;font-size:10px;color:rgba(250,247,242,.35);margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(250,247,242,.08);line-height:1.8;letter-spacing:.02em}
+
+footer{text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--subtle);padding:2rem 2rem;border-top:1px solid var(--rule2);margin-top:4rem;letter-spacing:.08em}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     MASTHEAD
+══════════════════════════════ -->
+<div class="masthead">
+  <div class="mast-topbar">
+    <span>La Cucina Italiana · Cultura · Identità · Lingua</span>
+    <strong>Sara · Lezione 5 · A2–B1</strong>
+  </div>
+  <div class="mast-body">
+    <div class="mast-left">
+      <div class="mag-name">Rubrica · Il cibo che siamo</div>
+      <h1 class="mast-h1">
+        A tavola si<br>
+        <em>impara tutto.</em>
+      </h1>
+      <div class="mast-deck">Il cibo italiano come lingua, come corpo, come mare — e come identità. Testo con traduzione parola per parola, grammatica del racconto, pronomi diretti, produzione guidata.</div>
+      <div class="mast-pills">
+        <span class="mpill">Traduzione interlineare</span>
+        <span class="mpill">Passato prossimo vs imperfetto</span>
+        <span class="mpill">Pronomi diretti</span>
+        <span class="mpill">50 min</span>
+        <span class="mpill">6 sezioni</span>
+      </div>
+    </div>
+    <div class="mast-right">
+      <div class="mast-date">29<span>Maggio 2025</span></div>
+      <div class="mast-details">
+        <span>LIVELLO <b>A2–B1</b></span>
+        <span>STUDENTE <b>Sara</b></span>
+        <span>INSEGNANTE <b>Kate</b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     NAV
+══════════════════════════════ -->
+<div class="nav-outer">
+  <div class="nav-inner">
+    <button class="nb active" id="nb0" onclick="go(0,this)"><span class="ni">📖</span><span>Testo</span><span class="nt">01–12</span></button>
+    <button class="nb" id="nb1" onclick="go(1,this)"><span class="ni">🔍</span><span>Comprensione</span><span class="nt">13–20</span></button>
+    <button class="nb" id="nb2" onclick="go(2,this)"><span class="ni">📚</span><span>Vocabolario</span><span class="nt">21–27</span></button>
+    <button class="nb" id="nb3" onclick="go(3,this)"><span class="ni">⚙</span><span>Grammatica</span><span class="nt">28–38</span></button>
+    <button class="nb" id="nb4" onclick="go(4,this)"><span class="ni">💬</span><span>Dialogo</span><span class="nt">39–44</span></button>
+    <button class="nb" id="nb5" onclick="go(5,this)"><span class="ni">✍</span><span>Produzione</span><span class="nt">45–50</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════
+     PANEL 0 · TESTO
+══════════════════════════════ -->
+<div class="panel active" id="p0">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">01</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 1 · Lettura con traduzione interlineare</div>
+      <div class="sec-title">Il testo — <em>ogni parola tradotta</em></div>
+      <div class="sec-deck">Italiano sopra, inglese sotto ogni parola. I verbi al passato prossimo sono in <span style="color:var(--bordeaux);font-weight:700">bordeaux</span>, quelli all'imperfetto in <span style="color:var(--caramel);font-style:italic">ambra</span>, i pronomi diretti in <span style="color:var(--olive);font-weight:600">verde</span>.</div>
+    </div>
+    <div class="sec-time">MIN 1–12</div>
+  </div>
+
+  <div class="card">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--bordeaux);margin-bottom:.2rem;text-transform:uppercase">Racconti di cucina · Spalato, estate 2025</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);font-style:italic;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--rule2)">Una storia vera, adattata per la lezione</div>
+
+    <div class="interlinear-note">
+      💡 Le parole colorate hanno un significato speciale: <span style="color:var(--bordeaux);font-weight:700">bordeaux = passato prossimo (azione finita)</span> · <span style="color:var(--caramel);font-style:italic">ambra = imperfetto (descrizione, abitudine)</span> · <span style="color:var(--olive);font-weight:600">verde = pronome diretto (lo/la/li/le)</span>
+    </div>
+
+    <div class="interlinear">
+
+      <!-- TITOLO -->
+      <p style="margin-bottom:2rem;padding-bottom:1.1rem;border-bottom:1px solid var(--rule2)">
+        <span class="wp"><span class="it" style="font-size:21px;font-weight:700">La</span><span class="en">The</span></span>
+        <span class="wp"><span class="it" style="font-size:21px;font-weight:700">ricetta</span><span class="en">recipe</span></span>
+        <span class="wp"><span class="it" style="font-size:21px;font-weight:700">della</span><span class="en">of my</span></span>
+        <span class="wp"><span class="it" style="font-size:21px;font-weight:700">nonna</span><span class="en">grandmother</span></span>
+      </p>
+
+      <!-- §1 -->
+      <p>
+        <span class="wp"><span class="it">Quando</span><span class="en">When</span></span>
+        <span class="wp"><span class="it kw">Sara</span><span class="en">Sara</span></span>
+        <span class="wp"><span class="it kw">aveva</span><span class="en">had / was</span></span>
+        <span class="wp"><span class="it">otto</span><span class="en">eight</span></span>
+        <span class="wp"><span class="it">anni</span><span class="en">years old</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">sua</span><span class="en">her</span></span>
+        <span class="wp"><span class="it kw">nonna</span><span class="en">grandmother</span></span>
+        <span class="wp"><span class="it kw">faceva</span><span class="en">used to make</span></span>
+        <span class="wp"><span class="it">sempre</span><span class="en">always</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">pasta</span><span class="en">pasta</span></span>
+        <span class="wp"><span class="it">al</span><span class="en">with</span></span>
+        <span class="wp"><span class="it">forno</span><span class="en">oven</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">on</span></span>
+        <span class="wp"><span class="it">domenica</span><span class="en">Sunday</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it kw">Era</span><span class="en">It was</span></span>
+        <span class="wp"><span class="it">un</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">rituale</span><span class="en">ritual</span></span>
+        <span class="wp punct"><span class="it">:</span><span class="en">:</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">famiglia</span><span class="en">family</span></span>
+        <span class="wp"><span class="it kw">si riuniva</span><span class="en">gathered</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">cucina</span><span class="en">kitchen</span></span>
+        <span class="wp"><span class="it kw">profumava</span><span class="en">smelled</span></span>
+        <span class="wp"><span class="it">di</span><span class="en">of</span></span>
+        <span class="wp"><span class="it">pomodoro</span><span class="en">tomato</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">basilico</span><span class="en">basil</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+      </p>
+
+      <!-- §2 -->
+      <p>
+        <span class="wp"><span class="it">L'anno</span><span class="en">Last</span></span>
+        <span class="wp"><span class="it">scorso</span><span class="en">year</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">durante</span><span class="en">during</span></span>
+        <span class="wp"><span class="it">una</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">settimana</span><span class="en">week</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">Italia</span><span class="en">Italy</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">Sara</span><span class="en">Sara</span></span>
+        <span class="wp"><span class="it vb">ha visitato</span><span class="en">visited</span></span>
+        <span class="wp"><span class="it">un</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">piccolo</span><span class="en">small</span></span>
+        <span class="wp"><span class="it">ristorante</span><span class="en">restaurant</span></span>
+        <span class="wp"><span class="it">a</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">Napoli</span><span class="en">Naples</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it vb">Ha ordinato</span><span class="en">She ordered</span></span>
+        <span class="wp"><span class="it">una</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">pizza</span><span class="en">pizza</span></span>
+        <span class="wp"><span class="it">margherita</span><span class="en">Margherita</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it vb">l'ha</span><span class="en">it</span></span>
+        <span class="wp"><span class="it pr">mangiata</span><span class="en">ate (f.)</span></span>
+        <span class="wp"><span class="it">lentamente</span><span class="en">slowly</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">silenzio</span><span class="en">silence</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+      </p>
+
+      <!-- §3 -->
+      <p>
+        <span class="wp"><span class="it">"</span><span class="en"></span></span>
+        <span class="wp"><span class="it kw">Era</span><span class="en">It was</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">pizza</span><span class="en">pizza</span></span>
+        <span class="wp"><span class="it">più</span><span class="en">most</span></span>
+        <span class="wp"><span class="it">buona</span><span class="en">good</span></span>
+        <span class="wp"><span class="it">che</span><span class="en">that</span></span>
+        <span class="wp"><span class="it vb">avessi</span><span class="en">I had</span></span>
+        <span class="wp"><span class="it">mai</span><span class="en">ever</span></span>
+        <span class="wp"><span class="it vb">mangiato</span><span class="en">eaten</span></span>
+        <span class="wp punct"><span class="it">"</span><span class="en"></span></span>
+        <span class="wp"><span class="it kw">ricorda</span><span class="en">she remembers</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it">"</span><span class="en"></span></span>
+        <span class="wp"><span class="it">Non</span><span class="en">Not</span></span>
+        <span class="wp"><span class="it kw">era</span><span class="en">it was</span></span>
+        <span class="wp"><span class="it">solo</span><span class="en">only</span></span>
+        <span class="wp"><span class="it">il</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">gusto</span><span class="en">taste</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it kw">Era</span><span class="en">It was</span></span>
+        <span class="wp"><span class="it">il</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">modo</span><span class="en">way</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">cui</span><span class="en">which</span></span>
+        <span class="wp"><span class="it kw">l'hanno</span><span class="en">it</span></span>
+        <span class="wp"><span class="it pr">portata</span><span class="en">brought (f.)</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">il</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">calore</span><span class="en">warmth</span></span>
+        <span class="wp"><span class="it">con</span><span class="en">with</span></span>
+        <span class="wp"><span class="it">cui</span><span class="en">which</span></span>
+        <span class="wp"><span class="it kw">parlavano</span><span class="en">they talked</span></span>
+        <span class="wp"><span class="it">di</span><span class="en">about</span></span>
+        <span class="wp"><span class="it">ogni</span><span class="en">every</span></span>
+        <span class="wp"><span class="it">ingrediente</span><span class="en">ingredient</span></span>
+        <span class="wp punct"><span class="it">."</span><span class="en"></span></span>
+      </p>
+
+      <!-- §4 -->
+      <p>
+        <span class="wp"><span class="it">Oggi</span><span class="en">Today</span></span>
+        <span class="wp"><span class="it">Sara</span><span class="en">Sara</span></span>
+        <span class="wp"><span class="it vb">è diventata</span><span class="en">has become</span></span>
+        <span class="wp"><span class="it">una</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">skipper</span><span class="en">skipper</span></span>
+        <span class="wp"><span class="it">che</span><span class="en">who</span></span>
+        <span class="wp"><span class="it kw">porta</span><span class="en">takes</span></span>
+        <span class="wp"><span class="it">i</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">turisti</span><span class="en">tourists</span></span>
+        <span class="wp"><span class="it">a</span><span class="en">to</span></span>
+        <span class="wp"><span class="it">scoprire</span><span class="en">discover</span></span>
+        <span class="wp"><span class="it">le</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">isole</span><span class="en">islands</span></span>
+        <span class="wp"><span class="it">croate</span><span class="en">Croatian</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it">A</span><span class="en">On</span></span>
+        <span class="wp"><span class="it">bordo</span><span class="en">board</span></span>
+        <span class="wp><span class="it">cucina</span><span class="en">she cooks</span></span>
+        <span class="wp"><span class="it">spesso</span><span class="en">often</span></span>
+        <span class="wp"><span class="it">per</span><span class="en">for</span></span>
+        <span class="wp"><span class="it">i</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">passeggeri</span><span class="en">passengers</span></span>
+        <span class="wp punct"><span class="it">:</span><span class="en">:</span></span>
+        <span class="wp"><span class="it">pesce</span><span class="en">fish</span></span>
+        <span class="wp"><span class="it">fresco</span><span class="en">fresh</span></span>
+        <span class="wp"><span class="it">con</span><span class="en">with</span></span>
+        <span class="wp"><span class="it">olio</span><span class="en">olive oil</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">limone</span><span class="en">lemon</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">semplice</span><span class="en">simple</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">veloce</span><span class="en">quick</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+      </p>
+
+      <!-- §5 -->
+      <p>
+        <span class="wp"><span class="it">Una</span><span class="en">One</span></span>
+        <span class="wp"><span class="it">volta</span><span class="en">time</span></span>
+        <span class="wp"><span class="it vb">ha preparato</span><span class="en">she prepared</span></span>
+        <span class="wp"><span class="it">il</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">risotto</span><span class="en">risotto</span></span>
+        <span class="wp"><span class="it">ai</span><span class="en">with</span></span>
+        <span class="wp"><span class="it">frutti</span><span class="en">fruits</span></span>
+        <span class="wp"><span class="it">di</span><span class="en">of</span></span>
+        <span class="wp"><span class="it">mare</span><span class="en">sea</span></span>
+        <span class="wp"><span class="it">su</span><span class="en">on</span></span>
+        <span class="wp"><span class="it">una</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">barca</span><span class="en">boat</span></span>
+        <span class="wp"><span class="it">che</span><span class="en">that</span></span>
+        <span class="wp"><span class="it kw">ondeggiava</span><span class="en">was rocking</span></span>
+        <span class="wp"><span class="it">nel</span><span class="en">in the</span></span>
+        <span class="wp"><span class="it">vento</span><span class="en">wind</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it vb">L'ha</span><span class="en">it</span></span>
+        <span class="wp"><span class="it pr">finito</span><span class="en">finished (m.)</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">venti</span><span class="en">twenty</span></span>
+        <span class="wp"><span class="it">minuti</span><span class="en">minutes</span></span>
+        <span class="wp punt"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it">I</span><span class="en">The</span></span>
+        <span class="wp"><span class="it">passeggeri</span><span class="en">passengers</span></span>
+        <span class="wp"><span class="it vb">l'hanno</span><span class="en">it</span></span>
+        <span class="wp"><span class="it pr">mangiato</span><span class="en">ate</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">silenzio</span><span class="en">silence</span></span>
+        <span class="wp punct"><span class="it">,</span><span class="en">,</span></span>
+        <span class="wp"><span class="it">come</span><span class="en">like</span></span>
+        <span class="wp"><span class="it">si</span><span class="en">one does</span></span>
+        <span class="wp"><span class="it">fa</span><span class="en"></span></span>
+        <span class="wp"><span class="it">quando</span><span class="en">when</span></span>
+        <span class="wp"><span class="it">qualcosa</span><span class="en">something</span></span>
+        <span class="wp"><span class="it kw">è</span><span class="en">is</span></span>
+        <span class="wp"><span class="it">davvero</span><span class="en">truly</span></span>
+        <span class="wp"><span class="it">buono</span><span class="en">good</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+      </p>
+
+      <!-- §6 -->
+      <p>
+        <span class="wp"><span class="it">"</span><span class="en"></span></span>
+        <span class="wp"><span class="it">Il</span><span class="en">Food</span></span>
+        <span class="wp"><span class="it">cibo</span><span class="en"></span></span>
+        <span class="wp"><span class="it">non</span><span class="en">is not</span></span>
+        <span class="wp"><span class="it kw">è</span><span class="en"></span></span>
+        <span class="wp"><span class="it">solo</span><span class="en">only</span></span>
+        <span class="wp"><span class="it">nutrimento</span><span class="en">nutrition</span></span>
+        <span class="wp punct"><span class="it">.</span><span class="en">.</span></span>
+        <span class="wp"><span class="it kw">È</span><span class="en">It is</span></span>
+        <span class="wp"><span class="it">il</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">modo</span><span class="en">way</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">cui</span><span class="en">which</span></span>
+        <span class="wp"><span class="it">diciamo</span><span class="en">we say</span></span>
+        <span class="wp"><span class="it">'</span><span class="en"></span></span>
+        <span class="wp"><span class="it">ti</span><span class="en">I</span></span>
+        <span class="wp"><span class="it">voglio</span><span class="en">love</span></span>
+        <span class="wp"><span class="it">bene</span><span class="en">you</span></span>
+        <span class="wp"><span class="it">'</span><span class="en"></span></span>
+        <span class="wp"><span class="it">senza</span><span class="en">without</span></span>
+        <span class="wp"><span class="it">parole</span><span class="en">words</span></span>
+        <span class="wp punct"><span class="it">."</span><span class="en"></span></span>
+        <span class="wp"><span class="it">—</span><span class="en">—</span></span>
+        <span class="wp"><span class="it">Sara</span><span class="en">Sara</span></span>
+      </p>
+
+    </div><!-- /interlinear -->
+
+    <div class="pull">
+      <div class="pull-it">"Il cibo è il modo in cui diciamo 'ti voglio bene' senza parole."</div>
+      <div class="pull-en">"Food is the way we say 'I love you' without words." — Sara</div>
+    </div>
+  </div>
+
+  <!-- EN VERSION -->
+  <div class="card card-cream" style="cursor:pointer" onclick="toggleEN(this)">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--bordeaux);letter-spacing:.08em">▶ ENGLISH VERSION — clicca per aprire</span>
+      <span id="en-arr" style="color:var(--bordeaux)">▶</span>
+    </div>
+    <div id="en-body" style="display:none;margin-top:1.25rem">
+      <div class="reading" style="font-size:16px;color:var(--muted);line-height:1.9">
+        <p><strong>Grandmother's Recipe</strong></p>
+        <p>When Sara was eight, her grandmother always made baked pasta on Sundays. It was a ritual: the family gathered and the kitchen smelled of tomato and basil.</p>
+        <p>Last year, during a week in Italy, Sara visited a small restaurant in Naples. She ordered a Margherita pizza and ate it slowly, in silence.</p>
+        <p>"It was the best pizza I had ever eaten," she remembers. "It wasn't just the taste. It was the way they brought it, the warmth with which they talked about every ingredient."</p>
+        <p>Today Sara has become a skipper who takes tourists to discover the Croatian islands. On board she often cooks for the passengers: fresh fish with olive oil and lemon, simple and quick.</p>
+        <p>Once she made seafood risotto on a boat rocking in the wind. She finished it in twenty minutes. The passengers ate it in silence, as one does when something is truly good.</p>
+        <p>"Food is not just nutrition. It is the way we say 'I love you' without words." — Sara</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-bord" style="padding:1rem 1.25rem">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--bordeaux);letter-spacing:.1em;margin-bottom:.35rem;text-transform:uppercase">🗣 Warm-up orale</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--ink)">"Sara, qual è il piatto che ti ricorda più la tua famiglia? Perché?"</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--bordeaux);margin-top:5px">"Which dish most reminds you of your family? Why?"</div>
+  </div>
+
+  <button class="next-btn" onclick="go(1,document.getElementById('nb1'))">Comprensione del testo →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 1 · COMPRENSIONE
+══════════════════════════════ -->
+<div class="panel" id="p1">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">02</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 2 · Comprensione</div>
+      <div class="sec-title">Hai capito il testo?</div>
+      <div class="sec-deck">Domande di comprensione diretta, inferenza e risposta personale.</div>
+    </div>
+    <div class="sec-time">MIN 13–20</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Parte A — scelta multipla</div>
+    <div class="exin">Una sola risposta è corretta. · <em>Only one answer is correct.</em></div>
+
+    <div class="mq" id="q1">
+      <div class="qt">1. Cosa faceva la nonna di Sara ogni domenica?</div>
+      <div class="qe">What did Sara's grandmother do every Sunday?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q1',false)">a) Portava la famiglia al ristorante</button>
+        <button class="o" onclick="mc(this,'q1',true)">b) Faceva la pasta al forno e riuniva la famiglia</button>
+        <button class="o" onclick="mc(this,'q1',false)">c) Cucinava il pesce con olio e limone</button>
+      </div>
+    </div>
+
+    <div class="mq" id="q2">
+      <div class="qt">2. A Napoli, Sara ha ordinato...</div>
+      <div class="qe">In Naples, Sara ordered...</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q2',false)">a) Un risotto ai frutti di mare</button>
+        <button class="o" onclick="mc(this,'q2',true)">b) Una pizza margherita</button>
+        <button class="o" onclick="mc(this,'q2',false)">c) La pasta al forno della nonna</button>
+      </div>
+    </div>
+
+    <div class="mq" id="q3">
+      <div class="qt">3. Perché la pizza era così speciale per Sara?</div>
+      <div class="qe">Why was the pizza so special for Sara?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q3',false)">a) Perché era la prima volta che mangiava la pizza</button>
+        <button class="o" onclick="mc(this,'q3',true)">b) Non solo per il gusto — per il calore con cui i camerieri ne parlavano</button>
+        <button class="o" onclick="mc(this,'q3',false)">c) Perché costava molto poco</button>
+      </div>
+    </div>
+
+    <div class="mq" id="q4">
+      <div class="qt">4. Come hanno reagito i passeggeri al risotto di Sara?</div>
+      <div class="qe">How did the passengers react to Sara's risotto?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q4',false)">a) Hanno chiesto la ricetta</button>
+        <button class="o" onclick="mc(this,'q4',true)">b) L'hanno mangiato in silenzio — segno che era davvero buono</button>
+        <button class="o" onclick="mc(this,'q4',false)">c) Hanno detto che preferivano qualcos'altro</button>
+      </div>
+    </div>
+
+    <div class="mq" id="q5">
+      <div class="qt">5. 🧠 Inferenza: cosa collega la nonna di Sara, la pizza di Napoli e il risotto sulla barca?</div>
+      <div class="qe">What connects grandmother's kitchen, the Naples pizza and the boat risotto?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q5',false)">a) Sono tutti piatti italiani a base di pomodoro</button>
+        <button class="o" onclick="mc(this,'q5',true)">b) Il cibo come linguaggio di cura, calore e connessione — non solo nutrimento</button>
+        <button class="o" onclick="mc(this,'q5',false)">c) Sara li ha sempre mangiati sola e in silenzio</button>
+      </div>
+    </div>
+
+    <div class="sr">
+      <div class="st"><div class="sf" id="sf1" style="width:0%"></div></div>
+      <span class="sn" id="sn1">0 / 5</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Parte B — vero / falso / non detto</div>
+    <div class="mq" id="vf1">
+      <div class="qt">6. Sara cucina ogni giorno sulla barca per i turisti.</div>
+      <div class="qe">Sara cooks every day on the boat for tourists.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vf1',false)">Vero</button>
+        <button class="o" onclick="mc(this,'vf1',true)">Falso — cucina "spesso", non ogni giorno</button>
+        <button class="o" onclick="mc(this,'vf1',false)">Non detto</button>
+      </div>
+    </div>
+    <div class="mq" id="vf2">
+      <div class="qt">7. Il risotto è stato pronto in venti minuti.</div>
+      <div class="qe">The risotto was ready in twenty minutes.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vf2',true)">Vero</button>
+        <button class="o" onclick="mc(this,'vf2',false)">Falso</button>
+        <button class="o" onclick="mc(this,'vf2',false)">Non detto</button>
+      </div>
+    </div>
+    <div class="mq" id="vf3">
+      <div class="qt">8. La nonna di Sara è italiana.</div>
+      <div class="qe">Sara's grandmother is Italian.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vf3',false)">Vero</button>
+        <button class="o" onclick="mc(this,'vf3',false)">Falso</button>
+        <button class="o" onclick="mc(this,'vf3',true)">Non detto — il testo non lo dice</button>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="st"><div class="sf" id="sf2" style="width:0%"></div></div>
+      <span class="sn" id="sn2">0 / 3</span>
+    </div>
+  </div>
+
+  <div class="card card-bord">
+    <div class="exl" style="color:var(--bordeaux)">Parte C — risposta personale</div>
+    <div class="qt" style="margin-bottom:5px">9. Sara dice "il cibo è il modo in cui diciamo 'ti voglio bene' senza parole". Sei d'accordo? Dai un esempio dalla tua vita. (2–3 frasi in italiano)</div>
+    <div class="qe" style="margin-bottom:10px">Do you agree? Give an example from your own life. (2–3 sentences in Italian)</div>
+    <textarea class="prod" style="background:rgba(255,255,255,.7);color:var(--ink);border-color:#DDB8B8" placeholder="Secondo me, Sara ha ragione perché..." oninput="wc(this,'wcc')"></textarea>
+    <div class="wc" id="wcc" style="color:var(--bordeaux)">0 parole</div>
+  </div>
+
+  <button class="next-btn" onclick="go(2,document.getElementById('nb2'))">Vai al vocabolario →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 2 · VOCABOLARIO
+══════════════════════════════ -->
+<div class="panel" id="p2">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">03</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 3 · Vocabolario</div>
+      <div class="sec-title">In cucina, a tavola, a bordo</div>
+      <div class="sec-deck">Il lessico del cibo italiano — ingredienti, azioni, luoghi, sapori. Il vocabolario di chi cucina davvero.</div>
+    </div>
+    <div class="sec-time">MIN 21–27</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Ingredienti & sapori</div>
+    <div class="vg">
+      <div class="vc"><div class="vi">il pomodoro</div><div class="ve">tomato</div><div class="vx">Salsa di pomodoro.</div></div>
+      <div class="vc"><div class="vi">il basilico</div><div class="ve">basil</div><div class="vx">Fresco, non secco.</div></div>
+      <div class="vc"><div class="vi">l'olio d'oliva</div><div class="ve">olive oil</div><div class="vx">Un filo d'olio.</div></div>
+      <div class="vc"><div class="vi">il limone</div><div class="ve">lemon</div><div class="vx">Spremuto sul pesce.</div></div>
+      <div class="vc"><div class="vi">i frutti di mare</div><div class="ve">seafood</div><div class="vx">Risotto ai frutti di mare.</div></div>
+      <div class="vc"><div class="vi">il pesce fresco</div><div class="ve">fresh fish</div><div class="vx">Appena pescato.</div></div>
+      <div class="vc"><div class="vi">il gusto / il sapore</div><div class="ve">taste / flavour</div><div class="vx">Che buon sapore!</div></div>
+      <div class="vc"><div class="vi">l'ingrediente</div><div class="ve">ingredient</div><div class="vx">Ingredienti freschi.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Azioni in cucina</div>
+    <div class="vg">
+      <div class="vc"><div class="vi">cucinare / preparare</div><div class="ve">to cook / to prepare</div><div class="vx">Preparo il risotto.</div></div>
+      <div class="vc"><div class="vi">assaggiare</div><div class="ve">to taste, try</div><div class="vx">Posso assaggiare?</div></div>
+      <div class="vc"><div class="vi">mescolare</div><div class="ve">to stir, mix</div><div class="vx">Mescola il riso.</div></div>
+      <div class="vc"><div class="vi">aggiungere</div><div class="ve">to add</div><div class="vx">Aggiungi sale.</div></div>
+      <div class="vc"><div class="vi">servire</div><div class="ve">to serve</div><div class="vx">Serviamo subito.</div></div>
+      <div class="vc"><div class="vi">profumare</div><div class="ve">to smell of, to perfume</div><div class="vx">Profuma di basilico.</div></div>
+      <div class="vc"><div class="vi">riunirsi</div><div class="ve">to gather, meet together</div><div class="vx">La famiglia si riunisce.</div></div>
+      <div class="vc"><div class="vi">ricordare / ricordarsi</div><div class="ve">to remember</div><div class="vx">Mi ricordo di quel sapore.</div></div>
+    </div>
+  </div>
+
+  <!-- Esercizio 1 -->
+  <div class="card">
+    <div class="exl">Esercizio 1 — abbina la definizione</div>
+    <div class="exin">Scegli la parola giusta. · <em>Choose the right word.</em></div>
+    <div class="mq" id="vq1">
+      <div class="qt">1. "Metto un po' di sale nell'acqua che bolle"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vq1',true)">aggiungere</button>
+        <button class="o" onclick="mc(this,'vq1',false)">mescolare</button>
+        <button class="o" onclick="mc(this,'vq1',false)">servire</button>
+      </div>
+    </div>
+    <div class="mq" id="vq2">
+      <div class="qt">2. "La cucina aveva un profumo bellissimo di pomodoro"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vq2',false)">assaggiava</button>
+        <button class="o" onclick="mc(this,'vq2',true)">profumava</button>
+        <button class="o" onclick="mc(this,'vq2',false)">mescolava</button>
+      </div>
+    </div>
+    <div class="mq" id="vq3">
+      <div class="qt">3. "Tutti i parenti vengono a casa per mangiare insieme"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vq3',false)">cucinano</button>
+        <button class="o" onclick="mc(this,'vq3',false)">assaggiano</button>
+        <button class="o" onclick="mc(this,'vq3',true)">si riuniscono</button>
+      </div>
+    </div>
+    <div class="mq" id="vq4">
+      <div class="qt">4. "Provo un piccolo pezzo del piatto prima di comprarlo"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'vq4',true)">assaggiare</button>
+        <button class="o" onclick="mc(this,'vq4',false)">ricordare</button>
+        <button class="o" onclick="mc(this,'vq4',false)">aggiungere</button>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="st"><div class="sf" id="sf3" style="width:0%"></div></div>
+      <span class="sn" id="sn3">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- Esercizio 2: completa -->
+  <div class="card">
+    <div class="exl">Esercizio 2 — completa con la parola giusta</div>
+    <div class="exin">Usa: <strong>profumava · ingredienti · assaggiare · riuniva · sapore · frutti di mare</strong></div>
+    <div class="fw">
+      <div class="fs">La cucina della nonna _____ sempre di basilico e pomodoro.</div>
+      <input class="fi" type="text" placeholder="profumava" oninput="sf(this,'profumava','b1')"><div id="fb-b1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">La domenica la famiglia si _____ intorno alla tavola.</div>
+      <input class="fi" type="text" placeholder="riuniva" oninput="sf(this,'riuniva','b2')"><div id="fb-b2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Sara ha preparato il risotto ai _____ di mare sulla barca.</div>
+      <input class="fi" type="text" placeholder="frutti" oninput="sf(this,'frutti','b3')"><div id="fb-b3" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Il _____ della pizza napoletana è indimenticabile.</div>
+      <input class="fi" type="text" placeholder="sapore" oninput="sf(this,'sapore','b4')"><div id="fb-b4" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Posso _____ prima di ordinare? Voglio capire com'è.</div>
+      <input class="fi" type="text" placeholder="assaggiare" oninput="sf(this,'assaggiare','b5')"><div id="fb-b5" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(3,document.getElementById('nb3'))">Vai alla grammatica →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 3 · GRAMMATICA
+══════════════════════════════ -->
+<div class="panel" id="p3">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">04</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 4 · Grammatica</div>
+      <div class="sec-title">Passato prossimo vs imperfetto — e i pronomi diretti</div>
+      <div class="sec-deck">Come raccontare una storia in italiano. Quando usi il passato prossimo, quando l'imperfetto — e come evitare la ripetizione con i pronomi.</div>
+    </div>
+    <div class="sec-time">MIN 28–38</div>
+  </div>
+
+  <!-- REGOLA 1: PP vs IMP -->
+  <div class="rule-box">
+    <div class="rb-head">
+      <span class="rb-title">Passato prossimo vs Imperfetto — come raccontare</span>
+      <span class="rb-tag">STRUTTURA 1</span>
+    </div>
+    <div class="rb-body">
+      <p>Nel testo di Sara trovi <strong>entrambi i tempi</strong> usati insieme — come in ogni storia italiana autentica.</p>
+
+      <div class="gram-compare">
+        <div class="gc-col pass-pross">
+          <div class="gc-label pp">Passato Prossimo</div>
+          <div class="gc-rule">Azione singola, finita, in un momento preciso.</div>
+          <div class="gc-ex">Sara <strong>ha ordinato</strong> una pizza.<br>L'ha <strong>mangiata</strong> in silenzio.<br><strong>Ha preparato</strong> il risotto.</div>
+        </div>
+        <div class="gc-col imperf">
+          <div class="gc-label imp">Imperfetto</div>
+          <div class="gc-rule">Stato, descrizione, abitudine, azione in corso nel passato.</div>
+          <div class="gc-ex">La nonna <strong>faceva</strong> la pasta ogni domenica.<br>La cucina <strong>profumava</strong> di basilico.<br>La barca <strong>ondeggiava</strong> nel vento.</div>
+        </div>
+      </div>
+
+      <p>La regola visiva: <strong>passato prossimo</strong> = fotogramma singolo. <strong>Imperfetto</strong> = scenografia, sfondo, abitudine.</p>
+      <p>Nel racconto si usano <strong>insieme</strong>: l'imperfetto descrive la scena, il passato prossimo racconta cosa è successo.</p>
+
+      <div style="background:var(--cream2);border-radius:var(--r);padding:.85rem 1rem;margin-top:.5rem;font-style:italic;font-size:14px;border:1px solid var(--rule2)">
+        <em>Esempio combinato dal testo:</em><br>
+        "La barca <span style="color:var(--caramel);font-weight:500">ondeggiava</span> [imperfetto = sfondo] nel vento quando Sara <span style="color:var(--bordeaux);font-weight:700">ha preparato</span> [passato prossimo = evento] il risotto."
+      </div>
+
+      <!-- tabella coniugazione -->
+      <p style="margin-top:1rem">Coniugazione di <strong>essere</strong> e <strong>avere</strong> all'imperfetto (servono per costruire il passato prossimo):</p>
+      <table class="conj">
+        <tr><th>Pronome</th><th>ESSERE (imp.)</th><th>AVERE (imp.)</th></tr>
+        <tr><td>io</td><td>ero</td><td>avevo</td></tr>
+        <tr><td>tu</td><td>eri</td><td>avevi</td></tr>
+        <tr><td>lui/lei</td><td>era</td><td>aveva</td></tr>
+        <tr><td>noi</td><td>eravamo</td><td>avevamo</td></tr>
+        <tr><td>voi</td><td>eravate</td><td>avevate</td></tr>
+        <tr><td>loro</td><td>erano</td><td>avevano</td></tr>
+      </table>
+
+      <div class="tip"><strong>💡 Trucco pratico:</strong> Se puoi aggiungere "ogni domenica / sempre / di solito" → imperfetto. Se puoi aggiungere "ieri / una volta / quella mattina" → passato prossimo. Le parole segnale ti dicono quale usare!</div>
+    </div>
+  </div>
+
+  <!-- REGOLA 2: PRONOMI DIRETTI -->
+  <div class="rule-box">
+    <div class="rb-head">
+      <span class="rb-title">I Pronomi Diretti — lo, la, li, le</span>
+      <span class="rb-tag">STRUTTURA 2</span>
+    </div>
+    <div class="rb-body">
+      <p>Dal testo: <em>"Ha ordinato la pizza e <strong>l'ha mangiata</strong>"</em> — invece di ripetere "la pizza", usiamo il pronome <strong>la</strong>.</p>
+      <p>I pronomi diretti sostituiscono il complemento oggetto. Si mettono <strong>prima del verbo</strong>.</p>
+
+      <table class="pron-table">
+        <tr><th>Pronome</th><th>Forma</th><th>Quando si usa</th><th>Esempio dal testo</th></tr>
+        <tr><td>m. sing.</td><td>lo / l'</td><td>sostituisce maschile sing.</td><td>"L'ha <em>finito</em>" (il risotto)</td></tr>
+        <tr><td>f. sing.</td><td>la / l'</td><td>sostituisce femminile sing.</td><td>"L'ha <em>mangiata</em>" (la pizza)</td></tr>
+        <tr><td>m. pl.</td><td>li</td><td>sostituisce maschile pl.</td><td>"<em>Li</em> ha serviti" (i piatti)</td></tr>
+        <tr><td>f. pl.</td><td>le</td><td>sostituisce femminile pl.</td><td>"<em>Le</em> ha assaggiate" (le olive)</td></tr>
+      </table>
+
+      <div style="background:var(--cream2);border-radius:var(--r);padding:.85rem 1rem;margin-top:.75rem;border:1px solid var(--rule2)">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--bordeaux);margin-bottom:.4rem;letter-spacing:.06em">ACCORDO AL PASSATO PROSSIMO</div>
+        <div style="font-size:14px;line-height:1.85">
+          Con il passato prossimo, il participio <strong>si accorda</strong> con il pronome che lo precede:<br>
+          <span style="color:var(--bordeaux)">Ho mangiato la pizza</span> → <span style="color:var(--olive)">L'ho mangiata</span> (la pizza = f. sing. → -a)<br>
+          <span style="color:var(--bordeaux)">Ho finito il risotto</span> → <span style="color:var(--olive)">L'ho finito</span> (il risotto = m. sing. → -o)<br>
+          <span style="color:var(--bordeaux)">Ho comprato le olive</span> → <span style="color:var(--olive)">Le ho comprate</span> (le olive = f. pl. → -e)
+        </div>
+      </div>
+
+      <div class="tip"><strong>💡 Perché è importante:</strong> Senza i pronomi, il tuo italiano suona ripetitivo e meccanico. Con i pronomi, suona fluente e naturale. Impara queste 4 forme — sono tra le più usate in assoluto.</div>
+    </div>
+  </div>
+
+  <!-- ES 1: PP vs IMP -->
+  <div class="card">
+    <div class="exl">Esercizio 1 — passato prossimo o imperfetto?</div>
+    <div class="exin">Scegli il tempo verbale giusto. · <em>Choose the correct tense.</em></div>
+    <div class="mq" id="g1">
+      <div class="qt">1. "Da piccola, la nonna _____ la pasta al forno ogni domenica."</div>
+      <div class="qe">As a child, grandmother _____ baked pasta every Sunday.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'g1',false)">ha fatto — passato prossimo</button>
+        <button class="o" onclick="mc(this,'g1',true)">faceva — imperfetto (abitudine)</button>
+      </div>
+    </div>
+    <div class="mq" id="g2">
+      <div class="qt">2. "Ieri Sara _____ il risotto ai frutti di mare per i passeggeri."</div>
+      <div class="qe">Yesterday Sara _____ seafood risotto for the passengers.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'g2',true)">ha preparato — passato prossimo (azione unica ieri)</button>
+        <button class="o" onclick="mc(this,'g2',false)">preparava — imperfetto</button>
+      </div>
+    </div>
+    <div class="mq" id="g3">
+      <div class="qt">3. "La barca _____ nel vento mentre Sara cucinava."</div>
+      <div class="qe">The boat _____ in the wind while Sara was cooking.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'g3',false)">ha ondeggiato — passato prossimo</button>
+        <button class="o" onclick="mc(this,'g3',true)">ondeggiava — imperfetto (sfondo, azione in corso)</button>
+      </div>
+    </div>
+    <div class="mq" id="g4">
+      <div class="qt">4. "Una volta Sara _____ a Napoli e _____ una pizza straordinaria."</div>
+      <div class="qe">Once Sara _____ to Naples and _____ an extraordinary pizza.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'g4',true)">è andata / ha mangiato — passato prossimo (eventi singoli)</button>
+        <button class="o" onclick="mc(this,'g4',false)">andava / mangiava — imperfetto</button>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="st"><div class="sf" id="sf4" style="width:0%"></div></div>
+      <span class="sn" id="sn4">0 / 4</span>
+    </div>
+  </div>
+
+  <!-- ES 2: pronomi diretti -->
+  <div class="card">
+    <div class="exl">Esercizio 2 — sostituisci con il pronome diretto</div>
+    <div class="exin">Riscrivi la frase usando lo / la / li / le. Attenzione all'accordo del participio! · <em>Rewrite using the direct pronoun. Watch the participle agreement!</em></div>
+    <div class="fw">
+      <div class="fs">Ha ordinato la pizza. → _____ ha mangiata lentamente.</div>
+      <div class="fen">"la pizza" = femminile singolare → pronome: la / l'</div>
+      <div class="fc">la pizza (f.sing.) → la/l' · participio: mangiata (-a)</div>
+      <input class="fi" type="text" placeholder="L'ha mangiata" oninput="sf(this,"l'ha mangiata",'p1')"><div id="fb-p1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Ha preparato il risotto. → _____ ha finito in venti minuti.</div>
+      <div class="fen">"il risotto" = maschile singolare → pronome: lo / l'</div>
+      <div class="fc">il risotto (m.sing.) → lo/l' · participio: finito (-o)</div>
+      <input class="fi" type="text" placeholder="L'ha finito" oninput="sf(this,"l'ha finito",'p2')"><div id="fb-p2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Ha comprato le olive. → _____ ha aggiunte al piatto.</div>
+      <div class="fen">"le olive" = femminile plurale → pronome: le</div>
+      <div class="fc">le olive (f.pl.) → le · participio: aggiunte (-e)</div>
+      <input class="fi" type="text" placeholder="Le ha aggiunte" oninput="sf(this,'le ha aggiunte','p3')"><div id="fb-p3" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Ha servito i passeggeri. → _____ ha serviti sul ponte.</div>
+      <div class="fen">"i passeggeri" = maschile plurale → pronome: li</div>
+      <div class="fc">i passeggeri (m.pl.) → li · participio: serviti (-i)</div>
+      <input class="fi" type="text" placeholder="Li ha serviti" oninput="sf(this,'li ha serviti','p4')"><div id="fb-p4" class="fb"></div>
+    </div>
+  </div>
+
+  <!-- ES 3: completa la storia -->
+  <div class="card">
+    <div class="exl">Esercizio 3 — completa la storia di Sara</div>
+    <div class="exin">Scegli il tempo giusto (passato prossimo o imperfetto). · <em>Choose the correct tense.</em></div>
+    <div class="fw">
+      <div class="fs">Da piccola, Sara _____ (mangiare) sempre il pesce fresco.</div>
+      <div class="fc">abitudine del passato → imperfetto</div>
+      <input class="fi" type="text" placeholder="mangiava" oninput="sf(this,'mangiava','c1')"><div id="fb-c1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Ieri mattina Sara _____ (preparare) la colazione per i passeggeri.</div>
+      <div class="fc">azione unica ieri → passato prossimo</div>
+      <input class="fi" type="text" placeholder="ha preparato" oninput="sf(this,'ha preparato','c2')"><div id="fb-c2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Il mare _____ (essere) calmo mentre _____ (navigare).</div>
+      <div class="fc">sfondo + azione in corso → imperfetto + imperfetto</div>
+      <input class="fi" type="text" placeholder="era / navigavano" oninput="sf(this,'era navigavano','c3')"><div id="fb-c3" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Sara _____ (assaggiare) il vino locale e _____ (trovare) che era ottimo.</div>
+      <div class="fc">due azioni singole e finite → passato prossimo</div>
+      <input class="fi" type="text" placeholder="ha assaggiato / ha trovato" oninput="sf(this,'ha assaggiato ha trovato','c4')"><div id="fb-c4" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(4,document.getElementById('nb4'))">Vai al dialogo →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 4 · DIALOGO
+══════════════════════════════ -->
+<div class="panel" id="p4">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">05</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 5 · Dialogo</div>
+      <div class="sec-title">A bordo — <em>la cena dei passeggeri</em></div>
+      <div class="sec-deck">Sara cucina a bordo per un gruppo di turisti italiani. Una coppia curiosa vuole sapere tutto. Dialogo esteso con pronomi diretti e tempi del passato.</div>
+    </div>
+    <div class="sec-time">MIN 39–44</div>
+  </div>
+
+  <div class="card">
+    <div class="dw">
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Turista — Elena</div>
+        <div class="di">Sara, questo risotto è straordinario! Come l'hai fatto?</div>
+        <div class="de">Sara, this risotto is extraordinary! How did you make it?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Grazie! L'ho preparato stamattina con i frutti di mare freschi che abbiamo comprato stamattina al porto.</div>
+        <div class="de">Thank you! I made it this morning with fresh seafood that we bought at the harbour this morning.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Elena</div>
+        <div class="di">E la ricetta? L'hai imparata da qualcuno?</div>
+        <div class="de">And the recipe? Did you learn it from someone?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Sì, l'ho imparata da mia nonna. Lei la faceva ogni domenica. Io la guardavo e cercavo di ricordare ogni passaggio.</div>
+        <div class="de">Yes, I learned it from my grandmother. She used to make it every Sunday. I would watch her and try to remember every step.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">M</div><div class="db"><div class="dn">Marito di Elena — Roberto</div>
+        <div class="di">Bellissima storia. E queste olive — le hai comprate qui in Croazia?</div>
+        <div class="de">What a beautiful story. And these olives — did you buy them here in Croatia?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Sì, le ho comprate ieri all'isola di Hvar. Piccole, verdi, con un sapore leggermente amaro — perfette per il pesce.</div>
+        <div class="de">Yes, I bought them yesterday on the island of Hvar. Small, green, with a slightly bitter taste — perfect with fish.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Elena</div>
+        <div class="di">Sei bravissima. Ma come hai imparato a cucinare così bene su una barca?</div>
+        <div class="de">You're so talented. But how did you learn to cook so well on a boat?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Ho imparato sbagliando! Il primo anno bruciavo tutto. Ma poi ho capito che la cucina in barca è come la fisioterapia — devi ascoltare, adattarti, sentire cosa serve.</div>
+        <div class="de">I learned by making mistakes! The first year I burned everything. But then I understood that cooking on a boat is like physiotherapy — you have to listen, adapt, feel what's needed.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">M</div><div class="db"><div class="dn">Roberto</div>
+        <div class="di">La fisioterapia? Sei anche fisioterapista?</div>
+        <div class="de">Physiotherapy? Are you also a physiotherapist?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Mi sono laureata tre mesi fa. E tra qualche anno voglio aprire un centro dove unisco le due cose — la cura del corpo e la bellezza. Ma questa è un'altra storia!</div>
+        <div class="de">I graduated three months ago. And in a few years I want to open a centre where I combine the two — body care and beauty. But that's another story!</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Frasi utili -->
+  <div class="card card-cream">
+    <div class="exl">Frasi utili dal dialogo — pronomi diretti in azione</div>
+    <div>
+      <div class="pi"><div class="pit">L'ho preparato stamattina. (lo = il risotto)</div><div class="pie">I made it this morning.</div></div>
+      <div class="pi"><div class="pit">L'ho imparata da mia nonna. (la = la ricetta)</div><div class="pie">I learned it from my grandmother.</div></div>
+      <div class="pi"><div class="pit">Le ho comprate ieri. (le = le olive)</div><div class="pie">I bought them yesterday.</div></div>
+      <div class="pi"><div class="pit">Li guardavo mentre cucinavano. (li = i cuochi)</div><div class="pie">I would watch them while they cooked.</div></div>
+      <div class="pi"><div class="pit">Ho imparato sbagliando.</div><div class="pie">I learned by making mistakes.</div></div>
+      <div class="pi"><div class="pit">Devi ascoltare, adattarti, sentire cosa serve.</div><div class="pie">You have to listen, adapt, feel what's needed.</div></div>
+    </div>
+    <div class="tip"><strong>💡 Nota:</strong> Guarda come Sara usa i pronomi diretti naturalmente — "L'ho preparato", "L'ho imparata", "Le ho comprate". Ogni volta sostituisce un sostantivo già nominato. Prova a fare lo stesso quando parli!</div>
+  </div>
+
+  <!-- Dialogo con lacune -->
+  <div class="card">
+    <div class="exl">Esercizio — completa il dialogo</div>
+    <div class="exin">Usa: <strong>l'ho imparata · le ho comprate · l'ho preparato · li ha mangiati · la faceva · l'ho finito</strong></div>
+    <div class="dw">
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Turista</div>
+        <div class="di">Questo risotto è ottimo! Come l'hai fatto?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di"><input class="dg" oninput="dg(this,"l'ho preparato",'d1')" placeholder="______"> stamattina con frutti di mare freschi.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Turista</div>
+        <div class="di">E la ricetta? Da dove viene?</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di"><input class="dg" oninput="dg(this,"l'ho imparata",'d2')" placeholder="______"> da mia nonna. Lei <input class="dg" oninput="dg(this,'la faceva','d3')" placeholder="______"> ogni domenica.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Turista</div>
+        <div class="di">E le olive? Sono fantastiche!</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di"><input class="dg" oninput="dg(this,'le ho comprate','d4')" placeholder="______"> ieri a Hvar.</div>
+      </div></div>
+      <div class="dr"><div class="dav other">T</div><div class="db"><div class="dn">Turista</div>
+        <div class="di">Erano buonissime! I miei figli le hanno finito subito.</div>
+      </div></div>
+      <div class="dr"><div class="dav sara">S</div><div class="db"><div class="dn">Sara</div>
+        <div class="di">Sì, <input class="dg" oninput="dg(this,'li ha mangiati','d5')" placeholder="______"> in cinque minuti! Ne ho ancora però.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Scaffolding orale -->
+  <div class="card card-bord">
+    <div class="exl" style="color:var(--bordeaux)">Scaffolding orale — role-play a bordo</div>
+    <div style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--ink);margin-bottom:.4rem">"Sei Sara. L'insegnante è un turista italiano curioso. Racconta un piatto che hai cucinato — usa i pronomi diretti e i tempi del passato."</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--bordeaux);margin-bottom:1rem">"You are Sara. Teacher is a curious Italian tourist. Tell them about a dish you cooked — use direct pronouns and past tenses."</div>
+    <div class="scaffold">
+      <div class="slb">Costruisci la tua storia — clicca le parole</div>
+      <div class="chips" id="cp1">
+        <span class="chip" onclick="ac(this,'Ieri ho preparato','sb1')">Ieri ho preparato</span>
+        <span class="chip" onclick="ac(this,'il pesce con olio e limone.','sb1')">il pesce con olio e limone.</span>
+        <span class="chip" onclick="ac(this,"L'ho comprato al porto.","sb1')">L'ho comprato al porto.</span>
+        <span class="chip" onclick="ac(this,'La ricetta','sb1')">La ricetta</span>
+        <span class="chip" onclick="ac(this,"l'ho imparata da mia nonna.","sb1')">l'ho imparata da mia nonna.</span>
+        <span class="chip" onclick="ac(this,'Lei la faceva sempre d\'estate.','sb1')">Lei la faceva sempre d'estate.</span>
+        <span class="chip" onclick="ac(this,'I passeggeri','sb1')">I passeggeri</span>
+        <span class="chip" onclick="ac(this,'li hanno mangiati in silenzio —','sb1')">li hanno mangiati in silenzio —</span>
+        <span class="chip" onclick="ac(this,'segno che era buono!','sb1')">segno che era buono!</span>
+      </div>
+      <div class="built" id="sb1">Clicca le parole per costruire la tua storia...</div>
+      <button class="reset-btn" onclick="rs('sb1','cp1')" style="margin-top:8px">↺ Reset</button>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(5,document.getElementById('nb5'))">Produzione finale →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 5 · PRODUZIONE
+══════════════════════════════ -->
+<div class="panel" id="p5">
+
+  <div class="sec-hd">
+    <div class="sec-hd-num">06</div>
+    <div class="sec-hd-text">
+      <div class="sec-kicker">Sezione 6 · Produzione</div>
+      <div class="sec-title">Scrivi la tua storia — <em>a tavola si impara tutto</em></div>
+      <div class="sec-deck">Tre compiti. Usa il passato prossimo, l'imperfetto, i pronomi diretti. Scrivi di te — cibo, ricordi, identità.</div>
+    </div>
+    <div class="sec-time">MIN 45–50</div>
+  </div>
+
+  <!-- PRODUZIONE 1 -->
+  <div class="pbox">
+    <div class="ptag">✍ Compito 1 — Un ricordo di cibo</div>
+    <div class="pprompt">"Racconta un ricordo legato al cibo — un piatto, una persona, un momento. Usa il passato prossimo per gli eventi e l'imperfetto per il contesto. (60–80 parole)"</div>
+    <div class="pen">"Tell a food memory — a dish, a person, a moment. Use passato prossimo for events, imperfetto for context."</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr1','Quando ero piccola/o, ')">Quando ero piccola/o,</span>
+      <span class="phint" onclick="ins('pr1','mia nonna / mia madre faceva sempre ')">mia nonna / mia madre faceva sempre</span>
+      <span class="phint" onclick="ins('pr1','Una volta ho mangiato ')">Una volta ho mangiato</span>
+      <span class="phint" onclick="ins('pr1','Era il piatto più buono che ')">Era il piatto più buono che</span>
+      <span class="phint" onclick="ins('pr1','La cucina profumava di ')">La cucina profumava di</span>
+      <span class="phint" onclick="ins('pr1','Lo/La ricordo ancora perché ')">Lo/La ricordo ancora perché</span>
+    </div>
+    <textarea class="prod" id="pr1" placeholder="Quando ero piccola, mia nonna faceva sempre..." oninput="wc(this,'wc1')"></textarea>
+    <div class="wc" id="wc1">0 parole</div>
+  </div>
+
+  <!-- PRODUZIONE 2 -->
+  <div class="pbox">
+    <div class="ptag">✍ Compito 2 — Un piatto che sai fare (con pronomi diretti)</div>
+    <div class="pprompt">"Descrivi un piatto che sai preparare. Usa almeno 3 pronomi diretti (lo, la, li, le). (40–60 parole)"</div>
+    <div class="pen">"Describe a dish you know how to make. Use at least 3 direct pronouns (lo, la, li, le)."</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr2','So fare molto bene ')">So fare molto bene</span>
+      <span class="phint" onclick="ins('pr2','Prima lo/la preparo ')">Prima lo/la preparo</span>
+      <span class="phint" onclick="ins('pr2','Li/Le aggiungo dopo ')">Li/Le aggiungo dopo</span>
+      <span class="phint" onclick="ins('pr2','Lo/La servo caldo/a ')">Lo/La servo caldo/a</span>
+      <span class="phint" onclick="ins('pr2','Tutti lo/la adorano perché ')">Tutti lo/la adorano perché</span>
+    </div>
+    <textarea class="prod" id="pr2" placeholder="So fare molto bene il..." oninput="wc(this,'wc2')"></textarea>
+    <div class="wc" id="wc2">0 parole</div>
+  </div>
+
+  <!-- PRODUZIONE 3: orale -->
+  <div class="card card-cream">
+    <div class="exl">Compito 3 — Produzione orale</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--ink);margin-bottom:.4rem">"Sei Sara. Raccontami: cosa cucini a bordo? Quando hai imparato? Cosa usavi da piccola? — Usa i tempi del passato in modo naturale."</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:1.1rem">"You are Sara. Tell me: what do you cook on board? When did you learn? What did you use as a child? — Use past tenses naturally."</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem">
+      <div style="padding:.85rem 1rem;background:var(--cream);border:1px solid var(--rule2);border-radius:var(--r)">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--bordeaux);letter-spacing:.08em;margin-bottom:.4rem;text-transform:uppercase">Strutture da usare</div>
+        <div style="font-size:13px;line-height:1.9;color:var(--ink)">
+          Da piccola facevo / mangiavo...<br>
+          Una volta ho preparato...<br>
+          L'ho imparato da...<br>
+          Li/Le ho comprati a...<br>
+          Mentre cucinavo, il mare era...<br>
+          I passeggeri li hanno mangiati...
+        </div>
+      </div>
+      <div style="padding:.85rem 1rem;background:var(--cream);border:1px solid var(--rule2);border-radius:var(--r)">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--caramel);letter-spacing:.08em;margin-bottom:.4rem;text-transform:uppercase">Parole segnale</div>
+        <div style="font-size:13px;line-height:1.9;color:var(--ink)">
+          <em>da piccola / sempre / ogni domenica</em> → imperfetto<br>
+          <em>ieri / una volta / l'anno scorso</em> → passato prossimo<br>
+          <em>mentre</em> → imperfetto + imperfetto
+        </div>
+      </div>
+    </div>
+
+    <div class="scaffold">
+      <div class="slb">Scaffolding orale finale</div>
+      <div class="chips" id="cp2">
+        <span class="chip" onclick="ac(this,'Da piccola mia nonna','sb2')">Da piccola mia nonna</span>
+        <span class="chip" onclick="ac(this,'mi insegnava a cucinare.','sb2')">mi insegnava a cucinare.</span>
+        <span class="chip" onclick="ac(this,"L'anno scorso ho cucinato","sb2')">L'anno scorso ho cucinato</span>
+        <span class="chip" onclick="ac(this,'il risotto ai frutti di mare.','sb2')">il risotto ai frutti di mare.</span>
+        <span class="chip" onclick="ac(this,"L'ho preparato in venti minuti","sb2')">L'ho preparato in venti minuti</span>
+        <span class="chip" onclick="ac(this,'mentre il mare era agitato.','sb2')">mentre il mare era agitato.</span>
+        <span class="chip" onclick="ac(this,'I passeggeri lo hanno mangiato','sb2')">I passeggeri lo hanno mangiato</span>
+        <span class="chip" onclick="ac(this,'in silenzio — segno di un buon piatto!','sb2')">in silenzio — segno di un buon piatto!</span>
+      </div>
+      <div class="built" id="sb2">Clicca le parole per costruire il tuo racconto...</div>
+      <button class="reset-btn" onclick="rs('sb2','cp2')" style="margin-top:8px">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div class="done">
+    <div class="done-rule"></div>
+    <div class="done-title">Buon lavoro, Sara.</div>
+    <div class="done-body">
+      Oggi, 29 maggio, hai lavorato su: <em>testo autentico con traduzione parola per parola</em> · <em>comprensione testuale e inferenziale</em> · <em>vocabolario della cucina e del cibo italiano</em> · <em>passato prossimo vs imperfetto</em> — la differenza fra evento e sfondo · <em>pronomi diretti</em> (lo / la / li / le) con accordo del participio · <em>dialogo a bordo</em> con entrambe le strutture in contesto reale · <em>produzione scritta guidata</em> e <em>scaffolding orale</em>.
+    </div>
+    <div class="done-hw">
+      COMPITO PER CASA → Scrivi 6 frasi su un pasto che ricordi bene. 3 all'imperfetto (descrizione/abitudine) e 3 al passato prossimo (eventi). Usa almeno 2 pronomi diretti. Inizia con: "Quella sera la cucina profumava di..." · HOMEWORK → Write 6 sentences about a meal you remember well: 3 imperfect (description), 3 passato prossimo (events). Use at least 2 direct pronouns.
+    </div>
+  </div>
+
+</div>
+</div><!-- /wrap -->
+
+<footer>SARA · LEZIONE 5 · 29 MAGGIO 2025 · A TAVOLA SI IMPARA TUTTO · KATE · PREPLY</footer>
+
+<script>
+// ── NAV ──
+function go(n,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+  btn.classList.add('active');
+  for(let i=0;i<n;i++) document.getElementById('nb'+i).classList.add('done');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── EN TOGGLE ──
+function toggleEN(card){
+  const b=document.getElementById('en-body');
+  const a=document.getElementById('en-arr');
+  const open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  a.textContent=open?'▶':'▼';
+}
+
+// ── MCQ ──
+const scores={};const answered={};
+const gMap={
+  q1:'g1',q2:'g1',q3:'g1',q4:'g1',q5:'g1',
+  vf1:'g2',vf2:'g2',vf3:'g2',
+  vq1:'g3',vq2:'g3',vq3:'g3',vq4:'g3',
+  g1:'g4',g2:'g4',g3:'g4',g4:'g4',
+};
+const gTot={g1:5,g2:3,g3:4,g4:4};
+
+function mc(btn,qId,correct){
+  if(answered[qId])return;
+  answered[qId]=true;
+  btn.parentElement.querySelectorAll('.o').forEach(o=>o.classList.add('disabled'));
+  btn.classList.add(correct?'correct':'wrong');
+  const g=gMap[qId];if(!g)return;
+  if(!scores[g])scores[g]=0;
+  if(correct)scores[g]++;
+  const n=g.replace('g','');
+  const pct=Math.round(scores[g]/gTot[g]*100);
+  document.getElementById('sf'+n).style.width=pct+'%';
+  document.getElementById('sn'+n).textContent=scores[g]+' / '+gTot[g];
+}
+
+// ── FILL ──
+function norm(s){
+  return s.trim().toLowerCase()
+    .replace(/[.!?,'"«»]/g,'')
+    .replace(/à/g,'a').replace(/è/g,'e').replace(/é/g,'e')
+    .replace(/ì/g,'i').replace(/ò/g,'o').replace(/ù/g,'u')
+    .replace(/'/g,"'").replace(/\s+/g,' ');
+}
+function sf(input,answer,id){
+  const v=norm(input.value);
+  const a=norm(answer);
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){
+    input.classList.add('ok');input.classList.remove('err');
+    if(fb){fb.textContent='✓ Corretto!';fb.className='fb good';}
+  } else if(v.length>1){
+    input.classList.remove('ok');input.classList.add('err');
+    if(fb)fb.className='fb';
+  } else{input.classList.remove('ok','err');if(fb)fb.className='fb';}
+}
+
+// ── DIALOGUE GAPS ──
+function dg(input,answer,id){
+  const v=norm(input.value);const a=norm(answer);
+  if(v===a){input.classList.add('ok');input.classList.remove('err');}
+  else if(v.length>1){input.classList.remove('ok');input.classList.add('err');}
+  else input.classList.remove('ok','err');
+}
+
+// ── WORD COUNT ──
+function wc(el,id){
+  const n=el.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById(id).textContent=n+' parole';
+}
+
+// ── INSERT HINT ──
+function ins(id,text){
+  const ta=document.getElementById(id);
+  const sep=(ta.value&&!ta.value.endsWith(' ')&&!ta.value.endsWith('\n'))?'\n':'';
+  ta.value+=sep+text+' ';
+  wc(ta,id==='pr1'?'wc1':'wc2');ta.focus();
+}
+
+// ── SCAFFOLD ──
+let ss={};
+function ac(chip,word,sbId){
+  if(chip.classList.contains('used'))return;
+  chip.classList.add('used');
+  if(!ss[sbId])ss[sbId]=[];
+  ss[sbId].push({word,chip});renderS(sbId);
+}
+function renderS(sbId){
+  const box=document.getElementById(sbId);
+  if(!ss[sbId]||!ss[sbId].length){box.textContent='Clicca le parole per costruire la tua storia...';return;}
+  box.innerHTML=ss[sbId].map((item,i)=>`<span class="bw" onclick="rw('${sbId}',${i})">${item.word}</span>`).join('');
+}
+function rw(sbId,idx){
+  const item=ss[sbId][idx];
+  if(item&&item.chip)item.chip.classList.remove('used');
+  ss[sbId].splice(idx,1);renderS(sbId);
+}
+function rs(sbId,cpId){
+  ss[sbId]=[];
+  document.getElementById(sbId).textContent='Clicca le parole per costruire la tua storia...';
+  document.getElementById(cpId).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+}
+</script>
+</body>
+</html>
