@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara · Lezione a Distanza · Self-Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sea:#0E5A6E;
+  --sea-l:#E2F0F3;
+  --sea-d:#073C4A;
+  --coral:#D9683A;
+  --coral-l:#FBEDE5;
+  --coral-d:#A14A26;
+  --sand:#E8DCC4;
+  --sand-d:#9A8050;
+  --ink:#16201E;
+  --muted:#5C6E68;
+  --subtle:#94A29C;
+  --border:#D4DEDA;
+  --border2:#C0CCC6;
+  --bg:#F7F9F7;
+  --surf:#FFFFFF;
+  --r:10px;
+  --sh:0 1px 3px rgba(10,30,25,.06),0 6px 20px rgba(10,30,25,.05);
+}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  padding-bottom:6rem;
+}
+
+/* ── HERO ── */
+.hero{
+  background:var(--sea-d);
+  color:#F7F9F7;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(255,255,255,.05),transparent 50%),
+    radial-gradient(circle at 10% 90%,rgba(217,104,58,.08),transparent 50%);
+  pointer-events:none;
+}
+.hero-inner{max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 2rem;position:relative;z-index:1}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;
+  letter-spacing:.04em;margin-bottom:1.1rem;
+}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--coral)}
+.hero h1{
+  font-family:'Fraunces',serif;font-size:clamp(28px,5vw,42px);font-weight:400;
+  line-height:1.15;margin-bottom:.6rem;
+}
+.hero h1 em{font-style:italic;color:#F0C8A8}
+.hero-sub{font-size:14.5px;color:rgba(247,249,247,.65);line-height:1.75;max-width:520px;margin-bottom:1.5rem}
+.hero-meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:12.5px}
+.hm{display:flex;flex-direction:column;gap:2px}
+.hm span{color:rgba(247,249,247,.4);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.hm b{color:#F7F9F7;font-weight:600}
+
+/* ── INSTRUCTIONS BANNER ── */
+.instr-banner{
+  background:var(--coral-l);
+  border-bottom:1px solid #EDC8AE;
+}
+.instr-inner{
+  max-width:760px;margin:0 auto;padding:1.1rem 1.5rem;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.instr-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.instr-text{font-size:13.5px;color:var(--coral-d);line-height:1.65}
+.instr-text strong{font-weight:700}
+
+/* ── WRAP ── */
+.wrap{max-width:760px;margin:0 auto;padding:0 1.5rem}
+
+/* ── SECTION HEADS ── */
+.sec{margin-top:2.75rem}
+.sec-hd{
+  display:flex;align-items:baseline;gap:12px;
+  margin-bottom:1.25rem;padding-bottom:.85rem;
+  border-bottom:2px solid var(--ink);
+}
+.sec-num{
+  font-family:'Fraunces',serif;font-size:34px;font-weight:300;
+  color:var(--border2);line-height:1;flex-shrink:0;
+}
+.sec-titles{flex:1}
+.sec-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);margin-bottom:.15rem}
+.sec-title{font-family:'Fraunces',serif;font-size:23px;font-weight:400;color:var(--ink)}
+.sec-title em{font-style:italic;color:var(--sea)}
+.sec-time{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--subtle);white-space:nowrap;align-self:flex-start;margin-top:6px}
+
+/* ── CARDS ── */
+.card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;box-shadow:var(--sh)}
+.card-sea{background:var(--sea-l);border-color:#B8D8DE}
+.card-coral{background:var(--coral-l);border-color:#EDC8AE}
+.card-sand{background:#FBF7EE;border-color:#E0D0A8}
+
+/* ── PRONUNCIATION READING ── */
+.read-block{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px dashed var(--border2)}
+.read-block:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.read-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;background:var(--sea);color:#fff;
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+  margin-right:8px;flex-shrink:0;
+}
+.read-it{
+  font-family:'Fraunces',serif;font-size:19px;color:var(--ink);
+  line-height:1.7;display:block;margin-bottom:.45rem;
+}
+.read-it .stress{
+  text-decoration:underline;text-decoration-color:var(--coral);
+  text-decoration-thickness:2px;text-underline-offset:3px;
+  font-weight:600;color:var(--coral-d);
+}
+.read-sub{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+  font-style:italic;line-height:1.6;padding-left:32px;
+}
+.read-tip{
+  font-size:12.5px;color:var(--sea-d);margin-top:.4rem;padding-left:32px;
+  font-style:italic;
+}
+
+/* checkbox style for self-check */
+.self-check{
+  display:flex;align-items:center;gap:8px;margin-top:.5rem;padding-left:32px;
+}
+.self-check input[type=checkbox]{
+  width:16px;height:16px;accent-color:var(--sea);cursor:pointer;
+}
+.self-check label{font-size:12px;color:var(--muted);cursor:pointer;font-style:italic}
+
+/* ── PHONETIC LEGEND ── */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1rem;padding:.85rem 1rem;background:var(--sand);border-radius:var(--r);border:1px solid #E0D0A8}
+.legend-item{font-size:12px;color:var(--sand-d);font-family:'JetBrains Mono',monospace}
+.legend-item .stress{text-decoration:underline;text-decoration-color:var(--coral);text-decoration-thickness:2px;text-underline-offset:2px;font-weight:600;color:var(--coral-d)}
+
+/* ── EX LABELS ── */
+.exl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sea);margin-bottom:.85rem;display:flex;align-items:center;gap:10px}
+.exl::after{content:'';flex:1;height:1px;background:var(--border)}
+.exin{font-size:13px;color:var(--muted);background:var(--bg);padding:.65rem 1rem;border-radius:8px;border-left:3px solid var(--border2);margin-bottom:1rem;line-height:1.65}
+
+/* ── WRITING TASK ── */
+.task{margin-bottom:1.4rem}
+.task:last-child{margin-bottom:0}
+.task-prompt{font-family:'Fraunces',serif;font-size:17px;font-style:italic;color:var(--sea-d);margin-bottom:.3rem;line-height:1.6}
+.task-en{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:.7rem}
+.task-hints{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.7rem}
+.hint{font-size:12px;padding:4px 11px;border:1px solid var(--border2);border-radius:14px;color:var(--muted);background:var(--bg)}
+textarea.answer{
+  width:100%;min-height:90px;padding:13px;border:1.5px solid var(--border2);
+  border-radius:8px;font-size:14.5px;font-family:'Fraunces',serif;
+  line-height:1.75;color:var(--ink);background:var(--surf);resize:vertical;outline:none;
+  transition:border-color .15s;
+}
+textarea.answer::placeholder{color:var(--subtle);font-style:italic}
+textarea.answer:focus{border-color:var(--sea)}
+textarea.answer.short{min-height:50px}
+.word-target{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--subtle);text-align:right;margin-top:4px}
+
+/* ── LISTENING SCRIPT ── */
+.script-card{background:var(--sea-d);color:#fff;border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;position:relative}
+.script-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F0C8A8;margin-bottom:.6rem}
+.script-it{font-family:'Fraunces',serif;font-size:17px;font-style:italic;line-height:1.85;color:rgba(255,255,255,.92)}
+.script-note{font-size:12px;color:rgba(255,255,255,.45);margin-top:.85rem;font-style:italic;border-top:1px solid rgba(255,255,255,.12);padding-top:.7rem}
+
+/* listening comprehension */
+.lq{margin-bottom:1.1rem}
+.lq:last-child{margin-bottom:0}
+.lq-text{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+.lq-opts{display:flex;flex-direction:column;gap:6px}
+.lq-opt{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink);padding:7px 0}
+.lq-opt input{margin-top:3px;accent-color:var(--sea);cursor:pointer;flex-shrink:0}
+.lq-opt label{cursor:pointer}
+
+/* ── PHRASE BANK ── */
+.phrase-bank{display:flex;flex-direction:column;gap:.55rem}
+.pb-item{padding:.6rem .9rem;border-left:3px solid var(--coral);background:var(--bg);border-radius:0 8px 8px 0}
+.pb-it{font-size:14.5px;color:var(--ink);font-family:'Fraunces',serif}
+.pb-en{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:1px}
+
+/* ── SUBMISSION FOOTER ── */
+.submit-card{
+  background:linear-gradient(135deg,var(--sea-d) 0%,var(--sea) 100%);
+  color:#fff;border-radius:var(--r);padding:2rem 1.75rem;margin-top:2rem;text-align:center;
+}
+.submit-icon{font-size:34px;margin-bottom:.6rem}
+.submit-title{font-family:'Fraunces',serif;font-size:24px;font-style:italic;margin-bottom:.6rem}
+.submit-body{font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.85;max-width:480px;margin:0 auto}
+.submit-checklist{
+  margin-top:1.25rem;text-align:left;max-width:380px;margin-left:auto;margin-right:auto;
+  background:rgba(255,255,255,.08);border-radius:8px;padding:1rem 1.25rem;
+}
+.submit-checklist .scitem{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:.5rem}
+.submit-checklist .scitem:last-child{margin-bottom:0}
+.submit-checklist input{accent-color:var(--coral)}
+
+/* tip box */
+.tip{background:var(--sand);border-left:3px solid var(--sand-d);border-radius:0 8px 8px 0;padding:.7rem 1rem;font-size:12.5px;color:#5A4A20;margin-top:.85rem;line-height:1.6}
+.tip strong{color:var(--coral-d)}
+
+footer{text-align:center;font-size:11.5px;color:var(--subtle);padding:2rem 1rem;margin-top:2rem}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="dot"></span>Lezione a distanza · Self-study</div>
+    <h1>Il mare, il corpo,<br><em>e tutto quello in mezzo</em></h1>
+    <div class="hero-sub">Fai questa lezione quando hai un momento libero — anche dieci minuti alla volta. Leggi ad alta voce, scrivi le tue risposte direttamente qui sotto, poi manda tutto a Kate per la correzione. Nessuna fretta.</div>
+    <div class="hero-meta">
+      <div class="hm"><span>Livello</span><b>A2–B1</b></div>
+      <div class="hm"><span>Tempo consigliato</span><b>30–40 min, anche divisi</b></div>
+      <div class="hm"><span>Da inviare</span><b>Screenshot o copia/incolla</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="instr-banner">
+  <div class="instr-inner">
+    <span class="instr-icon">💌</span>
+    <div class="instr-text">
+      <strong>Come funziona:</strong> Leggi ad alta voce le frasi della Parte 1 — anche solo a bassa voce, va benissimo. Scrivi le tue risposte negli spazi bianchi di ogni sezione. Quando hai finito, fai uno screenshot di ogni parte (o copia il testo) e mandalo a Kate su WhatsApp. Lei correggerà tutto e ti risponderà con le correzioni. <strong>Non c'è un voto giusto o sbagliato — solo pratica.</strong>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ═══════════ PARTE 1 — PRONUNCIA ═══════════ -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-num">1</div>
+      <div class="sec-titles">
+        <div class="sec-kicker">Consolidamento · Pronuncia</div>
+        <div class="sec-title">Leggi ad alta voce — <em>con i sottotitoli</em></div>
+      </div>
+      <div class="sec-time">~10 min</div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-item">💡 Le parole <span class="stress">sottolineate</span> hanno l'accento — pronuncia quella sillaba con più forza.</span>
+    </div>
+
+    <div class="card">
+      <div class="exin">Leggi ogni frase ad alta voce 2 volte. La prima volta piano, leggendo bene ogni parola. La seconda volta più naturale, come se parlassi con un'amica. · <em>Read each sentence aloud twice. First slowly, word by word. Second time more naturally, as if speaking to a friend.</em></div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">1</span>Il <span class="stress">mare</span> oggi è <span class="stress">cal</span>mo, ma il <span class="stress">ven</span>to <span class="stress">cam</span>bia <span class="stress">sem</span>pre.</span>
+        <span class="read-sub">The sea is calm today, but the wind always changes.</span>
+        <div class="self-check"><input type="checkbox" id="ck1"><label for="ck1">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">2</span>Dopo la lau<span class="stress">re</span>a, ho de<span class="stress">ci</span>so di la<span class="stress">vo</span>rare come ski<span class="stress">pper</span> d'e<span class="stress">sta</span>te.</span>
+        <span class="read-sub">After graduating, I decided to work as a skipper in summer.</span>
+        <div class="self-check"><input type="checkbox" id="ck2"><label for="ck2">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">3</span>Pen<span class="stress">so</span> che la fisiote<span class="stress">ra</span>pia e l'e<span class="stress">ste</span>tica <span class="stress">sia</span>no la <span class="stress">stes</span>sa <span class="stress">co</span>sa: pren<span class="stress">der</span>si <span class="stress">cu</span>ra de<span class="stress">gli</span> <span class="stress">al</span>tri.</span>
+        <span class="read-sub">I think physiotherapy and aesthetics are the same thing: taking care of others.</span>
+        <div class="self-check"><input type="checkbox" id="ck3"><label for="ck3">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">4</span>Se a<span class="stress">pro</span> un <span class="stress">cen</span>tro este<span class="stress">ti</span>co, vo<span class="stress">glio</span> che <span class="stress">sia</span> anche un <span class="stress">luo</span>go di benes<span class="stress">se</span>re.</span>
+        <span class="read-sub">If I open a beauty centre, I want it to also be a place of wellbeing.</span>
+        <div class="self-check"><input type="checkbox" id="ck4"><label for="ck4">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">5</span>I miei a<span class="stress">mi</span>ci mi <span class="stress">pren</span>dono in <span class="stress">gi</span>ro, ma <span class="stress">io</span> so <span class="stress">be</span>ne <span class="stress">co</span>sa <span class="stress">vo</span>glio.</span>
+        <span class="read-sub">My friends tease me, but I know exactly what I want.</span>
+        <div class="self-check"><input type="checkbox" id="ck5"><label for="ck5">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+
+      <div class="read-block">
+        <span class="read-it"><span class="read-num">6</span>Se <span class="stress">fos</span>si <span class="stress">na</span>ta <span class="stress">uo</span>mo, <span class="stress">nes</span>suno mi chiede<span class="stress">reb</span>be di sce<span class="stress">glie</span>re.</span>
+        <span class="read-sub">If I had been born a man, nobody would ask me to choose.</span>
+        <div class="self-check"><input type="checkbox" id="ck6"><label for="ck6">L'ho letta ad alta voce 2 volte</label></div>
+      </div>
+    </div>
+
+    <div class="card card-sand">
+      <div class="exl" style="color:var(--coral-d)">Pronuncia mirata — le doppie consonanti</div>
+      <p style="font-size:13px;color:#5A4A20;margin-bottom:.85rem;font-style:italic">Leggi queste coppie ad alta voce, esagerando la differenza tra consonante singola e doppia. È uno dei suoni più difficili per chi parla croato.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'Fraunces',serif;font-size:16px">
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">se<strong style="color:var(--coral-d)">t</strong>te <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);display:block;margin-top:2px">seven (one T = soft)</span></div>
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">se<strong style="color:var(--coral-d)">tt</strong>e <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);display:block;margin-top:2px">— same word! Practice the double T sound</span></div>
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">be<strong style="color:var(--coral-d)">l</strong>la</div>
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">pa<strong style="color:var(--coral-d)">ll</strong>a</div>
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">ca<strong style="color:var(--coral-d)">r</strong>o (dear)</div>
+        <div style="padding:.5rem .8rem;background:var(--surf);border-radius:6px">ca<strong style="color:var(--coral-d)">rr</strong>o (cart)</div>
+      </div>
+      <div class="self-check"><input type="checkbox" id="ck7"><label for="ck7">Ho provato a sentire la differenza tra le doppie e le singole</label></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PARTE 2 — SCRITTURA ═══════════ -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-num">2</div>
+      <div class="sec-titles">
+        <div class="sec-kicker">Produzione · Scrittura</div>
+        <div class="sec-title">Scrivi le tue risposte — <em>con calma</em></div>
+      </div>
+      <div class="sec-time">~15 min</div>
+    </div>
+
+    <div class="card">
+      <div class="exl">Compito 1 — il tuo lavoro questa settimana</div>
+      <div class="task">
+        <div class="task-prompt">"Racconta una giornata di lavoro di questa settimana — in barca, in fisioterapia, o qualcosa che hai studiato per diventare estetista. Usa il passato prossimo."</div>
+        <div class="task-en">Tell about a work day this week — on the boat, at physio, or studying. Use the passato prossimo.</div>
+        <div class="task-hints">
+          <span class="hint">Questa settimana ho...</span>
+          <span class="hint">Ho lavorato come...</span>
+          <span class="hint">È stato/a...</span>
+          <span class="hint">Ho imparato che...</span>
+        </div>
+        <textarea class="answer" placeholder="Scrivi qui la tua risposta in italiano..."></textarea>
+        <div class="word-target">obiettivo: 50–70 parole</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="exl">Compito 2 — congiuntivo: penso che, voglio che, spero che</div>
+      <div class="task">
+        <div class="task-prompt">"Scrivi 3 frasi sul tuo futuro centro estetico — usa 'penso che', 'voglio che' o 'spero che' + congiuntivo in ognuna."</div>
+        <div class="task-en">Write 3 sentences about your future beauty centre — use subjunctive triggers in each.</div>
+        <div class="task-hints">
+          <span class="hint">Penso che il mio centro sia...</span>
+          <span class="hint">Voglio che le persone...</span>
+          <span class="hint">Spero che...</span>
+        </div>
+        <textarea class="answer" placeholder="1.&#10;2.&#10;3."></textarea>
+        <div class="word-target">3 frasi complete</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="exl">Compito 3 — periodo ipotetico: se fossi...</div>
+      <div class="task">
+        <div class="task-prompt">"Completa: 'Se non lavorassi in barca, ...' e 'Se potessi scegliere solo una professione, ...' — usa il condizionale."</div>
+        <div class="task-en">Complete the hypothetical sentences using the conditional tense.</div>
+        <textarea class="answer short" placeholder="Se non lavorassi in barca, ..."></textarea>
+        <textarea class="answer short" style="margin-top:8px" placeholder="Se potessi scegliere solo una professione, ..."></textarea>
+      </div>
+    </div>
+
+    <div class="card card-coral">
+      <div class="exl" style="color:var(--coral-d)">Compito 4 — risposta libera (la più importante)</div>
+      <div class="task">
+        <div class="task-prompt">"Com'è stata la tua settimana, davvero? Lavoro, stanchezza, qualcosa che ti ha fatto sorridere. Scrivi come parleresti con un'amica."</div>
+        <div class="task-en">How was your week, really? Write as if talking to a friend — no need to be formal.</div>
+        <textarea class="answer" style="min-height:120px" placeholder="Scrivi liberamente — non deve essere perfetto, Kate corregge tutto..."></textarea>
+        <div class="word-target">scrivi quanto vuoi — anche poche righe vanno benissimo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PARTE 3 — ASCOLTO ═══════════ -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-num">3</div>
+      <div class="sec-titles">
+        <div class="sec-kicker">Comprensione · Ascolto immaginato</div>
+        <div class="sec-title">Leggi come se ascoltassi — <em>poi rispondi</em></div>
+      </div>
+      <div class="sec-time">~10 min</div>
+    </div>
+
+    <div class="card">
+      <div class="exin">Leggi questo "copione" come se fosse un audio — leggilo ad alta voce con voci diverse per i due personaggi, come un piccolo teatro. Poi rispondi alle domande sotto, <strong>senza guardare il testo di nuovo</strong> (per allenare la memoria, come in un vero ascolto).</div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-label">🎧 Copione — al porto, fine giornata</div>
+      <div class="script-it">
+        <strong>Capitano:</strong> "Sara, oggi sei stata bravissima con quel gruppo difficile."<br><br>
+        <strong>Sara:</strong> "Grazie! All'inizio erano nervosi per le onde, ma poi si sono calmati."<br><br>
+        <strong>Capitano:</strong> "Hai un talento naturale — sai gestire le persone, non solo la barca."<br><br>
+        <strong>Sara:</strong> "Forse perché penso sempre alla fisioterapia mentre lavoro. È la stessa cosa: capire cosa serve a una persona prima che te lo chieda."<br><br>
+        <strong>Capitano:</strong> "Interessante. E l'estetica? Pensi ancora di aprire un centro?"<br><br>
+        <strong>Sara:</strong> "Sì, sempre. Ma prima voglio risparmiare un altro anno. Non ho fretta."
+      </div>
+      <div class="script-note">Leggi questo dialogo ad alta voce almeno una volta prima di rispondere alle domande.</div>
+    </div>
+
+    <div class="card">
+      <div class="exl">Domande — rispondi a memoria</div>
+
+      <div class="lq">
+        <div class="lq-text">1. Perché il gruppo era nervoso all'inizio?</div>
+        <div class="lq-opts">
+          <div class="lq-opt"><input type="radio" name="l1" id="l1a"><label for="l1a">a) Per il prezzo del giro in barca</label></div>
+          <div class="lq-opt"><input type="radio" name="l1" id="l1b"><label for="l1b">b) Per le onde</label></div>
+          <div class="lq-opt"><input type="radio" name="l1" id="l1c"><label for="l1c">c) Perché Sara parlava troppo velocemente</label></div>
+        </div>
+      </div>
+
+      <div class="lq">
+        <div class="lq-text">2. Secondo Sara, qual è il collegamento tra essere skipper e fare fisioterapia?</div>
+        <div class="lq-opts">
+          <div class="lq-opt"><input type="radio" name="l2" id="l2a"><label for="l2a">a) Entrambi richiedono molta forza fisica</label></div>
+          <div class="lq-opt"><input type="radio" name="l2" id="l2b"><label for="l2b">b) Capire cosa serve a una persona prima che lo chieda</label></div>
+          <div class="lq-opt"><input type="radio" name="l2" id="l2c"><label for="l2c">c) Si guadagna di più con due lavori</label></div>
+        </div>
+      </div>
+
+      <div class="lq">
+        <div class="lq-text">3. Cosa vuole fare Sara prima di aprire il centro estetico?</div>
+        <div class="lq-opts">
+          <div class="lq-opt"><input type="radio" name="l3" id="l3a"><label for="l3a">a) Studiare ancora due anni</label></div>
+          <div class="lq-opt"><input type="radio" name="l3" id="l3b"><label for="l3b">b) Risparmiare un altro anno</label></div>
+          <div class="lq-opt"><input type="radio" name="l3" id="l3c"><label for="l3c">c) Trovare un socio</label></div>
+        </div>
+      </div>
+
+      <div class="tip"><strong>Nota per Sara:</strong> Non controllare le risposte da sola — lasciale così e mandale a Kate. Lei ti dirà cosa hai capito bene e cosa rivedere insieme. L'importante è che tu abbia provato a memoria!</div>
+    </div>
+
+    <div class="card card-sea">
+      <div class="exl" style="color:var(--sea-d)">Bonus — riscrivi il dialogo con parole tue</div>
+      <div class="task">
+        <div class="task-prompt">"In 2–3 frasi, riassumi cosa è successo nel dialogo — con parole tue, non copiando il testo."</div>
+        <div class="task-en">In 2–3 sentences, summarize the dialogue in your own words.</div>
+        <textarea class="answer short" placeholder="Sara e il capitano hanno parlato di..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ FRASARIO UTILE ═══════════ -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-num">+</div>
+      <div class="sec-titles">
+        <div class="sec-kicker">Da tenere a portata di mano</div>
+        <div class="sec-title">Frasario della settimana</div>
+      </div>
+    </div>
+    <div class="card card-sand">
+      <div class="phrase-bank">
+        <div class="pb-item"><div class="pb-it">Sono stata bravissima / bravissimo con...</div><div class="pb-en">I did really well with...</div></div>
+        <div class="pb-item"><div class="pb-it">Penso sempre a... mentre lavoro.</div><div class="pb-en">I always think about... while working.</div></div>
+        <div class="pb-item"><div class="pb-it">Non ho fretta.</div><div class="pb-en">I'm in no rush. (very useful, calm expression)</div></div>
+        <div class="pb-item"><div class="pb-it">Capire cosa serve a qualcuno prima che lo chieda.</div><div class="pb-en">To understand what someone needs before they ask.</div></div>
+        <div class="pb-item"><div class="pb-it">All'inizio erano nervosi, ma poi si sono calmati.</div><div class="pb-en">At first they were nervous, but then they calmed down.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SUBMIT ═══════════ -->
+  <div class="submit-card">
+    <div class="submit-icon">📩</div>
+    <div class="submit-title">Pronta per mandarla a Kate?</div>
+    <div class="submit-body">Quando hai completato quello che riesci — anche solo una parte va benissimo — manda tutto su WhatsApp. Screenshot di ogni sezione o copia/incolla il testo che hai scritto. Kate correggerà e ti risponderà con i suoi commenti, pronta per la prossima lezione insieme.</div>
+    <div class="submit-checklist">
+      <div class="scitem"><input type="checkbox"><span>Ho letto ad alta voce la Parte 1</span></div>
+      <div class="scitem"><input type="checkbox"><span>Ho scritto almeno 2 dei 4 compiti della Parte 2</span></div>
+      <div class="scitem"><input type="checkbox"><span>Ho risposto alle domande della Parte 3</span></div>
+      <div class="scitem"><input type="checkbox"><span>Ho inviato tutto a Kate 💌</span></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Sara · Lezione a distanza · A2–B1 · Kate · Preply · Da completare con calma e inviare per correzione</footer>
+
+</body>
+</html>
