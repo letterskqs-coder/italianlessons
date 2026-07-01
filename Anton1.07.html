@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lezione Anton — Focus Verbi A2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #2A7B7B;
+    --purple-light: #E8F4F4;
+    --purple-mid: #89C4C4;
+    --purple-dark: #1B5252;
+    --purple-deep: #0F3333;
+    --gray: #888780;
+    --gray-light: #F1EFE8;
+    --text: #1a1a1a;
+    --text-muted: #666;
+    --bg: #F4F7F6;
+    --surface: #fff;
+    --border: #D5E0E0;
+    --radius: 12px;
+  }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+  .page { max-width: 720px; margin: 0 auto; }
+
+  .hero {
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    background: var(--purple-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '⚙️';
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    font-size: 48px;
+    opacity: 0.25;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .hero h1 em { font-style: italic; color: #A7DFDF; }
+  .hero p { font-size: 14px; opacity: 0.75; }
+
+  .tab-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    background: var(--surface);
+    color: var(--text-muted);
+    transition: all 0.18s;
+  }
+  .tab-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .tab-btn.active {
+    background: var(--purple);
+    color: #fff;
+    border-color: var(--purple);
+    font-weight: 500;
+  }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .sec-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple-dark);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .scene-intro {
+    font-size: 14px;
+    color: var(--purple-dark);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    background: var(--purple-light);
+    border-radius: 8px;
+    border-left: 3px solid var(--purple);
+  }
+
+  .dialogue-entry { display: flex; gap: 12px; margin-bottom: 1rem; align-items: flex-start; }
+  .dialogue-entry:last-child { margin-bottom: 0; }
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .av-a { background: var(--purple-light); color: var(--purple-dark); }
+  .av-o { background: var(--gray-light); color: #444; }
+  .bubble { flex: 1; }
+  .b-name { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+  .b-it { font-size: 15px; color: var(--text); line-height: 1.65; }
+  .b-verb { color: var(--purple); font-weight: 600; }
+  .b-en { font-size: 12px; color: var(--text-muted); font-style: italic; margin-top: 2px; }
+
+  .verb-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+  .verb-table th, .verb-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .verb-table th { background: var(--purple-light); color: var(--purple-dark); font-weight: 500; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .chip {
+    font-size: 13px;
+    background: var(--surface);
+    border: 1px solid var(--purple-mid);
+    border-radius: 20px;
+    padding: 5px 14px;
+    color: var(--purple-dark);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .chip:hover { background: var(--purple-mid); color: #fff; }
+  .chosen-display {
+    margin-top: 10px;
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid var(--purple-mid);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--purple);
+    font-style: italic;
+    background: var(--surface);
+  }
+
+  .builder-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .col-label { font-size: 11px; font-weight: 500; color: var(--purple); margin-bottom: 6px; text-transform: uppercase; }
+  .builder-chip {
+    display: block; width: 100%; margin-bottom: 6px; padding: 7px 10px;
+    border: 1px solid var(--purple-mid); border-radius: 8px; font-size: 13px;
+    color: var(--purple-dark); background: var(--surface); cursor: pointer; text-align: center;
+  }
+  .builder-chip.selected { background: var(--purple); color: #fff; border-color: var(--purple); }
+  .built-display {
+    margin-top: 12px; padding: 10px 14px; border: 1px solid var(--purple-mid);
+    border-radius: 8px; min-height: 40px; font-size: 15px; color: var(--purple);
+    font-style: italic; background: var(--purple-light);
+  }
+
+  .ex-q { margin-bottom: 1.25rem; }
+  .ex-q p { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .ex-opts { display: flex; flex-direction: column; gap: 7px; }
+  .ex-opt {
+    padding: 9px 13px; border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; font-size: 14px; text-align: left; background: var(--surface);
+  }
+  .ex-opt:hover { background: var(--purple-light); }
+  .ex-opt.correct { background: #EAF3DE; border-color: #639922; color: #27500A; }
+  .ex-opt.wrong { background: #FCEBEB; border-color: #A32D2D; color: #501313; }
+  .ex-opt.disabled { pointer-events: none; }
+
+  .score-bar { display: flex; align-items: center; gap: 12px; margin-top: 1.25rem; }
+  .score-track { flex: 1; height: 5px; background: var(--bg); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+  .score-fill { height: 100%; background: var(--purple); width: 0%; transition: width 0.4s; }
+  
+  footer { margin-top: 3rem; text-align: center; font-size: 12px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-badge">Anton · Livello A2</div>
+    <h1>Un giorno in Italia<br><em>Focus speciale: Verbi in Azione</em></h1>
+    <p>Oggi è il 1 luglio. Impariamo a gestire le azioni quotidiane e i verbi irregolari essenziali.</p>
+  </div>
+
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showPanel('routine',this)">🌅 La Routine</button>
+    <button class="tab-btn" onclick="showPanel('programmi',this)">📅 Organizzare</button>
+    <button class="tab-btn" onclick="showPanel('irregolari',this)">⚡ I Verbi "Top"</button>
+    <button class="tab-btn" onclick="showPanel('combinatore',this)">🔧 Costruttore</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">✏️ Verifica</button>
+  </div>
+
+  <!-- ROUTINE (Riflessivi) -->
+  <div class="panel active" id="panel-routine">
+    <div class="scene-intro">📍 Scena: Anton racconta la sua mattina estiva in Italia. Focus sui verbi riflessivi (-arsi, -ersi, -irsi).</div>
+    
+    <div class="sec-label">Dialogo</div>
+    <div class="card">
+      <div class="dialogue-entry">
+        <div class="avatar av-o">M</div>
+        <div class="bubble">
+          <div class="b-name">Marco (Amico)</div>
+          <div class="b-it">Anton, a che ora <span class="b-verb">ti svegli</span> di solito in estate?</div>
+          <div class="b-en">Anton, what time do you usually wake up in the summer?</div>
+        </div>
+      </div>
+      <div class="dialogue-entry">
+        <div class="avatar av-a">A</div>
+        <div class="bubble">
+          <div class="b-name">Anton</div>
+          <div class="b-it">Di solito <span class="b-verb">mi sveglio</span> alle 7:00. <span class="b-verb">Mi alzo</span> subito e <span class="b-verb">mi preparo</span> un caffè.</div>
+          <div class="b-en">Usually I wake up at 7:00. I get up immediately and make myself a coffee.</div>
+        </div>
+      </div>
+      <div class="dialogue-entry">
+        <div class="avatar av-o">M</div>
+        <div class="bubble">
+          <div class="b-name">Marco</div>
+          <div class="b-it">E dopo? <span class="b-verb">Ti vesti</span> subito o fai colazione in pigiama?</div>
+          <div class="b-en">And after? Do you get dressed immediately or have breakfast in pajamas?</div>
+        </div>
+      </div>
+      <div class="dialogue-entry">
+        <div class="avatar av-a">A</div>
+        <div class="bubble">
+          <div class="b-name">Anton</div>
+          <div class="b-it">Prima faccio colazione, poi <span class="b-verb">mi vesto</span> e <span class="b-verb">mi lavo</span> i denti.</div>
+          <div class="b-en">First I have breakfast, then I get dressed and brush my teeth.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">Focus Grammatica: I Verbi Riflessivi</div>
+    <div class="card">
+      <p style="font-size: 14px; margin-bottom: 10px;">In italiano, quando l'azione torna sul soggetto, usiamo i pronomi (<em>mi, ti, si, ci, vi, si</em>).</p>
+      <table class="verb-table">
+        <tr><th>Pronome</th><th>Svegliarsi (To wake up)</th><th>Vestirsi (To get dressed)</th></tr>
+        <tr><td><strong>Io</strong></td><td><strong>mi</strong> svegli<strong>o</strong></td><td><strong>mi</strong> vest<strong>o</strong></td></tr>
+        <tr><td><strong>Tu</strong></td><td><strong>ti</strong> svegli</td><td><strong>ti</strong> vest<strong>i</strong></td></tr>
+        <tr><td><strong>Lui/Lei</strong></td><td><strong>si</strong> svegli<strong>a</strong></td><td><strong>si</strong> vest<strong>e</strong></td></tr>
+        <tr><td><strong>Noi</strong></td><td><strong>ci</strong> svegli<strong>amo</strong></td><td><strong>ci</strong> vesti<strong>amo</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PROGRAMMI (Verbi regolari -ARE, -ERE, -IRE) -->
+  <div class="panel" id="panel-programmi">
+    <div class="scene-intro">📍 Scena: Anton parla del suo pomeriggio. Usa verbi regolari delle tre coniugazioni.</div>
+    
+    <div class="sec-label">Frasi Utili</div>
+    <div class="card">
+      <p style="font-size:15px; margin-bottom:12px;">Combina il soggetto con l'azione corretta:</p>
+      <div class="chips">
+        <button class="chip" onclick="showRoutineTip('Io lavoro al computer e rispondo alle email.')">Io: lavorare / rispondere</button>
+        <button class="chip" onclick="showRoutineTip('Noi cuciniamo la cena e guardiamo un film.')">Noi: cucinare / guardare</button>
+        <button class="chip" onclick="showRoutineTip('Tu apri la finestra perché fa caldo.')">Tu: aprire</button>
+      </div>
+      <div class="chosen-display" id="routine-display">→ Clicca sopra per vedere la frase coniugata...</div>
+    </div>
+
+    <div class="sec-label">Verbi Regolari A2 da ricordare</div>
+    <div class="card">
+      <ul style="list-style: none; font-size: 14px; line-height: 1.8;">
+        <li>💻 <strong>Prendere</strong> (Io prendo il treno) — <em>To take</em></li>
+        <li>✉️ <strong>Rispondere</strong> (Lui risponde al telefono) — <em>To answer</em></li>
+        <li>🚶‍♂️ <strong>Passeggiare</strong> (Noi passeggiamo sul lungolago) — <em>To walk</em></li>
+        <li>🔑 <strong>Aprire</strong> (Io apro la porta) — <em>To open</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IRREGOLARI (Fare, Dire, Uscire, Venire) -->
+  <div class="panel" id="panel-irregolari">
+    <div class="scene-intro">📍 Focus: Quattro verbi irregolari fondamentali che usiamo ogni singolo giorno.</div>
+
+    <div class="card">
+      <table class="verb-table">
+        <tr><th>Soggetto</th><th>FARE (To do/make)</th><th>USCIRE (To go out)</th><th>VENIRE (To come)</th></tr>
+        <tr><td><strong>Io</strong></td><td>faccio</td><td><strong>esco</strong></td><td><strong>vengo</strong></td></tr>
+        <tr><td><strong>Tu</strong></td><td>fai</td><td><strong>esci</strong></td><td><strong>vieni</strong></td></tr>
+        <tr><td><strong>Lui/Lei</strong></td><td>fa</td><td><strong>esce</strong></td><td><strong>viene</strong></td></tr>
+        <tr><td><strong>Noi</strong></td><td>facciamo</td><td>usciamo</td><td>veniamo</td></tr>
+      </table>
+      
+      <div style="margin-top:15px; font-size:13px; color:var(--purple-dark); background:var(--purple-light); padding:10px; border-radius:6px;">
+        ⚠️ <strong>Attenzione ad "Uscire":</strong> La radice cambia (Io <em>esco</em>, ma Noi <em>usciano</em>). Significa uscire di casa o con amici!
+      </div>
+    </div>
+  </div>
+
+  <!-- COMBINATORE -->
+  <div class="panel" id="panel-combinatore">
+    <div class="sec-label">Costruisci la frase corretta</div>
+    <div class="card">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">Seleziona un blocco per volta e crea una frase grammaticalmente corretta:</p>
+      <div class="builder-grid">
+        <div>
+          <div class="col-label">Soggetto</div>
+          <button class="builder-chip" onclick="pick('sub',this,'Io')">Io</button>
+          <button class="builder-chip" onclick="pick('sub',this,'Noi')">Noi</button>
+          <button class="builder-chip" onclick="pick('sub',this,'I miei amici')">I miei amici</button>
+        </div>
+        <div>
+          <div class="col-label">Verbo</div>
+          <button class="builder-chip" onclick="pick('v',this,'esco')">esco</button>
+          <button class="builder-chip" onclick="pick('v',this,'usciamo')">usciamo</button>
+          <button class="builder-chip" onclick="pick('v',this,'escono')">escono</button>
+        </div>
+        <div>
+          <div class="col-label">Dettaglio</div>
+          <button class="builder-chip" onclick="pick('det',this,'di casa alle 8.')">di casa alle 8.</button>
+          <button class="builder-chip" onclick="pick('det',this,'insieme stasera.')">insieme stasera.</button>
+          <button class="builder-chip" onclick="pick('det',this,'a fare una passeggiata.')">a fare una passeggiata.</button>
+        </div>
+      </div>
+      <div class="built-display" id="built-sentence">→ Clicca sui componenti per comporre la frase...</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sec-label">Quiz sui Verbi (A2)</div>
+    <div class="card">
+      <div class="ex-q" id="q1">
+        <p>1. Completa: "La mattina io ______ alle 7:00."</p>
+        <div class="ex-opts">
+          <button class="ex-opt" onclick="checkAnswer('q1',0,1)">a) mi sveglia</button>
+          <button class="ex-opt" onclick="checkAnswer('q1',1,1)">b) mi sveglio</button>
+          <button class="ex-opt" onclick="checkAnswer('q1',2,1)">c) ti svegli</button>
+        </div>
+      </div>
+      
+      <div class="ex-q" id="q2">
+        <p>2. Qual è la forma corretta per NOI del verbo USCIRE?</p>
+        <div class="ex-opts">
+          <button class="ex-opt" onclick="checkAnswer('q2',0,0)">a) usciamo</button>
+          <button class="ex-opt" onclick="checkAnswer('q2',1,0)">b) esciamo</button>
+          <button class="ex-opt" onclick="checkAnswer('q2',2,0)">c) escono</button>
+        </div>
+      </div>
+
+      <div class="ex-q" id="q3">
+        <p>3. Traduci: "I come to the lesson."</p>
+        <div class="ex-opts">
+          <button class="ex-opt" onclick="checkAnswer('q3',0,2)">a) Vendo alla lezione.</button>
+          <button class="ex-opt" onclick="checkAnswer('q3',1,2)">b) Fate alla lezione.</button>
+          <button class="ex-opt" onclick="checkAnswer('q3',2,2)">c) Vengo alla lezione.</button>
+        </div>
+      </div>
+
+      <div class="score-bar">
+        <div class="score-track"><div class="score-fill" id="score-fill"></div></div>
+        <span class="score-num" id="score-num">0 / 3</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>Lezione di Italiano · 1 Luglio 2026 · Livello A2 Scaffolding</footer>
+</div>
+
+<script>
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function showRoutineTip(text) {
+  document.getElementById('routine-display').textContent = '✓ ' + text;
+}
+
+let score = 0, answered = {};
+const correctAnswers = {q1: 1, q2: 0, q3: 2};
+
+function checkAnswer(qId, chosen, correctIdx) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const opts = document.querySelectorAll('#'+qId+' .ex-opt');
+  opts.forEach(o => o.classList.add('disabled'));
+  
+  if (chosen === correctIdx) {
+    opts[chosen].classList.add('correct');
+    score++;
+  } else {
+    opts[chosen].classList.add('wrong');
+    opts[correctIdx].classList.add('correct');
+  }
+  
+  const total = Object.keys(correctAnswers).length;
+  document.getElementById('score-fill').style.width = Math.round((score/total)*100)+'%';
+  document.getElementById('score-num').textContent = score+' / '+total;
+}
+
+let sentenceParts = {sub:'', v:'', det:''};
+function pick(key, btn, val) {
+  const col = btn.parentElement;
+  col.querySelectorAll('.builder-chip').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected');
+  sentenceParts[key] = val;
+  const s = [sentenceParts.sub, sentenceParts.v, sentenceParts.det].filter(Boolean).join(' ');
+  document.getElementById('built-sentence').textContent = s || '→ Clicca sui componenti per comporre la frase...';
+}
+</script>
+</body>
+</html>
