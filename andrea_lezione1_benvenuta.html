@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea · Lezione 1 · Benvenuta in Italia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --aperol:#E8450A;
+  --aperol-l:#FDE8E0;
+  --aperol-d:#B02E04;
+  --sol:#F2B800;      /* Naples yellow */
+  --sol-l:#FEF7D6;
+  --sol-d:#7A5A00;
+  --verde:#1A6040;    /* Cinque Terre green */
+  --verde-l:#E2EFE8;
+  --cielo:#1C4E7A;    /* sky blue */
+  --cielo-l:#E2EDF5;
+  --ink:#14100A;
+  --ink2:#1E1810;
+  --muted:#5A5040;
+  --subtle:#9A9080;
+  --ecru:#F5F0E8;
+  --ecru2:#EDE6D8;
+  --ecru3:#E0D8C8;
+  --rule:#C8BCA8;
+  --r:8px;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--ecru);
+  color:var(--ink);
+  line-height:1.65;
+  padding-bottom:6rem;
+  overflow-x:hidden;
+}
+
+/* ════════════════════════
+   MAGAZINE COVER
+════════════════════════ */
+.cover{
+  background:var(--aperol);
+  position:relative;overflow:hidden;
+  padding:0;
+}
+
+/* decorative vertical stripes — Italian flag energy */
+.cover::before{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:6px;
+  background:linear-gradient(180deg,var(--sol) 0%,var(--sol) 33%,var(--ecru) 33%,var(--ecru) 66%,var(--verde) 66%);
+  opacity:.4;
+}
+/* large ornamental circle */
+.cover::after{
+  content:'';
+  position:absolute;
+  width:500px;height:500px;
+  border:2px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  right:-140px;bottom:-140px;
+  pointer-events:none;
+}
+
+.cover-topbar{
+  background:var(--ink2);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:5px 2rem;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(245,240,232,.45);font-family:'DM Sans',sans-serif;
+}
+.cover-topbar strong{color:rgba(245,240,232,.75);font-weight:500}
+
+.cover-body{
+  max-width:880px;margin:0 auto;
+  padding:2.5rem 2rem 2.5rem;
+  display:grid;grid-template-columns:1fr 220px;
+  gap:2rem;align-items:end;
+  position:relative;z-index:1;
+}
+
+.mag-name{
+  font-family:'Bodoni Moda',serif;
+  font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(245,240,232,.55);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:10px;
+}
+.mag-name::before,.mag-name::after{content:'◆';font-size:7px}
+
+.cover-h1{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(44px,8vw,80px);
+  line-height:.9;
+  letter-spacing:-.02em;
+  color:#fff;
+  margin-bottom:.5rem;
+}
+.cover-h1 .script{
+  font-family:'Caveat',cursive;
+  font-weight:400;font-size:clamp(24px,4.5vw,46px);
+  color:var(--sol);display:block;
+  letter-spacing:.01em;margin-top:6px;
+  text-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.cover-rule{display:flex;align-items:center;gap:12px;margin:.9rem 0}
+.cover-rule::before,.cover-rule::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.25)}
+.cover-rule-dot{font-size:8px;color:rgba(255,255,255,.4)}
+
+.cover-deck{
+  font-size:15px;color:rgba(245,240,232,.75);font-weight:300;
+  line-height:1.75;max-width:400px;margin-bottom:1.5rem;
+  font-style:italic;
+}
+.cover-kickers{display:flex;gap:10px;flex-wrap:wrap}
+.ck{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:2px;padding:4px 12px;
+  font-size:11.5px;font-weight:500;color:rgba(245,240,232,.8);
+  letter-spacing:.04em;
+}
+.ck .bullet{width:5px;height:5px;border-radius:50%;background:var(--sol);flex-shrink:0}
+
+.cover-right{}
+.cover-num{
+  font-family:'Playfair Display',serif;
+  font-size:64px;font-weight:900;color:#fff;
+  line-height:1;letter-spacing:-.02em;text-align:right;
+}
+.cover-num span{display:block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:rgba(245,240,232,.4);letter-spacing:.12em;text-transform:uppercase;margin-top:4px;text-align:right}
+.cover-details{margin-top:.85rem;text-align:right;display:flex;flex-direction:column;gap:4px;font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(245,240,232,.35);letter-spacing:.06em;text-transform:uppercase}
+.cover-details b{color:rgba(245,240,232,.6);font-weight:500}
+
+/* ════════════════════════
+   NOTE BANNER — warm
+════════════════════════ */
+.welcome{background:var(--sol-l);border-bottom:1px solid #F0D880}
+.welcome-inner{
+  max-width:880px;margin:0 auto;padding:1.1rem 2rem;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.wi-icon{font-size:22px;flex-shrink:0}
+.wi-text{font-size:14px;color:var(--sol-d);line-height:1.65;font-weight:400}
+.wi-text strong{font-weight:700}
+.wi-text em{font-style:italic}
+
+/* ════════════════════════
+   NAV — magazine tabs
+════════════════════════ */
+.nav-w{
+  background:var(--ecru);
+  border-bottom:2px solid var(--ink);
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 16px rgba(20,16,10,.1);
+}
+.nav-i{
+  max-width:880px;margin:0 auto;
+  display:flex;overflow-x:auto;scrollbar-width:none;
+}
+.nav-i::-webkit-scrollbar{display:none}
+.nb{
+  flex-shrink:0;padding:13px 18px 10px;
+  border:none;background:transparent;
+  font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:500;
+  color:var(--muted);cursor:pointer;transition:all .18s;
+  border-bottom:3px solid transparent;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  white-space:nowrap;
+  border-right:1px solid var(--ecru3);
+}
+.nb:last-child{border-right:none}
+.nb .ni{font-size:15px}
+.nb .nt{font-family:'DM Sans',monospace;font-size:9.5px;color:var(--subtle);letter-spacing:.04em}
+.nb:hover{color:var(--aperol);background:var(--aperol-l)}
+.nb.active{color:var(--aperol);border-bottom-color:var(--aperol);font-weight:700}
+.nb.done{color:var(--verde);border-bottom-color:transparent}
+
+/* ════════════════════════
+   WRAP
+════════════════════════ */
+.wrap{max-width:880px;margin:0 auto;padding:0 2rem;position:relative}
+
+/* ════════════════════════
+   PANELS
+════════════════════════ */
+.panel{display:none}
+.panel.active{display:block;animation:arrive .3s ease}
+@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ════════════════════════
+   SECTION HEADS
+════════════════════════ */
+.sh{
+  margin:3rem 0 1.75rem;
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:1rem;align-items:start;
+  border-top:3px double var(--ink);
+  padding-top:.85rem;
+}
+.sh-big{
+  font-family:'Playfair Display',serif;
+  font-size:70px;font-weight:900;
+  color:var(--ecru3);line-height:.85;
+  flex-shrink:0;letter-spacing:-.03em;
+  margin-top:-6px;
+}
+.sh-main{}
+.sh-kicker{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--aperol);margin-bottom:.2rem}
+.sh-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--ink);line-height:1.15}
+.sh-title em{font-style:italic;color:var(--aperol)}
+.sh-deck{font-size:13.5px;color:var(--muted);margin-top:.35rem;line-height:1.65;max-width:480px;font-style:italic;font-weight:300}
+.sh-time{font-family:'DM Sans',monospace;font-size:10px;color:var(--subtle);border:1px solid var(--rule);padding:4px 11px;border-radius:3px;white-space:nowrap;margin-top:4px;letter-spacing:.04em}
+
+/* ════════════════════════
+   CARDS
+════════════════════════ */
+.card{background:#fff;border:1px solid var(--ecru3);border-radius:var(--r);padding:1.75rem;margin-bottom:1.1rem;box-shadow:0 1px 4px rgba(20,16,10,.06),0 4px 16px rgba(20,16,10,.05)}
+.card-aperol{background:var(--aperol-l);border-color:#F0B8A8}
+.card-sol{background:var(--sol-l);border-color:#F0D880}
+.card-verde{background:var(--verde-l);border-color:#A8C8B8}
+.card-cielo{background:var(--cielo-l);border-color:#A8C0D8}
+.card-ecru{background:var(--ecru2);border-color:var(--ecru3)}
+
+/* ════════════════════════
+   PHRASE SHOWCASE — big and beautiful
+════════════════════════ */
+.phrase-hero{
+  background:var(--ink2);
+  border-radius:var(--r);padding:2rem;margin-bottom:1rem;
+  position:relative;overflow:hidden;
+  color:#fff;
+}
+.phrase-hero::before{
+  content:'';
+  position:absolute;right:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--aperol),var(--sol),var(--verde));
+}
+.ph-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.4);margin-bottom:.6rem}
+.ph-it{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,4.5vw,38px);
+  font-weight:700;line-height:1.2;
+  color:#fff;margin-bottom:.4rem;
+}
+.ph-it em{font-style:italic;color:var(--sol)}
+.ph-en{font-size:15px;color:rgba(245,240,232,.55);font-style:italic;font-weight:300}
+.ph-note{font-size:12px;color:rgba(245,240,232,.35);margin-top:.6rem;font-style:italic;border-top:1px solid rgba(255,255,255,.08);padding-top:.6rem}
+
+/* ════════════════════════
+   PHRASE GRID — vocabulary cards
+════════════════════════ */
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.pg{
+  background:#fff;border:1px solid var(--ecru3);border-radius:var(--r);
+  padding:1rem 1.15rem;transition:all .2s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.pg::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--aperol);border-radius:2px 0 0 2px}
+.pg:nth-child(2)::before{background:var(--sol)}
+.pg:nth-child(3)::before{background:var(--verde)}
+.pg:nth-child(4)::before{background:var(--cielo)}
+.pg:nth-child(5)::before{background:var(--aperol)}
+.pg:nth-child(6)::before{background:var(--sol)}
+.pg:hover{border-color:var(--aperol);transform:translateY(-2px);box-shadow:0 4px 16px rgba(232,69,10,.12)}
+.pg-it{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--ink);font-weight:400;margin-bottom:3px}
+.pg-en{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:4px;font-style:italic}
+.pg-eg{font-size:13px;color:var(--aperol);font-style:italic}
+
+/* ════════════════════════
+   INTERLINEAR — parola per parola
+════════════════════════ */
+.il-note{
+  font-size:12px;color:var(--muted);margin-bottom:1.25rem;
+  padding:.55rem 1rem;background:var(--ecru2);border-radius:var(--r);
+  border-left:3px solid var(--ecru3);font-style:italic;line-height:1.55;
+}
+.interlinear{line-height:1}
+.interlinear p{display:flex;flex-wrap:wrap;gap:0 5px;margin-bottom:1.5rem;align-items:flex-end}
+.interlinear p:last-child{margin-bottom:0}
+.wp{display:inline-flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:7px}
+.wp .it{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);font-weight:400;line-height:1.1;white-space:nowrap}
+.wp .it.key{color:var(--aperol);font-weight:700;background:var(--aperol-l);box-shadow:inset 0 -2px 0 var(--aperol);border-radius:2px;padding:0 3px}
+.wp .it.grn{color:var(--verde);font-weight:600;background:var(--verde-l);box-shadow:inset 0 -2px 0 var(--verde);border-radius:2px;padding:0 3px}
+.wp .en{font-family:'DM Sans',monospace;font-size:10.5px;color:var(--muted);font-style:italic;line-height:1;white-space:nowrap}
+.wp.punct .it{font-size:18px;font-weight:400}
+.wp.punct .en{visibility:hidden;font-size:7px}
+
+/* ════════════════════════
+   EX LABELS
+════════════════════════ */
+.exl{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--aperol);margin-bottom:.85rem;display:flex;align-items:center;gap:10px}
+.exl::after{content:'';flex:1;height:1px;background:var(--ecru3)}
+.exin{font-size:13.5px;color:var(--muted);background:var(--ecru2);padding:.65rem 1rem;border-radius:var(--r);border-left:3px solid var(--ecru3);margin-bottom:1rem;line-height:1.65;font-style:italic}
+
+/* ════════════════════════
+   MCQ
+════════════════════════ */
+.mq{margin-bottom:1.1rem}
+.mq:last-of-type{margin-bottom:0}
+.qt{font-size:14.5px;font-weight:600;margin-bottom:5px;line-height:1.5;color:var(--ink)}
+.qe{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:7px}
+.os{display:flex;flex-direction:column;gap:6px}
+.o{padding:10px 16px;border:1.5px solid var(--ecru3);border-radius:var(--r);cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;text-align:left;background:#fff;color:var(--ink);transition:all .15s;line-height:1.4;font-weight:400}
+.o:hover{border-color:var(--aperol);background:var(--aperol-l);color:var(--aperol-d)}
+.o.correct{background:#E0F5E0;border-color:#5A9E5A;color:#1A4A1A}
+.o.wrong{background:var(--aperol-l);border-color:var(--aperol);color:var(--aperol-d)}
+.o.disabled{pointer-events:none}
+
+/* ════════════════════════
+   FILL
+════════════════════════ */
+.fw{margin-bottom:1.1rem}
+.fw:last-child{margin-bottom:0}
+.fs{font-family:'Playfair Display',serif;font-size:18px;line-height:1.85;color:var(--ink);margin-bottom:4px;font-weight:400}
+.fen{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:4px}
+.fc{font-size:11px;color:var(--subtle);margin-bottom:5px;display:inline-block;padding:2px 8px;background:var(--ecru2);border-radius:3px;font-style:italic}
+.fi{width:100%;padding:10px 14px;border:1.5px solid var(--ecru3);border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);outline:none;transition:all .18s;font-weight:400}
+.fi::placeholder{color:var(--subtle)}
+.fi:focus{border-color:var(--aperol);box-shadow:0 0 0 3px var(--aperol-l)}
+.fi.ok{border-color:#5A9E5A;background:#E0F5E0;color:#1A4A1A}
+.fi.err{border-color:var(--aperol);background:var(--aperol-l)}
+.fb{font-size:11.5px;margin-top:4px;padding:4px 10px;border-radius:4px;display:none;font-style:italic}
+.fb.good{display:block;background:#E0F5E0;color:#1A4A1A}
+.fb.bad{display:block;background:var(--aperol-l);color:var(--aperol-d)}
+
+/* ════════════════════════
+   SCORE
+════════════════════════ */
+.sr{display:flex;align-items:center;gap:12px;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--ecru3)}
+.st{flex:1;height:4px;background:var(--ecru2);border-radius:999px;overflow:hidden}
+.sf{height:100%;background:linear-gradient(90deg,var(--aperol),var(--sol));border-radius:999px;transition:width .5s ease}
+.sn{font-size:11px;color:var(--muted);min-width:44px;text-align:right;font-weight:500}
+
+/* ════════════════════════
+   DIALOGUE
+════════════════════════ */
+.dw{display:flex;flex-direction:column;gap:.9rem}
+.dr{display:flex;gap:14px;align-items:flex-start}
+.dav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'DM Sans',sans-serif}
+.dav.andrea{background:var(--aperol-l);color:var(--aperol-d);border:2px solid #F0B8A8}
+.dav.kate{background:var(--verde-l);color:var(--verde);border:2px solid #A8C8B8}
+.dav.waiter{background:var(--cielo-l);color:var(--cielo);border:2px solid #A8C0D8}
+.db{flex:1}
+.dn{font-size:10px;color:var(--subtle);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;font-weight:600}
+.di{font-size:15px;line-height:1.65;color:var(--ink);font-weight:400}
+.de{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:2px}
+.dg{border:none;border-bottom:2px solid var(--aperol);background:transparent;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--aperol-d);outline:none;padding:0 4px;min-width:80px;transition:border-color .15s;font-weight:500}
+.dg:focus{border-bottom-color:var(--ink)}
+.dg.ok{border-bottom-color:#5A9E5A;color:#1A4A1A}
+.dg.err{border-bottom-color:var(--aperol)}
+
+/* ════════════════════════
+   SCAFFOLD
+════════════════════════ */
+.scaffold{background:var(--ecru2);border:1px solid var(--ecru3);border-radius:var(--r);padding:1.1rem 1.35rem;margin-top:.85rem}
+.slb{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--aperol);margin-bottom:.7rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border:1.5px solid var(--ecru3);border-radius:20px;font-size:13.5px;color:var(--ink);background:#fff;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;font-weight:400}
+.chip:hover{border-color:var(--aperol);color:var(--aperol-d);background:var(--aperol-l)}
+.chip.used{opacity:.25;pointer-events:none}
+.built{margin-top:10px;min-height:44px;padding:11px 14px;border:1.5px solid var(--ecru3);border-radius:var(--r);font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--aperol-d);background:#fff;line-height:1.65}
+.bw{display:inline-block;margin-right:4px;padding:1px 3px;border-radius:2px;cursor:pointer;transition:all .15s}
+.bw:hover{background:var(--aperol-l);color:var(--aperol)}
+
+/* tip */
+.tip{background:var(--sol-l);border-left:3px solid var(--sol);border-radius:0 var(--r) var(--r) 0;padding:11px 14px;font-size:13.5px;color:var(--sol-d);margin-top:.85rem;line-height:1.65}
+.tip strong{color:var(--aperol-d)}
+
+/* menu card */
+.menu-card{border:2px solid var(--ink);border-radius:var(--r);padding:1.5rem;background:#fff;margin-bottom:1rem}
+.menu-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;text-align:center;margin-bottom:.35rem;letter-spacing:.02em}
+.menu-sub{font-size:11px;text-align:center;color:var(--muted);font-style:italic;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;padding-bottom:.85rem;border-bottom:1px solid var(--ecru3)}
+.menu-section{margin-bottom:1rem}
+.menu-section:last-child{margin-bottom:0}
+.menu-sec-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--aperol);margin-bottom:.5rem}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.35rem;padding-bottom:.35rem;border-bottom:1px dashed var(--ecru3)}
+.menu-item:last-child{border-bottom:none;margin-bottom:0}
+.mi-name{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--ink)}
+.mi-price{font-size:13px;color:var(--muted);font-weight:500}
+.mi-en{font-size:11px;color:var(--subtle);font-style:italic;display:block;margin-top:1px}
+
+/* production */
+.pbox{background:var(--ink2);border-radius:var(--r);padding:1.75rem;margin-bottom:1.1rem;color:#fff;position:relative;overflow:hidden}
+.pbox::after{content:'"';position:absolute;right:1.5rem;bottom:-.5rem;font-family:'Playfair Display',serif;font-size:120px;font-style:italic;color:rgba(255,255,255,.04);pointer-events:none}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sol);margin-bottom:.5rem}
+.pprompt{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;line-height:1.6;margin-bottom:.4rem}
+.pen{font-size:12.5px;color:rgba(245,240,232,.45);line-height:1.6;margin-bottom:.85rem;font-style:italic}
+.phints{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
+.phint{padding:5px 13px;border:1px solid rgba(255,255,255,.15);border-radius:20px;font-size:13px;color:rgba(245,240,232,.6);cursor:pointer;transition:all .15s;background:rgba(255,255,255,.06)}
+.phint:hover{background:rgba(255,255,255,.14);color:#fff}
+textarea.prod{width:100%;min-height:80px;padding:12px;border:1px solid rgba(255,255,255,.15);border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;line-height:1.8;color:#fff;background:rgba(255,255,255,.08);resize:vertical;outline:none;transition:border .18s}
+textarea.prod::placeholder{color:rgba(245,240,232,.3);font-style:italic}
+textarea.prod:focus{border-color:rgba(242,184,0,.4)}
+.wc{font-size:10px;color:rgba(245,240,232,.25);text-align:right;margin-top:4px;letter-spacing:.04em}
+
+/* buttons */
+.next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:12px 26px;background:var(--aperol);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:700;transition:all .15s;letter-spacing:.03em}
+.next-btn:hover{background:var(--aperol-d);transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,69,10,.3)}
+.reset-btn{padding:10px 16px;background:transparent;color:var(--muted);border:1.5px solid var(--ecru3);border-radius:var(--r);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-left:8px;transition:all .15s;font-weight:500}
+.reset-btn:hover{background:var(--ecru2);color:var(--ink)}
+
+/* DONE */
+.done{
+  background:linear-gradient(135deg,var(--aperol-d) 0%,var(--aperol) 50%,#C8520A 100%);
+  border-radius:var(--r);padding:3rem 2rem;text-align:center;
+  color:#fff;margin-top:1rem;position:relative;overflow:hidden;
+}
+.done::before{
+  content:'ITALIA';
+  font-family:'Playfair Display',serif;font-weight:900;font-size:120px;
+  color:rgba(255,255,255,.04);position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;letter-spacing:.04em;
+}
+.done-flag{font-size:40px;margin-bottom:.75rem}
+.done-title{font-family:'Playfair Display',serif;font-size:34px;font-style:italic;font-weight:700;color:#fff;margin-bottom:.5rem}
+.done-body{font-size:14.5px;color:rgba(255,255,255,.75);line-height:1.9;max-width:520px;margin:0 auto;font-weight:300}
+.done-hw{font-size:12px;color:rgba(255,255,255,.45);margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.15);line-height:1.9;max-width:500px;margin-left:auto;margin-right:auto}
+.done-hw strong{color:rgba(255,255,255,.7)}
+
+/* week */
+.week{border:2px solid var(--aperol);border-radius:var(--r);padding:1.35rem;background:var(--aperol-l)}
+.wt{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--aperol-d);margin-bottom:.9rem}
+.wr{display:flex;gap:12px;align-items:flex-start;margin-bottom:.6rem;font-size:13.5px;color:var(--aperol-d)}
+.wr:last-child{margin-bottom:0}
+.wd{font-size:10.5px;color:var(--aperol);font-weight:700;flex-shrink:0;width:30px;font-family:'DM Sans',monospace}
+
+footer{text-align:center;font-size:11px;color:var(--subtle);padding:2rem;border-top:1px solid var(--ecru3);margin-top:3rem;letter-spacing:.08em;font-style:italic}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-topbar">
+    <span>La Prima Lezione · Kate &amp; Andrea</span>
+    <strong>Luglio 2025 · Principiante Assoluto</strong>
+  </div>
+  <div class="cover-body">
+    <div>
+      <div class="mag-name">Italiano per Viaggiatori</div>
+      <h1 class="cover-h1">
+        BENVENUTA
+        <span class="script">in Italia.</span>
+      </h1>
+      <div class="cover-rule"><span class="cover-rule-dot">◆</span></div>
+      <div class="cover-deck">La tua prima lezione di italiano — pensata per chi vuole vivere la cultura, viaggiare, e sentirsi a casa in Italia fin dal primo caffè.</div>
+      <div class="cover-kickers">
+        <span class="ck"><span class="bullet"></span>Presentarsi</span>
+        <span class="ck"><span class="bullet"></span>Al bar</span>
+        <span class="ck"><span class="bullet"></span>Mi piace</span>
+        <span class="ck"><span class="bullet"></span>I numeri</span>
+        <span class="ck"><span class="bullet"></span>Niente grammatica</span>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-num">1<span>Lezione uno</span></div>
+      <div class="cover-details">
+        <span>Studente: <b>Andrea</b></span>
+        <span>Livello: <b>Principiante</b></span>
+        <span>Obiettivo: <b>Cultura · Viaggi</b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WELCOME -->
+<div class="welcome">
+  <div class="welcome-inner">
+    <span class="wi-icon">☀️</span>
+    <div class="wi-text">
+      <strong>Ciao Andrea!</strong> Benvenuta. Questa è la tua prima lezione vera — niente libri di grammatica, niente stress. Solo italiano vivo, come lo sentiresti in un bar di Napoli o in un vicolo di Firenze. <em>Ogni cosa che impari oggi puoi usarla subito in Italia.</em>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-w">
+  <div class="nav-i">
+    <button class="nb active" id="nb0" onclick="go(0,this)"><span class="ni">🇮🇹</span><span>Basi</span><span class="nt">01–10</span></button>
+    <button class="nb" id="nb1" onclick="go(1,this)"><span class="ni">☕</span><span>Al bar</span><span class="nt">11–22</span></button>
+    <button class="nb" id="nb2" onclick="go(2,this)"><span class="ni">❤️</span><span>Mi piace</span><span class="nt">23–32</span></button>
+    <button class="nb" id="nb3" onclick="go(3,this)"><span class="ni">🔢</span><span>Numeri</span><span class="nt">33–40</span></button>
+    <button class="nb" id="nb4" onclick="go(4,this)"><span class="ni">✨</span><span>Dialogo</span><span class="nt">41–48</span></button>
+    <button class="nb" id="nb5" onclick="go(5,this)"><span class="ni">🌟</span><span>Produzione</span><span class="nt">49–50</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════
+     PANEL 0 · BASI — presentarsi
+══════════════════════════════ -->
+<div class="panel active" id="p0">
+
+  <div class="sh">
+    <div class="sh-big">1</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 1 · Le basi</div>
+      <div class="sh-title">Presentarsi — <em>le prime parole</em></div>
+      <div class="sh-deck">Prima di tutto: chi sei, dove sei, come stai. Queste frasi le userai ogni singolo giorno in Italia.</div>
+    </div>
+    <div class="sh-time">MIN 1–10</div>
+  </div>
+
+  <!-- phrase heroes -->
+  <div class="phrase-hero">
+    <div class="ph-label">La frase più importante dell'italiano</div>
+    <div class="ph-it">Ciao! Mi chiamo <em>Andrea.</em></div>
+    <div class="ph-en">Hi! My name is Andrea.</div>
+    <div class="ph-note">mi chiamo = literally "I call myself" — it's how ALL Italians introduce themselves</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.1rem">
+    <div class="phrase-hero" style="padding:1.35rem">
+      <div class="ph-label">Come stai?</div>
+      <div class="ph-it" style="font-size:22px">Bene, grazie! <em>E tu?</em></div>
+      <div class="ph-en">Fine, thanks! And you?</div>
+    </div>
+    <div class="phrase-hero" style="padding:1.35rem">
+      <div class="ph-label">Dove sei?</div>
+      <div class="ph-it" style="font-size:22px">Sono di <em>Londra.</em></div>
+      <div class="ph-en">I'm from London.</div>
+    </div>
+  </div>
+
+  <!-- vocabolario essenziale -->
+  <div class="card">
+    <div class="exl">Le parole che ti servono subito</div>
+    <div class="phrase-grid">
+      <div class="pg"><div class="pg-it">sì / no</div><div class="pg-en">yes / no</div><div class="pg-eg">Sì, capisco!</div></div>
+      <div class="pg"><div class="pg-it">grazie</div><div class="pg-en">thank you</div><div class="pg-eg">Grazie mille!</div></div>
+      <div class="pg"><div class="pg-it">prego</div><div class="pg-en">you're welcome / here you go</div><div class="pg-eg">Prego!</div></div>
+      <div class="pg"><div class="pg-it">per favore</div><div class="pg-en">please</div><div class="pg-eg">Un caffè, per favore.</div></div>
+      <div class="pg"><div class="pg-it">scusi / scusa</div><div class="pg-en">excuse me (formal / informal)</div><div class="pg-eg">Scusi, dov'è...?</div></div>
+      <div class="pg"><div class="pg-it">non capisco</div><div class="pg-en">I don't understand</div><div class="pg-eg">Non capisco, ripete?</div></div>
+      <div class="pg"><div class="pg-it">può ripetere?</div><div class="pg-en">can you repeat?</div><div class="pg-eg">Più lentamente!</div></div>
+      <div class="pg"><div class="pg-it">fantastico!</div><div class="pg-en">fantastic! / amazing!</div><div class="pg-eg">Che fantastico!</div></div>
+    </div>
+  </div>
+
+  <!-- esercizio 1 -->
+  <div class="card">
+    <div class="exl">Esercizio 1 — abbina italiano e inglese</div>
+    <div class="exin">Scegli la traduzione corretta. · <em>Choose the correct translation.</em></div>
+    <div class="mq" id="q1">
+      <div class="qt">1. "Mi chiamo Andrea"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q1',false)">a) I like Andrea</button>
+        <button class="o" onclick="mc(this,'q1',true)">b) My name is Andrea</button>
+        <button class="o" onclick="mc(this,'q1',false)">c) I am Andrea's friend</button>
+      </div>
+    </div>
+    <div class="mq" id="q2">
+      <div class="qt">2. "Non capisco"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q2',true)">a) I don't understand</button>
+        <button class="o" onclick="mc(this,'q2',false)">b) I don't speak Italian</button>
+        <button class="o" onclick="mc(this,'q2',false)">c) I don't want</button>
+      </div>
+    </div>
+    <div class="mq" id="q3">
+      <div class="qt">3. "Scusi, può ripetere?"</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'q3',false)">a) Sorry, can you speak Italian?</button>
+        <button class="o" onclick="mc(this,'q3',true)">b) Excuse me, can you repeat?</button>
+        <button class="o" onclick="mc(this,'q3',false)">c) Sorry, can you translate?</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf1" style="width:0%"></div></div><span class="sn" id="sn1">0 / 3</span></div>
+  </div>
+
+  <!-- PRESENTARSI — testo interlineare -->
+  <div class="card">
+    <div class="exl">Leggi ad alta voce — traduzione parola per parola</div>
+    <div class="il-note">Ogni parola italiana ha la traduzione inglese sotto. Leggi la riga italiana ad alta voce! · <em>Read the Italian line out loud!</em></div>
+    <div class="interlinear">
+      <p>
+        <span class="wp"><span class="it key">Ciao!</span><span class="en">Hi!</span></span>
+        <span class="wp"><span class="it key">Mi</span><span class="en">My</span></span>
+        <span class="wp"><span class="it key">chiamo</span><span class="en">name is</span></span>
+        <span class="wp"><span class="it">Andrea.</span><span class="en">Andrea.</span></span>
+        <span class="wp"><span class="it key">Sono</span><span class="en">I am</span></span>
+        <span class="wp"><span class="it">americana</span><span class="en">American</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+        <span class="wp"><span class="it key">Parlo</span><span class="en">I speak</span></span>
+        <span class="wp"><span class="it">inglese</span><span class="en">English</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+      </p>
+      <p>
+        <span class="wp"><span class="it key">Studio</span><span class="en">I'm studying</span></span>
+        <span class="wp"><span class="it">italiano</span><span class="en">Italian</span></span>
+        <span class="wp"><span class="it">perché</span><span class="en">because</span></span>
+        <span class="wp"><span class="it grn">amo</span><span class="en">I love</span></span>
+        <span class="wp"><span class="it">l'Italia</span><span class="en">Italy</span></span>
+        <span class="wp punct"><span class="it">!</span></span>
+      </p>
+      <p>
+        <span class="wp"><span class="it">La</span><span class="en">The</span></span>
+        <span class="wp"><span class="it">mia</span><span class="en">my</span></span>
+        <span class="wp"><span class="it">insegnante</span><span class="en">teacher</span></span>
+        <span class="wp"><span class="it">si chiama</span><span class="en">is called</span></span>
+        <span class="wp"><span class="it">Kate.</span><span class="en">Kate.</span></span>
+        <span class="wp"><span class="it key">È</span><span class="en">She is</span></span>
+        <span class="wp"><span class="it">bravissima!</span><span class="en">wonderful!</span></span>
+      </p>
+    </div>
+    <div class="tip"><strong>💡 Nota:</strong> <em>Mi chiamo</em> e <em>si chiama</em> usano lo stesso verbo (<em>chiamarsi</em>). Letteralmente: "I call myself" e "she calls herself." Gli italiani lo trovano bellissimo!</div>
+  </div>
+
+  <button class="next-btn" onclick="go(1,document.getElementById('nb1'))">Al bar → ☕</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 1 · AL BAR
+══════════════════════════════ -->
+<div class="panel" id="p1">
+
+  <div class="sh">
+    <div class="sh-big">2</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 2 · Il bar</div>
+      <div class="sh-title">Al bar — <em>la scena più italiana</em></div>
+      <div class="sh-deck">In Italia il bar è sacro. Colazione, pausa caffè, aperitivo — tutto succede al bar. Queste frasi ti aprono tutte le porte.</div>
+    </div>
+    <div class="sh-time">MIN 11–22</div>
+  </div>
+
+  <div class="phrase-hero">
+    <div class="ph-label">La frase d'oro per ordinare</div>
+    <div class="ph-it">Prendo un <em>caffè</em>, per favore.</div>
+    <div class="ph-en">I'll have a coffee, please.</div>
+    <div class="ph-note"><em>Prendo</em> literally means "I take" but Italians use it to order at a bar or restaurant — it's the most natural way to order anything!</div>
+  </div>
+
+  <!-- IL MENU -->
+  <div class="menu-card">
+    <div class="menu-title">☕ Il Bar Italiano</div>
+    <div class="menu-sub">Leggi il menù — tutto in italiano</div>
+    <div class="menu-section">
+      <div class="menu-sec-title">Da bere · Drinks</div>
+      <div class="menu-item"><div><div class="mi-name">un caffè</div><div class="mi-en">espresso — the classic</div></div><div class="mi-price">€ 1,20</div></div>
+      <div class="menu-item"><div><div class="mi-name">un cappuccino</div><div class="mi-en">espresso with foamy milk — morning only!</div></div><div class="mi-price">€ 1,50</div></div>
+      <div class="menu-item"><div><div class="mi-name">un caffè macchiato</div><div class="mi-en">espresso with a drop of milk</div></div><div class="mi-price">€ 1,30</div></div>
+      <div class="menu-item"><div><div class="mi-name">un tè caldo</div><div class="mi-en">hot tea</div></div><div class="mi-price">€ 1,80</div></div>
+      <div class="menu-item"><div><div class="mi-name">un'acqua naturale / frizzante</div><div class="mi-en">still / sparkling water</div></div><div class="mi-price">€ 0,80</div></div>
+      <div class="menu-item"><div><div class="mi-name">un succo di frutta</div><div class="mi-en">fruit juice</div></div><div class="mi-price">€ 2,00</div></div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-sec-title">Da mangiare · Food</div>
+      <div class="menu-item"><div><div class="mi-name">un cornetto / un croissant</div><div class="mi-en">croissant — the Italian breakfast staple</div></div><div class="mi-price">€ 1,20</div></div>
+      <div class="menu-item"><div><div class="mi-name">una brioche</div><div class="mi-en">sweet pastry — try one!</div></div><div class="mi-price">€ 1,50</div></div>
+      <div class="menu-item"><div><div class="mi-name">un tramezzino</div><div class="mi-en">small triangular sandwich</div></div><div class="mi-price">€ 2,50</div></div>
+    </div>
+  </div>
+
+  <!-- esercizio bar -->
+  <div class="card">
+    <div class="exl">Esercizio 2 — ordina al bar</div>
+    <div class="exin">Guarda il menù e scrivi la tua ordinazione completa in italiano. · <em>Look at the menu and write your complete order in Italian.</em></div>
+    <div class="fw">
+      <div class="fs">Vuoi un caffè → scrivi: "Prendo _____, per favore."</div>
+      <div class="fen">You want a coffee → write: "I'll have _____, please."</div>
+      <input class="fi" type="text" placeholder="Prendo un caffè, per favore." oninput="sf(this,'prendo un caffè per favore','b1')"><div id="fb-b1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Vuoi un cappuccino e un cornetto → scrivi la tua ordinazione.</div>
+      <div class="fen">You want a cappuccino and a croissant → write your order.</div>
+      <input class="fi" type="text" placeholder="Prendo un cappuccino e un cornetto, per favore." oninput="sf(this,'prendo un cappuccino e un cornetto per favore','b2')"><div id="fb-b2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Il cameriere chiede "Caldo o freddo?" — rispondi: "_____, per favore."</div>
+      <div class="fen">The waiter asks "Hot or cold?" — answer in Italian.</div>
+      <div class="fc">caldo = hot · freddo = cold · risposta libera!</div>
+      <input class="fi" type="text" placeholder="Caldo / Freddo, per favore." oninput=""></div>
+    </div>
+  </div>
+
+  <!-- frasi utili al bar -->
+  <div class="card card-sol">
+    <div class="exl" style="color:var(--sol-d)">Frasi utili — al bar, ogni giorno</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r);border:1px solid #E8D890">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Quant'è?</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:2px">How much is it?</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r);border:1px solid #E8D890">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Il conto, per favore.</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:2px">The bill, please.</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r);border:1px solid #E8D890">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Dov'è il bagno?</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:2px">Where is the bathroom?</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r);border:1px solid #E8D890">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Delizioso!</div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;margin-top:2px">Delicious!</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Regola d'oro:</strong> In Italia si dice "un cappuccino" solo la mattina — mai dopo mezzogiorno! Se ordini un cappuccino alle 3pm, il barista ti guarderà strano. Dopo pranzo: <em>un caffè</em> sempre.</div>
+  </div>
+
+  <!-- comprensione bar -->
+  <div class="card">
+    <div class="exl">Esercizio 3 — comprensione al bar</div>
+    <div class="mq" id="r1">
+      <div class="qt">1. Come si dice "How much is it?" in italiano?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r1',false)">a) Dove è?</button>
+        <button class="o" onclick="mc(this,'r1',true)">b) Quant'è?</button>
+        <button class="o" onclick="mc(this,'r1',false)">c) Come si chiama?</button>
+      </div>
+    </div>
+    <div class="mq" id="r2">
+      <div class="qt">2. Sono le 4 del pomeriggio. Cosa ordini?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r2',false)">a) Un cappuccino — I love cappuccino any time!</button>
+        <button class="o" onclick="mc(this,'r2',true)">b) Un caffè — cappuccino is only for mornings in Italy</button>
+        <button class="o" onclick="mc(this,'r2',false)">c) Non ordino niente</button>
+      </div>
+    </div>
+    <div class="mq" id="r3">
+      <div class="qt">3. Come si dice "I'll have a sparkling water, please" in italiano?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r3',false)">a) Voglio acqua.</button>
+        <button class="o" onclick="mc(this,'r3',true)">b) Prendo un'acqua frizzante, per favore.</button>
+        <button class="o" onclick="mc(this,'r3',false)">c) Un'acqua, grazie mille.</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf2" style="width:0%"></div></div><span class="sn" id="sn2">0 / 3</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(2,document.getElementById('nb2'))">Mi piace! →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 2 · MI PIACE
+══════════════════════════════ -->
+<div class="panel" id="p2">
+
+  <div class="sh">
+    <div class="sh-big">3</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 3 · Esprimere gusti</div>
+      <div class="sh-title">Mi piace — <em>la struttura più usata</em></div>
+      <div class="sh-deck">Per un'italiana, dire cosa ami è essenziale. <em>Mi piace</em> è la struttura più naturale — e funziona con tutto.</div>
+    </div>
+    <div class="sh-time">MIN 23–32</div>
+  </div>
+
+  <div class="phrase-hero">
+    <div class="ph-label">La struttura che cambia tutto</div>
+    <div class="ph-it"><em>Mi piace</em> il caffè italiano.</div>
+    <div class="ph-en">I like Italian coffee.</div>
+    <div class="ph-note">Literally: "the coffee pleases me" — Italian puts the thing first! Mi piace + singular / Mi piacciono + plural</div>
+  </div>
+
+  <!-- mi piace / non mi piace grid -->
+  <div class="card">
+    <div class="exl">Mi piace vs Non mi piace — le basi</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem">
+      <div>
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);margin-bottom:.6rem">✅ Mi piace...</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-family:'Playfair Display',serif;font-size:15px">
+          <div>il caffè <span style="font-size:11px;color:var(--muted)">coffee</span></div>
+          <div>la pizza <span style="font-size:11px;color:var(--muted)">pizza</span></div>
+          <div>l'arte <span style="font-size:11px;color:var(--muted)">art</span></div>
+          <div>il mare <span style="font-size:11px;color:var(--muted)">the sea</span></div>
+          <div>la musica <span style="font-size:11px;color:var(--muted)">music</span></div>
+          <div>viaggiare <span style="font-size:11px;color:var(--muted)">travelling</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--aperol);margin-bottom:.6rem">❌ Non mi piace...</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-family:'Playfair Display',serif;font-size:15px">
+          <div>il freddo <span style="font-size:11px;color:var(--muted)">the cold</span></div>
+          <div>aspettare <span style="font-size:11px;color:var(--muted)">waiting</span></div>
+          <div>la fretta <span style="font-size:11px;color:var(--muted)">rushing</span></div>
+        </div>
+        <div style="margin-top:.85rem;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);margin-bottom:.5rem">💙 Mi piacciono... (plural!)</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-family:'Playfair Display',serif;font-size:15px">
+          <div>le chiese <span style="font-size:11px;color:var(--muted)">churches</span></div>
+          <div>i mercati <span style="font-size:11px;color:var(--muted)">markets</span></div>
+          <div>le passeggiate <span style="font-size:11px;color:var(--muted)">walks</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 Regola semplice:</strong> Una cosa sola → <em>mi piace</em>. Più cose → <em>mi piacciono</em>. "Mi piace la pizza" ma "Mi piacciono le pizze del sud." Per ora, usa sempre <em>mi piace</em> — funziona quasi sempre!</div>
+  </div>
+
+  <!-- intensificatori -->
+  <div class="card card-verde">
+    <div class="exl" style="color:var(--verde)">Come esprimere quanto ti piace</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:.55rem .85rem;background:#fff;border-radius:var(--r)">
+        <span style="font-size:22px">😐</span>
+        <span style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;flex:1">Abbastanza — it's okay</span>
+        <span style="font-size:12px;color:var(--muted);font-style:italic">somewhat, quite</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:.55rem .85rem;background:#fff;border-radius:var(--r)">
+        <span style="font-size:22px">😊</span>
+        <span style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;flex:1">Mi piace molto — I really like it</span>
+        <span style="font-size:12px;color:var(--muted);font-style:italic">I like it very much</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:.55rem .85rem;background:#fff;border-radius:var(--r)">
+        <span style="font-size:22px">😍</span>
+        <span style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;flex:1">Mi piace moltissimo! — I love it!</span>
+        <span style="font-size:12px;color:var(--muted);font-style:italic">I absolutely love it</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:10px;padding:.55rem .85rem;background:#fff;border-radius:var(--r)">
+        <span style="font-size:22px">🤢</span>
+        <span style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;flex:1">Non mi piace per niente — I hate it</span>
+        <span style="font-size:12px;color:var(--muted);font-style:italic">I don't like it at all</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- esercizio mi piace -->
+  <div class="card">
+    <div class="exl">Esercizio 4 — completa con mi piace / mi piacciono</div>
+    <div class="exin">Ricorda: singolare = mi piace · plurale = mi piacciono · <em>Singular = mi piace · plural = mi piacciono</em></div>
+    <div class="fw">
+      <div class="fs">_____ la pizza napoletana.</div>
+      <div class="fen">I like Neapolitan pizza. (singular)</div>
+      <input class="fi" type="text" placeholder="mi piace" oninput="sf(this,'mi piace','m1')"><div id="fb-m1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">_____ i musei di Firenze.</div>
+      <div class="fen">I like the museums of Florence. (plural)</div>
+      <input class="fi" type="text" placeholder="mi piacciono" oninput="sf(this,'mi piacciono','m2')"><div id="fb-m2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">_____ molto viaggiare in Italia.</div>
+      <div class="fen">I really like travelling in Italy. (verb = singular)</div>
+      <input class="fi" type="text" placeholder="mi piace" oninput="sf(this,'mi piace','m3')"><div id="fb-m3" class="fb"></div>
+    </div>
+  </div>
+
+  <!-- esercizio personale -->
+  <div class="card card-aperol">
+    <div class="exl" style="color:var(--aperol-d)">Esercizio 5 — adesso tocca a te!</div>
+    <p style="font-size:13.5px;color:var(--aperol-d);margin-bottom:.85rem;font-style:italic">Scrivi 3 cose che ti piacciono e 1 che non ti piace. In italiano! · <em>Write 3 things you like and 1 you don't like. In Italian!</em></p>
+    <div class="fw">
+      <div class="fs">Mi piace / Mi piacciono...</div>
+      <input class="fi" type="text" placeholder="Mi piace..." style="margin-bottom:7px">
+      <input class="fi" type="text" placeholder="Mi piace..." style="margin-bottom:7px">
+      <input class="fi" type="text" placeholder="Mi piacciono...">
+    </div>
+    <div class="fw" style="margin-top:.75rem">
+      <div class="fs">Non mi piace...</div>
+      <input class="fi" type="text" placeholder="Non mi piace...">
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(3,document.getElementById('nb3'))">I numeri →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 3 · NUMERI
+══════════════════════════════ -->
+<div class="panel" id="p3">
+
+  <div class="sh">
+    <div class="sh-big">4</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 4 · I numeri</div>
+      <div class="sh-title">Contare — <em>al mercato e al ristorante</em></div>
+      <div class="sh-deck">I numeri ti servono per capire i prezzi, gli indirizzi, i numeri di telefono. Impara i primi 20 e sei a posto per qualsiasi viaggio.</div>
+    </div>
+    <div class="sh-time">MIN 33–40</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Da 1 a 20 — leggi ad alta voce</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1rem">
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--aperol)">1</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">uno</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--aperol)">2</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">due</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--aperol)">3</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">tre</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--aperol)">4</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">quattro</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--aperol)">5</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">cinque</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--sol-d)">6</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">sei</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--sol-d)">7</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">sette</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--sol-d)">8</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">otto</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--sol-d)">9</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">nove</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--sol-d)">10</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">dieci</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--verde)">11</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">undici</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--verde)">12</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">dodici</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--verde)">15</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">quindici</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--verde)">18</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">diciotto</div>
+      </div>
+      <div style="text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid var(--ecru3);border-radius:var(--r)">
+        <div style="font-size:22px;font-weight:700;color:var(--verde)">20</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-style:italic">venti</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.5rem">
+      <div style="padding:.65rem 1rem;background:var(--ecru2);border-radius:var(--r);text-align:center">
+        <span style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">30 → trenta</span>
+      </div>
+      <div style="padding:.65rem 1rem;background:var(--ecru2);border-radius:var(--r);text-align:center">
+        <span style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">100 → cento</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- esercizio numeri -->
+  <div class="card">
+    <div class="exl">Esercizio 6 — i prezzi al bar</div>
+    <div class="exin">Leggi il prezzo in italiano e scrivi il numero. · <em>Read the price in Italian and write the number.</em></div>
+    <div class="mq" id="n1">
+      <div class="qt">1. "Il caffè costa uno euro e venti" — quant'è?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'n1',false)">a) € 0,20</button>
+        <button class="o" onclick="mc(this,'n1',true)">b) € 1,20</button>
+        <button class="o" onclick="mc(this,'n1',false)">c) € 12,00</button>
+      </div>
+    </div>
+    <div class="mq" id="n2">
+      <div class="qt">2. Come si dice "€ 3,50" in italiano?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'n2',false)">a) Trenta euro</button>
+        <button class="o" onclick="mc(this,'n2',true)">b) Tre euro e cinquanta</button>
+        <button class="o" onclick="mc(this,'n2',false)">c) Cinque euro e tre</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf3" style="width:0%"></div></div><span class="sn" id="sn3">0 / 2</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(4,document.getElementById('nb4'))">Dialogo completo →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 4 · DIALOGO
+══════════════════════════════ -->
+<div class="panel" id="p4">
+
+  <div class="sh">
+    <div class="sh-big">5</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 5 · Dialogo completo</div>
+      <div class="sh-title">Un mattino a Roma — <em>al bar di Elena</em></div>
+      <div class="sh-deck">Tutto quello che hai imparato oggi, in una scena realistica. Leggi, completa le lacune, poi fai il role-play con Kate.</div>
+    </div>
+    <div class="sh-time">MIN 41–48</div>
+  </div>
+
+  <div class="card">
+    <div class="dw">
+      <div class="dr">
+        <div class="dav waiter">E</div>
+        <div class="db"><div class="dn">Elena — la barista</div>
+          <div class="di">Buongiorno! Come stai?</div>
+          <div class="de">Good morning! How are you?</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav andrea">A</div>
+        <div class="db"><div class="dn">Andrea</div>
+          <div class="di">Buongiorno! Bene, grazie. Mi chiamo Andrea. Sono americana.</div>
+          <div class="de">Good morning! Fine, thanks. My name is Andrea. I'm American.</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav waiter">E</div>
+        <div class="db"><div class="dn">Elena</div>
+          <div class="di">Benvenuta a Roma! Cosa prendi?</div>
+          <div class="de">Welcome to Rome! What are you having?</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav andrea">A</div>
+        <div class="db"><div class="dn">Andrea</div>
+          <div class="di">Prendo un cappuccino e un cornetto, per favore.</div>
+          <div class="de">I'll have a cappuccino and a croissant, please.</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav waiter">E</div>
+        <div class="db"><div class="dn">Elena</div>
+          <div class="di">Perfetto! Ti piace Roma?</div>
+          <div class="de">Perfect! Do you like Rome?</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav andrea">A</div>
+        <div class="db"><div class="dn">Andrea</div>
+          <div class="di">Moltissimo! Mi piace molto l'arte e il cibo. E mi piacciono i mercati!</div>
+          <div class="de">Very much! I really like the art and the food. And I like the markets!</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav waiter">E</div>
+        <div class="db"><div class="dn">Elena</div>
+          <div class="di">Brava! Il tuo italiano è ottimo! Ecco il cappuccino — due euro e settanta, per favore.</div>
+          <div class="de">Well done! Your Italian is great! Here's your cappuccino — two euros seventy, please.</div>
+        </div>
+      </div>
+      <div class="dr">
+        <div class="dav andrea">A</div>
+        <div class="db"><div class="dn">Andrea</div>
+          <div class="di">Grazie mille! Delizioso!</div>
+          <div class="de">Thank you so much! Delicious!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- frasi da imparare a memoria -->
+  <div class="card card-sol">
+    <div class="exl" style="color:var(--sol-d)">Impara queste a memoria — per uso immediato</div>
+    <div style="display:flex;flex-direction:column;gap:.55rem">
+      <div style="padding:.65rem 1rem;background:#fff;border-radius:var(--r);border-left:3px solid var(--aperol)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Buongiorno! Mi chiamo Andrea. Sono americana.</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">Good morning! My name is Andrea. I'm American.</div>
+      </div>
+      <div style="padding:.65rem 1rem;background:#fff;border-radius:var(--r);border-left:3px solid var(--sol)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Prendo un cappuccino, per favore. Quant'è?</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">I'll have a cappuccino, please. How much is it?</div>
+      </div>
+      <div style="padding:.65rem 1rem;background:#fff;border-radius:var(--r);border-left:3px solid var(--verde)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Mi piace molto l'Italia! Moltissimo!</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">I love Italy! Very much!</div>
+      </div>
+      <div style="padding:.65rem 1rem;background:#fff;border-radius:var(--r);border-left:3px solid var(--cielo)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Non capisco — può ripetere? Più lentamente!</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">I don't understand — can you repeat? More slowly!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- dialogo con lacune -->
+  <div class="card">
+    <div class="exl">Esercizio 7 — completa il dialogo</div>
+    <div class="exin">Usa: <strong>grazie · prendo · mi chiamo · mi piace · buongiorno · quant'è</strong></div>
+    <div class="dw">
+      <div class="dr"><div class="dav waiter">B</div><div class="db"><div class="dn">Barista</div>
+        <div class="di">Buongiorno! Come si chiama?</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di"><input class="dg" oninput="dg(this,'buongiorno','d1')" placeholder="______">! <input class="dg" oninput="dg(this,'mi chiamo','d2')" placeholder="______"> Andrea.</div>
+      </div></div>
+      <div class="dr"><div class="dav waiter">B</div><div class="db"><div class="dn">Barista</div>
+        <div class="di">Cosa prende, Andrea?</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di"><input class="dg" oninput="dg(this,'prendo','d3')" placeholder="______"> un caffè, per favore.</div>
+      </div></div>
+      <div class="dr"><div class="dav waiter">B</div><div class="db"><div class="dn">Barista</div>
+        <div class="di">Le piace Roma?</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Sì! <input class="dg" oninput="dg(this,'mi piace','d4')" placeholder="______"> moltissimo! <input class="dg" oninput="dg(this,'quant\'è','d5')" placeholder="______">?</div>
+      </div></div>
+      <div class="dr"><div class="dav waiter">B</div><div class="db"><div class="dn">Barista</div>
+        <div class="di">Un euro e venti.</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di"><input class="dg" oninput="dg(this,'grazie','d6')" placeholder="______">! Delizioso!</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- scaffolding -->
+  <div class="card card-aperol">
+    <div class="exl" style="color:var(--aperol-d)">Role-play orale — al bar con Kate</div>
+    <div style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--aperol-d);margin-bottom:.4rem">"Kate è la barista. Presentati, ordina qualcosa, chiedi il conto, di' che ti piace Roma!"</div>
+    <div style="font-size:12.5px;color:var(--muted);margin-bottom:1rem;font-style:italic">"Kate is the barista. Introduce yourself, order something, ask for the bill, say you like Rome!"</div>
+    <div class="scaffold">
+      <div class="slb">Costruisci il tuo dialogo — clicca le parole</div>
+      <div class="chips" id="cp1">
+        <span class="chip" onclick="ac(this,'Buongiorno!','sb1')">Buongiorno!</span>
+        <span class="chip" onclick="ac(this,'Mi chiamo Andrea.','sb1')">Mi chiamo Andrea.</span>
+        <span class="chip" onclick="ac(this,'Sono americana.','sb1')">Sono americana.</span>
+        <span class="chip" onclick="ac(this,'Prendo un cappuccino,','sb1')">Prendo un cappuccino,</span>
+        <span class="chip" onclick="ac(this,'per favore.','sb1')">per favore.</span>
+        <span class="chip" onclick="ac(this,'Mi piace moltissimo l\'Italia!','sb1')">Mi piace moltissimo l'Italia!</span>
+        <span class="chip" onclick="ac(this,'Quant\'è?','sb1')">Quant'è?</span>
+        <span class="chip" onclick="ac(this,'Grazie! Delizioso!','sb1')">Grazie! Delizioso!</span>
+        <span class="chip" onclick="ac(this,'Arrivederci!','sb1')">Arrivederci!</span>
+      </div>
+      <div class="built" id="sb1">Clicca le parole per costruire il dialogo...</div>
+      <button class="reset-btn" onclick="rs('sb1','cp1')" style="margin-top:8px">↺ Ricomincia</button>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(5,document.getElementById('nb5'))">Produzione finale ✨</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 5 · PRODUZIONE
+══════════════════════════════ -->
+<div class="panel" id="p5">
+
+  <div class="sh">
+    <div class="sh-big">6</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 6 · Produzione</div>
+      <div class="sh-title">Scrivi — <em>in italiano!</em></div>
+      <div class="sh-deck">Due compiti semplici. Usa tutto quello che hai imparato oggi. Non deve essere perfetto — deve esistere!</div>
+    </div>
+    <div class="sh-time">MIN 49–50</div>
+  </div>
+
+  <div class="pbox">
+    <div class="ptag">✍ Compito 1 — presentati in italiano (4–5 frasi)</div>
+    <div class="pprompt">"Scriviti come se fossi al bar a Roma per la prima volta. Chi sei? Da dove sei? Cosa ti piace dell'Italia?"</div>
+    <div class="pen">"Write as if you were at a bar in Rome for the first time. Who are you? Where are you from? What do you like about Italy?"</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr1','Mi chiamo ')">Mi chiamo</span>
+      <span class="phint" onclick="ins('pr1','Sono ')">Sono</span>
+      <span class="phint" onclick="ins('pr1','Parlo ')">Parlo</span>
+      <span class="phint" onclick="ins('pr1','Mi piace ')">Mi piace</span>
+      <span class="phint" onclick="ins('pr1','Mi piacciono ')">Mi piacciono</span>
+      <span class="phint" onclick="ins('pr1','Studio italiano perché ')">Studio italiano perché</span>
+    </div>
+    <textarea class="prod" id="pr1" placeholder="Ciao! Mi chiamo Andrea. Sono..." oninput="wc(this,'wc1')"></textarea>
+    <div class="wc" id="wc1">0 parole</div>
+  </div>
+
+  <div class="pbox">
+    <div class="ptag">✍ Compito 2 — ordina al bar (2–3 frasi)</div>
+    <div class="pprompt">"Sei al bar a Firenze. Cosa ordini? Quanto costa? Cosa dici dopo?"</div>
+    <div class="pen">"You're at a bar in Florence. What do you order? How much does it cost? What do you say after?"</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr2','Prendo ')">Prendo</span>
+      <span class="phint" onclick="ins('pr2','per favore')">per favore</span>
+      <span class="phint" onclick="ins('pr2','Quant\'è?')">Quant'è?</span>
+      <span class="phint" onclick="ins('pr2','Grazie! Delizioso!')">Grazie! Delizioso!</span>
+    </div>
+    <textarea class="prod" id="pr2" placeholder="Prendo un..." oninput="wc(this,'wc2')"></textarea>
+    <div class="wc" id="wc2">0 parole</div>
+  </div>
+
+  <!-- settimana -->
+  <div class="week">
+    <div class="wt">⭐ La tua settimana — 5 minuti al giorno bastano</div>
+    <div class="wr"><span class="wd">LUN</span><span>Leggi ad alta voce le 4 frasi da memorizzare di questa lezione. Ogni giorno almeno una volta.</span></div>
+    <div class="wr"><span class="wd">MAR</span><span>Scrivi su carta: "Mi chiamo ___. Sono ___. Mi piace ___." — 5 volte.</span></div>
+    <div class="wr"><span class="wd">MER</span><span>Guarda il menù del bar e pensa "come ordino questo in italiano?" — anche solo in testa.</span></div>
+    <div class="wr"><span class="wd">GIO</span><span>Dì 5 cose che ti piacciono in italiano ad alta voce. Dove sei, cosa vedi, cosa senti.</span></div>
+    <div class="wr"><span class="wd">VEN</span><span>Scrivi una frase nuova che vuoi imparare e mandala a Kate su WhatsApp. Lei la corregge.</span></div>
+  </div>
+
+  <!-- DONE -->
+  <div class="done">
+    <div class="done-flag">🇮🇹</div>
+    <div class="done-title">Brava, Andrea!</div>
+    <div class="done-body">
+      Oggi è la tua prima lezione vera e hai già imparato: come presentarti · le parole di sopravvivenza · come ordinare al bar · dire cosa ti piace · i numeri · un dialogo completo. Non è poco. È tantissimo per un solo giorno.
+    </div>
+    <div class="done-hw">
+      <strong>Porta alla prossima lezione:</strong> 3 frasi su di te in italiano — chi sei, cosa ti piace, perché studi italiano. Anche imperfette. Anche una riga. L'importante è che escano dalla tua testa in italiano.<br><br>
+      <strong>Bring to next lesson:</strong> 3 sentences about yourself in Italian — who you are, what you like, why you're learning Italian. Imperfect is fine. Even one line. What matters is that they come out of your head in Italian.
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>Andrea · Lezione 1 · Benvenuta in Italia · Kate · Preply · Luglio 2025</footer>
+
+<script>
+function go(n,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+  btn.classList.add('active');
+  for(let i=0;i<n;i++) document.getElementById('nb'+i).classList.add('done');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const scores={};const answered={};
+const gMap={q1:'g1',q2:'g1',q3:'g1',r1:'g2',r2:'g2',r3:'g2',n1:'g3',n2:'g3'};
+const gTot={g1:3,g2:3,g3:2};
+
+function mc(btn,qId,correct){
+  if(answered[qId])return;
+  answered[qId]=true;
+  btn.parentElement.querySelectorAll('.o').forEach(o=>o.classList.add('disabled'));
+  btn.classList.add(correct?'correct':'wrong');
+  const g=gMap[qId];if(!g)return;
+  if(!scores[g])scores[g]=0;
+  if(correct)scores[g]++;
+  const n=g.replace('g','');
+  document.getElementById('sf'+n).style.width=Math.round(scores[g]/gTot[g]*100)+'%';
+  document.getElementById('sn'+n).textContent=scores[g]+' / '+gTot[g];
+}
+
+function norm(s){
+  return s.trim().toLowerCase()
+    .replace(/[.!?,'"€]/g,'').replace(/à/g,'a').replace(/è/g,'e')
+    .replace(/é/g,'e').replace(/ì/g,'i').replace(/ò/g,'o').replace(/ù/g,'u')
+    .replace(/'/g,"'").replace(/\s+/g,' ');
+}
+function sf(input,answer,id){
+  const v=norm(input.value);const a=norm(answer);
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){
+    input.classList.add('ok');input.classList.remove('err');
+    if(fb){fb.textContent='✓ Perfetto!';fb.className='fb good';}
+  } else if(v.length>1){
+    input.classList.remove('ok');input.classList.add('err');
+    if(fb)fb.className='fb';
+  } else{input.classList.remove('ok','err');if(fb)fb.className='fb';}
+}
+function dg(input,answer,id){
+  const v=norm(input.value);const a=norm(answer);
+  if(v===a){input.classList.add('ok');input.classList.remove('err');}
+  else if(v.length>1){input.classList.remove('ok');input.classList.add('err');}
+  else input.classList.remove('ok','err');
+}
+function wc(el,id){
+  const n=el.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById(id).textContent=n+' parole';
+}
+function ins(id,text){
+  const ta=document.getElementById(id);
+  const sep=(ta.value&&!ta.value.endsWith(' ')&&!ta.value.endsWith('\n'))?'\n':'';
+  ta.value+=sep+text+' ';
+  wc(ta,id==='pr1'?'wc1':'wc2');ta.focus();
+}
+let ss={};
+function ac(chip,word,sbId){
+  if(chip.classList.contains('used'))return;
+  chip.classList.add('used');
+  if(!ss[sbId])ss[sbId]=[];
+  ss[sbId].push({word,chip});renderS(sbId);
+}
+function renderS(sbId){
+  const box=document.getElementById(sbId);
+  if(!ss[sbId]||!ss[sbId].length){box.textContent='Clicca le parole per costruire il dialogo...';return;}
+  box.innerHTML=ss[sbId].map((item,i)=>`<span class="bw" onclick="rw('${sbId}',${i})">${item.word}</span>`).join('');
+}
+function rw(sbId,idx){
+  const item=ss[sbId][idx];
+  if(item&&item.chip)item.chip.classList.remove('used');
+  ss[sbId].splice(idx,1);renderS(sbId);
+}
+function rs(sbId,cpId){
+  ss[sbId]=[];
+  document.getElementById(sbId).textContent='Clicca le parole per costruire il dialogo...';
+  document.getElementById(cpId).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+}
+</script>
+</body>
+</html>
