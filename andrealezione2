@@ -1,0 +1,1010 @@
+cat > /mnt/user-data/outputs/andrea_lezione2.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea · Lezione 2 · In giro per l'Italia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --terr:#C45C2A;
+  --terr-l:#F5E8DF;
+  --terr-d:#8A3A12;
+  --oliva:#4A6741;
+  --oliva-l:#E4EDE2;
+  --oliva-d:#2A4225;
+  --oro:#B8860B;
+  --oro-l:#F5F0D8;
+  --oro-d:#7A5500;
+  --cielo:#2E6EA6;
+  --cielo-l:#E0EDF8;
+  --cielo-d:#1A3F6A;
+  --ink:#12100A;
+  --muted:#5A5040;
+  --subtle:#9A9080;
+  --ecru:#F6F1EA;
+  --ecru2:#EDE6D8;
+  --ecru3:#E0D8C8;
+  --rule:#C8BCA8;
+  --r:8px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--ecru);color:var(--ink);line-height:1.65;padding-bottom:6rem}
+
+/* COVER */
+.cover{background:var(--cielo-d);position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;width:600px;height:600px;border:1px solid rgba(255,255,255,.06);border-radius:50%;right:-160px;bottom:-200px;pointer-events:none}
+.cover-topbar{background:rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;padding:5px 2rem;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.cover-topbar strong{color:rgba(255,255,255,.7);font-weight:500}
+.cover-body{max-width:880px;margin:0 auto;padding:2.5rem 2rem;display:grid;grid-template-columns:1fr 200px;gap:2rem;align-items:end;position:relative;z-index:1}
+.mag-name{font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.5rem}
+.cover-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(40px,7vw,72px);line-height:.92;letter-spacing:-.02em;color:#fff;margin-bottom:.5rem}
+.cover-h1 .script{font-family:'Caveat',cursive;font-weight:400;font-size:clamp(22px,4vw,42px);color:#A8C8E8;display:block;margin-top:8px}
+.cover-deck{font-size:14px;color:rgba(255,255,255,.6);font-weight:300;line-height:1.75;max-width:420px;margin-bottom:1.5rem;font-style:italic}
+.cover-kickers{display:flex;gap:8px;flex-wrap:wrap}
+.ck{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:2px;padding:4px 11px;font-size:11px;font-weight:500;color:rgba(255,255,255,.75);letter-spacing:.04em}
+.ck .dot{width:5px;height:5px;border-radius:50%;background:#A8C8E8;flex-shrink:0}
+.cover-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;text-align:right}
+.cover-num span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;margin-top:4px;text-align:right}
+.cover-details{margin-top:.85rem;text-align:right;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;line-height:1.9}
+.cover-details b{color:rgba(255,255,255,.55);font-weight:500}
+
+/* WELCOME */
+.welcome{background:var(--oro-l);border-bottom:1px solid #E8D890}
+.welcome-inner{max-width:880px;margin:0 auto;padding:1rem 2rem;display:flex;gap:14px;align-items:flex-start;font-size:13.5px;color:var(--oro-d);line-height:1.65}
+.welcome-inner strong{font-weight:700}
+
+/* NAV */
+.nav-w{background:var(--ecru);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(18,16,10,.1)}
+.nav-i{max-width:880px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.nav-i::-webkit-scrollbar{display:none}
+.nb{flex-shrink:0;padding:12px 16px 9px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .18s;border-bottom:3px solid transparent;display:flex;flex-direction:column;align-items:center;gap:2px;white-space:nowrap;border-right:1px solid var(--ecru3)}
+.nb .ni{font-size:15px}
+.nb .nt{font-size:9px;color:var(--subtle);letter-spacing:.04em}
+.nb:hover{color:var(--terr);background:var(--terr-l)}
+.nb.active{color:var(--terr);border-bottom-color:var(--terr);font-weight:600}
+.nb.done{color:var(--oliva)}
+
+/* WRAP */
+.wrap{max-width:880px;margin:0 auto;padding:0 2rem;position:relative}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block;animation:arr .25s ease}
+@keyframes arr{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* SECTION HEAD */
+.sh{margin:2.75rem 0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;border-top:3px double var(--ink);padding-top:.85rem}
+.sh-big{font-family:'Playfair Display',serif;font-size:68px;font-weight:900;color:var(--ecru3);line-height:.85;flex-shrink:0;letter-spacing:-.03em;margin-top:-4px}
+.sh-kicker{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--terr);margin-bottom:.2rem}
+.sh-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);line-height:1.15}
+.sh-title em{font-style:italic;color:var(--terr)}
+.sh-deck{font-size:13px;color:var(--muted);margin-top:.3rem;line-height:1.65;max-width:460px;font-style:italic;font-weight:300}
+.sh-time{font-size:10px;color:var(--subtle);border:1px solid var(--rule);padding:4px 10px;border-radius:3px;white-space:nowrap;margin-top:4px;letter-spacing:.04em}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--ecru3);border-radius:var(--r);padding:1.6rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(18,16,10,.05),0 3px 12px rgba(18,16,10,.04)}
+.card-terr{background:var(--terr-l);border-color:#E0B8A0}
+.card-oliva{background:var(--oliva-l);border-color:#B0C8A8}
+.card-oro{background:var(--oro-l);border-color:#E8D890}
+.card-cielo{background:var(--cielo-l);border-color:#A8C8E0}
+
+/* PHRASE HERO */
+.ph{background:var(--ink);border-radius:var(--r);padding:1.75rem;margin-bottom:1rem;color:#fff;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--terr),var(--oro),var(--oliva))}
+.ph-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem}
+.ph-it{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,34px);font-weight:700;line-height:1.2;color:#fff;margin-bottom:.35rem}
+.ph-it em{font-style:italic;color:#A8C8E8}
+.ph-en{font-size:14px;color:rgba(255,255,255,.5);font-style:italic;font-weight:300}
+.ph-note{font-size:12px;color:rgba(255,255,255,.3);margin-top:.55rem;font-style:italic;border-top:1px solid rgba(255,255,255,.08);padding-top:.55rem}
+
+/* PHRASE GRID */
+.pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.pgc{background:#fff;border:1px solid var(--ecru3);border-radius:var(--r);padding:.9rem 1.1rem;position:relative;overflow:hidden;transition:all .2s}
+.pgc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.pgc:nth-child(1)::before{background:var(--terr)}
+.pgc:nth-child(2)::before{background:var(--oro)}
+.pgc:nth-child(3)::before{background:var(--oliva)}
+.pgc:nth-child(4)::before{background:var(--cielo)}
+.pgc:nth-child(5)::before{background:var(--terr)}
+.pgc:nth-child(6)::before{background:var(--oro)}
+.pgc:nth-child(7)::before{background:var(--oliva)}
+.pgc:nth-child(8)::before{background:var(--cielo)}
+.pgc:hover{border-color:var(--terr);transform:translateY(-2px)}
+.pgc-it{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--ink);margin-bottom:3px}
+.pgc-en{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:3px}
+.pgc-ex{font-size:12.5px;color:var(--terr);font-style:italic}
+
+/* INTERLINEAR */
+.il-note{font-size:11.5px;color:var(--muted);margin-bottom:1.2rem;padding:.5rem .9rem;background:var(--ecru2);border-radius:var(--r);border-left:3px solid var(--ecru3);font-style:italic;line-height:1.55}
+.il{line-height:1}
+.il p{display:flex;flex-wrap:wrap;gap:0 5px;margin-bottom:1.4rem;align-items:flex-end}
+.il p:last-child{margin-bottom:0}
+.wp{display:inline-flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:7px}
+.wp .it{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);font-weight:400;line-height:1.1;white-space:nowrap}
+.wp .it.kw{color:var(--terr);font-weight:700;background:var(--terr-l);box-shadow:inset 0 -2px 0 var(--terr);border-radius:2px;padding:0 2px}
+.wp .it.gr{color:var(--oliva);font-weight:600;background:var(--oliva-l);box-shadow:inset 0 -2px 0 var(--oliva);border-radius:2px;padding:0 2px}
+.wp .it.bl{color:var(--cielo);font-weight:600;background:var(--cielo-l);box-shadow:inset 0 -2px 0 var(--cielo);border-radius:2px;padding:0 2px}
+.wp .en{font-size:10px;color:var(--muted);font-style:italic;line-height:1;white-space:nowrap}
+.wp.punct .en{visibility:hidden;font-size:7px}
+
+/* EX */
+.exl{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--terr);margin-bottom:.8rem;display:flex;align-items:center;gap:10px}
+.exl::after{content:'';flex:1;height:1px;background:var(--ecru3)}
+.exin{font-size:13px;color:var(--muted);background:var(--ecru2);padding:.6rem .95rem;border-radius:var(--r);border-left:3px solid var(--ecru3);margin-bottom:1rem;line-height:1.65;font-style:italic}
+
+/* MCQ */
+.mq{margin-bottom:1rem}
+.mq:last-of-type{margin-bottom:0}
+.qt{font-size:14px;font-weight:600;margin-bottom:5px;line-height:1.5}
+.qe{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:6px}
+.os{display:flex;flex-direction:column;gap:5px}
+.o{padding:9px 14px;border:1.5px solid var(--ecru3);border-radius:var(--r);cursor:pointer;font-size:13.5px;font-family:'DM Sans',sans-serif;text-align:left;background:#fff;color:var(--ink);transition:all .15s;line-height:1.4}
+.o:hover{border-color:var(--terr);background:var(--terr-l);color:var(--terr-d)}
+.o.correct{background:#E0F2E0;border-color:#5A9E5A;color:#1A4A1A}
+.o.wrong{background:var(--terr-l);border-color:var(--terr);color:var(--terr-d)}
+.o.disabled{pointer-events:none}
+
+/* FILL */
+.fw{margin-bottom:1rem}
+.fw:last-child{margin-bottom:0}
+.fs{font-family:'Playfair Display',serif;font-size:17px;line-height:1.85;color:var(--ink);margin-bottom:3px}
+.fen{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:4px}
+.fc{font-size:10.5px;color:var(--subtle);margin-bottom:5px;display:inline-block;padding:2px 7px;background:var(--ecru2);border-radius:3px;font-style:italic}
+.fi{width:100%;padding:9px 13px;border:1.5px solid var(--ecru3);border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);outline:none;transition:all .18s}
+.fi::placeholder{color:var(--subtle)}
+.fi:focus{border-color:var(--terr);box-shadow:0 0 0 3px var(--terr-l)}
+.fi.ok{border-color:#5A9E5A;background:#E0F2E0;color:#1A4A1A}
+.fi.err{border-color:var(--terr);background:var(--terr-l)}
+.fb{font-size:11px;margin-top:3px;padding:3px 9px;border-radius:4px;display:none;font-style:italic}
+.fb.good{display:block;background:#E0F2E0;color:#1A4A1A}
+
+/* SCORE */
+.sr{display:flex;align-items:center;gap:12px;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--ecru3)}
+.st{flex:1;height:4px;background:var(--ecru2);border-radius:999px;overflow:hidden}
+.sf{height:100%;background:linear-gradient(90deg,var(--terr),var(--oro));border-radius:999px;transition:width .5s ease}
+.sn{font-size:11px;color:var(--muted);min-width:40px;text-align:right;font-weight:500}
+
+/* VOCAB TEMA */
+.vtema{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:1rem}
+.vt{background:#fff;border:1px solid var(--ecru3);border-radius:var(--r);padding:.8rem 1rem;transition:border-color .15s}
+.vt:hover{border-color:var(--terr)}
+.vt-it{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--ink);margin-bottom:2px}
+.vt-en{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:3px}
+.vt-ex{font-size:12px;color:var(--terr);font-style:italic}
+
+/* GRAMMAR BOX */
+.gram{background:var(--ink);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;color:#fff}
+.gram-title{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;margin-bottom:.35rem}
+.gram-sub{font-size:11.5px;color:rgba(255,255,255,.4);margin-bottom:1rem;font-style:italic}
+.gram-rule{background:rgba(255,255,255,.07);border-radius:6px;padding:1rem;margin-bottom:.75rem}
+.gram-rule:last-child{margin-bottom:0}
+.gr-label{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.35rem}
+.gr-ex{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#fff;margin-bottom:3px;line-height:1.55}
+.gr-en{font-size:11.5px;color:rgba(255,255,255,.4);font-style:italic}
+.gr-note{font-size:12px;color:rgba(255,255,255,.5);margin-top:.4rem;line-height:1.55}
+
+/* DIALOGUE */
+.dw{display:flex;flex-direction:column;gap:.85rem}
+.dr{display:flex;gap:12px;align-items:flex-start}
+.dav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;flex-shrink:0;margin-top:2px}
+.dav.andrea{background:var(--terr-l);color:var(--terr-d);border:2px solid #E0B8A0}
+.dav.kate{background:var(--oliva-l);color:var(--oliva-d);border:2px solid #B0C8A8}
+.dav.npc{background:var(--cielo-l);color:var(--cielo-d);border:2px solid #A8C8E0}
+.db{flex:1}
+.dn{font-size:9.5px;color:var(--subtle);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;font-weight:600}
+.di{font-size:14.5px;line-height:1.65;color:var(--ink)}
+.de{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px}
+.dg{border:none;border-bottom:2px solid var(--terr);background:transparent;font-size:14.5px;font-family:'DM Sans',sans-serif;color:var(--terr-d);outline:none;padding:0 4px;min-width:80px;transition:border-color .15s;font-weight:500}
+.dg.ok{border-bottom-color:#5A9E5A;color:#1A4A1A}
+.dg.err{border-bottom-color:var(--terr)}
+
+/* SCAFFOLD */
+.scaffold{background:var(--ecru2);border:1px solid var(--ecru3);border-radius:var(--r);padding:1rem 1.25rem;margin-top:.85rem}
+.slb{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terr);margin-bottom:.65rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:6px 13px;border:1.5px solid var(--ecru3);border-radius:20px;font-size:13px;color:var(--ink);background:#fff;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--terr);color:var(--terr-d);background:var(--terr-l)}
+.chip.used{opacity:.2;pointer-events:none}
+.built{margin-top:10px;min-height:42px;padding:10px 13px;border:1.5px solid var(--ecru3);border-radius:var(--r);font-family:'Playfair Display',serif;font-size:16.5px;font-style:italic;color:var(--terr-d);background:#fff;line-height:1.65}
+.bw{display:inline-block;margin-right:4px;padding:1px 3px;border-radius:2px;cursor:pointer}
+.bw:hover{background:var(--terr-l);color:var(--terr)}
+
+/* TIP */
+.tip{background:var(--oro-l);border-left:3px solid var(--oro);border-radius:0 var(--r) var(--r) 0;padding:10px 13px;font-size:13px;color:var(--oro-d);margin-top:.85rem;line-height:1.65}
+.tip strong{color:var(--terr-d)}
+
+/* PRODUCTION */
+.pbox{background:var(--ink);border-radius:var(--r);padding:1.6rem;margin-bottom:1rem;color:#fff;position:relative;overflow:hidden}
+.pbox::after{content:'"';position:absolute;right:1.2rem;bottom:-.5rem;font-family:'Playfair Display',serif;font-size:110px;font-style:italic;color:rgba(255,255,255,.04);pointer-events:none}
+.ptag{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#A8C8E8;margin-bottom:.45rem}
+.pprompt{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;line-height:1.6;margin-bottom:.35rem}
+.pen{font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:.8rem;font-style:italic}
+.phints{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.7rem}
+.phint{padding:4px 12px;border:1px solid rgba(255,255,255,.14);border-radius:18px;font-size:12.5px;color:rgba(255,255,255,.55);cursor:pointer;transition:all .15s;background:rgba(255,255,255,.05)}
+.phint:hover{background:rgba(255,255,255,.13);color:#fff}
+textarea.prod{width:100%;min-height:75px;padding:11px;border:1px solid rgba(255,255,255,.14);border-radius:var(--r);font-size:13.5px;font-family:'DM Sans',sans-serif;line-height:1.8;color:#fff;background:rgba(255,255,255,.07);resize:vertical;outline:none;transition:border .18s}
+textarea.prod::placeholder{color:rgba(255,255,255,.28);font-style:italic}
+textarea.prod:focus{border-color:rgba(168,200,232,.45)}
+.wc{font-size:9.5px;color:rgba(255,255,255,.22);text-align:right;margin-top:4px}
+
+/* BUTTONS */
+.next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:11px 24px;background:var(--terr);color:#fff;border:none;border-radius:var(--r);font-size:13.5px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:600;transition:all .15s}
+.next-btn:hover{background:var(--terr-d);transform:translateY(-2px);box-shadow:0 6px 18px rgba(196,92,42,.3)}
+.reset-btn{padding:9px 14px;background:transparent;color:var(--muted);border:1.5px solid var(--ecru3);border-radius:var(--r);font-size:11.5px;cursor:pointer;margin-left:8px;transition:all .15s}
+.reset-btn:hover{background:var(--ecru2);color:var(--ink)}
+
+/* DONE */
+.done{background:linear-gradient(135deg,var(--terr-d),var(--terr));border-radius:var(--r);padding:2.75rem 2rem;text-align:center;color:#fff;margin-top:1rem;position:relative;overflow:hidden}
+.done::before{content:'ITALIA';font-family:'Playfair Display',serif;font-weight:900;font-size:110px;color:rgba(255,255,255,.04);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+.done-flag{font-size:36px;margin-bottom:.65rem}
+.done-title{font-family:'Playfair Display',serif;font-size:30px;font-style:italic;font-weight:700;color:#fff;margin-bottom:.5rem}
+.done-body{font-size:14px;color:rgba(255,255,255,.7);line-height:1.9;max-width:500px;margin:0 auto;font-weight:300}
+.done-hw{font-size:11.5px;color:rgba(255,255,255,.4);margin-top:1.4rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12);line-height:1.9;max-width:480px;margin-left:auto;margin-right:auto}
+.done-hw strong{color:rgba(255,255,255,.65)}
+
+/* WEEK */
+.week{border:2px solid var(--terr);border-radius:var(--r);padding:1.25rem;background:var(--terr-l);margin-bottom:1rem}
+.wt{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--terr-d);margin-bottom:.85rem}
+.wr{display:flex;gap:10px;align-items:flex-start;margin-bottom:.55rem;font-size:13px;color:var(--terr-d)}
+.wr:last-child{margin-bottom:0}
+.wd{font-size:10px;color:var(--terr);font-weight:700;flex-shrink:0;width:28px}
+
+footer{text-align:center;font-size:10.5px;color:var(--subtle);padding:1.75rem;border-top:1px solid var(--ecru3);margin-top:3rem;letter-spacing:.08em;font-style:italic}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-topbar">
+    <span>Italiano per Viaggiatori · Kate &amp; Andrea</span>
+    <strong>Lezione 2 · Luglio 2025</strong>
+  </div>
+  <div class="cover-body">
+    <div>
+      <div class="mag-name">Italiano per Viaggiatori</div>
+      <h1 class="cover-h1">In giro<br>per <em style="font-style:italic;color:#A8C8E8">l'Italia.</em>
+        <span class="script">Dove andiamo oggi?</span>
+      </h1>
+      <div class="cover-deck">Ripasso della lezione 1, poi: i luoghi d'Italia, c'è / ci sono, i colori, come chiedere indicazioni, e il verbo <em>essere</em> al completo.</div>
+      <div class="cover-kickers">
+        <span class="ck"><span class="dot"></span>Ripasso L1</span>
+        <span class="ck"><span class="dot"></span>I luoghi</span>
+        <span class="ck"><span class="dot"></span>C'è / Ci sono</span>
+        <span class="ck"><span class="dot"></span>I colori</span>
+        <span class="ck"><span class="dot"></span>Essere completo</span>
+      </div>
+    </div>
+    <div>
+      <div class="cover-num">2<span>Lezione due</span></div>
+      <div class="cover-details">
+        Studente: <b>Andrea</b><br>
+        Livello: <b>Principiante</b><br>
+        Ripasso: <b>Lezione 1</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WELCOME -->
+<div class="welcome">
+  <div class="welcome-inner">
+    ✈️&nbsp;
+    <div><strong>Bentornata, Andrea!</strong> Oggi immaginiamo di essere già in Italia — in una piazza, davanti a una chiesa, in un mercato. Usiamo quello che hai già imparato e aggiungiamo i pezzi che ti mancano per muoverti in città. <em>Ogni frase di oggi puoi usarla subito.</em></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-w">
+  <div class="nav-i">
+    <button class="nb active" id="nb0" onclick="go(0,this)"><span class="ni">🔁</span><span>Ripasso</span><span class="nt">01–08</span></button>
+    <button class="nb" id="nb1" onclick="go(1,this)"><span class="ni">🏛️</span><span>I luoghi</span><span class="nt">09–18</span></button>
+    <button class="nb" id="nb2" onclick="go(2,this)"><span class="ni">📍</span><span>C'è/Ci sono</span><span class="nt">19–27</span></button>
+    <button class="nb" id="nb3" onclick="go(3,this)"><span class="ni">🎨</span><span>I colori</span><span class="nt">28–34</span></button>
+    <button class="nb" id="nb4" onclick="go(4,this)"><span class="ni">📖</span><span>Essere</span><span class="nt">35–42</span></button>
+    <button class="nb" id="nb5" onclick="go(5,this)"><span class="ni">💬</span><span>Dialogo</span><span class="nt">43–48</span></button>
+    <button class="nb" id="nb6" onclick="go(6,this)"><span class="ni">✍️</span><span>Produzione</span><span class="nt">49–50</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════
+     PANEL 0 · RIPASSO L1
+══════════════════════════════ -->
+<div class="panel active" id="p0">
+  <div class="sh">
+    <div class="sh-big">1</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 1 · Ripasso</div>
+      <div class="sh-title">Cosa ricordi — <em>dalla lezione 1?</em></div>
+      <div class="sh-deck">Prima di aggiungere cose nuove, verifichiamo che le basi siano solide. Rispondi senza guardare!</div>
+    </div>
+    <div class="sh-time">MIN 1–8</div>
+  </div>
+
+  <div class="card card-terr">
+    <div class="exl" style="color:var(--terr-d)">Test orale — rispondi senza guardare</div>
+    <p style="font-size:13px;color:var(--terr-d);font-style:italic;margin-bottom:1rem">Kate dice una frase in inglese — tu rispondi in italiano. Senza leggere sotto!</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:13px">
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"My name is..."</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">mi chiamo</span></div>
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"I'll have a coffee"</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">prendo un caffè</span></div>
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"How much is it?"</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">quant'è?</span></div>
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"I like Italy"</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">mi piace l'Italia</span></div>
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"I don't understand"</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">non capisco</span></div>
+      <div style="padding:.5rem .75rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);display:flex;justify-content:space-between;gap:8px"><span>"The bill, please"</span><span style="font-family:'Playfair Display',serif;color:var(--terr);font-style:italic">il conto, per favore</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 1 — vero o falso?</div>
+    <div class="mq" id="r1">
+      <div class="qt">1. In Italia si dice "un cappuccino" anche alle 4 del pomeriggio.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r1',false)">Vero — anytime!</button>
+        <button class="o" onclick="mc(this,'r1',true)">Falso — solo la mattina! Dopo pranzo: un caffè.</button>
+      </div>
+    </div>
+    <div class="mq" id="r2">
+      <div class="qt">2. "Prendo" si usa per ordinare al bar.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r2',true)">Vero — "Prendo un caffè, per favore." ✓</button>
+        <button class="o" onclick="mc(this,'r2',false)">Falso</button>
+      </div>
+    </div>
+    <div class="mq" id="r3">
+      <div class="qt">3. "Mi piacciono" si usa con una cosa sola.</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'r3',false)">Vero</button>
+        <button class="o" onclick="mc(this,'r3',true)">Falso — "mi piace" (singular) / "mi piacciono" (plural)</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf1" style="width:0%"></div></div><span class="sn" id="sn1">0/3</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(1,document.getElementById('nb1'))">I luoghi d'Italia →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 1 · I LUOGHI
+══════════════════════════════ -->
+<div class="panel" id="p1">
+  <div class="sh">
+    <div class="sh-big">2</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 2 · Vocabolario</div>
+      <div class="sh-title">I luoghi — <em>dove sei?</em></div>
+      <div class="sh-deck">Le parole che ti servono per muoverti in una città italiana. Al mercato, in piazza, davanti a una chiesa...</div>
+    </div>
+    <div class="sh-time">MIN 9–18</div>
+  </div>
+
+  <div class="ph">
+    <div class="ph-label">La domanda più utile d'Italia</div>
+    <div class="ph-it">Dov'è <em>la piazza?</em></div>
+    <div class="ph-en">Where is the square?</div>
+    <div class="ph-note">dov'è = dove + è — "where is". Works for ANY single place.</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">I luoghi — impara con gli esempi</div>
+    <div class="vtema">
+      <div class="vt"><div class="vt-it">la piazza</div><div class="vt-en">the square / piazza</div><div class="vt-ex">Dov'è la piazza?</div></div>
+      <div class="vt"><div class="vt-it">il mercato</div><div class="vt-en">the market</div><div class="vt-ex">Mi piace il mercato!</div></div>
+      <div class="vt"><div class="vt-it">la chiesa</div><div class="vt-en">the church</div><div class="vt-ex">La chiesa è bella.</div></div>
+      <div class="vt"><div class="vt-it">il museo</div><div class="vt-en">the museum</div><div class="vt-ex">Il museo è chiuso.</div></div>
+      <div class="vt"><div class="vt-it">la fontana</div><div class="vt-en">the fountain</div><div class="vt-ex">Bella fontana!</div></div>
+      <div class="vt"><div class="vt-it">il ristorante</div><div class="vt-en">the restaurant</div><div class="vt-ex">Prendo la pizza!</div></div>
+      <div class="vt"><div class="vt-it">l'albergo</div><div class="vt-en">the hotel</div><div class="vt-ex">L'albergo è vicino.</div></div>
+      <div class="vt"><div class="vt-it">la stazione</div><div class="vt-en">the train station</div><div class="vt-ex">Dov'è la stazione?</div></div>
+      <div class="vt"><div class="vt-it">il centro storico</div><div class="vt-en">the old town / historic centre</div><div class="vt-ex">Voglio il centro storico!</div></div>
+      <div class="vt"><div class="vt-it">la spiaggia</div><div class="vt-en">the beach</div><div class="vt-ex">Mi piace la spiaggia!</div></div>
+    </div>
+    <div class="tip"><strong>💡 Maschile vs Femminile:</strong> In italiano ogni parola è maschile (<em>il</em>) o femminile (<em>la</em>). Non c'è una regola perfetta — impara la parola insieme all'articolo. "Il museo, la piazza, il mercato, la chiesa." Presto diventa automatico!</div>
+  </div>
+
+  <!-- indicazioni -->
+  <div class="card card-cielo">
+    <div class="exl" style="color:var(--cielo-d)">Chiedere e capire indicazioni</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Dov'è...?</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">Where is...?</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">È lontano / vicino?</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">Is it far / near?</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">Sempre dritto.</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">Straight ahead.</div>
+      </div>
+      <div style="padding:.75rem 1rem;background:#fff;border-radius:var(--r)">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic">A destra / a sinistra.</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px;font-style:italic">To the right / left.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 2 — abbina il luogo</div>
+    <div class="exin">Scegli la risposta giusta. · <em>Choose the correct answer.</em></div>
+    <div class="mq" id="l1">
+      <div class="qt">1. Vuoi comprare frutta fresca. Dove vai?</div>
+      <div class="qe">You want to buy fresh fruit. Where do you go?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'l1',false)">a) La chiesa</button>
+        <button class="o" onclick="mc(this,'l1',true)">b) Il mercato</button>
+        <button class="o" onclick="mc(this,'l1',false)">c) La stazione</button>
+      </div>
+    </div>
+    <div class="mq" id="l2">
+      <div class="qt">2. Come si dice "Where is the beach?" in italiano?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'l2',false)">a) Mi piace la spiaggia?</button>
+        <button class="o" onclick="mc(this,'l2',true)">b) Dov'è la spiaggia?</button>
+        <button class="o" onclick="mc(this,'l2',false)">c) Prendo la spiaggia.</button>
+      </div>
+    </div>
+    <div class="mq" id="l3">
+      <div class="qt">3. Il barista dice "sempre dritto" — cosa fai?</div>
+      <div class="qe">The barista says "sempre dritto" — what do you do?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'l3',false)">a) Giri a destra</button>
+        <button class="o" onclick="mc(this,'l3',false)">b) Giri a sinistra</button>
+        <button class="o" onclick="mc(this,'l3',true)">c) Vai dritto</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf2" style="width:0%"></div></div><span class="sn" id="sn2">0/3</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(2,document.getElementById('nb2'))">C'è / Ci sono →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 2 · C'È / CI SONO
+══════════════════════════════ -->
+<div class="panel" id="p2">
+  <div class="sh">
+    <div class="sh-big">3</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 3 · Grammatica</div>
+      <div class="sh-title">C'è e ci sono — <em>there is / there are</em></div>
+      <div class="sh-deck">Due parole che ti permettono di descrivere qualsiasi posto in Italia. Semplici e potentissime.</div>
+    </div>
+    <div class="sh-time">MIN 19–27</div>
+  </div>
+
+  <div class="gram">
+    <div class="gram-title">C'è / Ci sono</div>
+    <div class="gram-sub">there is (singular) / there are (plural)</div>
+    <div class="gram-rule">
+      <div class="gr-label">C'è + una cosa sola</div>
+      <div class="gr-ex">C'è una fontana bellissima in piazza.</div>
+      <div class="gr-en">There is a beautiful fountain in the square.</div>
+      <div class="gr-ex" style="margin-top:.4rem">C'è un museo vicino all'albergo.</div>
+      <div class="gr-en">There is a museum near the hotel.</div>
+    </div>
+    <div class="gram-rule">
+      <div class="gr-label">Ci sono + più cose</div>
+      <div class="gr-ex">Ci sono molti turisti in luglio.</div>
+      <div class="gr-en">There are many tourists in July.</div>
+      <div class="gr-ex" style="margin-top:.4rem">Ci sono due chiese nella piazza.</div>
+      <div class="gr-en">There are two churches in the square.</div>
+    </div>
+    <div class="gram-rule">
+      <div class="gr-label">Non c'è / Non ci sono — il negativo</div>
+      <div class="gr-ex">Non c'è un ristorante qui.</div>
+      <div class="gr-en">There isn't a restaurant here.</div>
+      <div class="gr-ex" style="margin-top:.4rem">Non ci sono taxi!</div>
+      <div class="gr-en">There are no taxis!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Lettura interlineare — una piazza italiana</div>
+    <div class="il-note">Leggi ad alta voce — ogni parola ha la traduzione sotto. <span style="color:var(--terr);font-weight:600">Arancione = c'è/ci sono</span>. · <em>Read out loud — translation below every word.</em></div>
+    <div class="il">
+      <p>
+        <span class="wp"><span class="it">Sono</span><span class="en">I am</span></span>
+        <span class="wp"><span class="it">in</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">Piazza</span><span class="en">Piazza</span></span>
+        <span class="wp"><span class="it">Navona</span><span class="en">Navona</span></span>
+        <span class="wp"><span class="it">a</span><span class="en">in</span></span>
+        <span class="wp"><span class="it">Roma</span><span class="en">Rome</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+        <span class="wp"><span class="it kw">C'è</span><span class="en">There is</span></span>
+        <span class="wp"><span class="it">una</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">fontana</span><span class="en">fountain</span></span>
+        <span class="wp"><span class="it">enorme</span><span class="en">enormous</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+      </p>
+      <p>
+        <span class="wp"><span class="it kw">Ci sono</span><span class="en">There are</span></span>
+        <span class="wp"><span class="it">artisti</span><span class="en">artists</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">turisti</span><span class="en">tourists</span></span>
+        <span class="wp"><span class="it">ovunque</span><span class="en">everywhere</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+        <span class="wp"><span class="it kw">C'è</span><span class="en">There is</span></span>
+        <span class="wp"><span class="it">un</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">bar</span><span class="en">bar</span></span>
+        <span class="wp"><span class="it">con</span><span class="en">with</span></span>
+        <span class="wp"><span class="it">tavoli</span><span class="en">tables</span></span>
+        <span class="wp"><span class="it">fuori</span><span class="en">outside</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+      </p>
+      <p>
+        <span class="wp"><span class="it">Mi</span><span class="en">I</span></span>
+        <span class="wp"><span class="it">piace</span><span class="en">like</span></span>
+        <span class="wp"><span class="it">moltissimo</span><span class="en">very much</span></span>
+        <span class="wp"><span class="it">questa</span><span class="en">this</span></span>
+        <span class="wp"><span class="it">piazza</span><span class="en">square</span></span>
+        <span class="wp punct"><span class="it">!</span></span>
+        <span class="wp"><span class="it">Prendo</span><span class="en">I'll have</span></span>
+        <span class="wp"><span class="it">un</span><span class="en">a</span></span>
+        <span class="wp"><span class="it">caffè</span><span class="en">coffee</span></span>
+        <span class="wp"><span class="it">e</span><span class="en">and</span></span>
+        <span class="wp"><span class="it">guardo</span><span class="en">I watch</span></span>
+        <span class="wp"><span class="it">la</span><span class="en">the</span></span>
+        <span class="wp"><span class="it">gente</span><span class="en">people</span></span>
+        <span class="wp punct"><span class="it">.</span></span>
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 3 — c'è o ci sono?</div>
+    <div class="fw">
+      <div class="fs">_____ un museo bellissimo a Firenze.</div>
+      <div class="fen">There is a beautiful museum in Florence.</div>
+      <input class="fi" type="text" placeholder="c'è" oninput="sf(this,"c'è",'cs1')"><div id="fb-cs1" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">_____ molte chiese a Roma.</div>
+      <div class="fen">There are many churches in Rome.</div>
+      <input class="fi" type="text" placeholder="ci sono" oninput="sf(this,'ci sono','cs2')"><div id="fb-cs2" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">Non _____ un taxi — andiamo a piedi!</div>
+      <div class="fen">There is no taxi — let's walk!</div>
+      <input class="fi" type="text" placeholder="c'è" oninput="sf(this,"c'è",'cs3')"><div id="fb-cs3" class="fb"></div>
+    </div>
+    <div class="fw">
+      <div class="fs">_____ due ristoranti vicino all'albergo.</div>
+      <div class="fen">There are two restaurants near the hotel.</div>
+      <input class="fi" type="text" placeholder="ci sono" oninput="sf(this,'ci sono','cs4')"><div id="fb-cs4" class="fb"></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(3,document.getElementById('nb3'))">I colori →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 3 · COLORI
+══════════════════════════════ -->
+<div class="panel" id="p3">
+  <div class="sh">
+    <div class="sh-big">4</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 4 · I colori</div>
+      <div class="sh-title">I colori — <em>l'Italia è coloratissima</em></div>
+      <div class="sh-deck">Dalle case di Burano ai campi di girasoli toscani — i colori ti servono ovunque. E in italiano si usano per descrivere tutto.</div>
+    </div>
+    <div class="sh-time">MIN 28–34</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">I colori di base</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:1rem">
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#E8E8E8;border:1px solid #ccc;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">bianco</div>
+        <div style="font-size:11px;color:var(--muted)">white</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#1a1a1a;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">nero</div>
+        <div style="font-size:11px;color:var(--muted)">black</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#C0392B;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">rosso</div>
+        <div style="font-size:11px;color:var(--muted)">red</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#2980B9;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">blu</div>
+        <div style="font-size:11px;color:var(--muted)">blue</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#27AE60;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">verde</div>
+        <div style="font-size:11px;color:var(--muted)">green</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#F39C12;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">giallo</div>
+        <div style="font-size:11px;color:var(--muted)">yellow</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#E67E22;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">arancione</div>
+        <div style="font-size:11px;color:var(--muted)">orange</div>
+      </div>
+      <div style="padding:.7rem;background:#fff;border-radius:var(--r);border:1px solid var(--ecru3);text-align:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:#8E44AD;margin:0 auto .4rem"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic">viola</div>
+        <div style="font-size:11px;color:var(--muted)">purple/violet</div>
+      </div>
+    </div>
+    <div class="tip"><strong>💡 I colori in italiano:</strong> I colori si mettono DOPO il sostantivo. "Una borsa <em>rossa</em>" (a red bag) — non "una rossa borsa". E cambiano per accordarsi: <em>rosso / rossa / rossi / rosse</em>. Per ora ricorda solo: colore DOPO la parola!</div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 4 — di che colore è?</div>
+    <div class="mq" id="col1">
+      <div class="qt">1. La bandiera italiana ha tre colori. Quali?</div>
+      <div class="qe">The Italian flag has three colours. Which ones?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'col1',false)">a) Rosso, bianco, blu</button>
+        <button class="o" onclick="mc(this,'col1',true)">b) Verde, bianco, rosso</button>
+        <button class="o" onclick="mc(this,'col1',false)">c) Giallo, rosso, nero</button>
+      </div>
+    </div>
+    <div class="mq" id="col2">
+      <div class="qt">2. Come si dice "a blue sea" in italiano?</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'col2',false)">a) Un blu mare</button>
+        <button class="o" onclick="mc(this,'col2',true)">b) Un mare blu</button>
+        <button class="o" onclick="mc(this,'col2',false)">c) Mare è blu</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf3" style="width:0%"></div></div><span class="sn" id="sn3">0/2</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(4,document.getElementById('nb4'))">Il verbo essere →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 4 · ESSERE
+══════════════════════════════ -->
+<div class="panel" id="p4">
+  <div class="sh">
+    <div class="sh-big">5</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 5 · Grammatica</div>
+      <div class="sh-title">Essere — <em>il verbo più importante</em></div>
+      <div class="sh-deck">Hai già usato "sono" e "è" nella lezione 1. Oggi impari tutte le forme. È il verbo che userai ogni singolo giorno in Italia.</div>
+    </div>
+    <div class="sh-time">MIN 35–42</div>
+  </div>
+
+  <div class="gram">
+    <div class="gram-title">ESSERE — to be</div>
+    <div class="gram-sub">il verbo più usato in italiano</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="gram-rule">
+        <div class="gr-label">io → sono</div>
+        <div class="gr-ex">Sono americana.</div>
+        <div class="gr-en">I am American.</div>
+      </div>
+      <div class="gram-rule">
+        <div class="gr-label">tu → sei</div>
+        <div class="gr-ex">Sei italiana?</div>
+        <div class="gr-en">Are you Italian?</div>
+      </div>
+      <div class="gram-rule">
+        <div class="gr-label">lui / lei → è</div>
+        <div class="gr-ex">Il museo è chiuso.</div>
+        <div class="gr-en">The museum is closed.</div>
+      </div>
+      <div class="gram-rule">
+        <div class="gr-label">noi → siamo</div>
+        <div class="gr-ex">Siamo a Roma!</div>
+        <div class="gr-en">We are in Rome!</div>
+      </div>
+      <div class="gram-rule">
+        <div class="gr-label">voi → siete</div>
+        <div class="gr-ex">Siete turisti?</div>
+        <div class="gr-en">Are you (all) tourists?</div>
+      </div>
+      <div class="gram-rule">
+        <div class="gr-label">loro → sono</div>
+        <div class="gr-ex">Loro sono italiani.</div>
+        <div class="gr-en">They are Italian.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 5 — scegli la forma giusta</div>
+    <div class="mq" id="e1">
+      <div class="qt">1. "Io _____ americana." (essere)</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'e1',true)">a) sono</button>
+        <button class="o" onclick="mc(this,'e1',false)">b) sei</button>
+        <button class="o" onclick="mc(this,'e1',false)">c) è</button>
+      </div>
+    </div>
+    <div class="mq" id="e2">
+      <div class="qt">2. "Il ristorante _____ vicino." (essere)</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'e2',false)">a) sono</button>
+        <button class="o" onclick="mc(this,'e2',false)">b) siamo</button>
+        <button class="o" onclick="mc(this,'e2',true)">c) è</button>
+      </div>
+    </div>
+    <div class="mq" id="e3">
+      <div class="qt">3. "Noi _____ a Firenze!" (essere)</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'e3',false)">a) sono</button>
+        <button class="o" onclick="mc(this,'e3',true)">b) siamo</button>
+        <button class="o" onclick="mc(this,'e3',false)">c) siete</button>
+      </div>
+    </div>
+    <div class="mq" id="e4">
+      <div class="qt">4. "Tu _____ italiana?" (essere)</div>
+      <div class="os">
+        <button class="o" onclick="mc(this,'e4',false)">a) sono</button>
+        <button class="o" onclick="mc(this,'e4',true)">b) sei</button>
+        <button class="o" onclick="mc(this,'e4',false)">c) è</button>
+      </div>
+    </div>
+    <div class="sr"><div class="st"><div class="sf" id="sf4" style="width:0%"></div></div><span class="sn" id="sn4">0/4</span></div>
+  </div>
+
+  <button class="next-btn" onclick="go(5,document.getElementById('nb5'))">Dialogo →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 5 · DIALOGO
+══════════════════════════════ -->
+<div class="panel" id="p5">
+  <div class="sh">
+    <div class="sh-big">6</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 6 · Dialogo</div>
+      <div class="sh-title">In piazza — <em>Andrea chiede indicazioni</em></div>
+      <div class="sh-deck">Un dialogo reale in una piazza italiana. Tutto quello che hai imparato oggi, in uso. Leggi, completa, poi fai il role-play con Kate.</div>
+    </div>
+    <div class="sh-time">MIN 43–48</div>
+  </div>
+
+  <div class="card">
+    <div class="dw">
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Scusi! Dov'è il Colosseo?</div>
+        <div class="de">Excuse me! Where is the Colosseum?</div>
+      </div></div>
+      <div class="dr"><div class="dav npc">P</div><div class="db"><div class="dn">Passante — local</div>
+        <div class="di">È lontano? No, no — è vicino! Sempre dritto, poi a destra. Ci sono cartelli.</div>
+        <div class="de">Is it far? No, no — it's nearby! Straight ahead, then right. There are signs.</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Grazie mille! C'è anche un bar vicino al Colosseo?</div>
+        <div class="de">Thank you so much! Is there also a bar near the Colosseum?</div>
+      </div></div>
+      <div class="dr"><div class="dav npc">P</div><div class="db"><div class="dn">Passante</div>
+        <div class="di">Certo! Ci sono molti bar! Siete americani?</div>
+        <div class="de">Of course! There are many bars! Are you Americans?</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Sì, sono americana. Studio italiano perché mi piace moltissimo l'Italia!</div>
+        <div class="de">Yes, I'm American. I'm studying Italian because I love Italy very much!</div>
+      </div></div>
+      <div class="dr"><div class="dav npc">P</div><div class="db"><div class="dn">Passante</div>
+        <div class="di">Brava! Il tuo italiano è ottimo! Buona visita!</div>
+        <div class="de">Well done! Your Italian is great! Enjoy your visit!</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Grazie! Arrivederci!</div>
+        <div class="de">Thank you! Goodbye!</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="exl">Esercizio 6 — completa il dialogo</div>
+    <div class="exin">Usa: <strong>c'è · ci sono · dov'è · sono · siamo · grazie</strong></div>
+    <div class="dw">
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Scusi! <input class="dg" oninput="dg(this,"dov'è",'d1')" placeholder="______"> la piazza principale?</div>
+      </div></div>
+      <div class="dr"><div class="dav npc">P</div><div class="db"><div class="dn">Passante</div>
+        <div class="di">È vicino! <input class="dg" oninput="dg(this,"c'è",'d2')" placeholder="______"> anche una fontana bellissima lì.</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di"><input class="dg" oninput="dg(this,'grazie','d3')" placeholder="______"> mille! <input class="dg" oninput="dg(this,'ci sono','d4')" placeholder="______"> anche dei ristoranti vicino?</div>
+      </div></div>
+      <div class="dr"><div class="dav npc">P</div><div class="db"><div class="dn">Passante</div>
+        <div class="di">Sì! E voi, <input class="dg" oninput="dg(this,'siamo','d5')" placeholder="______">... scusa, <em>siete</em> turisti?</div>
+      </div></div>
+      <div class="dr"><div class="dav andrea">A</div><div class="db"><div class="dn">Andrea</div>
+        <div class="di">Sì, <input class="dg" oninput="dg(this,'sono','d6')" placeholder="______"> americana. Mi piace molto Roma!</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card card-oliva">
+    <div class="exl" style="color:var(--oliva-d)">Role-play orale — in piazza con Kate</div>
+    <p style="font-size:13.5px;color:var(--oliva-d);margin-bottom:1rem;font-style:italic">"Kate è un passante italiano. Tu chiedi dove si trova un luogo. Usa: Scusi, dov'è...? C'è...? Ci sono...? Siete...? Mi piace..."</p>
+    <div class="scaffold">
+      <div class="slb">Costruisci il tuo dialogo — poi parlalo ad alta voce</div>
+      <div class="chips" id="cp1">
+        <span class="chip" onclick="ac(this,'Scusi!','sb1')">Scusi!</span>
+        <span class="chip" onclick="ac(this,'Dov\'è il museo?','sb1')">Dov'è il museo?</span>
+        <span class="chip" onclick="ac(this,'C\'è un bar vicino?','sb1')">C'è un bar vicino?</span>
+        <span class="chip" onclick="ac(this,'Ci sono ristoranti qui?','sb1')">Ci sono ristoranti qui?</span>
+        <span class="chip" onclick="ac(this,'Sono americana.','sb1')">Sono americana.</span>
+        <span class="chip" onclick="ac(this,'Mi piace moltissimo Roma!','sb1')">Mi piace moltissimo Roma!</span>
+        <span class="chip" onclick="ac(this,'Grazie mille!','sb1')">Grazie mille!</span>
+        <span class="chip" onclick="ac(this,'Arrivederci!','sb1')">Arrivederci!</span>
+      </div>
+      <div class="built" id="sb1">Clicca le frasi per costruire il dialogo...</div>
+      <button class="reset-btn" onclick="rs('sb1','cp1')" style="margin-top:8px">↺ Reset</button>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="go(6,document.getElementById('nb6'))">Produzione finale →</button>
+</div>
+
+<!-- ══════════════════════════════
+     PANEL 6 · PRODUZIONE
+══════════════════════════════ -->
+<div class="panel" id="p6">
+  <div class="sh">
+    <div class="sh-big">7</div>
+    <div class="sh-main">
+      <div class="sh-kicker">Sezione 7 · Produzione</div>
+      <div class="sh-title">Scrivi — <em>la tua Italia</em></div>
+      <div class="sh-deck">Due compiti brevi. Niente paura — usa le parole che hai imparato oggi. Non deve essere perfetto.</div>
+    </div>
+    <div class="sh-time">MIN 49–50</div>
+  </div>
+
+  <div class="pbox">
+    <div class="ptag">✍ Compito 1 — la tua piazza ideale (4–5 frasi)</div>
+    <div class="pprompt">"Descrivi la tua piazza italiana ideale. C'è una fontana? Ci sono ristoranti? Com'è — bella, grande, tranquilla? Che colore hanno le case?"</div>
+    <div class="pen">"Describe your ideal Italian piazza. Is there a fountain? Are there restaurants? What's it like? What colour are the buildings?"</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr1','La mia piazza ideale è ')">La mia piazza ideale è</span>
+      <span class="phint" onclick="ins('pr1','C\'è ')">C'è</span>
+      <span class="phint" onclick="ins('pr1','Ci sono ')">Ci sono</span>
+      <span class="phint" onclick="ins('pr1','Le case sono ')">Le case sono</span>
+      <span class="phint" onclick="ins('pr1','Mi piace perché ')">Mi piace perché</span>
+    </div>
+    <textarea class="prod" id="pr1" placeholder="La mia piazza ideale è a Venezia. C'è..." oninput="wc(this,'wc1')"></textarea>
+    <div class="wc" id="wc1">0 parole</div>
+  </div>
+
+  <div class="pbox">
+    <div class="ptag">✍ Compito 2 — presentati di nuovo (3 frasi nuove)</div>
+    <div class="pprompt">"Presentati usando le strutture nuove di oggi: dove sei, com'è il posto, cosa c'è intorno a te."</div>
+    <div class="pen">"Introduce yourself using today's new structures: where you are, what the place is like, what's around you."</div>
+    <div class="phints">
+      <span class="phint" onclick="ins('pr2','Sono a ')">Sono a</span>
+      <span class="phint" onclick="ins('pr2','C\'è ')">C'è</span>
+      <span class="phint" onclick="ins('pr2','Ci sono ')">Ci sono</span>
+      <span class="phint" onclick="ins('pr2','È molto ')">È molto</span>
+      <span class="phint" onclick="ins('pr2','Mi piace ')">Mi piace</span>
+    </div>
+    <textarea class="prod" id="pr2" placeholder="Sono a Roma. C'è..." oninput="wc(this,'wc2')"></textarea>
+    <div class="wc" id="wc2">0 parole</div>
+  </div>
+
+  <div class="week">
+    <div class="wt">⭐ Questa settimana — 5 minuti al giorno</div>
+    <div class="wr"><span class="wd">LUN</span><span>Ripeti le 6 forme di ESSERE ad alta voce: sono, sei, è, siamo, siete, sono. Tre volte. Senza guardare.</span></div>
+    <div class="wr"><span class="wd">MAR</span><span>Guarda una foto di una città italiana online e descrivi: "C'è una..." / "Ci sono molti..." — 3 frasi.</span></div>
+    <div class="wr"><span class="wd">MER</span><span>Scegli 3 oggetti in casa tua e di' il colore in italiano ad alta voce. "Il divano è... / La porta è..."</span></div>
+    <div class="wr"><span class="wd">GIO</span><span>Scrivi su WhatsApp a Kate: "Sono a [città/posto]. C'è... Mi piace..." — 2 frasi. Lei corregge!</span></div>
+    <div class="wr"><span class="wd">VEN</span><span>Leggi il dialogo di oggi ad alta voce, due volte. Prima lentamente, poi più veloce.</span></div>
+  </div>
+
+  <div class="done">
+    <div class="done-flag">🇮🇹</div>
+    <div class="done-title">Bravissima, Andrea!</div>
+    <div class="done-body">
+      Lezione 2 completata. Oggi hai aggiunto: i luoghi d'Italia, come chiedere indicazioni, c'è e ci sono, i colori, e tutte le forme di <em>essere</em>. Puoi già descrivere qualsiasi posto in italiano. Non è poco.
+    </div>
+    <div class="done-hw">
+      <strong>Porta alla lezione 3:</strong> descrivi un posto che ami — una città, un quartiere, un mercato — usando c'è, ci sono, i colori, e essere. Anche 3 frasi bastano.<br><br>
+      <strong>Bring to lesson 3:</strong> describe a place you love using c'è, ci sono, colours, and essere. Even 3 sentences is enough.
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>Andrea · Lezione 2 · In giro per l'Italia · Kate · Preply · Luglio 2025</footer>
+
+<script>
+function go(n,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+  btn.classList.add('active');
+  for(let i=0;i<n;i++) document.getElementById('nb'+i).classList.add('done');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const scores={};const answered={};
+const gMap={r1:'g1',r2:'g1',r3:'g1',l1:'g2',l2:'g2',l3:'g2',col1:'g3',col2:'g3',e1:'g4',e2:'g4',e3:'g4',e4:'g4'};
+const gTot={g1:3,g2:3,g3:2,g4:4};
+const sfMap={g1:'1',g2:'2',g3:'3',g4:'4'};
+
+function mc(btn,qId,correct){
+  if(answered[qId])return;
+  answered[qId]=true;
+  btn.parentElement.querySelectorAll('.o').forEach(o=>o.classList.add('disabled'));
+  btn.classList.add(correct?'correct':'wrong');
+  const g=gMap[qId];if(!g)return;
+  if(!scores[g])scores[g]=0;
+  if(correct)scores[g]++;
+  const n=sfMap[g];
+  document.getElementById('sf'+n).style.width=Math.round(scores[g]/gTot[g]*100)+'%';
+  document.getElementById('sn'+n).textContent=scores[g]+'/'+gTot[g];
+}
+
+function norm(s){
+  return s.trim().toLowerCase()
+    .replace(/[.!?,]/g,'').replace(/à/g,'a').replace(/è/g,'e').replace(/é/g,'e')
+    .replace(/ì/g,'i').replace(/ò/g,'o').replace(/ù/g,'u')
+    .replace(/'/g,"'").replace(/\s+/g,' ');
+}
+function sf(input,answer,id){
+  const v=norm(input.value);const a=norm(answer);
+  const fb=document.getElementById('fb-'+id);
+  if(v===a){
+    input.classList.add('ok');input.classList.remove('err');
+    if(fb){fb.textContent='✓ Perfetto!';fb.className='fb good';}
+  } else if(v.length>1){
+    input.classList.remove('ok');input.classList.add('err');
+    if(fb)fb.className='fb';
+  } else{input.classList.remove('ok','err');if(fb)fb.className='fb';}
+}
+function dg(input,answer,id){
+  const v=norm(input.value);const a=norm(answer);
+  if(v===a){input.classList.add('ok');input.classList.remove('err');}
+  else if(v.length>1){input.classList.remove('ok');input.classList.add('err');}
+  else input.classList.remove('ok','err');
+}
+function wc(el,id){
+  const n=el.value.trim().split(/\s+/).filter(w=>w.length>0).length;
+  document.getElementById(id).textContent=n+' parole';
+}
+function ins(id,text){
+  const ta=document.getElementById(id);
+  const sep=(ta.value&&!ta.value.endsWith(' ')&&!ta.value.endsWith('\n'))?'\n':'';
+  ta.value+=sep+text;wc(ta,id==='pr1'?'wc1':'wc2');ta.focus();
+}
+let ss={};
+function ac(chip,word,sbId){
+  if(chip.classList.contains('used'))return;
+  chip.classList.add('used');
+  if(!ss[sbId])ss[sbId]=[];
+  ss[sbId].push({word,chip});renderS(sbId);
+}
+function renderS(sbId){
+  const box=document.getElementById(sbId);
+  if(!ss[sbId]||!ss[sbId].length){box.textContent='Clicca le frasi per costruire il dialogo...';return;}
+  box.innerHTML=ss[sbId].map((item,i)=>`<span class="bw" onclick="rw('${sbId}',${i})">${item.word}</span>`).join(' ');
+}
+function rw(sbId,idx){
+  const item=ss[sbId][idx];
+  if(item&&item.chip)item.chip.classList.remove('used');
+  ss[sbId].splice(idx,1);renderS(sbId);
+}
+function rs(sbId,cpId){
+  ss[sbId]=[];
+  document.getElementById(sbId).textContent='Clicca le frasi per costruire il dialogo...';
+  document.getElementById(cpId).querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+}
+</script>
+</body>
+</html>
+HTMLEOF
